@@ -1,5 +1,5 @@
 {
-  "mode": "dry-run",
+  "mode": "server",
   "server": "http://127.0.0.1:8000",
   "config_snapshot": {
     "NEXT_WEEKDAY": "following_week",
@@ -127,7 +127,7 @@
       "escalations": 0,
       "failed": 0,
       "verifier_ok": null,
-      "summary": "Judged not operational: The message is about a brochure for a customer, not an operational problem. No tool calls were made (handbook rule 7)."
+      "summary": "Judged not operational: Not about our operations: the LLM classified it as noise and the rule-based cross-check found no complete incident (no plant, part or lot with dates). No tool calls were made (handbook rule 7)."
     },
     {
       "event_id": "E-06",
@@ -143,7 +143,7 @@
       "escalations": 0,
       "failed": 0,
       "verifier_ok": null,
-      "summary": "Judged not operational: The message is about a brochure for a customer, not an operational problem. No tool calls were made (handbook rule 7)."
+      "summary": "Judged not operational: Not about our operations: the LLM classified it as noise and the rule-based cross-check found no complete incident (no plant, part or lot with dates). No tool calls were made (handbook rule 7)."
     },
     {
       "event_id": "E-07",
@@ -159,7 +159,7 @@
       "escalations": 0,
       "failed": 0,
       "verifier_ok": null,
-      "summary": "Judged not operational: The message is about a brochure for a dealer, not an operational problem. No tool calls were made (handbook rule 7)."
+      "summary": "Judged not operational: Not about our operations: the LLM classified it as noise and the rule-based cross-check found no complete incident (no plant, part or lot with dates). No tool calls were made (handbook rule 7)."
     },
     {
       "event_id": "E-08",

@@ -11,6 +11,7 @@
     "gate": "unconfirmed",
     "confidence": 0.9,
     "rationale": "Hearsay with no specific part, plant, shipment or dates.",
+    "rationale_issues": [],
     "gate_reason": "Unconfirmed or unspecific report (hedges: rumor, may, nothing confirmed); missing: part, plant, dates, confirmation.",
     "hedges": [
       "rumor",
@@ -54,7 +55,7 @@
       "ok": true,
       "error": null,
       "kind": "escalate",
-      "ts": "2026-11-07T22:33:39.482+00:00"
+      "ts": "2026-11-07T22:40:43.778+00:00"
     }
   ],
   "escalation": {

@@ -11,7 +11,10 @@
     "gate": "noise",
     "confidence": 0.99,
     "rationale": "The message is about a brochure for a customer, not an operational problem.",
-    "gate_reason": "The message is about a brochure for a customer, not an operational problem.",
+    "rationale_issues": [
+      "'customer' is not in the message"
+    ],
+    "gate_reason": "Not about our operations: the LLM classified it as noise and the rule-based cross-check found no complete incident (no plant, part or lot with dates).",
     "hedges": [],
     "llm_model": "qwen2.5:3b-instruct",
     "llm_fallback": false,
@@ -45,7 +48,7 @@
     "LLM_MODEL": "qwen2.5:3b-instruct"
   },
   "decision_rule": "R7",
-  "summary": "Judged not operational: The message is about a brochure for a customer, not an operational problem. No tool calls were made (handbook rule 7).",
+  "summary": "Judged not operational: Not about our operations: the LLM classified it as noise and the rule-based cross-check found no complete incident (no plant, part or lot with dates). No tool calls were made (handbook rule 7).",
   "metrics": {
     "llm_calls": 1,
     "llm_model": "qwen2.5:3b-instruct",

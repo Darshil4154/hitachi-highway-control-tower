@@ -295,11 +295,12 @@ Auditor.
 |---|---|---|---|
 | NEXT_WEEKDAY | "following_week" | "nearest_upcoming" | "next Monday ... next Friday" consistency |
 | TRANSFER_LOWER_BOUND | "today" (idx 0) | "restart" | handbook: transfer "on any day with a free slot" |
+| TRANSFER_SEARCH | "day_first" | "plant_first" | Hitachi Q&A: "go plant by plant"; identical writes on this data |
 | PLANT_TIEBREAK | "plants_csv_order" | "plant_id_alpha" | earliest day first, then this |
+| SLOT_PRIORITY | "build_date" | "promised_date" | Hitachi Q&A: "delivery first"; handbook silent |
 | COMPOUND_ORDER | "message_order" | "earliest_disruption_first" | shared ledger order |
 | NOTIFY_SCOPE | "per_event" | "per_incident" | R4 "exactly one" per dealer |
 | NO_SLOT_ACTION | "escalate" | "skip" | no feasible slot in window |
-| QUALITY_DEALER_NOTIFY | False | True | R6 lists only hold, stop sale, owner contact |
 | ESCALATE_NOISE | False | - | R7 says do nothing |
 Print the active interpretation set into every trace (`config_snapshot`) and the design card.
 

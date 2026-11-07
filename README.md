@@ -15,10 +15,26 @@ computed by plain, unit-tested Python.
 | | |
 |---|---|
 | Events | 15 (6 delays/outages, 3 quality holds, 1 compound digest, 3 noise, 2 rumors) |
-| Tool calls | 961 (all succeeded, **0 failed**): 766 writes + 193 free read-back checks |
+| Tool calls | 961 (all succeeded, **0 failed**): 766 writes + 193 free read-back checks + 2 escalations |
 | Self-check | 15/15 events green against an independent re-implementation of the rules (`eval/self_check_report.md`) |
-| Tests | `pytest -q` → 80 passed |
+| Tests | `pytest -q` → 92 passed |
+| Hallucination audit | 50 LLM phrases: 49 used, 1 replaced by code, 0 invented; 4 ungrounded rationales caught and kept out of decisions (`docs/llm_audit.md`) |
+| What-if | every open interpretation re-planned and diffed (`docs/what_if_report.md`) |
 | Model | `qwen2.5:3b-instruct` (Ollama, local); rule-based extractor as fallback |
+
+## What a successful run creates
+
+| File or screen | What it is | Who it is for |
+|---|---|---|
+| `runs/final/action_log.jsonl` | every tool call the server received (written by the organizer server) | the scorer |
+| `traces/E-01.json` ... `E-15.json` | one story per event: message, extraction, graph path, plan, verifier, actions, why | judges, auditors |
+| `traces/audit_log.csv` | one row per call with seq, plan step, rule id and reason | auditors (Excel) |
+| `exports/` | ontology diagram, GraphML, RDF/Turtle, graph stats | graph score |
+| `eval/self_check_report.md` | independent grading of the action log | you, before submitting |
+| `docs/what_if_report.md`, `docs/llm_audit.md` | interpretation impact and hallucination audit | judges, the Q&A session |
+| `docs/architecture.png`, `docs/control_tower_deck.pptx` | architecture diagram and 10-slide deck (`python docs/make_deck.py`) | presentation |
+| `docs/hitachi_session.md` | what Hitachi answered, what we changed, questions for the next session | the team |
+| Streamlit UI | all of the above on screens | demo |
 
 ## Agents
 
@@ -30,9 +46,10 @@ computed by plain, unit-tested Python.
 | Customer Care & Quality (`customer_quality.py`) | R5 loaner ranking against live pools; R6 lot identification, hold, owner contact |
 | Verifier (`control_tower/verifier.py`) | Recomputes expected sets from the tables and blocks any plan that violates R1-R10 |
 
-Guardrails: pydantic-validated LLM output, phrases must literally appear in the message, deterministic gate with a
-hedge-word detector, tool-client write guard (noise and rumor events physically cannot write), digital-twin dry run
-that must have zero errors, verifier plan and world checks, live read-back, and a human-in-the-loop inbox.
+Guardrails: pydantic-validated LLM output, phrases must literally appear in the message, decision reasons written
+by code (the LLM rationale is only a note and must pass a grounding check), deterministic gate with a hedge-word
+detector, tool-client write guard (noise and rumor events physically cannot write), digital-twin dry run that must
+have zero errors, verifier plan and world checks, live read-back, and a human-in-the-loop inbox.
 
 ## Setup
 
@@ -49,64 +66,73 @@ Local LLM (optional but recommended):
 # install Ollama from https://ollama.com, then
 ollama pull qwen2.5:3b-instruct
 ```
-Any OpenAI-compatible endpoint works via `LLM_BASE_URL`, `LLM_MODEL`, `LLM_API_KEY`. If no LLM is reachable the
-coordinator falls back to the deterministic rule-based extractor (`llm_fallback: true` in the trace), which also
-classifies all 15 events correctly. Set `LLM_DISABLED=1` to force the fallback.
+Any OpenAI-compatible endpoint works via `LLM_BASE_URL`, `LLM_MODEL`, `LLM_API_KEY`. LLM outputs are cached in
+`cache/llm/`, so a re-run reproduces the scored run exactly. If no LLM is reachable the coordinator falls back to
+the deterministic rule-based extractor (`llm_fallback: true` in the trace), which also classifies all 15 events
+correctly. Set `LLM_DISABLED=1` to force the fallback.
 
-## Run
+## Run (4 steps)
 
 ```
-# 1. tests
+# A. unit tests                                   -> 92 passed
 pytest -q
 
-# 2. dry run against the local digital twin (no server needed)
+# B. practice run on the digital twin (no server) -> 15 events, 0 failed, verifier green
 python -m control_tower.run --dry-run
 
-# 3. real run: terminal 1 - fresh organizer server with a new out folder
+# C. real run. Window 1: a fresh organizer server with a NEW out folder
 cd enterprise
-python enterprise_server.py --data data --events data/events.json --out ../runs/run1 --port 8000
-
-# terminal 2 - repo root
+python enterprise_server.py --data data --events data/events.json --out ..\runs\final --port 8000
+#    Window 2 (repo root)                          -> 15 events, 0 failed calls
 python -m control_tower.run
-python eval/self_check.py --log runs/run1/action_log.jsonl
 
-# 4. knowledge graph exports (graphml, Turtle, stats, schema PNG)
-python -m control_tower.ontology --export
-
-# 5. control tower UI (reads traces/ and exports/ only)
+# D. grade the log, then open the screens         -> 15/15 events green
+python eval/self_check.py --log runs/final/action_log.jsonl
 streamlit run ui/app.py          # http://localhost:8517 (see .streamlit/config.toml)
 ```
 
-Other CLIs: `python -m control_tower.llm --all` prints the extraction + gate table for all events;
-`python -m control_tower.ask "Who is affected by E-09?"` answers read-only questions (also a page in the UI).
+Optional:
+```
+python eval/what_if.py           # re-plan with every alternative interpretation, write docs/what_if_report.md
+python eval/llm_audit.py         # hallucination audit, write docs/llm_audit.md (part B needs the LLM)
+python -m control_tower.ontology --export   # graphml, Turtle, stats, schema PNG
+python -m control_tower.llm --all           # extraction + gate table for all events
+python -m control_tower.ask "Who is affected by E-09?"
+python docs/make_deck.py         # architecture diagram + slide deck in docs/
+```
 
-For a fresh run, the server needs a new `--out` folder (it refuses to overwrite a log), e.g. `--out ../runs/run2`.
+The server refuses to overwrite an existing log: delete the old folder or use a new `--out` (e.g. `..\runs\run2`).
 
 ## Interpretation switches
 
-Ambiguous handbook points live in `control_tower/config.py` and are printed into every trace:
+Ambiguous handbook points live in `control_tower/config.py` and are printed into every trace. The verifier and the
+self-check follow the same switches, and `tests/test_switches_and_guards.py` proves every value stays 15/15 green.
 
-| Switch | Value | Meaning |
-|---|---|---|
-| `NEXT_WEEKDAY` | `following_week` | "next Friday" on Mon 03-08 = Fri 03-19 (consistent with "can't make it next Monday ... next Friday") |
-| `TRANSFER_LOWER_BOUND` | `today` | transfers may use any day with a free slot (handbook wording) |
-| `PLANT_TIEBREAK` | `plants_csv_order` | earliest day first, then plant order in plants.csv |
-| `COMPOUND_ORDER` | `message_order` | incidents of one event share the slot ledger in message order |
-| `NOTIFY_SCOPE` | `per_event` | one `dealer.notify` per dealer per event |
-| `NO_SLOT_ACTION` | `escalate` | an order with no feasible slot is escalated |
-| `QUALITY_DEALER_NOTIFY` | `False` | quality holds use hold + stop sale + owner contact only |
+| Switch | Value | Alternative | Writes changed by the alternative |
+|---|---|---|---|
+| `NEXT_WEEKDAY` | `following_week` ("next Friday" on Mon 03-08 = Fri 03-19) | `nearest_upcoming` | 140 (E-01 becomes invalid: new ETA before old) |
+| `TRANSFER_LOWER_BOUND` | `today` (any day with a free slot) | `restart` | 5 transfers + 33 notification texts |
+| `TRANSFER_SEARCH` | `day_first` (earliest day across plants) | `plant_first` ("plant by plant") | 0 |
+| `PLANT_TIEBREAK` | `plants_csv_order` | `plant_id_alpha` | - |
+| `SLOT_PRIORITY` | `build_date` | `promised_date` ("delivery first") | 2 reschedules + 14 texts (E-11) |
+| `COMPOUND_ORDER` | `message_order` | `earliest_disruption_first` | 0 |
+| `NOTIFY_SCOPE` | `per_event` (handbook R4: exactly one per dealer) | `per_incident` | +15 notifications (E-01) |
+| `NO_SLOT_ACTION` | `escalate` | `skip` | 0 (no order lacks a slot) |
+
+Quality holds use hold + stop sale + owner contact only: `dealer.notify` is defined for delayed customer orders,
+and a quality hold has none (each dealer is told through `dealer.stop_sale`).
 
 ## Repo map
 
 ```
 enterprise/            organizer package, untouched (server, simulator, data, handbook)
 control_tower/         config, data_loader, ontology, resolvers, llm, policy, twin, tools_client,
-                       verifier, trace, run, agents/
-eval/self_check.py     independent replay + scoring of an action log
-ui/app.py              Streamlit control tower
+                       verifier, trace, run, ask, agents/
+eval/                  self_check.py (independent grading), what_if.py, llm_audit.py
+ui/app.py              Streamlit control tower (ui/static/ serves vis-network once)
 tests/                 pytest suite (synthetic fixtures for the specialists)
 traces/                per-event traces, run_summary.json, audit_log.csv
 exports/               knowledge_graph.graphml, ontology.ttl, graph_stats.json, ontology_schema.png
 runs/final/            action_log.jsonl from the clean submission run (one fresh server, all 15 events)
-docs/                  AGENTS/SPEC kit docs, build prompts
+docs/                  design card, rules walkthrough, what-if, LLM audit, Hitachi session notes, deck
 ```

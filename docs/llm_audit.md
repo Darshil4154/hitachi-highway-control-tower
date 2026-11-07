@@ -69,8 +69,8 @@ Argument values must appear in the question or resolve from a name in it; otherw
 | Which customers at D20 got a loaner after E-01, and who was skipped? | llm_tool_call | loaners_for_dealer(dealer_id=D20, event_id=E-01) | D20 (initial pool 1): |
 | What is scheduled at P_AL on 2027-04-01? | llm_tool_call | orders_at_plant_day(plant_id=P_AL, day=2027-04-01) | P_AL on 2027-04-01 (original schedule (before any event)): 3/5 slots used - PO-0445 SUMMIT, PO-0446 NOVA, PO-0 |
 | Which vehicles are in lot LOT-0191? | llm_tool_call | vehicles_in_lot(lot_id=LOT-0191) | LOT-0191 (CHIP-IVI at P_IN, built 2027-03-02..2027-03-03): 40 unsold (AUR0003175, AUR0003176, AUR0003180, AUR0 |
-| How is CAM-360 connected to D25? | llm_tool_call | path_between(a=CAM-360, b=D25) | CAM-360 <-[LOT_OF]- LOT-0011 -[USED_IN_ORDER]-> PO-0020 <-[BUILT_FROM]- AUR0000596 -[AT_DEALER]-> D25 |
-| Who is affected by event 9? | keyword_router (LLM args rejected: event_id=E-09) | who_is_affected(event_id=E-09) | E-09-I1 supplier delay: 6 production orders (PO-0436, PO-0438, PO-0439, PO-0441, PO-0442, PO-0444), 54 custome |
+| How is CAM-360 connected to D25? | llm_tool_call | path_between(a=CAM-360, b=D25) | CAM-360 -[USED_IN]-> SUMMIT <-[BUILDS]- PO-0005 <-[BUILT_FROM]- AUR0000108 -[AT_DEALER]-> D25 |
+| Who is affected by event 9? | llm_tool_call (code corrected event_id: 9 -> E-09) | who_is_affected(event_id=E-09) | E-09-I1 supplier delay: 6 production orders (PO-0436, PO-0438, PO-0439, PO-0441, PO-0442, PO-0444), 54 custome |
 | Which dealers were notified for E-16? | llm_tool_call | dealers_for_event(event_id=E-16) | Sorry - no trace for E-16. |
 | Which customers at D99 got a loaner after E-01? | llm_tool_call | loaners_for_dealer(dealer_id=D99, event_id=E-01) | Sorry - unknown dealer D99. |
 | What is scheduled at Huntsville on Thursday Apr 1? | llm_tool_call (code corrected plant_id: Huntsville -> P_AL; day: 2023-04-01 -> 2027-04-01) | orders_at_plant_day(plant_id=P_AL, day=2027-04-01) | P_AL on 2027-04-01 (original schedule (before any event)): 3/5 slots used - PO-0445 SUMMIT, PO-0446 NOVA, PO-0 |
