@@ -1,5 +1,5 @@
 {
-  "mode": "dry-run",
+  "mode": "server",
   "server": "http://127.0.0.1:8000",
   "config_snapshot": {
     "NEXT_WEEKDAY": "following_week",
