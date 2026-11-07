@@ -1,0 +1,11 @@
+[server]
+headless = true
+port = 8517
+address = "0.0.0.0"
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#0f172a"
