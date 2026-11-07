@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch  # noqa: E402
 from pptx import Presentation  # noqa: E402
 from pptx.dml.color import RGBColor  # noqa: E402
+from pptx.enum.text import PP_ALIGN  # noqa: E402
 from pptx.util import Emu, Inches, Pt  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -100,11 +101,14 @@ def add_title(slide, text, sub=None):
     bar.fill.fore_color.rgb = AMBER
     bar.line.fill.background()
     tb = slide.shapes.add_textbox(Inches(0.75), Inches(0.2), Inches(12.0), Inches(0.9))
+    tb.text_frame.word_wrap = True
     p = tb.text_frame.paragraphs[0]
     p.text, p.font.size, p.font.bold, p.font.color.rgb = text, Pt(30), True, NAVY
+    p.alignment = PP_ALIGN.LEFT
     if sub:
         p2 = tb.text_frame.add_paragraph()
         p2.text, p2.font.size, p2.font.color.rgb = sub, Pt(15), SLATE
+        p2.alignment = PP_ALIGN.LEFT
 
 
 def add_bullets(slide, items, left=0.6, top=1.5, width=12.0, height=5.5, size=18):
@@ -116,6 +120,7 @@ def add_bullets(slide, items, left=0.6, top=1.5, width=12.0, height=5.5, size=18
         level = 1 if it.startswith("  ") else 0
         p.text, p.level = ("• " if level == 0 else "– ") + it.strip(), level
         p.font.size = Pt(size - 3 * level)
+        p.alignment = PP_ALIGN.LEFT
         p.font.color.rgb = NAVY if level == 0 else SLATE
         p.space_after = Pt(6)
 

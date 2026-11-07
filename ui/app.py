@@ -268,8 +268,11 @@ def graph_html(item: dict, context: bool, max_extra: int = 60) -> str:
                      font={"size": 17, "color": "#f8fafc", "strokeWidth": 3, "strokeColor": "#0b1220",
                            "multi": False})
     for a, rel, b in chain:
+        # vis-network draws "top"-aligned labels at the target node when an edge points right-to-left
+        leftward = pos[a][0] > pos[b][0] and pos[a][1] == pos[b][1]
+        align = {"align": "horizontal", "vadjust": -14} if leftward else {"align": "top", "vadjust": -4}
         net.add_edge(a, b, label=rel, title=rel, color="#facc15", width=4,
-                     font={"size": 13, "color": "#fde68a", "strokeWidth": 0, "align": "top", "vadjust": -4})
+                     font={"size": 13, "color": "#fde68a", "strokeWidth": 0, **align})
     if context:
         rest = [e for e in (tuple(e) for e in gp.get("edges", [])) if e not in chain_set]
         adj: dict[str, list[str]] = {}
