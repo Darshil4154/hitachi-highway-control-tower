@@ -22,6 +22,7 @@ sys.path.insert(0, str(ROOT))
 from control_tower.trace import READ_REASONS, plan_seq_label  # noqa: E402
 
 STATIC = Path(__file__).resolve().parent / "static"
+FEED_HEIGHT = 720
 TRACES = ROOT / "traces"
 EXPORTS = ROOT / "exports"
 HITL = ROOT / "ui" / "hitl_decisions.json"
@@ -73,6 +74,11 @@ mark.ev {background: #fef3c7; padding: 0 2px; border-radius: 3px;}
 .prel {color: #fde68a; font-family: ui-monospace, monospace; font-size: .72rem; margin: 0 6px; white-space: nowrap;}
 .pbranch {color: #94a3b8; font-size: .72rem; margin: 0 8px; font-style: italic;}
 .small {font-size: .8rem; color: #64748b;}
+.st-key-event-detail {scroll-margin-top: 4.2rem;}
+.guard {font-size: .8rem; color: #334155; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 8px;
+        padding: 7px 12px; margin: 4px 0 8px 0;}
+.guard details {margin-top: 3px; color: #64748b;}
+.guard summary {cursor: pointer; font-size: .74rem;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -563,9 +569,12 @@ def event_detail(eid: str) -> None:
     issues = c.get("rationale_issues") or []
     note = html.escape(c.get("rationale") or "")
     if issues:
-        st.markdown(f"<div class='small'>⚠️ LLM note not used: <i>“{note}”</i> failed the grounding check "
-                    f"({html.escape('; '.join(issues))}). The decision above comes from the validated extraction "
-                    f"and the deterministic gate.</div>", unsafe_allow_html=True)
+        decided = ("the deterministic gate" if cat in ("noise", "escalated")
+                   else "the deterministic gate and the planning agents")
+        st.markdown(f"<div class='guard'>🛡️ <b>Guardrail:</b> the LLM's explanation was not used because it "
+                    f"mentioned words that are not in the message (grounding check). Decision made by {decided}."
+                    f"<details><summary>details</summary>LLM explanation: <i>“{note}”</i><br>"
+                    f"Check: {html.escape('; '.join(issues))}</details></div>", unsafe_allow_html=True)
     elif note:
         st.markdown(f"<div class='small'>LLM note (grounding check passed, not used for decisions): "
                     f"<i>“{note}”</i></div>", unsafe_allow_html=True)
@@ -603,19 +612,34 @@ def event_detail(eid: str) -> None:
 def feed(visible: list[str], selected: str | None) -> str | None:
     cats = ["all"] + [c for c in CAT if any(traces[e]["ui_category"] == c for e in visible)]
     pick = st.pills("Filter", cats, default="all", key="feed-filter", label_visibility="collapsed")
+    shown = [e for e in visible if not pick or pick == "all" or traces[e]["ui_category"] == pick]
+    st.markdown(f"<div class='small'>{len(shown)} event(s) · scroll the list · selected: <b>{selected}</b></div>",
+                unsafe_allow_html=True)
     choice = None
-    for eid in visible:
-        t = traces[eid]
-        if pick and pick != "all" and t["ui_category"] != pick:
-            continue
-        e = t["event"]
-        sel = " sel" if eid == selected else ""
-        st.markdown(f"<div class='card{sel}'><div class='meta'>{SOURCE_ICON.get(e['source'], '📨')} {eid} · "
-                    f"{e['source']} · {e['received_at'][11:16]} &nbsp; {badge(t['ui_category'])}</div>"
-                    f"<div class='sum'>{html.escape(short_summary(t))}</div></div>", unsafe_allow_html=True)
-        if st.button("Open", key=f"open-{eid}", width="stretch", type="secondary"):
-            choice = eid
+    with st.container(height=FEED_HEIGHT, border=False):
+        for eid in shown:
+            t = traces[eid]
+            e = t["event"]
+            sel = " sel" if eid == selected else ""
+            st.markdown(f"<div class='card{sel}'><div class='meta'>{SOURCE_ICON.get(e['source'], '📨')} {eid} · "
+                        f"{e['source']} · {e['received_at'][11:16]} &nbsp; {badge(t['ui_category'])}</div>"
+                        f"<div class='sum'>{html.escape(short_summary(t))}</div></div>", unsafe_allow_html=True)
+            label = "Viewing" if eid == selected else "Open"
+            if st.button(label, key=f"open-{eid}", width="stretch",
+                         type="primary" if eid == selected else "secondary"):
+                choice = eid
     return choice
+
+
+def scroll_to_detail() -> None:
+    # Bring the detail into view after a pick when it is off screen (page scrolled down, or the stacked mobile
+    # layout). The script must not contain "<": Streamlit's sanitizer drops scripts with "<" + a word character.
+    n = st.session_state.get("scroll_nonce", 0)
+    st.html(f"<span data-scroll='{n}'></span><script>setTimeout(function(){{"
+            f"var d=document.querySelector('.st-key-event-detail');if(!d){{return;}}"
+            f"var top=d.getBoundingClientRect().top;"
+            f"if(-top>0||top>window.innerHeight*0.6){{d.scrollIntoView({{behavior:'smooth',block:'start'}});}}"
+            f"}}, 150);</script>", unsafe_allow_javascript=True)
 
 
 # ------------------------------------------------------------------------------------------- pages
@@ -655,9 +679,14 @@ if page == "Event operations":
             picked = feed(order, st.session_state.selected)
             if picked:
                 st.session_state.selected = picked
+                st.session_state.scroll_nonce = st.session_state.get("scroll_nonce", 0) + 1
+                st.session_state.scroll_pending = True
                 st.rerun()
     with right:
-        event_detail(st.session_state.selected)
+        with st.container(key="event-detail"):
+            event_detail(st.session_state.selected)
+    if st.session_state.pop("scroll_pending", False):
+        scroll_to_detail()
 
 elif page == "Human review inbox":
     st.markdown("## Human-in-the-loop inbox")
