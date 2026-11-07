@@ -122,8 +122,8 @@ summary = load_summary(traces_mtime())
 with st.sidebar:
     st.markdown("## 🗼 Control Tower")
     st.markdown("<span class='small'>Wacky Wheels Co. · operations</span>", unsafe_allow_html=True)
-    page = st.radio("View", ["Event operations", "Human review inbox", "Audit trail", "Knowledge graph"],
-                    label_visibility="collapsed")
+    page = st.radio("View", ["Event operations", "Human review inbox", "Audit trail", "Knowledge graph",
+                             "Ask the control tower"], label_visibility="collapsed")
     st.divider()
     if summary:
         st.markdown(f"**Run mode:** {summary.get('mode', '?')}")
@@ -571,6 +571,41 @@ elif page == "Audit trail":
     if sc.exists():
         with st.expander("Self-check report (independent replay of the action log)"):
             st.markdown(sc.read_text(encoding="utf-8"))
+
+elif page == "Ask the control tower":
+    import sys
+
+    sys.path.insert(0, str(ROOT))
+    from control_tower import ask as ask_mod
+
+    st.markdown("## Ask the control tower")
+    st.markdown("<span class='small'>Read-only questions over the knowledge graph and the traces. The LLM only picks "
+                "a query function and its arguments; the answer is rendered by code from the function result. "
+                "Nothing here calls the enterprise server.</span>", unsafe_allow_html=True)
+    if "chat" not in st.session_state:
+        st.session_state.chat = []
+    ex_cols = st.columns(3)
+    clicked = None
+    for n, q in enumerate(ask_mod.EXAMPLES):
+        if ex_cols[n % 3].button(q, key=f"ex-{n}", width="stretch"):
+            clicked = q
+    use_llm = st.toggle("Use the LLM to pick the query (off = deterministic keyword router)", value=True)
+    question = st.chat_input("Ask about an event, dealer, plant day, lot or a path between two ids")
+    question = question or clicked
+    if question:
+        with st.spinner("Querying the graph…"):
+            st.session_state.chat.append(ask_mod.ask(question, use_llm=use_llm))
+    for r in reversed(st.session_state.chat):
+        with st.chat_message("user"):
+            st.markdown(r["question"])
+        with st.chat_message("assistant", avatar="🗼"):
+            if r["function"]:
+                st.markdown(f"<span class='chip'>{r['method']}</span><span class='chip'>{r['function']}"
+                            f"({', '.join(f'{k}={v}' for k, v in r['args'].items())})</span>", unsafe_allow_html=True)
+            st.code(r["answer"], language=None, wrap_lines=True)
+            if r["function"]:
+                with st.expander("Raw function result"):
+                    st.json(r["result"], expanded=False)
 
 else:
     st.markdown("## Knowledge graph & ontology")
