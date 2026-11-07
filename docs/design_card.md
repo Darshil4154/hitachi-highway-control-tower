@@ -35,7 +35,7 @@ hedge-word detector; required fields per incident type; weekday/date consistency
 tool-client write guard (noise/rumor events cannot write); digital-twin dry run (must be 0 errors); verifier plan
 and world checks (R1-R10); stop on first live failure (no blind retries); live read-back; human-in-the-loop inbox.
 
-**Evaluation.** `pytest -q`: 69 tests, specialists tested on synthetic mini-worlds. Real server run: 961 calls,
+**Evaluation.** `pytest -q`: 77 tests, specialists tested on synthetic mini-worlds. Real server run: 961 calls,
 **0 failed**. `eval/self_check.py` replays the action log on a fresh `Enterprise` and scores it against a separate
 minimal implementation of R1-R6 and R9-R10: **15/15 events green**. Both qwen2.5 3B and 7B pass the extraction table;
 the rule-based fallback alone also passes.
