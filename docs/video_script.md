@@ -24,7 +24,7 @@ agents, a verifier, and a digital twin that dry-runs every plan before the real 
 **1:50-2:10 Guardrails + audit.** Verifier tab: plan checks, twin world checks, live read-back, all green.
 Audit trail page: filter by rule R5 or dealer D12, download CSV. Human review inbox: approve E-13.
 
-**2:10-2:25 Self-check.** Terminal: `python eval/self_check.py --log runs/run1/action_log.jsonl` → 15/15 green,
+**2:10-2:25 Self-check.** Terminal: `python eval/self_check.py --log runs/final/action_log.jsonl` → 15/15 green,
 961 calls, 0 failed. Knowledge graph page: schema PNG, Turtle and GraphML downloads.
 
 **2:25-2:30 Close.** "LLM reads, code decides. Zero failed calls, every action cites a rule and a graph path."

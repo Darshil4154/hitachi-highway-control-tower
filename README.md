@@ -77,7 +77,10 @@ python -m control_tower.ontology --export
 streamlit run ui/app.py          # http://localhost:8517 (see .streamlit/config.toml)
 ```
 
-Other CLIs: `python -m control_tower.llm --all` prints the extraction + gate table for all events.
+Other CLIs: `python -m control_tower.llm --all` prints the extraction + gate table for all events;
+`python -m control_tower.ask "Who is affected by E-09?"` answers read-only questions (also a page in the UI).
+
+For a fresh run, the server needs a new `--out` folder (it refuses to overwrite a log), e.g. `--out ../runs/run2`.
 
 ## Interpretation switches
 
@@ -104,6 +107,6 @@ ui/app.py              Streamlit control tower
 tests/                 pytest suite (synthetic fixtures for the specialists)
 traces/                per-event traces, run_summary.json, audit_log.csv
 exports/               knowledge_graph.graphml, ontology.ttl, graph_stats.json, ontology_schema.png
-runs/run1/             action_log.jsonl from the server run
+runs/final/            action_log.jsonl from the clean submission run (one fresh server, all 15 events)
 docs/                  AGENTS/SPEC kit docs, build prompts
 ```
