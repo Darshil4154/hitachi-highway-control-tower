@@ -163,8 +163,8 @@ def kpis() -> None:
         c.markdown(f"<div class='kpi {cls}'><div class='l'>{label}</div><div class='v' style='{size}'>{value}</div>"
                    f"</div>", unsafe_allow_html=True)
     if tot.get("prompt_tokens") is not None:
-        st.markdown(f"<div class='small' style='margin-top:6px'>LLM: {tot.get('llm_calls', 0)} calls this run "
-                    f"(cached responses are free) · {tot.get('prompt_tokens', 0):,} prompt / "
+        st.markdown(f"<div class='small' style='margin-top:6px'>LLM: {tot.get('llm_calls', 0)} extraction calls "
+                    f"(one per event, cached for reproducibility) · {tot.get('prompt_tokens', 0):,} prompt / "
                     f"{tot.get('completion_tokens', 0):,} completion tokens · {tot.get('reads', 0)} free read checks"
                     f"</div>", unsafe_allow_html=True)
 
