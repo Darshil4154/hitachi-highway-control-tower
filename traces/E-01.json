@@ -8263,7 +8263,9 @@
   },
   "actions": [
     {
+      "call_no": 1,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8272,10 +8274,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.581+00:00"
+      "ts": "2026-11-07T20:47:36.525+00:00"
     },
     {
+      "call_no": 2,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8284,10 +8288,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.583+00:00"
+      "ts": "2026-11-07T20:47:36.527+00:00"
     },
     {
+      "call_no": 3,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8296,10 +8302,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.584+00:00"
+      "ts": "2026-11-07T20:47:36.529+00:00"
     },
     {
+      "call_no": 4,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8308,10 +8316,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.585+00:00"
+      "ts": "2026-11-07T20:47:36.530+00:00"
     },
     {
+      "call_no": 5,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8320,10 +8330,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.586+00:00"
+      "ts": "2026-11-07T20:47:36.532+00:00"
     },
     {
+      "call_no": 6,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8332,10 +8344,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.588+00:00"
+      "ts": "2026-11-07T20:47:36.533+00:00"
     },
     {
+      "call_no": 7,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8344,10 +8358,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.590+00:00"
+      "ts": "2026-11-07T20:47:36.535+00:00"
     },
     {
+      "call_no": 8,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8356,10 +8372,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.591+00:00"
+      "ts": "2026-11-07T20:47:36.536+00:00"
     },
     {
+      "call_no": 9,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8368,10 +8386,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.593+00:00"
+      "ts": "2026-11-07T20:47:36.537+00:00"
     },
     {
+      "call_no": 10,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8380,10 +8400,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.594+00:00"
+      "ts": "2026-11-07T20:47:36.538+00:00"
     },
     {
+      "call_no": 11,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8392,10 +8414,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.595+00:00"
+      "ts": "2026-11-07T20:47:36.539+00:00"
     },
     {
+      "call_no": 12,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8404,10 +8428,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.596+00:00"
+      "ts": "2026-11-07T20:47:36.540+00:00"
     },
     {
+      "call_no": 13,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8416,10 +8442,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.597+00:00"
+      "ts": "2026-11-07T20:47:36.541+00:00"
     },
     {
+      "call_no": 14,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8428,10 +8456,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.599+00:00"
+      "ts": "2026-11-07T20:47:36.542+00:00"
     },
     {
+      "call_no": 15,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8440,10 +8470,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.600+00:00"
+      "ts": "2026-11-07T20:47:36.543+00:00"
     },
     {
+      "call_no": 16,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8452,10 +8484,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.601+00:00"
+      "ts": "2026-11-07T20:47:36.545+00:00"
     },
     {
+      "call_no": 17,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8464,10 +8498,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.602+00:00"
+      "ts": "2026-11-07T20:47:36.546+00:00"
     },
     {
+      "call_no": 18,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8476,10 +8512,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.603+00:00"
+      "ts": "2026-11-07T20:47:36.547+00:00"
     },
     {
+      "call_no": 19,
       "seq": null,
+      "rule_id": "R5 pool check",
       "agent": "CustomerCareQuality",
       "tool": "crm.loaner_availability",
       "args": {
@@ -8488,10 +8526,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.604+00:00"
+      "ts": "2026-11-07T20:47:36.548+00:00"
     },
     {
+      "call_no": 20,
       "seq": 1,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8501,10 +8541,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.629+00:00"
+      "ts": "2026-11-07T20:47:36.573+00:00"
     },
     {
+      "call_no": 21,
       "seq": 2,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8514,10 +8556,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.630+00:00"
+      "ts": "2026-11-07T20:47:36.575+00:00"
     },
     {
+      "call_no": 22,
       "seq": 3,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8527,10 +8571,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.631+00:00"
+      "ts": "2026-11-07T20:47:36.576+00:00"
     },
     {
+      "call_no": 23,
       "seq": 4,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8540,10 +8586,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.633+00:00"
+      "ts": "2026-11-07T20:47:36.577+00:00"
     },
     {
+      "call_no": 24,
       "seq": 5,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8553,10 +8601,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.634+00:00"
+      "ts": "2026-11-07T20:47:36.578+00:00"
     },
     {
+      "call_no": 25,
       "seq": 6,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8566,10 +8616,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.635+00:00"
+      "ts": "2026-11-07T20:47:36.579+00:00"
     },
     {
+      "call_no": 26,
       "seq": 7,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8579,10 +8631,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.636+00:00"
+      "ts": "2026-11-07T20:47:36.580+00:00"
     },
     {
+      "call_no": 27,
       "seq": 8,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8592,10 +8646,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.637+00:00"
+      "ts": "2026-11-07T20:47:36.581+00:00"
     },
     {
+      "call_no": 28,
       "seq": 9,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8605,10 +8661,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.638+00:00"
+      "ts": "2026-11-07T20:47:36.582+00:00"
     },
     {
+      "call_no": 29,
       "seq": 10,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8618,10 +8676,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.639+00:00"
+      "ts": "2026-11-07T20:47:36.583+00:00"
     },
     {
+      "call_no": 30,
       "seq": 11,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8631,10 +8691,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.640+00:00"
+      "ts": "2026-11-07T20:47:36.584+00:00"
     },
     {
+      "call_no": 31,
       "seq": 12,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8644,10 +8706,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.641+00:00"
+      "ts": "2026-11-07T20:47:36.585+00:00"
     },
     {
+      "call_no": 32,
       "seq": 13,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8657,10 +8721,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.642+00:00"
+      "ts": "2026-11-07T20:47:36.586+00:00"
     },
     {
+      "call_no": 33,
       "seq": 14,
+      "rule_id": "R3",
       "agent": "SupplyChainPlanner",
       "tool": "mes.reschedule",
       "args": {
@@ -8670,10 +8736,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.643+00:00"
+      "ts": "2026-11-07T20:47:36.587+00:00"
     },
     {
+      "call_no": 34,
       "seq": 15,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8686,10 +8754,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.644+00:00"
+      "ts": "2026-11-07T20:47:36.588+00:00"
     },
     {
+      "call_no": 35,
       "seq": 16,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8708,10 +8778,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.645+00:00"
+      "ts": "2026-11-07T20:47:36.589+00:00"
     },
     {
+      "call_no": 36,
       "seq": 17,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8726,10 +8798,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.645+00:00"
+      "ts": "2026-11-07T20:47:36.590+00:00"
     },
     {
+      "call_no": 37,
       "seq": 18,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8747,10 +8821,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.646+00:00"
+      "ts": "2026-11-07T20:47:36.590+00:00"
     },
     {
+      "call_no": 38,
       "seq": 19,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8764,10 +8840,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.647+00:00"
+      "ts": "2026-11-07T20:47:36.591+00:00"
     },
     {
+      "call_no": 39,
       "seq": 20,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8788,10 +8866,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.648+00:00"
+      "ts": "2026-11-07T20:47:36.592+00:00"
     },
     {
+      "call_no": 40,
       "seq": 21,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8804,10 +8884,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.649+00:00"
+      "ts": "2026-11-07T20:47:36.593+00:00"
     },
     {
+      "call_no": 41,
       "seq": 22,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8820,10 +8902,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.650+00:00"
+      "ts": "2026-11-07T20:47:36.594+00:00"
     },
     {
+      "call_no": 42,
       "seq": 23,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8836,10 +8920,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.651+00:00"
+      "ts": "2026-11-07T20:47:36.596+00:00"
     },
     {
+      "call_no": 43,
       "seq": 24,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8852,10 +8938,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.652+00:00"
+      "ts": "2026-11-07T20:47:36.597+00:00"
     },
     {
+      "call_no": 44,
       "seq": 25,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8869,10 +8957,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.653+00:00"
+      "ts": "2026-11-07T20:47:36.598+00:00"
     },
     {
+      "call_no": 45,
       "seq": 26,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8885,10 +8975,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.654+00:00"
+      "ts": "2026-11-07T20:47:36.599+00:00"
     },
     {
+      "call_no": 46,
       "seq": 27,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8901,10 +8993,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.655+00:00"
+      "ts": "2026-11-07T20:47:36.600+00:00"
     },
     {
+      "call_no": 47,
       "seq": 28,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8917,10 +9011,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.656+00:00"
+      "ts": "2026-11-07T20:47:36.606+00:00"
     },
     {
+      "call_no": 48,
       "seq": 29,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8933,10 +9029,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.657+00:00"
+      "ts": "2026-11-07T20:47:36.607+00:00"
     },
     {
+      "call_no": 49,
       "seq": 30,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8952,10 +9050,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.657+00:00"
+      "ts": "2026-11-07T20:47:36.608+00:00"
     },
     {
+      "call_no": 50,
       "seq": 31,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8969,10 +9069,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.658+00:00"
+      "ts": "2026-11-07T20:47:36.609+00:00"
     },
     {
+      "call_no": 51,
       "seq": 32,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -8986,10 +9088,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.659+00:00"
+      "ts": "2026-11-07T20:47:36.610+00:00"
     },
     {
+      "call_no": 52,
       "seq": 33,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9005,10 +9109,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.660+00:00"
+      "ts": "2026-11-07T20:47:36.612+00:00"
     },
     {
+      "call_no": 53,
       "seq": 34,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9022,10 +9128,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.661+00:00"
+      "ts": "2026-11-07T20:47:36.613+00:00"
     },
     {
+      "call_no": 54,
       "seq": 35,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9043,10 +9151,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.661+00:00"
+      "ts": "2026-11-07T20:47:36.614+00:00"
     },
     {
+      "call_no": 55,
       "seq": 36,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9066,10 +9176,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.662+00:00"
+      "ts": "2026-11-07T20:47:36.615+00:00"
     },
     {
+      "call_no": 56,
       "seq": 37,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9086,10 +9198,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.663+00:00"
+      "ts": "2026-11-07T20:47:36.617+00:00"
     },
     {
+      "call_no": 57,
       "seq": 38,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9102,10 +9216,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.664+00:00"
+      "ts": "2026-11-07T20:47:36.618+00:00"
     },
     {
+      "call_no": 58,
       "seq": 39,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9118,10 +9234,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.665+00:00"
+      "ts": "2026-11-07T20:47:36.618+00:00"
     },
     {
+      "call_no": 59,
       "seq": 40,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9142,10 +9260,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.666+00:00"
+      "ts": "2026-11-07T20:47:36.619+00:00"
     },
     {
+      "call_no": 60,
       "seq": 41,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9158,10 +9278,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.667+00:00"
+      "ts": "2026-11-07T20:47:36.620+00:00"
     },
     {
+      "call_no": 61,
       "seq": 42,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9175,10 +9297,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.668+00:00"
+      "ts": "2026-11-07T20:47:36.621+00:00"
     },
     {
+      "call_no": 62,
       "seq": 43,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9194,10 +9318,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.669+00:00"
+      "ts": "2026-11-07T20:47:36.622+00:00"
     },
     {
+      "call_no": 63,
       "seq": 44,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9211,10 +9337,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.670+00:00"
+      "ts": "2026-11-07T20:47:36.623+00:00"
     },
     {
+      "call_no": 64,
       "seq": 45,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9227,10 +9355,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.671+00:00"
+      "ts": "2026-11-07T20:47:36.625+00:00"
     },
     {
+      "call_no": 65,
       "seq": 46,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9245,10 +9375,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.671+00:00"
+      "ts": "2026-11-07T20:47:36.625+00:00"
     },
     {
+      "call_no": 66,
       "seq": 47,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9261,10 +9393,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.672+00:00"
+      "ts": "2026-11-07T20:47:36.626+00:00"
     },
     {
+      "call_no": 67,
       "seq": 48,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9278,10 +9412,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.673+00:00"
+      "ts": "2026-11-07T20:47:36.627+00:00"
     },
     {
+      "call_no": 68,
       "seq": 49,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9296,10 +9432,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.674+00:00"
+      "ts": "2026-11-07T20:47:36.628+00:00"
     },
     {
+      "call_no": 69,
       "seq": 50,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9312,10 +9450,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.675+00:00"
+      "ts": "2026-11-07T20:47:36.629+00:00"
     },
     {
+      "call_no": 70,
       "seq": 51,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9331,10 +9471,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.676+00:00"
+      "ts": "2026-11-07T20:47:36.630+00:00"
     },
     {
+      "call_no": 71,
       "seq": 52,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9355,10 +9497,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.677+00:00"
+      "ts": "2026-11-07T20:47:36.631+00:00"
     },
     {
+      "call_no": 72,
       "seq": 53,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9375,10 +9519,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.677+00:00"
+      "ts": "2026-11-07T20:47:36.632+00:00"
     },
     {
+      "call_no": 73,
       "seq": 54,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9391,10 +9537,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.678+00:00"
+      "ts": "2026-11-07T20:47:36.633+00:00"
     },
     {
+      "call_no": 74,
       "seq": 55,
+      "rule_id": "R4",
       "agent": "DealerNetwork",
       "tool": "dealer.notify",
       "args": {
@@ -9407,10 +9555,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.679+00:00"
+      "ts": "2026-11-07T20:47:36.634+00:00"
     },
     {
+      "call_no": 75,
       "seq": 56,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9419,10 +9569,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.680+00:00"
+      "ts": "2026-11-07T20:47:36.635+00:00"
     },
     {
+      "call_no": 76,
       "seq": 57,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9431,10 +9583,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.681+00:00"
+      "ts": "2026-11-07T20:47:36.636+00:00"
     },
     {
+      "call_no": 77,
       "seq": 58,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9443,10 +9597,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.682+00:00"
+      "ts": "2026-11-07T20:47:36.637+00:00"
     },
     {
+      "call_no": 78,
       "seq": 59,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9455,10 +9611,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.682+00:00"
+      "ts": "2026-11-07T20:47:36.638+00:00"
     },
     {
+      "call_no": 79,
       "seq": 60,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9467,10 +9625,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.684+00:00"
+      "ts": "2026-11-07T20:47:36.639+00:00"
     },
     {
+      "call_no": 80,
       "seq": 61,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9479,10 +9639,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.685+00:00"
+      "ts": "2026-11-07T20:47:36.640+00:00"
     },
     {
+      "call_no": 81,
       "seq": 62,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9491,10 +9653,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.685+00:00"
+      "ts": "2026-11-07T20:47:36.641+00:00"
     },
     {
+      "call_no": 82,
       "seq": 63,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9503,10 +9667,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.686+00:00"
+      "ts": "2026-11-07T20:47:36.642+00:00"
     },
     {
+      "call_no": 83,
       "seq": 64,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9515,10 +9681,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.687+00:00"
+      "ts": "2026-11-07T20:47:36.643+00:00"
     },
     {
+      "call_no": 84,
       "seq": 65,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9527,10 +9695,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.688+00:00"
+      "ts": "2026-11-07T20:47:36.644+00:00"
     },
     {
+      "call_no": 85,
       "seq": 66,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9539,10 +9709,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.689+00:00"
+      "ts": "2026-11-07T20:47:36.645+00:00"
     },
     {
+      "call_no": 86,
       "seq": 67,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9551,10 +9723,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.690+00:00"
+      "ts": "2026-11-07T20:47:36.646+00:00"
     },
     {
+      "call_no": 87,
       "seq": 68,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9563,10 +9737,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.691+00:00"
+      "ts": "2026-11-07T20:47:36.647+00:00"
     },
     {
+      "call_no": 88,
       "seq": 69,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9575,10 +9751,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.692+00:00"
+      "ts": "2026-11-07T20:47:36.648+00:00"
     },
     {
+      "call_no": 89,
       "seq": 70,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9587,10 +9765,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.693+00:00"
+      "ts": "2026-11-07T20:47:36.649+00:00"
     },
     {
+      "call_no": 90,
       "seq": 71,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9599,10 +9779,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.694+00:00"
+      "ts": "2026-11-07T20:47:36.650+00:00"
     },
     {
+      "call_no": 91,
       "seq": 72,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9611,10 +9793,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.695+00:00"
+      "ts": "2026-11-07T20:47:36.651+00:00"
     },
     {
+      "call_no": 92,
       "seq": 73,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9623,10 +9807,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.696+00:00"
+      "ts": "2026-11-07T20:47:36.652+00:00"
     },
     {
+      "call_no": 93,
       "seq": 74,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9635,10 +9821,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.697+00:00"
+      "ts": "2026-11-07T20:47:36.653+00:00"
     },
     {
+      "call_no": 94,
       "seq": 75,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9647,10 +9835,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.698+00:00"
+      "ts": "2026-11-07T20:47:36.654+00:00"
     },
     {
+      "call_no": 95,
       "seq": 76,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9659,10 +9849,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.699+00:00"
+      "ts": "2026-11-07T20:47:36.655+00:00"
     },
     {
+      "call_no": 96,
       "seq": 77,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9671,10 +9863,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.700+00:00"
+      "ts": "2026-11-07T20:47:36.656+00:00"
     },
     {
+      "call_no": 97,
       "seq": 78,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9683,10 +9877,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.701+00:00"
+      "ts": "2026-11-07T20:47:36.657+00:00"
     },
     {
+      "call_no": 98,
       "seq": 79,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9695,10 +9891,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.702+00:00"
+      "ts": "2026-11-07T20:47:36.657+00:00"
     },
     {
+      "call_no": 99,
       "seq": 80,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9707,10 +9905,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.703+00:00"
+      "ts": "2026-11-07T20:47:36.658+00:00"
     },
     {
+      "call_no": 100,
       "seq": 81,
+      "rule_id": "R5",
       "agent": "CustomerCareQuality",
       "tool": "crm.assign_loaner",
       "args": {
@@ -9719,10 +9919,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:52.704+00:00"
+      "ts": "2026-11-07T20:47:36.659+00:00"
     },
     {
+      "call_no": 101,
       "seq": null,
+      "rule_id": "R3 read-back",
       "agent": "Verifier",
       "tool": "mes.get_schedule",
       "args": {
@@ -9732,10 +9934,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.705+00:00"
+      "ts": "2026-11-07T20:47:36.660+00:00"
     },
     {
+      "call_no": 102,
       "seq": null,
+      "rule_id": "R3 read-back",
       "agent": "Verifier",
       "tool": "mes.get_schedule",
       "args": {
@@ -9745,10 +9949,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.706+00:00"
+      "ts": "2026-11-07T20:47:36.661+00:00"
     },
     {
+      "call_no": 103,
       "seq": null,
+      "rule_id": "R3 read-back",
       "agent": "Verifier",
       "tool": "mes.get_schedule",
       "args": {
@@ -9758,10 +9964,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.707+00:00"
+      "ts": "2026-11-07T20:47:36.662+00:00"
     },
     {
+      "call_no": 104,
       "seq": null,
+      "rule_id": "R3 read-back",
       "agent": "Verifier",
       "tool": "mes.get_schedule",
       "args": {
@@ -9771,10 +9979,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.709+00:00"
+      "ts": "2026-11-07T20:47:36.663+00:00"
     },
     {
+      "call_no": 105,
       "seq": null,
+      "rule_id": "R3 read-back",
       "agent": "Verifier",
       "tool": "mes.get_schedule",
       "args": {
@@ -9784,10 +9994,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.710+00:00"
+      "ts": "2026-11-07T20:47:36.664+00:00"
     },
     {
+      "call_no": 106,
       "seq": null,
+      "rule_id": "R3 read-back",
       "agent": "Verifier",
       "tool": "mes.get_schedule",
       "args": {
@@ -9797,10 +10009,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.710+00:00"
+      "ts": "2026-11-07T20:47:36.665+00:00"
     },
     {
+      "call_no": 107,
       "seq": null,
+      "rule_id": "R3 read-back",
       "agent": "Verifier",
       "tool": "mes.get_schedule",
       "args": {
@@ -9810,10 +10024,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.711+00:00"
+      "ts": "2026-11-07T20:47:36.666+00:00"
     },
     {
+      "call_no": 108,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9822,10 +10038,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.713+00:00"
+      "ts": "2026-11-07T20:47:36.667+00:00"
     },
     {
+      "call_no": 109,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9834,10 +10052,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.713+00:00"
+      "ts": "2026-11-07T20:47:36.668+00:00"
     },
     {
+      "call_no": 110,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9846,10 +10066,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.714+00:00"
+      "ts": "2026-11-07T20:47:36.669+00:00"
     },
     {
+      "call_no": 111,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9858,10 +10080,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.715+00:00"
+      "ts": "2026-11-07T20:47:36.670+00:00"
     },
     {
+      "call_no": 112,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9870,10 +10094,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.717+00:00"
+      "ts": "2026-11-07T20:47:36.671+00:00"
     },
     {
+      "call_no": 113,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9882,10 +10108,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.717+00:00"
+      "ts": "2026-11-07T20:47:36.672+00:00"
     },
     {
+      "call_no": 114,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9894,10 +10122,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.719+00:00"
+      "ts": "2026-11-07T20:47:36.673+00:00"
     },
     {
+      "call_no": 115,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9906,10 +10136,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.720+00:00"
+      "ts": "2026-11-07T20:47:36.674+00:00"
     },
     {
+      "call_no": 116,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9918,10 +10150,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.721+00:00"
+      "ts": "2026-11-07T20:47:36.675+00:00"
     },
     {
+      "call_no": 117,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9930,10 +10164,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.721+00:00"
+      "ts": "2026-11-07T20:47:36.676+00:00"
     },
     {
+      "call_no": 118,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9942,10 +10178,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.722+00:00"
+      "ts": "2026-11-07T20:47:36.677+00:00"
     },
     {
+      "call_no": 119,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9954,10 +10192,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.723+00:00"
+      "ts": "2026-11-07T20:47:36.678+00:00"
     },
     {
+      "call_no": 120,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9966,10 +10206,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.724+00:00"
+      "ts": "2026-11-07T20:47:36.679+00:00"
     },
     {
+      "call_no": 121,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9978,10 +10220,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.725+00:00"
+      "ts": "2026-11-07T20:47:36.680+00:00"
     },
     {
+      "call_no": 122,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -9990,10 +10234,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.726+00:00"
+      "ts": "2026-11-07T20:47:36.681+00:00"
     },
     {
+      "call_no": 123,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -10002,10 +10248,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.726+00:00"
+      "ts": "2026-11-07T20:47:36.682+00:00"
     },
     {
+      "call_no": 124,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -10014,10 +10262,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.727+00:00"
+      "ts": "2026-11-07T20:47:36.683+00:00"
     },
     {
+      "call_no": 125,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -10026,10 +10276,12 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.728+00:00"
+      "ts": "2026-11-07T20:47:36.685+00:00"
     },
     {
+      "call_no": 126,
       "seq": null,
+      "rule_id": "R5 read-back",
       "agent": "Verifier",
       "tool": "crm.loaner_availability",
       "args": {
@@ -10038,7 +10290,7 @@
       "ok": true,
       "error": null,
       "kind": "read",
-      "ts": "2026-11-07T20:24:52.729+00:00"
+      "ts": "2026-11-07T20:47:36.685+00:00"
     }
   ],
   "escalation": {
@@ -10369,7 +10621,7 @@
     "writes": 81,
     "escalations": 0,
     "failed": 0,
-    "runtime_s": 0.16
+    "runtime_s": 0.18
   },
   "ui_category": "compound",
   "schema_errors": []

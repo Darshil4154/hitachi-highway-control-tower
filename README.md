@@ -15,9 +15,9 @@ computed by plain, unit-tested Python.
 | | |
 |---|---|
 | Events | 15 (6 delays/outages, 3 quality holds, 1 compound digest, 3 noise, 2 rumors) |
-| Tool calls | 961 (all succeeded, **0 failed**) |
+| Tool calls | 961 (all succeeded, **0 failed**): 766 writes + 193 free read-back checks |
 | Self-check | 15/15 events green against an independent re-implementation of the rules (`eval/self_check_report.md`) |
-| Tests | `pytest -q` → 77 passed |
+| Tests | `pytest -q` → 80 passed |
 | Model | `qwen2.5:3b-instruct` (Ollama, local); rule-based extractor as fallback |
 
 ## Agents

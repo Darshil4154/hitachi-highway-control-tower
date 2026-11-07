@@ -49,6 +49,26 @@ def test_vehicles_for_lot():
             assert v.plant_id == lot.plant_id and lot.part_id in ds.bom[v.model]
 
 
+def test_used_in_order_edges_match_tables():
+    ds, kg = get_store(), get_graph()
+    got = {(u, v) for u, v, k in kg.g.edges(keys=True) if k == "USED_IN_ORDER"}
+    expected = {
+        (nid("PartLot", lot.lot_id), nid("ProductionOrder", po.production_order_id))
+        for lot in ds.part_lots.values() for po in ds.production_orders.values()
+        if po.plant_id == lot.plant_id and lot.first_build_date <= po.build_date <= lot.last_build_date
+        and lot.part_id in ds.bom[po.model]
+    }
+    assert got == expected and got
+
+
+def test_quality_path_reads_lot_order_vehicle():
+    kg = get_graph()
+    _, edges = kg.vehicles_for_lot("LOT-0191")
+    rels = [e[1] for e in edges]
+    assert "USED_IN_ORDER" in rels and "BUILT_FROM" in rels
+    assert "USED_IN" not in rels and "BUILDS" not in rels
+
+
 def test_customer_order_edges():
     kg = get_graph()
     for n, d in kg.g.nodes(data=True):

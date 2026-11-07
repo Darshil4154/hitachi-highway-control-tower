@@ -61,6 +61,7 @@ Edges (name them exactly like this everywhere: code, traces, UI, diagram):
 | LOT_OF | PartLot -> Part |
 | LOT_FROM | PartLot -> Supplier |
 | INSTALLED_AT | PartLot -> Plant |
+| USED_IN_ORDER | PartLot -> ProductionOrder (derived: order at the lot's plant, build date within the lot's build dates, model's BOM contains the lot's part) |
 | BUILT_FROM | Vehicle -> ProductionOrder |
 | AT_DEALER | Vehicle -> Dealer |
 | OWNED_BY | Vehicle -> Customer (sold only) |

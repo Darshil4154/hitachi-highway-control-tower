@@ -40,6 +40,7 @@ EDGE_SCHEMA: list[tuple[str, str, str]] = [
     ("LOT_OF", "PartLot", "Part"),
     ("LOT_FROM", "PartLot", "Supplier"),
     ("INSTALLED_AT", "PartLot", "Plant"),
+    ("USED_IN_ORDER", "PartLot", "ProductionOrder"),
     ("BUILT_FROM", "Vehicle", "ProductionOrder"),
     ("AT_DEALER", "Vehicle", "Dealer"),
     ("OWNED_BY", "Vehicle", "Customer"),
@@ -51,6 +52,10 @@ EDGE_SCHEMA: list[tuple[str, str, str]] = [
     ("AFFECTS", "Incident", "ProductionOrder"),
     ("AFFECTS", "Incident", "Vehicle"),
 ]
+
+
+USED_IN_ORDER_RULE = ("derived: order at the lot's plant, built within the lot's build dates, whose model's BOM "
+                      "contains the lot's part (LOT_OF + USED_IN + BUILDS + SCHEDULED_AT)")
 
 
 def nid(kind: str, key: str) -> str:
@@ -147,6 +152,12 @@ class KnowledgeGraph:
             kind = {"plant": "Plant", "part": "Part", "supplier": "Supplier"}[a.entity_type]
             n = self._node("Alias", a.alias, a.alias, alias=a.alias, entity_type=a.entity_type, entity_id=a.entity_id)
             self._edge(n, "REFERS_TO", nid(kind, a.entity_id))
+        for lot in ds.part_lots.values():
+            for po in ds.production_orders.values():
+                if (po.plant_id == lot.plant_id and lot.first_build_date <= po.build_date <= lot.last_build_date
+                        and lot.part_id in ds.bom[po.model]):
+                    self.g.add_edge(nid("PartLot", lot.lot_id), nid("ProductionOrder", po.production_order_id),
+                                    key="USED_IN_ORDER", rel="USED_IN_ORDER", derived=USED_IN_ORDER_RULE)
 
     # ------------------------------------------------------------ helpers
     def out_nodes(self, node: str, rel: str) -> list[str]:
@@ -207,24 +218,20 @@ class KnowledgeGraph:
         return sorted(split_nid(c)[1] for c in set(cos)), _dedupe(edges)
 
     def vehicles_for_lot(self, lot_id: str) -> tuple[list[str], list[Edge]]:
-        """R6: vehicles at the lot plant, built inside the lot dates, from orders of models that use the part."""
+        """R6: vehicles at the lot plant, built inside the lot dates, from orders of models that use the part.
+        Walks PartLot -USED_IN_ORDER-> ProductionOrder <-BUILT_FROM- Vehicle -AT_DEALER/OWNED_BY-> ..."""
         lot = nid("PartLot", lot_id)
         part = self.out_nodes(lot, "LOT_OF")[0]
         plant = self.out_nodes(lot, "INSTALLED_AT")[0]
-        first = date.fromisoformat(self.attr(lot, "first_build_date"))
-        last = date.fromisoformat(self.attr(lot, "last_build_date"))
         edges: list[Edge] = [[lot, "LOT_OF", part], [lot, "INSTALLED_AT", plant]]
         vins = []
-        for model in self.out_nodes(part, "USED_IN"):
-            for po in self.in_nodes(model, "BUILDS"):
-                if plant not in self.out_nodes(po, "SCHEDULED_AT") or not first <= self._po_date(po) <= last:
-                    continue
-                for v in self.in_nodes(po, "BUILT_FROM"):
-                    vins.append(v)
-                    edges += [[part, "USED_IN", model], [po, "BUILDS", model], [po, "SCHEDULED_AT", plant],
-                              [v, "BUILT_FROM", po]]
-                    edges += [[v, "AT_DEALER", d] for d in self.out_nodes(v, "AT_DEALER")]
-                    edges += [[v, "OWNED_BY", c] for c in self.out_nodes(v, "OWNED_BY")]
+        for po in self.out_nodes(lot, "USED_IN_ORDER"):
+            edges.append([lot, "USED_IN_ORDER", po])
+            for v in self.in_nodes(po, "BUILT_FROM"):
+                vins.append(v)
+                edges.append([v, "BUILT_FROM", po])
+                edges += [[v, "AT_DEALER", d] for d in self.out_nodes(v, "AT_DEALER")]
+                edges += [[v, "OWNED_BY", c] for c in self.out_nodes(v, "OWNED_BY")]
         return sorted(split_nid(v)[1] for v in set(vins)), _dedupe(edges)
 
     def find_shipment(
@@ -384,10 +391,18 @@ class KnowledgeGraph:
         nx.draw_networkx_edges(sg, pos, ax=ax, arrows=True, arrowsize=16, node_size=3600, edge_color="#475569",
                                connectionstyle="arc3,rad=0.08")
         labels = {(u, v): k for u, v, k in sg.edges(keys=True)}
-        nx.draw_networkx_edge_labels(sg, pos, edge_labels=labels, font_size=7.5, ax=ax,
-                                     bbox={"boxstyle": "round", "fc": "white", "ec": "#cbd5e1"})
+        box = {"boxstyle": "round", "fc": "white", "ec": "#cbd5e1"}
+        crowded = {("PartLot", "ProductionOrder"): 0.72}
+        nx.draw_networkx_edge_labels(sg, pos, edge_labels={e: k for e, k in labels.items() if e not in crowded},
+                                     font_size=7.5, ax=ax, bbox=box)
+        for (u, v), at in crowded.items():
+            if (u, v) in labels:
+                (x0, y0), (x1, y1) = pos[u], pos[v]
+                ax.text(x0 + (x1 - x0) * at, y0 + (y1 - y0) * at - 0.12, labels[(u, v)], fontsize=7.5,
+                        ha="center", va="center", rotation=29, bbox=box)
         ax.text(0, -0.4, "Runtime: Event -[MENTIONS]-> entity, Incident -[AFFECTS]-> ProductionOrder / Vehicle;  "
-                         "Alias -[REFERS_TO]-> Supplier / Part / Plant", fontsize=9, color="#334155")
+                         "Alias -[REFERS_TO]-> Supplier / Part / Plant;  USED_IN_ORDER is derived "
+                         "(lot plant + lot dates + BOM)", fontsize=9, color="#334155")
         ax.axis("off")
         fig.tight_layout()
         fig.savefig(path, dpi=140)

@@ -44,9 +44,12 @@ are recorded in the trace with reasons.
 lot's build dates, from production orders of models that use the part. Unsold vehicles (in_stock) are stopped from
 sale at their dealer. For sold vehicles, contact the owner."* `CustomerCareQuality.resolve_lot` validates an explicit
 lot id or finds the lot whose build dates equal the message window (`KnowledgeGraph.find_lots`);
-`CustomerCareQuality.plan_quality` uses `KnowledgeGraph.vehicles_for_lot` (`PartLot -LOT_OF-> Part -USED_IN-> Model
-<-BUILDS- ProductionOrder <-BUILT_FROM- Vehicle`) → `quality.hold_lot`, `DealerNetwork.plan_stop_sales` (one call per
-dealer, in_stock only), and one `crm.notify_customer` per distinct owner.
+`CustomerCareQuality.plan_quality` uses `KnowledgeGraph.vehicles_for_lot` (`PartLot -USED_IN_ORDER-> ProductionOrder
+<-BUILT_FROM- Vehicle -AT_DEALER-> Dealer / -OWNED_BY-> Customer`). `USED_IN_ORDER` is a derived edge built at graph
+load time from exactly this rule: the order is at the lot's plant, its build date is inside the lot's build dates, and
+its model's BOM contains the lot's part. The plan is `quality.hold_lot`, then `DealerNetwork.plan_stop_sales` (one call
+per dealer, in_stock only), then one `crm.notify_customer` per distinct owner. Graph paths in the trace read
+`LOT -> PO -> Vehicle -> Dealer | Customer`.
 
 **R7 Noise.** *"Do nothing operational. Do not call any write tool."* `llm.gate` returns `noise`; the coordinator
 makes no call, and `ToolsClient._guard` (`tools_client.py`) raises `WriteBlocked` for any write or escalate on a

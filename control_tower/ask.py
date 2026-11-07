@@ -247,6 +247,23 @@ def render(name: str, res: dict) -> str:
     return json.dumps(res)[:500]
 
 
+def to_markdown(answer: str) -> str:
+    """Plain-text answer -> markdown: first line as a sentence, further lines as bullets, paths in italics."""
+    lines = [ln for ln in answer.splitlines() if ln.strip()]
+    if len(lines) <= 1:
+        return re.sub(r"([*_`])", r"\\\1", answer)
+    out = []
+    for ln in lines:
+        text = re.sub(r"([*_`])", r"\\\1", ln.strip())
+        if ln.startswith("   path:"):
+            out.append(f"  - *Graph path:* {text[len('path:'):].strip()}")
+        elif ln.startswith("   "):
+            out.append(f"- {text}")
+        else:
+            out.append(f"**{text}**\n" if text.endswith(":") else f"- {text}")
+    return "\n".join(out)
+
+
 def ask(question: str, use_llm: bool = True) -> dict:
     picked = _llm_pick(question) if use_llm else None
     method = "llm_tool_call"

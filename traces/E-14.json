@@ -221,8 +221,6 @@
           "Dealer:D48",
           "Dealer:D49",
           "Dealer:D50",
-          "Model:RANGER",
-          "Model:SUMMIT",
           "Part:HARN-B",
           "PartLot:LOT-0017",
           "Plant:P_TX",
@@ -441,19 +439,9 @@
             "Plant:P_TX"
           ],
           [
-            "Part:HARN-B",
-            "USED_IN",
-            "Model:RANGER"
-          ],
-          [
-            "ProductionOrder:PO-0001",
-            "BUILDS",
-            "Model:RANGER"
-          ],
-          [
-            "ProductionOrder:PO-0001",
-            "SCHEDULED_AT",
-            "Plant:P_TX"
+            "PartLot:LOT-0017",
+            "USED_IN_ORDER",
+            "ProductionOrder:PO-0001"
           ],
           [
             "Vehicle:AUR0000001",
@@ -751,14 +739,414 @@
             "Dealer:D39"
           ],
           [
-            "ProductionOrder:PO-0004",
-            "BUILDS",
-            "Model:RANGER"
+            "PartLot:LOT-0017",
+            "USED_IN_ORDER",
+            "ProductionOrder:PO-0002"
           ],
           [
-            "ProductionOrder:PO-0004",
-            "SCHEDULED_AT",
-            "Plant:P_TX"
+            "Vehicle:AUR0000026",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000026",
+            "AT_DEALER",
+            "Dealer:D48"
+          ],
+          [
+            "Vehicle:AUR0000026",
+            "OWNED_BY",
+            "Customer:C3821"
+          ],
+          [
+            "Vehicle:AUR0000027",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000027",
+            "AT_DEALER",
+            "Dealer:D06"
+          ],
+          [
+            "Vehicle:AUR0000028",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000028",
+            "AT_DEALER",
+            "Dealer:D03"
+          ],
+          [
+            "Vehicle:AUR0000029",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000029",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0000029",
+            "OWNED_BY",
+            "Customer:C6563"
+          ],
+          [
+            "Vehicle:AUR0000030",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000030",
+            "AT_DEALER",
+            "Dealer:D34"
+          ],
+          [
+            "Vehicle:AUR0000031",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000031",
+            "AT_DEALER",
+            "Dealer:D31"
+          ],
+          [
+            "Vehicle:AUR0000032",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000032",
+            "AT_DEALER",
+            "Dealer:D15"
+          ],
+          [
+            "Vehicle:AUR0000032",
+            "OWNED_BY",
+            "Customer:C0130"
+          ],
+          [
+            "Vehicle:AUR0000033",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000033",
+            "AT_DEALER",
+            "Dealer:D16"
+          ],
+          [
+            "Vehicle:AUR0000033",
+            "OWNED_BY",
+            "Customer:C5353"
+          ],
+          [
+            "Vehicle:AUR0000034",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000034",
+            "AT_DEALER",
+            "Dealer:D29"
+          ],
+          [
+            "Vehicle:AUR0000035",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000035",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0000036",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000036",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0000036",
+            "OWNED_BY",
+            "Customer:C1735"
+          ],
+          [
+            "Vehicle:AUR0000037",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000037",
+            "AT_DEALER",
+            "Dealer:D12"
+          ],
+          [
+            "Vehicle:AUR0000037",
+            "OWNED_BY",
+            "Customer:C0630"
+          ],
+          [
+            "Vehicle:AUR0000038",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000038",
+            "AT_DEALER",
+            "Dealer:D22"
+          ],
+          [
+            "Vehicle:AUR0000038",
+            "OWNED_BY",
+            "Customer:C3527"
+          ],
+          [
+            "Vehicle:AUR0000039",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000039",
+            "AT_DEALER",
+            "Dealer:D34"
+          ],
+          [
+            "Vehicle:AUR0000039",
+            "OWNED_BY",
+            "Customer:C4064"
+          ],
+          [
+            "Vehicle:AUR0000040",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000040",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0000040",
+            "OWNED_BY",
+            "Customer:C3896"
+          ],
+          [
+            "Vehicle:AUR0000041",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000041",
+            "AT_DEALER",
+            "Dealer:D37"
+          ],
+          [
+            "Vehicle:AUR0000041",
+            "OWNED_BY",
+            "Customer:C6676"
+          ],
+          [
+            "Vehicle:AUR0000042",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000042",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0000043",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000043",
+            "AT_DEALER",
+            "Dealer:D44"
+          ],
+          [
+            "Vehicle:AUR0000043",
+            "OWNED_BY",
+            "Customer:C4614"
+          ],
+          [
+            "Vehicle:AUR0000044",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000044",
+            "AT_DEALER",
+            "Dealer:D47"
+          ],
+          [
+            "Vehicle:AUR0000045",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000045",
+            "AT_DEALER",
+            "Dealer:D38"
+          ],
+          [
+            "Vehicle:AUR0000045",
+            "OWNED_BY",
+            "Customer:C5603"
+          ],
+          [
+            "Vehicle:AUR0000046",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000046",
+            "AT_DEALER",
+            "Dealer:D12"
+          ],
+          [
+            "Vehicle:AUR0000047",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000047",
+            "AT_DEALER",
+            "Dealer:D13"
+          ],
+          [
+            "Vehicle:AUR0000048",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000048",
+            "AT_DEALER",
+            "Dealer:D31"
+          ],
+          [
+            "Vehicle:AUR0000048",
+            "OWNED_BY",
+            "Customer:C1660"
+          ],
+          [
+            "Vehicle:AUR0000049",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000049",
+            "AT_DEALER",
+            "Dealer:D01"
+          ],
+          [
+            "Vehicle:AUR0000049",
+            "OWNED_BY",
+            "Customer:C6624"
+          ],
+          [
+            "Vehicle:AUR0000050",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000050",
+            "AT_DEALER",
+            "Dealer:D22"
+          ],
+          [
+            "Vehicle:AUR0000050",
+            "OWNED_BY",
+            "Customer:C4029"
+          ],
+          [
+            "Vehicle:AUR0000051",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000051",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0000052",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000052",
+            "AT_DEALER",
+            "Dealer:D06"
+          ],
+          [
+            "Vehicle:AUR0000053",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000053",
+            "AT_DEALER",
+            "Dealer:D36"
+          ],
+          [
+            "Vehicle:AUR0000054",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000054",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0000054",
+            "OWNED_BY",
+            "Customer:C6168"
+          ],
+          [
+            "Vehicle:AUR0000055",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000055",
+            "AT_DEALER",
+            "Dealer:D21"
+          ],
+          [
+            "Vehicle:AUR0000055",
+            "OWNED_BY",
+            "Customer:C1244"
+          ],
+          [
+            "Vehicle:AUR0000056",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0002"
+          ],
+          [
+            "Vehicle:AUR0000056",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0000056",
+            "OWNED_BY",
+            "Customer:C4711"
+          ],
+          [
+            "PartLot:LOT-0017",
+            "USED_IN_ORDER",
+            "ProductionOrder:PO-0004"
           ],
           [
             "Vehicle:AUR0000082",
@@ -1061,14 +1449,454 @@
             "Dealer:D19"
           ],
           [
-            "ProductionOrder:PO-0007",
-            "BUILDS",
-            "Model:RANGER"
+            "PartLot:LOT-0017",
+            "USED_IN_ORDER",
+            "ProductionOrder:PO-0005"
           ],
           [
-            "ProductionOrder:PO-0007",
-            "SCHEDULED_AT",
-            "Plant:P_TX"
+            "Vehicle:AUR0000106",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000106",
+            "AT_DEALER",
+            "Dealer:D27"
+          ],
+          [
+            "Vehicle:AUR0000106",
+            "OWNED_BY",
+            "Customer:C4203"
+          ],
+          [
+            "Vehicle:AUR0000107",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000107",
+            "AT_DEALER",
+            "Dealer:D17"
+          ],
+          [
+            "Vehicle:AUR0000108",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000108",
+            "AT_DEALER",
+            "Dealer:D25"
+          ],
+          [
+            "Vehicle:AUR0000108",
+            "OWNED_BY",
+            "Customer:C1876"
+          ],
+          [
+            "Vehicle:AUR0000109",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000109",
+            "AT_DEALER",
+            "Dealer:D44"
+          ],
+          [
+            "Vehicle:AUR0000110",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000110",
+            "AT_DEALER",
+            "Dealer:D44"
+          ],
+          [
+            "Vehicle:AUR0000111",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000111",
+            "AT_DEALER",
+            "Dealer:D33"
+          ],
+          [
+            "Vehicle:AUR0000112",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000112",
+            "AT_DEALER",
+            "Dealer:D33"
+          ],
+          [
+            "Vehicle:AUR0000112",
+            "OWNED_BY",
+            "Customer:C3197"
+          ],
+          [
+            "Vehicle:AUR0000113",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000113",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0000113",
+            "OWNED_BY",
+            "Customer:C1508"
+          ],
+          [
+            "Vehicle:AUR0000114",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000114",
+            "AT_DEALER",
+            "Dealer:D30"
+          ],
+          [
+            "Vehicle:AUR0000114",
+            "OWNED_BY",
+            "Customer:C0419"
+          ],
+          [
+            "Vehicle:AUR0000115",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000115",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0000115",
+            "OWNED_BY",
+            "Customer:C2499"
+          ],
+          [
+            "Vehicle:AUR0000116",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000116",
+            "AT_DEALER",
+            "Dealer:D33"
+          ],
+          [
+            "Vehicle:AUR0000116",
+            "OWNED_BY",
+            "Customer:C0459"
+          ],
+          [
+            "Vehicle:AUR0000117",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000117",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0000118",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000118",
+            "AT_DEALER",
+            "Dealer:D38"
+          ],
+          [
+            "Vehicle:AUR0000118",
+            "OWNED_BY",
+            "Customer:C5701"
+          ],
+          [
+            "Vehicle:AUR0000119",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000119",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0000119",
+            "OWNED_BY",
+            "Customer:C2655"
+          ],
+          [
+            "Vehicle:AUR0000120",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000120",
+            "AT_DEALER",
+            "Dealer:D14"
+          ],
+          [
+            "Vehicle:AUR0000121",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000121",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0000122",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000122",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0000122",
+            "OWNED_BY",
+            "Customer:C3200"
+          ],
+          [
+            "Vehicle:AUR0000123",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000123",
+            "AT_DEALER",
+            "Dealer:D39"
+          ],
+          [
+            "Vehicle:AUR0000124",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000124",
+            "AT_DEALER",
+            "Dealer:D03"
+          ],
+          [
+            "Vehicle:AUR0000124",
+            "OWNED_BY",
+            "Customer:C6446"
+          ],
+          [
+            "Vehicle:AUR0000125",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000125",
+            "AT_DEALER",
+            "Dealer:D07"
+          ],
+          [
+            "Vehicle:AUR0000125",
+            "OWNED_BY",
+            "Customer:C4248"
+          ],
+          [
+            "Vehicle:AUR0000126",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000126",
+            "AT_DEALER",
+            "Dealer:D43"
+          ],
+          [
+            "Vehicle:AUR0000127",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000127",
+            "AT_DEALER",
+            "Dealer:D21"
+          ],
+          [
+            "Vehicle:AUR0000127",
+            "OWNED_BY",
+            "Customer:C1373"
+          ],
+          [
+            "Vehicle:AUR0000128",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000128",
+            "AT_DEALER",
+            "Dealer:D27"
+          ],
+          [
+            "Vehicle:AUR0000128",
+            "OWNED_BY",
+            "Customer:C0665"
+          ],
+          [
+            "Vehicle:AUR0000129",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000129",
+            "AT_DEALER",
+            "Dealer:D06"
+          ],
+          [
+            "Vehicle:AUR0000129",
+            "OWNED_BY",
+            "Customer:C5356"
+          ],
+          [
+            "Vehicle:AUR0000130",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000130",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0000130",
+            "OWNED_BY",
+            "Customer:C1367"
+          ],
+          [
+            "Vehicle:AUR0000131",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000131",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0000132",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000132",
+            "AT_DEALER",
+            "Dealer:D31"
+          ],
+          [
+            "Vehicle:AUR0000133",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000133",
+            "AT_DEALER",
+            "Dealer:D03"
+          ],
+          [
+            "Vehicle:AUR0000133",
+            "OWNED_BY",
+            "Customer:C1610"
+          ],
+          [
+            "Vehicle:AUR0000134",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000134",
+            "AT_DEALER",
+            "Dealer:D25"
+          ],
+          [
+            "Vehicle:AUR0000135",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000135",
+            "AT_DEALER",
+            "Dealer:D19"
+          ],
+          [
+            "Vehicle:AUR0000135",
+            "OWNED_BY",
+            "Customer:C2480"
+          ],
+          [
+            "Vehicle:AUR0000136",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000136",
+            "AT_DEALER",
+            "Dealer:D16"
+          ],
+          [
+            "Vehicle:AUR0000137",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000137",
+            "AT_DEALER",
+            "Dealer:D43"
+          ],
+          [
+            "Vehicle:AUR0000138",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000138",
+            "AT_DEALER",
+            "Dealer:D15"
+          ],
+          [
+            "Vehicle:AUR0000138",
+            "OWNED_BY",
+            "Customer:C1808"
+          ],
+          [
+            "Vehicle:AUR0000139",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0005"
+          ],
+          [
+            "Vehicle:AUR0000139",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0000139",
+            "OWNED_BY",
+            "Customer:C4598"
+          ],
+          [
+            "PartLot:LOT-0017",
+            "USED_IN_ORDER",
+            "ProductionOrder:PO-0007"
           ],
           [
             "Vehicle:AUR0000169",
@@ -1521,879 +2349,9 @@
             "Dealer:D25"
           ],
           [
-            "Part:HARN-B",
-            "USED_IN",
-            "Model:SUMMIT"
-          ],
-          [
-            "ProductionOrder:PO-0002",
-            "BUILDS",
-            "Model:SUMMIT"
-          ],
-          [
-            "ProductionOrder:PO-0002",
-            "SCHEDULED_AT",
-            "Plant:P_TX"
-          ],
-          [
-            "Vehicle:AUR0000026",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000026",
-            "AT_DEALER",
-            "Dealer:D48"
-          ],
-          [
-            "Vehicle:AUR0000026",
-            "OWNED_BY",
-            "Customer:C3821"
-          ],
-          [
-            "Vehicle:AUR0000027",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000027",
-            "AT_DEALER",
-            "Dealer:D06"
-          ],
-          [
-            "Vehicle:AUR0000028",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000028",
-            "AT_DEALER",
-            "Dealer:D03"
-          ],
-          [
-            "Vehicle:AUR0000029",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000029",
-            "AT_DEALER",
-            "Dealer:D08"
-          ],
-          [
-            "Vehicle:AUR0000029",
-            "OWNED_BY",
-            "Customer:C6563"
-          ],
-          [
-            "Vehicle:AUR0000030",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000030",
-            "AT_DEALER",
-            "Dealer:D34"
-          ],
-          [
-            "Vehicle:AUR0000031",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000031",
-            "AT_DEALER",
-            "Dealer:D31"
-          ],
-          [
-            "Vehicle:AUR0000032",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000032",
-            "AT_DEALER",
-            "Dealer:D15"
-          ],
-          [
-            "Vehicle:AUR0000032",
-            "OWNED_BY",
-            "Customer:C0130"
-          ],
-          [
-            "Vehicle:AUR0000033",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000033",
-            "AT_DEALER",
-            "Dealer:D16"
-          ],
-          [
-            "Vehicle:AUR0000033",
-            "OWNED_BY",
-            "Customer:C5353"
-          ],
-          [
-            "Vehicle:AUR0000034",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000034",
-            "AT_DEALER",
-            "Dealer:D29"
-          ],
-          [
-            "Vehicle:AUR0000035",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000035",
-            "AT_DEALER",
-            "Dealer:D45"
-          ],
-          [
-            "Vehicle:AUR0000036",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000036",
-            "AT_DEALER",
-            "Dealer:D23"
-          ],
-          [
-            "Vehicle:AUR0000036",
-            "OWNED_BY",
-            "Customer:C1735"
-          ],
-          [
-            "Vehicle:AUR0000037",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000037",
-            "AT_DEALER",
-            "Dealer:D12"
-          ],
-          [
-            "Vehicle:AUR0000037",
-            "OWNED_BY",
-            "Customer:C0630"
-          ],
-          [
-            "Vehicle:AUR0000038",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000038",
-            "AT_DEALER",
-            "Dealer:D22"
-          ],
-          [
-            "Vehicle:AUR0000038",
-            "OWNED_BY",
-            "Customer:C3527"
-          ],
-          [
-            "Vehicle:AUR0000039",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000039",
-            "AT_DEALER",
-            "Dealer:D34"
-          ],
-          [
-            "Vehicle:AUR0000039",
-            "OWNED_BY",
-            "Customer:C4064"
-          ],
-          [
-            "Vehicle:AUR0000040",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000040",
-            "AT_DEALER",
-            "Dealer:D23"
-          ],
-          [
-            "Vehicle:AUR0000040",
-            "OWNED_BY",
-            "Customer:C3896"
-          ],
-          [
-            "Vehicle:AUR0000041",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000041",
-            "AT_DEALER",
-            "Dealer:D37"
-          ],
-          [
-            "Vehicle:AUR0000041",
-            "OWNED_BY",
-            "Customer:C6676"
-          ],
-          [
-            "Vehicle:AUR0000042",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000042",
-            "AT_DEALER",
-            "Dealer:D20"
-          ],
-          [
-            "Vehicle:AUR0000043",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000043",
-            "AT_DEALER",
-            "Dealer:D44"
-          ],
-          [
-            "Vehicle:AUR0000043",
-            "OWNED_BY",
-            "Customer:C4614"
-          ],
-          [
-            "Vehicle:AUR0000044",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000044",
-            "AT_DEALER",
-            "Dealer:D47"
-          ],
-          [
-            "Vehicle:AUR0000045",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000045",
-            "AT_DEALER",
-            "Dealer:D38"
-          ],
-          [
-            "Vehicle:AUR0000045",
-            "OWNED_BY",
-            "Customer:C5603"
-          ],
-          [
-            "Vehicle:AUR0000046",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000046",
-            "AT_DEALER",
-            "Dealer:D12"
-          ],
-          [
-            "Vehicle:AUR0000047",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000047",
-            "AT_DEALER",
-            "Dealer:D13"
-          ],
-          [
-            "Vehicle:AUR0000048",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000048",
-            "AT_DEALER",
-            "Dealer:D31"
-          ],
-          [
-            "Vehicle:AUR0000048",
-            "OWNED_BY",
-            "Customer:C1660"
-          ],
-          [
-            "Vehicle:AUR0000049",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000049",
-            "AT_DEALER",
-            "Dealer:D01"
-          ],
-          [
-            "Vehicle:AUR0000049",
-            "OWNED_BY",
-            "Customer:C6624"
-          ],
-          [
-            "Vehicle:AUR0000050",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000050",
-            "AT_DEALER",
-            "Dealer:D22"
-          ],
-          [
-            "Vehicle:AUR0000050",
-            "OWNED_BY",
-            "Customer:C4029"
-          ],
-          [
-            "Vehicle:AUR0000051",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000051",
-            "AT_DEALER",
-            "Dealer:D20"
-          ],
-          [
-            "Vehicle:AUR0000052",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000052",
-            "AT_DEALER",
-            "Dealer:D06"
-          ],
-          [
-            "Vehicle:AUR0000053",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000053",
-            "AT_DEALER",
-            "Dealer:D36"
-          ],
-          [
-            "Vehicle:AUR0000054",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000054",
-            "AT_DEALER",
-            "Dealer:D45"
-          ],
-          [
-            "Vehicle:AUR0000054",
-            "OWNED_BY",
-            "Customer:C6168"
-          ],
-          [
-            "Vehicle:AUR0000055",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000055",
-            "AT_DEALER",
-            "Dealer:D21"
-          ],
-          [
-            "Vehicle:AUR0000055",
-            "OWNED_BY",
-            "Customer:C1244"
-          ],
-          [
-            "Vehicle:AUR0000056",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0002"
-          ],
-          [
-            "Vehicle:AUR0000056",
-            "AT_DEALER",
-            "Dealer:D26"
-          ],
-          [
-            "Vehicle:AUR0000056",
-            "OWNED_BY",
-            "Customer:C4711"
-          ],
-          [
-            "ProductionOrder:PO-0005",
-            "BUILDS",
-            "Model:SUMMIT"
-          ],
-          [
-            "ProductionOrder:PO-0005",
-            "SCHEDULED_AT",
-            "Plant:P_TX"
-          ],
-          [
-            "Vehicle:AUR0000106",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000106",
-            "AT_DEALER",
-            "Dealer:D27"
-          ],
-          [
-            "Vehicle:AUR0000106",
-            "OWNED_BY",
-            "Customer:C4203"
-          ],
-          [
-            "Vehicle:AUR0000107",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000107",
-            "AT_DEALER",
-            "Dealer:D17"
-          ],
-          [
-            "Vehicle:AUR0000108",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000108",
-            "AT_DEALER",
-            "Dealer:D25"
-          ],
-          [
-            "Vehicle:AUR0000108",
-            "OWNED_BY",
-            "Customer:C1876"
-          ],
-          [
-            "Vehicle:AUR0000109",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000109",
-            "AT_DEALER",
-            "Dealer:D44"
-          ],
-          [
-            "Vehicle:AUR0000110",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000110",
-            "AT_DEALER",
-            "Dealer:D44"
-          ],
-          [
-            "Vehicle:AUR0000111",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000111",
-            "AT_DEALER",
-            "Dealer:D33"
-          ],
-          [
-            "Vehicle:AUR0000112",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000112",
-            "AT_DEALER",
-            "Dealer:D33"
-          ],
-          [
-            "Vehicle:AUR0000112",
-            "OWNED_BY",
-            "Customer:C3197"
-          ],
-          [
-            "Vehicle:AUR0000113",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000113",
-            "AT_DEALER",
-            "Dealer:D45"
-          ],
-          [
-            "Vehicle:AUR0000113",
-            "OWNED_BY",
-            "Customer:C1508"
-          ],
-          [
-            "Vehicle:AUR0000114",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000114",
-            "AT_DEALER",
-            "Dealer:D30"
-          ],
-          [
-            "Vehicle:AUR0000114",
-            "OWNED_BY",
-            "Customer:C0419"
-          ],
-          [
-            "Vehicle:AUR0000115",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000115",
-            "AT_DEALER",
-            "Dealer:D26"
-          ],
-          [
-            "Vehicle:AUR0000115",
-            "OWNED_BY",
-            "Customer:C2499"
-          ],
-          [
-            "Vehicle:AUR0000116",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000116",
-            "AT_DEALER",
-            "Dealer:D33"
-          ],
-          [
-            "Vehicle:AUR0000116",
-            "OWNED_BY",
-            "Customer:C0459"
-          ],
-          [
-            "Vehicle:AUR0000117",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000117",
-            "AT_DEALER",
-            "Dealer:D08"
-          ],
-          [
-            "Vehicle:AUR0000118",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000118",
-            "AT_DEALER",
-            "Dealer:D38"
-          ],
-          [
-            "Vehicle:AUR0000118",
-            "OWNED_BY",
-            "Customer:C5701"
-          ],
-          [
-            "Vehicle:AUR0000119",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000119",
-            "AT_DEALER",
-            "Dealer:D20"
-          ],
-          [
-            "Vehicle:AUR0000119",
-            "OWNED_BY",
-            "Customer:C2655"
-          ],
-          [
-            "Vehicle:AUR0000120",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000120",
-            "AT_DEALER",
-            "Dealer:D14"
-          ],
-          [
-            "Vehicle:AUR0000121",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000121",
-            "AT_DEALER",
-            "Dealer:D45"
-          ],
-          [
-            "Vehicle:AUR0000122",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000122",
-            "AT_DEALER",
-            "Dealer:D08"
-          ],
-          [
-            "Vehicle:AUR0000122",
-            "OWNED_BY",
-            "Customer:C3200"
-          ],
-          [
-            "Vehicle:AUR0000123",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000123",
-            "AT_DEALER",
-            "Dealer:D39"
-          ],
-          [
-            "Vehicle:AUR0000124",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000124",
-            "AT_DEALER",
-            "Dealer:D03"
-          ],
-          [
-            "Vehicle:AUR0000124",
-            "OWNED_BY",
-            "Customer:C6446"
-          ],
-          [
-            "Vehicle:AUR0000125",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000125",
-            "AT_DEALER",
-            "Dealer:D07"
-          ],
-          [
-            "Vehicle:AUR0000125",
-            "OWNED_BY",
-            "Customer:C4248"
-          ],
-          [
-            "Vehicle:AUR0000126",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000126",
-            "AT_DEALER",
-            "Dealer:D43"
-          ],
-          [
-            "Vehicle:AUR0000127",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000127",
-            "AT_DEALER",
-            "Dealer:D21"
-          ],
-          [
-            "Vehicle:AUR0000127",
-            "OWNED_BY",
-            "Customer:C1373"
-          ],
-          [
-            "Vehicle:AUR0000128",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000128",
-            "AT_DEALER",
-            "Dealer:D27"
-          ],
-          [
-            "Vehicle:AUR0000128",
-            "OWNED_BY",
-            "Customer:C0665"
-          ],
-          [
-            "Vehicle:AUR0000129",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000129",
-            "AT_DEALER",
-            "Dealer:D06"
-          ],
-          [
-            "Vehicle:AUR0000129",
-            "OWNED_BY",
-            "Customer:C5356"
-          ],
-          [
-            "Vehicle:AUR0000130",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000130",
-            "AT_DEALER",
-            "Dealer:D26"
-          ],
-          [
-            "Vehicle:AUR0000130",
-            "OWNED_BY",
-            "Customer:C1367"
-          ],
-          [
-            "Vehicle:AUR0000131",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000131",
-            "AT_DEALER",
-            "Dealer:D08"
-          ],
-          [
-            "Vehicle:AUR0000132",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000132",
-            "AT_DEALER",
-            "Dealer:D31"
-          ],
-          [
-            "Vehicle:AUR0000133",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000133",
-            "AT_DEALER",
-            "Dealer:D03"
-          ],
-          [
-            "Vehicle:AUR0000133",
-            "OWNED_BY",
-            "Customer:C1610"
-          ],
-          [
-            "Vehicle:AUR0000134",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000134",
-            "AT_DEALER",
-            "Dealer:D25"
-          ],
-          [
-            "Vehicle:AUR0000135",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000135",
-            "AT_DEALER",
-            "Dealer:D19"
-          ],
-          [
-            "Vehicle:AUR0000135",
-            "OWNED_BY",
-            "Customer:C2480"
-          ],
-          [
-            "Vehicle:AUR0000136",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000136",
-            "AT_DEALER",
-            "Dealer:D16"
-          ],
-          [
-            "Vehicle:AUR0000137",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000137",
-            "AT_DEALER",
-            "Dealer:D43"
-          ],
-          [
-            "Vehicle:AUR0000138",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000138",
-            "AT_DEALER",
-            "Dealer:D15"
-          ],
-          [
-            "Vehicle:AUR0000138",
-            "OWNED_BY",
-            "Customer:C1808"
-          ],
-          [
-            "Vehicle:AUR0000139",
-            "BUILT_FROM",
-            "ProductionOrder:PO-0005"
-          ],
-          [
-            "Vehicle:AUR0000139",
-            "AT_DEALER",
-            "Dealer:D23"
-          ],
-          [
-            "Vehicle:AUR0000139",
-            "OWNED_BY",
-            "Customer:C4598"
-          ],
-          [
-            "ProductionOrder:PO-0008",
-            "BUILDS",
-            "Model:SUMMIT"
-          ],
-          [
-            "ProductionOrder:PO-0008",
-            "SCHEDULED_AT",
-            "Plant:P_TX"
+            "PartLot:LOT-0017",
+            "USED_IN_ORDER",
+            "ProductionOrder:PO-0008"
           ],
           [
             "Vehicle:AUR0000205",
@@ -2781,32 +2739,22 @@
             "Customer:C1799"
           ]
         ],
-        "text": "P_TX <-[INSTALLED_AT]- LOT-0017 -[LOT_OF]-> HARN-B -[USED_IN]-> RANGER <-[BUILDS]- PO-0001 <-[BUILT_FROM]- AUR0000001 -[OWNED_BY]-> C1218  [180 vehicles: 86 unsold, 94 sold to 94 owners]",
+        "text": "LOT-0017 -[USED_IN_ORDER]-> PO-0001 <-[BUILT_FROM]- AUR0000001 -[AT_DEALER]-> D23 | AUR0000001 -[OWNED_BY]-> C1218  [180 vehicles: 86 unsold, 94 sold to 94 owners]",
         "chain": [
           [
             "PartLot:LOT-0017",
-            "INSTALLED_AT",
-            "Plant:P_TX"
-          ],
-          [
-            "PartLot:LOT-0017",
-            "LOT_OF",
-            "Part:HARN-B"
-          ],
-          [
-            "Part:HARN-B",
-            "USED_IN",
-            "Model:RANGER"
-          ],
-          [
-            "ProductionOrder:PO-0001",
-            "BUILDS",
-            "Model:RANGER"
+            "USED_IN_ORDER",
+            "ProductionOrder:PO-0001"
           ],
           [
             "Vehicle:AUR0000001",
             "BUILT_FROM",
             "ProductionOrder:PO-0001"
+          ],
+          [
+            "Vehicle:AUR0000001",
+            "AT_DEALER",
+            "Dealer:D23"
           ],
           [
             "Vehicle:AUR0000001",
@@ -3205,6 +3153,11 @@
       "seq": 2,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000083",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -3213,6 +3166,11 @@
           "Vehicle:AUR0000083",
           "AT_DEALER",
           "Dealer:D02"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000220",
@@ -3244,6 +3202,11 @@
       "seq": 3,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000008",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -3252,6 +3215,11 @@
           "Vehicle:AUR0000008",
           "AT_DEALER",
           "Dealer:D03"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
         ],
         [
           "Vehicle:AUR0000028",
@@ -3264,6 +3232,11 @@
           "Dealer:D03"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000090",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -3272,6 +3245,11 @@
           "Vehicle:AUR0000090",
           "AT_DEALER",
           "Dealer:D03"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000226",
@@ -3301,6 +3279,11 @@
       "seq": 4,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000085",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -3309,6 +3292,11 @@
           "Vehicle:AUR0000085",
           "AT_DEALER",
           "Dealer:D04"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000191",
@@ -3341,6 +3329,11 @@
       "seq": 5,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000024",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -3351,6 +3344,11 @@
           "Dealer:D06"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000027",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -3361,6 +3359,11 @@
           "Dealer:D06"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000052",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -3369,6 +3372,11 @@
           "Vehicle:AUR0000052",
           "AT_DEALER",
           "Dealer:D06"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
         ],
         [
           "Vehicle:AUR0000082",
@@ -3379,6 +3387,11 @@
           "Vehicle:AUR0000082",
           "AT_DEALER",
           "Dealer:D06"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000188",
@@ -3408,6 +3421,11 @@
       "seq": 6,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000020",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -3416,6 +3434,11 @@
           "Vehicle:AUR0000020",
           "AT_DEALER",
           "Dealer:D07"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
         ],
         [
           "Vehicle:AUR0000097",
@@ -3448,6 +3471,11 @@
       "seq": 7,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000013",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -3458,6 +3486,11 @@
           "Dealer:D08"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000117",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -3468,6 +3501,11 @@
           "Dealer:D08"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000131",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -3476,6 +3514,11 @@
           "Vehicle:AUR0000131",
           "AT_DEALER",
           "Dealer:D08"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000171",
@@ -3486,6 +3529,11 @@
           "Vehicle:AUR0000171",
           "AT_DEALER",
           "Dealer:D08"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000215",
@@ -3515,6 +3563,11 @@
       "seq": 8,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000210",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -3523,6 +3576,11 @@
           "Vehicle:AUR0000210",
           "AT_DEALER",
           "Dealer:D10"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000229",
@@ -3551,6 +3609,11 @@
       "seq": 9,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000046",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -3578,6 +3641,11 @@
       "seq": 10,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000047",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -3586,6 +3654,11 @@
           "Vehicle:AUR0000047",
           "AT_DEALER",
           "Dealer:D13"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000198",
@@ -3615,6 +3688,11 @@
       "seq": 11,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000120",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -3623,6 +3701,11 @@
           "Vehicle:AUR0000120",
           "AT_DEALER",
           "Dealer:D14"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000195",
@@ -3651,6 +3734,11 @@
       "seq": 12,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000136",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -3677,6 +3765,11 @@
       "seq": 13,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000107",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -3702,6 +3795,11 @@
       "reason": "1 unsold vehicle(s) at D19 contain suspect lot LOT-0017",
       "seq": 14,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
         [
           "Vehicle:AUR0000105",
           "BUILT_FROM",
@@ -3730,6 +3828,11 @@
       "seq": 15,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000042",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -3738,6 +3841,11 @@
           "Vehicle:AUR0000042",
           "AT_DEALER",
           "Dealer:D20"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
         ],
         [
           "Vehicle:AUR0000051",
@@ -3768,6 +3876,11 @@
       "seq": 16,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000088",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -3778,6 +3891,11 @@
           "Dealer:D21"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000089",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -3786,6 +3904,11 @@
           "Vehicle:AUR0000089",
           "AT_DEALER",
           "Dealer:D21"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000222",
@@ -3815,6 +3938,11 @@
       "seq": 17,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000200",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -3823,6 +3951,11 @@
           "Vehicle:AUR0000200",
           "AT_DEALER",
           "Dealer:D22"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000225",
@@ -3853,6 +3986,11 @@
       "seq": 18,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000010",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -3863,6 +4001,11 @@
           "Dealer:D23"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000173",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -3871,6 +4014,11 @@
           "Vehicle:AUR0000173",
           "AT_DEALER",
           "Dealer:D23"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000230",
@@ -3904,6 +4052,11 @@
       "seq": 19,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000011",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -3912,6 +4065,11 @@
           "Vehicle:AUR0000011",
           "AT_DEALER",
           "Dealer:D25"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
         ],
         [
           "Vehicle:AUR0000134",
@@ -3924,6 +4082,11 @@
           "Dealer:D25"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000178",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -3932,6 +4095,11 @@
           "Vehicle:AUR0000178",
           "AT_DEALER",
           "Dealer:D25"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000187",
@@ -3944,6 +4112,11 @@
           "Dealer:D25"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000204",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -3952,6 +4125,11 @@
           "Vehicle:AUR0000204",
           "AT_DEALER",
           "Dealer:D25"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000207",
@@ -3981,6 +4159,11 @@
       "seq": 20,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000017",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -3989,6 +4172,11 @@
           "Vehicle:AUR0000017",
           "AT_DEALER",
           "Dealer:D26"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
         ],
         [
           "Vehicle:AUR0000096",
@@ -4018,6 +4206,11 @@
       "seq": 21,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000003",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4026,6 +4219,11 @@
           "Vehicle:AUR0000003",
           "AT_DEALER",
           "Dealer:D27"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000186",
@@ -4054,6 +4252,11 @@
       "seq": 22,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000022",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4079,6 +4282,11 @@
       "reason": "1 unsold vehicle(s) at D29 contain suspect lot LOT-0017",
       "seq": 23,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000034",
           "BUILT_FROM",
@@ -4107,6 +4315,11 @@
       "seq": 24,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000031",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -4115,6 +4328,11 @@
           "Vehicle:AUR0000031",
           "AT_DEALER",
           "Dealer:D31"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
         ],
         [
           "Vehicle:AUR0000132",
@@ -4146,6 +4364,11 @@
       "seq": 25,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000100",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -4156,6 +4379,11 @@
           "Dealer:D32"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000103",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -4164,6 +4392,11 @@
           "Vehicle:AUR0000103",
           "AT_DEALER",
           "Dealer:D32"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000169",
@@ -4174,6 +4407,11 @@
           "Vehicle:AUR0000169",
           "AT_DEALER",
           "Dealer:D32"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000201",
@@ -4201,6 +4439,11 @@
       "reason": "1 unsold vehicle(s) at D33 contain suspect lot LOT-0017",
       "seq": 26,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000111",
           "BUILT_FROM",
@@ -4230,6 +4473,11 @@
       "seq": 27,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000006",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4240,6 +4488,11 @@
           "Dealer:D34"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000019",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4248,6 +4501,11 @@
           "Vehicle:AUR0000019",
           "AT_DEALER",
           "Dealer:D34"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
         ],
         [
           "Vehicle:AUR0000030",
@@ -4277,6 +4535,11 @@
       "seq": 28,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000053",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -4285,6 +4548,11 @@
           "Vehicle:AUR0000053",
           "AT_DEALER",
           "Dealer:D36"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000172",
@@ -4313,6 +4581,11 @@
       "seq": 29,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000015",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4340,6 +4613,11 @@
       "seq": 30,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000174",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -4348,6 +4626,11 @@
           "Vehicle:AUR0000174",
           "AT_DEALER",
           "Dealer:D38"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000209",
@@ -4377,6 +4660,11 @@
       "seq": 31,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000025",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4385,6 +4673,11 @@
           "Vehicle:AUR0000025",
           "AT_DEALER",
           "Dealer:D39"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
         ],
         [
           "Vehicle:AUR0000123",
@@ -4415,6 +4708,11 @@
       "seq": 32,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000126",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -4425,6 +4723,11 @@
           "Dealer:D43"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000137",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -4433,6 +4736,11 @@
           "Vehicle:AUR0000137",
           "AT_DEALER",
           "Dealer:D43"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000217",
@@ -4462,6 +4770,11 @@
       "seq": 33,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000109",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -4470,6 +4783,11 @@
           "Vehicle:AUR0000109",
           "AT_DEALER",
           "Dealer:D44"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
         ],
         [
           "Vehicle:AUR0000110",
@@ -4504,6 +4822,11 @@
       "seq": 34,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000002",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4514,6 +4837,11 @@
           "Dealer:D45"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000023",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4522,6 +4850,11 @@
           "Vehicle:AUR0000023",
           "AT_DEALER",
           "Dealer:D45"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
         ],
         [
           "Vehicle:AUR0000035",
@@ -4534,6 +4867,11 @@
           "Dealer:D45"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000121",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -4544,6 +4882,11 @@
           "Dealer:D45"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000190",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -4554,6 +4897,11 @@
           "Dealer:D45"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000194",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -4562,6 +4910,11 @@
           "Vehicle:AUR0000194",
           "AT_DEALER",
           "Dealer:D45"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
         ],
         [
           "Vehicle:AUR0000231",
@@ -4592,6 +4945,11 @@
       "seq": 35,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000007",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4602,6 +4960,11 @@
           "Dealer:D46"
         ],
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000093",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -4610,6 +4973,11 @@
           "Vehicle:AUR0000093",
           "AT_DEALER",
           "Dealer:D46"
+        ],
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
         ],
         [
           "Vehicle:AUR0000197",
@@ -4638,6 +5006,11 @@
       "seq": 36,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000044",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -4664,6 +5037,11 @@
       "seq": 37,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000219",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -4687,6 +5065,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000032",
       "seq": 38,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000032",
           "BUILT_FROM",
@@ -4712,6 +5095,11 @@
       "seq": 39,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000212",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -4735,6 +5123,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000114",
       "seq": 40,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000114",
           "BUILT_FROM",
@@ -4760,6 +5153,11 @@
       "seq": 41,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000116",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -4783,6 +5181,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000037",
       "seq": 42,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000037",
           "BUILT_FROM",
@@ -4808,6 +5211,11 @@
       "seq": 43,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000099",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -4831,6 +5239,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000203",
       "seq": 44,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
         [
           "Vehicle:AUR0000203",
           "BUILT_FROM",
@@ -4856,6 +5269,11 @@
       "seq": 45,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000177",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -4879,6 +5297,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000128",
       "seq": 46,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000128",
           "BUILT_FROM",
@@ -4904,6 +5327,11 @@
       "seq": 47,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000021",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4927,6 +5355,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000227",
       "seq": 48,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
         [
           "Vehicle:AUR0000227",
           "BUILT_FROM",
@@ -4952,6 +5385,11 @@
       "seq": 49,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000005",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -4975,6 +5413,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000206",
       "seq": 50,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
         [
           "Vehicle:AUR0000206",
           "BUILT_FROM",
@@ -5000,6 +5443,11 @@
       "seq": 51,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000179",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -5023,6 +5471,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000001",
       "seq": 52,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
         [
           "Vehicle:AUR0000001",
           "BUILT_FROM",
@@ -5048,6 +5501,11 @@
       "seq": 53,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000095",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -5071,6 +5529,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000055",
       "seq": 54,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000055",
           "BUILT_FROM",
@@ -5096,6 +5559,11 @@
       "seq": 55,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000130",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -5119,6 +5587,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000127",
       "seq": 56,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000127",
           "BUILT_FROM",
@@ -5144,6 +5617,11 @@
       "seq": 57,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000183",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -5167,6 +5645,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000113",
       "seq": 58,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000113",
           "BUILT_FROM",
@@ -5192,6 +5675,11 @@
       "seq": 59,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000102",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -5215,6 +5703,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000133",
       "seq": 60,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000133",
           "BUILT_FROM",
@@ -5240,6 +5733,11 @@
       "seq": 61,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000233",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -5263,6 +5761,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000048",
       "seq": 62,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000048",
           "BUILT_FROM",
@@ -5288,6 +5791,11 @@
       "seq": 63,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000214",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -5311,6 +5819,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000036",
       "seq": 64,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000036",
           "BUILT_FROM",
@@ -5336,6 +5849,11 @@
       "seq": 65,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000018",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -5359,6 +5877,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000234",
       "seq": 66,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
         [
           "Vehicle:AUR0000234",
           "BUILT_FROM",
@@ -5384,6 +5907,11 @@
       "seq": 67,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000086",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -5407,6 +5935,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000138",
       "seq": 68,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000138",
           "BUILT_FROM",
@@ -5432,6 +5965,11 @@
       "seq": 69,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000232",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -5455,6 +5993,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000108",
       "seq": 70,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000108",
           "BUILT_FROM",
@@ -5480,6 +6023,11 @@
       "seq": 71,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000223",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -5503,6 +6051,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000135",
       "seq": 72,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000135",
           "BUILT_FROM",
@@ -5528,6 +6081,11 @@
       "seq": 73,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000115",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -5551,6 +6109,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000119",
       "seq": 74,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000119",
           "BUILT_FROM",
@@ -5576,6 +6139,11 @@
       "seq": 75,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
+        [
           "Vehicle:AUR0000012",
           "BUILT_FROM",
           "ProductionOrder:PO-0001"
@@ -5599,6 +6167,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000216",
       "seq": 76,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
         [
           "Vehicle:AUR0000216",
           "BUILT_FROM",
@@ -5624,6 +6197,11 @@
       "seq": 77,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000228",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -5647,6 +6225,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000189",
       "seq": 78,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
         [
           "Vehicle:AUR0000189",
           "BUILT_FROM",
@@ -5672,6 +6255,11 @@
       "seq": 79,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000098",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -5695,6 +6283,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000112",
       "seq": 80,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000112",
           "BUILT_FROM",
@@ -5720,6 +6313,11 @@
       "seq": 81,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000122",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -5743,6 +6341,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000208",
       "seq": 82,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
         [
           "Vehicle:AUR0000208",
           "BUILT_FROM",
@@ -5768,6 +6371,11 @@
       "seq": 83,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000218",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -5791,6 +6399,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000038",
       "seq": 84,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000038",
           "BUILT_FROM",
@@ -5816,6 +6429,11 @@
       "seq": 85,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000175",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -5839,6 +6457,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000221",
       "seq": 86,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
         [
           "Vehicle:AUR0000221",
           "BUILT_FROM",
@@ -5864,6 +6487,11 @@
       "seq": 87,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000026",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -5887,6 +6515,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000040",
       "seq": 88,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000040",
           "BUILT_FROM",
@@ -5912,6 +6545,11 @@
       "seq": 89,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000094",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -5935,6 +6573,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000016",
       "seq": 90,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
         [
           "Vehicle:AUR0000016",
           "BUILT_FROM",
@@ -5960,6 +6603,11 @@
       "seq": 91,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000050",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -5983,6 +6631,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000039",
       "seq": 92,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000039",
           "BUILT_FROM",
@@ -6008,6 +6661,11 @@
       "seq": 93,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000106",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -6031,6 +6689,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000125",
       "seq": 94,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000125",
           "BUILT_FROM",
@@ -6056,6 +6719,11 @@
       "seq": 95,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000182",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6079,6 +6747,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000084",
       "seq": 96,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
         [
           "Vehicle:AUR0000084",
           "BUILT_FROM",
@@ -6104,6 +6777,11 @@
       "seq": 97,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000199",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6127,6 +6805,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000139",
       "seq": 98,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000139",
           "BUILT_FROM",
@@ -6152,6 +6835,11 @@
       "seq": 99,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000043",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -6175,6 +6863,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000056",
       "seq": 100,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000056",
           "BUILT_FROM",
@@ -6200,6 +6893,11 @@
       "seq": 101,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000101",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -6223,6 +6921,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000004",
       "seq": 102,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
         [
           "Vehicle:AUR0000004",
           "BUILT_FROM",
@@ -6248,6 +6951,11 @@
       "seq": 103,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000224",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -6271,6 +6979,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000192",
       "seq": 104,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
         [
           "Vehicle:AUR0000192",
           "BUILT_FROM",
@@ -6296,6 +7009,11 @@
       "seq": 105,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000033",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -6319,6 +7037,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000129",
       "seq": 106,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000129",
           "BUILT_FROM",
@@ -6344,6 +7067,11 @@
       "seq": 107,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000185",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6367,6 +7095,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000014",
       "seq": 108,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
         [
           "Vehicle:AUR0000014",
           "BUILT_FROM",
@@ -6392,6 +7125,11 @@
       "seq": 109,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000104",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -6415,6 +7153,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000202",
       "seq": 110,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
         [
           "Vehicle:AUR0000202",
           "BUILT_FROM",
@@ -6440,6 +7183,11 @@
       "seq": 111,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000045",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -6463,6 +7211,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000087",
       "seq": 112,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
         [
           "Vehicle:AUR0000087",
           "BUILT_FROM",
@@ -6488,6 +7241,11 @@
       "seq": 113,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
+        [
           "Vehicle:AUR0000091",
           "BUILT_FROM",
           "ProductionOrder:PO-0004"
@@ -6511,6 +7269,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000118",
       "seq": 114,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
         [
           "Vehicle:AUR0000118",
           "BUILT_FROM",
@@ -6536,6 +7299,11 @@
       "seq": 115,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000181",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6559,6 +7327,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000184",
       "seq": 116,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
         [
           "Vehicle:AUR0000184",
           "BUILT_FROM",
@@ -6584,6 +7357,11 @@
       "seq": 117,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000196",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6607,6 +7385,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000054",
       "seq": 118,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000054",
           "BUILT_FROM",
@@ -6632,6 +7415,11 @@
       "seq": 119,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
+        [
           "Vehicle:AUR0000205",
           "BUILT_FROM",
           "ProductionOrder:PO-0008"
@@ -6655,6 +7443,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000092",
       "seq": 120,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0004"
+        ],
         [
           "Vehicle:AUR0000092",
           "BUILT_FROM",
@@ -6680,6 +7473,11 @@
       "seq": 121,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0005"
+        ],
+        [
           "Vehicle:AUR0000124",
           "BUILT_FROM",
           "ProductionOrder:PO-0005"
@@ -6703,6 +7501,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000009",
       "seq": 122,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0001"
+        ],
         [
           "Vehicle:AUR0000009",
           "BUILT_FROM",
@@ -6728,6 +7531,11 @@
       "seq": 123,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000176",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6751,6 +7559,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000213",
       "seq": 124,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
         [
           "Vehicle:AUR0000213",
           "BUILT_FROM",
@@ -6776,6 +7589,11 @@
       "seq": 125,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000170",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6799,6 +7617,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000029",
       "seq": 126,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000029",
           "BUILT_FROM",
@@ -6824,6 +7647,11 @@
       "seq": 127,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
+        [
           "Vehicle:AUR0000049",
           "BUILT_FROM",
           "ProductionOrder:PO-0002"
@@ -6847,6 +7675,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000041",
       "seq": 128,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0002"
+        ],
         [
           "Vehicle:AUR0000041",
           "BUILT_FROM",
@@ -6872,6 +7705,11 @@
       "seq": 129,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000180",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6896,6 +7734,11 @@
       "seq": 130,
       "evidence_path": [
         [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0007"
+        ],
+        [
           "Vehicle:AUR0000193",
           "BUILT_FROM",
           "ProductionOrder:PO-0007"
@@ -6919,6 +7762,11 @@
       "reason": "owner of sold affected vehicle(s) AUR0000211",
       "seq": 131,
       "evidence_path": [
+        [
+          "PartLot:LOT-0017",
+          "USED_IN_ORDER",
+          "ProductionOrder:PO-0008"
+        ],
         [
           "Vehicle:AUR0000211",
           "BUILT_FROM",
@@ -7073,7 +7921,9 @@
   },
   "actions": [
     {
+      "call_no": 1,
       "seq": 1,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "quality.hold_lot",
       "args": {
@@ -7082,10 +7932,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.415+00:00"
+      "ts": "2026-11-07T20:47:37.390+00:00"
     },
     {
+      "call_no": 2,
       "seq": 2,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7098,10 +7950,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.416+00:00"
+      "ts": "2026-11-07T20:47:37.392+00:00"
     },
     {
+      "call_no": 3,
       "seq": 3,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7116,10 +7970,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.418+00:00"
+      "ts": "2026-11-07T20:47:37.393+00:00"
     },
     {
+      "call_no": 4,
       "seq": 4,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7132,10 +7988,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.419+00:00"
+      "ts": "2026-11-07T20:47:37.394+00:00"
     },
     {
+      "call_no": 5,
       "seq": 5,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7151,10 +8009,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.420+00:00"
+      "ts": "2026-11-07T20:47:37.395+00:00"
     },
     {
+      "call_no": 6,
       "seq": 6,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7167,10 +8027,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.421+00:00"
+      "ts": "2026-11-07T20:47:37.396+00:00"
     },
     {
+      "call_no": 7,
       "seq": 7,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7186,10 +8048,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.422+00:00"
+      "ts": "2026-11-07T20:47:37.397+00:00"
     },
     {
+      "call_no": 8,
       "seq": 8,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7202,10 +8066,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.423+00:00"
+      "ts": "2026-11-07T20:47:37.398+00:00"
     },
     {
+      "call_no": 9,
       "seq": 9,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7217,10 +8083,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.424+00:00"
+      "ts": "2026-11-07T20:47:37.399+00:00"
     },
     {
+      "call_no": 10,
       "seq": 10,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7233,10 +8101,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.425+00:00"
+      "ts": "2026-11-07T20:47:37.400+00:00"
     },
     {
+      "call_no": 11,
       "seq": 11,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7249,10 +8119,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.426+00:00"
+      "ts": "2026-11-07T20:47:37.401+00:00"
     },
     {
+      "call_no": 12,
       "seq": 12,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7264,10 +8136,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.427+00:00"
+      "ts": "2026-11-07T20:47:37.402+00:00"
     },
     {
+      "call_no": 13,
       "seq": 13,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7279,10 +8153,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.428+00:00"
+      "ts": "2026-11-07T20:47:37.403+00:00"
     },
     {
+      "call_no": 14,
       "seq": 14,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7294,10 +8170,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.429+00:00"
+      "ts": "2026-11-07T20:47:37.404+00:00"
     },
     {
+      "call_no": 15,
       "seq": 15,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7310,10 +8188,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.430+00:00"
+      "ts": "2026-11-07T20:47:37.405+00:00"
     },
     {
+      "call_no": 16,
       "seq": 16,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7327,10 +8207,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.431+00:00"
+      "ts": "2026-11-07T20:47:37.406+00:00"
     },
     {
+      "call_no": 17,
       "seq": 17,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7343,10 +8225,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.432+00:00"
+      "ts": "2026-11-07T20:47:37.407+00:00"
     },
     {
+      "call_no": 18,
       "seq": 18,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7360,10 +8244,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.433+00:00"
+      "ts": "2026-11-07T20:47:37.408+00:00"
     },
     {
+      "call_no": 19,
       "seq": 19,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7380,10 +8266,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.433+00:00"
+      "ts": "2026-11-07T20:47:37.409+00:00"
     },
     {
+      "call_no": 20,
       "seq": 20,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7396,10 +8284,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.434+00:00"
+      "ts": "2026-11-07T20:47:37.410+00:00"
     },
     {
+      "call_no": 21,
       "seq": 21,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7412,10 +8302,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.435+00:00"
+      "ts": "2026-11-07T20:47:37.410+00:00"
     },
     {
+      "call_no": 22,
       "seq": 22,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7427,10 +8319,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.436+00:00"
+      "ts": "2026-11-07T20:47:37.411+00:00"
     },
     {
+      "call_no": 23,
       "seq": 23,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7442,10 +8336,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.437+00:00"
+      "ts": "2026-11-07T20:47:37.412+00:00"
     },
     {
+      "call_no": 24,
       "seq": 24,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7458,10 +8354,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.438+00:00"
+      "ts": "2026-11-07T20:47:37.413+00:00"
     },
     {
+      "call_no": 25,
       "seq": 25,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7476,10 +8374,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.438+00:00"
+      "ts": "2026-11-07T20:47:37.414+00:00"
     },
     {
+      "call_no": 26,
       "seq": 26,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7491,10 +8391,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.440+00:00"
+      "ts": "2026-11-07T20:47:37.415+00:00"
     },
     {
+      "call_no": 27,
       "seq": 27,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7508,10 +8410,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.441+00:00"
+      "ts": "2026-11-07T20:47:37.416+00:00"
     },
     {
+      "call_no": 28,
       "seq": 28,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7524,10 +8428,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.442+00:00"
+      "ts": "2026-11-07T20:47:37.417+00:00"
     },
     {
+      "call_no": 29,
       "seq": 29,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7539,10 +8445,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.443+00:00"
+      "ts": "2026-11-07T20:47:37.418+00:00"
     },
     {
+      "call_no": 30,
       "seq": 30,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7555,10 +8463,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.444+00:00"
+      "ts": "2026-11-07T20:47:37.419+00:00"
     },
     {
+      "call_no": 31,
       "seq": 31,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7571,10 +8481,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.445+00:00"
+      "ts": "2026-11-07T20:47:37.420+00:00"
     },
     {
+      "call_no": 32,
       "seq": 32,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7588,10 +8500,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.446+00:00"
+      "ts": "2026-11-07T20:47:37.421+00:00"
     },
     {
+      "call_no": 33,
       "seq": 33,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7604,10 +8518,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.447+00:00"
+      "ts": "2026-11-07T20:47:37.422+00:00"
     },
     {
+      "call_no": 34,
       "seq": 34,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7625,10 +8541,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.448+00:00"
+      "ts": "2026-11-07T20:47:37.423+00:00"
     },
     {
+      "call_no": 35,
       "seq": 35,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7642,10 +8560,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.449+00:00"
+      "ts": "2026-11-07T20:47:37.424+00:00"
     },
     {
+      "call_no": 36,
       "seq": 36,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7657,10 +8577,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.450+00:00"
+      "ts": "2026-11-07T20:47:37.425+00:00"
     },
     {
+      "call_no": 37,
       "seq": 37,
+      "rule_id": "R6",
       "agent": "DealerNetwork",
       "tool": "dealer.stop_sale",
       "args": {
@@ -7672,10 +8594,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.451+00:00"
+      "ts": "2026-11-07T20:47:37.426+00:00"
     },
     {
+      "call_no": 38,
       "seq": 38,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7685,10 +8609,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.452+00:00"
+      "ts": "2026-11-07T20:47:37.427+00:00"
     },
     {
+      "call_no": 39,
       "seq": 39,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7698,10 +8624,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.453+00:00"
+      "ts": "2026-11-07T20:47:37.428+00:00"
     },
     {
+      "call_no": 40,
       "seq": 40,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7711,10 +8639,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.454+00:00"
+      "ts": "2026-11-07T20:47:37.429+00:00"
     },
     {
+      "call_no": 41,
       "seq": 41,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7724,10 +8654,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.455+00:00"
+      "ts": "2026-11-07T20:47:37.430+00:00"
     },
     {
+      "call_no": 42,
       "seq": 42,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7737,10 +8669,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.456+00:00"
+      "ts": "2026-11-07T20:47:37.431+00:00"
     },
     {
+      "call_no": 43,
       "seq": 43,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7750,10 +8684,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.457+00:00"
+      "ts": "2026-11-07T20:47:37.432+00:00"
     },
     {
+      "call_no": 44,
       "seq": 44,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7763,10 +8699,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.458+00:00"
+      "ts": "2026-11-07T20:47:37.432+00:00"
     },
     {
+      "call_no": 45,
       "seq": 45,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7776,10 +8714,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.459+00:00"
+      "ts": "2026-11-07T20:47:37.433+00:00"
     },
     {
+      "call_no": 46,
       "seq": 46,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7789,10 +8729,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.460+00:00"
+      "ts": "2026-11-07T20:47:37.434+00:00"
     },
     {
+      "call_no": 47,
       "seq": 47,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7802,10 +8744,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.461+00:00"
+      "ts": "2026-11-07T20:47:37.435+00:00"
     },
     {
+      "call_no": 48,
       "seq": 48,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7815,10 +8759,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.462+00:00"
+      "ts": "2026-11-07T20:47:37.436+00:00"
     },
     {
+      "call_no": 49,
       "seq": 49,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7828,10 +8774,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.463+00:00"
+      "ts": "2026-11-07T20:47:37.437+00:00"
     },
     {
+      "call_no": 50,
       "seq": 50,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7841,10 +8789,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.464+00:00"
+      "ts": "2026-11-07T20:47:37.438+00:00"
     },
     {
+      "call_no": 51,
       "seq": 51,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7854,10 +8804,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.465+00:00"
+      "ts": "2026-11-07T20:47:37.439+00:00"
     },
     {
+      "call_no": 52,
       "seq": 52,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7867,10 +8819,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.466+00:00"
+      "ts": "2026-11-07T20:47:37.440+00:00"
     },
     {
+      "call_no": 53,
       "seq": 53,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7880,10 +8834,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.467+00:00"
+      "ts": "2026-11-07T20:47:37.441+00:00"
     },
     {
+      "call_no": 54,
       "seq": 54,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7893,10 +8849,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.468+00:00"
+      "ts": "2026-11-07T20:47:37.441+00:00"
     },
     {
+      "call_no": 55,
       "seq": 55,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7906,10 +8864,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.469+00:00"
+      "ts": "2026-11-07T20:47:37.442+00:00"
     },
     {
+      "call_no": 56,
       "seq": 56,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7919,10 +8879,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.470+00:00"
+      "ts": "2026-11-07T20:47:37.443+00:00"
     },
     {
+      "call_no": 57,
       "seq": 57,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7932,10 +8894,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.471+00:00"
+      "ts": "2026-11-07T20:47:37.444+00:00"
     },
     {
+      "call_no": 58,
       "seq": 58,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7945,10 +8909,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.472+00:00"
+      "ts": "2026-11-07T20:47:37.445+00:00"
     },
     {
+      "call_no": 59,
       "seq": 59,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7958,10 +8924,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.473+00:00"
+      "ts": "2026-11-07T20:47:37.446+00:00"
     },
     {
+      "call_no": 60,
       "seq": 60,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7971,10 +8939,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.474+00:00"
+      "ts": "2026-11-07T20:47:37.447+00:00"
     },
     {
+      "call_no": 61,
       "seq": 61,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7984,10 +8954,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.475+00:00"
+      "ts": "2026-11-07T20:47:37.448+00:00"
     },
     {
+      "call_no": 62,
       "seq": 62,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -7997,10 +8969,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.476+00:00"
+      "ts": "2026-11-07T20:47:37.449+00:00"
     },
     {
+      "call_no": 63,
       "seq": 63,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8010,10 +8984,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.477+00:00"
+      "ts": "2026-11-07T20:47:37.450+00:00"
     },
     {
+      "call_no": 64,
       "seq": 64,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8023,10 +8999,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.478+00:00"
+      "ts": "2026-11-07T20:47:37.451+00:00"
     },
     {
+      "call_no": 65,
       "seq": 65,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8036,10 +9014,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.479+00:00"
+      "ts": "2026-11-07T20:47:37.452+00:00"
     },
     {
+      "call_no": 66,
       "seq": 66,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8049,10 +9029,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.480+00:00"
+      "ts": "2026-11-07T20:47:37.453+00:00"
     },
     {
+      "call_no": 67,
       "seq": 67,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8062,10 +9044,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.481+00:00"
+      "ts": "2026-11-07T20:47:37.454+00:00"
     },
     {
+      "call_no": 68,
       "seq": 68,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8075,10 +9059,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.481+00:00"
+      "ts": "2026-11-07T20:47:37.455+00:00"
     },
     {
+      "call_no": 69,
       "seq": 69,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8088,10 +9074,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.482+00:00"
+      "ts": "2026-11-07T20:47:37.456+00:00"
     },
     {
+      "call_no": 70,
       "seq": 70,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8101,10 +9089,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.483+00:00"
+      "ts": "2026-11-07T20:47:37.457+00:00"
     },
     {
+      "call_no": 71,
       "seq": 71,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8114,10 +9104,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.484+00:00"
+      "ts": "2026-11-07T20:47:37.458+00:00"
     },
     {
+      "call_no": 72,
       "seq": 72,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8127,10 +9119,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.485+00:00"
+      "ts": "2026-11-07T20:47:37.459+00:00"
     },
     {
+      "call_no": 73,
       "seq": 73,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8140,10 +9134,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.486+00:00"
+      "ts": "2026-11-07T20:47:37.460+00:00"
     },
     {
+      "call_no": 74,
       "seq": 74,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8153,10 +9149,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.486+00:00"
+      "ts": "2026-11-07T20:47:37.461+00:00"
     },
     {
+      "call_no": 75,
       "seq": 75,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8166,10 +9164,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.488+00:00"
+      "ts": "2026-11-07T20:47:37.462+00:00"
     },
     {
+      "call_no": 76,
       "seq": 76,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8179,10 +9179,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.489+00:00"
+      "ts": "2026-11-07T20:47:37.463+00:00"
     },
     {
+      "call_no": 77,
       "seq": 77,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8192,10 +9194,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.490+00:00"
+      "ts": "2026-11-07T20:47:37.464+00:00"
     },
     {
+      "call_no": 78,
       "seq": 78,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8205,10 +9209,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.491+00:00"
+      "ts": "2026-11-07T20:47:37.465+00:00"
     },
     {
+      "call_no": 79,
       "seq": 79,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8218,10 +9224,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.492+00:00"
+      "ts": "2026-11-07T20:47:37.466+00:00"
     },
     {
+      "call_no": 80,
       "seq": 80,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8231,10 +9239,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.493+00:00"
+      "ts": "2026-11-07T20:47:37.467+00:00"
     },
     {
+      "call_no": 81,
       "seq": 81,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8244,10 +9254,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.494+00:00"
+      "ts": "2026-11-07T20:47:37.468+00:00"
     },
     {
+      "call_no": 82,
       "seq": 82,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8257,10 +9269,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.494+00:00"
+      "ts": "2026-11-07T20:47:37.469+00:00"
     },
     {
+      "call_no": 83,
       "seq": 83,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8270,10 +9284,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.495+00:00"
+      "ts": "2026-11-07T20:47:37.470+00:00"
     },
     {
+      "call_no": 84,
       "seq": 84,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8283,10 +9299,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.496+00:00"
+      "ts": "2026-11-07T20:47:37.471+00:00"
     },
     {
+      "call_no": 85,
       "seq": 85,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8296,10 +9314,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.497+00:00"
+      "ts": "2026-11-07T20:47:37.472+00:00"
     },
     {
+      "call_no": 86,
       "seq": 86,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8309,10 +9329,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.498+00:00"
+      "ts": "2026-11-07T20:47:37.473+00:00"
     },
     {
+      "call_no": 87,
       "seq": 87,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8322,10 +9344,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.499+00:00"
+      "ts": "2026-11-07T20:47:37.474+00:00"
     },
     {
+      "call_no": 88,
       "seq": 88,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8335,10 +9359,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.500+00:00"
+      "ts": "2026-11-07T20:47:37.475+00:00"
     },
     {
+      "call_no": 89,
       "seq": 89,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8348,10 +9374,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.501+00:00"
+      "ts": "2026-11-07T20:47:37.476+00:00"
     },
     {
+      "call_no": 90,
       "seq": 90,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8361,10 +9389,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.502+00:00"
+      "ts": "2026-11-07T20:47:37.477+00:00"
     },
     {
+      "call_no": 91,
       "seq": 91,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8374,10 +9404,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.503+00:00"
+      "ts": "2026-11-07T20:47:37.478+00:00"
     },
     {
+      "call_no": 92,
       "seq": 92,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8387,10 +9419,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.504+00:00"
+      "ts": "2026-11-07T20:47:37.479+00:00"
     },
     {
+      "call_no": 93,
       "seq": 93,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8400,10 +9434,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.505+00:00"
+      "ts": "2026-11-07T20:47:37.480+00:00"
     },
     {
+      "call_no": 94,
       "seq": 94,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8413,10 +9449,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.506+00:00"
+      "ts": "2026-11-07T20:47:37.481+00:00"
     },
     {
+      "call_no": 95,
       "seq": 95,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8426,10 +9464,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.507+00:00"
+      "ts": "2026-11-07T20:47:37.482+00:00"
     },
     {
+      "call_no": 96,
       "seq": 96,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8439,10 +9479,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.508+00:00"
+      "ts": "2026-11-07T20:47:37.483+00:00"
     },
     {
+      "call_no": 97,
       "seq": 97,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8452,10 +9494,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.509+00:00"
+      "ts": "2026-11-07T20:47:37.484+00:00"
     },
     {
+      "call_no": 98,
       "seq": 98,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8465,10 +9509,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.510+00:00"
+      "ts": "2026-11-07T20:47:37.485+00:00"
     },
     {
+      "call_no": 99,
       "seq": 99,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8478,10 +9524,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.511+00:00"
+      "ts": "2026-11-07T20:47:37.486+00:00"
     },
     {
+      "call_no": 100,
       "seq": 100,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8491,10 +9539,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.512+00:00"
+      "ts": "2026-11-07T20:47:37.487+00:00"
     },
     {
+      "call_no": 101,
       "seq": 101,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8504,10 +9554,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.513+00:00"
+      "ts": "2026-11-07T20:47:37.488+00:00"
     },
     {
+      "call_no": 102,
       "seq": 102,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8517,10 +9569,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.514+00:00"
+      "ts": "2026-11-07T20:47:37.489+00:00"
     },
     {
+      "call_no": 103,
       "seq": 103,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8530,10 +9584,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.514+00:00"
+      "ts": "2026-11-07T20:47:37.490+00:00"
     },
     {
+      "call_no": 104,
       "seq": 104,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8543,10 +9599,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.515+00:00"
+      "ts": "2026-11-07T20:47:37.491+00:00"
     },
     {
+      "call_no": 105,
       "seq": 105,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8556,10 +9614,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.516+00:00"
+      "ts": "2026-11-07T20:47:37.492+00:00"
     },
     {
+      "call_no": 106,
       "seq": 106,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8569,10 +9629,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.517+00:00"
+      "ts": "2026-11-07T20:47:37.493+00:00"
     },
     {
+      "call_no": 107,
       "seq": 107,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8582,10 +9644,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.518+00:00"
+      "ts": "2026-11-07T20:47:37.494+00:00"
     },
     {
+      "call_no": 108,
       "seq": 108,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8595,10 +9659,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.519+00:00"
+      "ts": "2026-11-07T20:47:37.495+00:00"
     },
     {
+      "call_no": 109,
       "seq": 109,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8608,10 +9674,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.520+00:00"
+      "ts": "2026-11-07T20:47:37.496+00:00"
     },
     {
+      "call_no": 110,
       "seq": 110,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8621,10 +9689,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.521+00:00"
+      "ts": "2026-11-07T20:47:37.497+00:00"
     },
     {
+      "call_no": 111,
       "seq": 111,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8634,10 +9704,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.522+00:00"
+      "ts": "2026-11-07T20:47:37.498+00:00"
     },
     {
+      "call_no": 112,
       "seq": 112,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8647,10 +9719,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.524+00:00"
+      "ts": "2026-11-07T20:47:37.499+00:00"
     },
     {
+      "call_no": 113,
       "seq": 113,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8660,10 +9734,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.525+00:00"
+      "ts": "2026-11-07T20:47:37.500+00:00"
     },
     {
+      "call_no": 114,
       "seq": 114,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8673,10 +9749,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.526+00:00"
+      "ts": "2026-11-07T20:47:37.501+00:00"
     },
     {
+      "call_no": 115,
       "seq": 115,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8686,10 +9764,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.527+00:00"
+      "ts": "2026-11-07T20:47:37.502+00:00"
     },
     {
+      "call_no": 116,
       "seq": 116,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8699,10 +9779,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.528+00:00"
+      "ts": "2026-11-07T20:47:37.503+00:00"
     },
     {
+      "call_no": 117,
       "seq": 117,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8712,10 +9794,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.529+00:00"
+      "ts": "2026-11-07T20:47:37.504+00:00"
     },
     {
+      "call_no": 118,
       "seq": 118,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8725,10 +9809,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.530+00:00"
+      "ts": "2026-11-07T20:47:37.505+00:00"
     },
     {
+      "call_no": 119,
       "seq": 119,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8738,10 +9824,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.531+00:00"
+      "ts": "2026-11-07T20:47:37.505+00:00"
     },
     {
+      "call_no": 120,
       "seq": 120,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8751,10 +9839,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.532+00:00"
+      "ts": "2026-11-07T20:47:37.506+00:00"
     },
     {
+      "call_no": 121,
       "seq": 121,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8764,10 +9854,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.532+00:00"
+      "ts": "2026-11-07T20:47:37.507+00:00"
     },
     {
+      "call_no": 122,
       "seq": 122,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8777,10 +9869,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.533+00:00"
+      "ts": "2026-11-07T20:47:37.508+00:00"
     },
     {
+      "call_no": 123,
       "seq": 123,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8790,10 +9884,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.534+00:00"
+      "ts": "2026-11-07T20:47:37.509+00:00"
     },
     {
+      "call_no": 124,
       "seq": 124,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8803,10 +9899,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.535+00:00"
+      "ts": "2026-11-07T20:47:37.510+00:00"
     },
     {
+      "call_no": 125,
       "seq": 125,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8816,10 +9914,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.536+00:00"
+      "ts": "2026-11-07T20:47:37.511+00:00"
     },
     {
+      "call_no": 126,
       "seq": 126,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8829,10 +9929,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.537+00:00"
+      "ts": "2026-11-07T20:47:37.512+00:00"
     },
     {
+      "call_no": 127,
       "seq": 127,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8842,10 +9944,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.537+00:00"
+      "ts": "2026-11-07T20:47:37.513+00:00"
     },
     {
+      "call_no": 128,
       "seq": 128,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8855,10 +9959,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.539+00:00"
+      "ts": "2026-11-07T20:47:37.514+00:00"
     },
     {
+      "call_no": 129,
       "seq": 129,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8868,10 +9974,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.540+00:00"
+      "ts": "2026-11-07T20:47:37.515+00:00"
     },
     {
+      "call_no": 130,
       "seq": 130,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8881,10 +9989,12 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.541+00:00"
+      "ts": "2026-11-07T20:47:37.516+00:00"
     },
     {
+      "call_no": 131,
       "seq": 131,
+      "rule_id": "R6",
       "agent": "CustomerCareQuality",
       "tool": "crm.notify_customer",
       "args": {
@@ -8894,7 +10004,7 @@
       "ok": true,
       "error": null,
       "kind": "write",
-      "ts": "2026-11-07T20:24:53.542+00:00"
+      "ts": "2026-11-07T20:47:37.517+00:00"
     }
   ],
   "escalation": {

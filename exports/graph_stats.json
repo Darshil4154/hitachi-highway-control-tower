@@ -1,6 +1,6 @@
 {
   "nodes_total": 17090,
-  "edges_total": 26891,
+  "edges_total": 28301,
   "nodes_by_type": {
     "Alias": 61,
     "Customer": 7000,
@@ -35,6 +35,7 @@
     "SENT_BY": 364,
     "SOLD_THROUGH": 3263,
     "SUPPLIES": 39,
-    "USED_IN": 47
+    "USED_IN": 47,
+    "USED_IN_ORDER": 1410
   }
 }

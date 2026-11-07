@@ -31,6 +31,12 @@ def test_read_only_answers():
     assert ask.ask("hello there", use_llm=False)["function"] is None
 
 
+def test_markdown_answer():
+    md = ask.to_markdown(ask.ask("Who is affected by E-09?", use_llm=False)["answer"])
+    assert md.startswith("- ") and "*Graph path:*" in md and "```" not in md
+    assert ask.to_markdown("P_AL on 2027-04-01") == "P\\_AL on 2027-04-01"
+
+
 def test_never_calls_act():
     src = (config.ROOT / "control_tower" / "ask.py").read_text(encoding="utf-8")
     assert "ToolsClient" not in src and "import requests" not in src and "tools_client" not in src

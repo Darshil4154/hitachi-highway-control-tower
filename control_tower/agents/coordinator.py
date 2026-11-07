@@ -65,7 +65,7 @@ class Coordinator:
         action = {"seq": 1, "agent": AGENT, "tool": "escalate", "args": {"reason": reason[:900]}, "rule_id": R8,
                   "reason": "not actionable without a human", "evidence_path": [], "incident_id": None}
         trace["plan"] = [action]
-        ok, _ = self.client.act(eid, "escalate", action["args"], seq=1, agent=AGENT)
+        ok, _ = self.client.act(eid, "escalate", action["args"], seq=1, agent=AGENT, rule_id=R8)
         trace["escalation"] = {"escalated": ok, "reason": reason, "missing_fields": missing}
         trace["summary"] = (f"Escalated to a human, no operational change (handbook rule 8). {reason}")
 
@@ -151,7 +151,8 @@ class Coordinator:
 
         pools: dict[str, int] = {}
         for dealer in self.cq.eligible_dealers(affected_cos):
-            ok, res = self.client.act(eid, "crm.loaner_availability", {"dealer_id": dealer}, agent="CustomerCareQuality")
+            ok, res = self.client.act(eid, "crm.loaner_availability", {"dealer_id": dealer}, agent="CustomerCareQuality",
+                                       rule_id="R5 pool check")
             pools[dealer] = int(res.get("available", 0)) if ok else 0
         loaners, loaner_decisions = self.cq.plan_loaners(affected_cos, pools)
 
@@ -217,14 +218,14 @@ class Coordinator:
         # ---------------- execute on the real server
         failed = None
         for a in plan:
-            ok, res = self.client.act(eid, a["tool"], a["args"], seq=a["seq"], agent=a["agent"])
+            ok, res = self.client.act(eid, a["tool"], a["args"], seq=a["seq"], agent=a["agent"], rule_id=a["rule_id"])
             if not ok:
                 failed = (a, res)
                 break
         if failed:
             a, res = failed
             self.client.act(eid, "escalate", {"reason": f"Execution stopped: {a['tool']} failed ({res.get('error')}). "
-                                                        "Remaining actions not sent."}, agent=AGENT)
+                                                        "Remaining actions not sent."}, agent=AGENT, rule_id=R8)
             trace["escalation"] = {"escalated": True, "reason": f"{a['tool']} failed: {res.get('error')}",
                                    "missing_fields": []}
         if no_slot and not failed:
@@ -301,16 +302,17 @@ class Coordinator:
         return chain
 
     def _quality_chain(self, qp: dict) -> list:
+        """Lot -> ProductionOrder -> Vehicle -> Dealer / Customer, via the derived USED_IN_ORDER edge."""
         lot = qp["lot"]
-        n, part = nid("PartLot", lot.lot_id), nid("Part", lot.part_id)
-        chain = [[n, "INSTALLED_AT", nid("Plant", lot.plant_id)], [n, "LOT_OF", part]]
+        n = nid("PartLot", lot.lot_id)
         vin = (qp["sold"] or qp["unsold"] or [None])[0]
-        if vin:
-            v = self.ds.vehicles[vin]
-            po, model, veh = nid("ProductionOrder", v.production_order_id), nid("Model", v.model), nid("Vehicle", vin)
-            chain += [[part, "USED_IN", model], [po, "BUILDS", model], [veh, "BUILT_FROM", po],
-                      [veh, "OWNED_BY", nid("Customer", v.customer_id)] if v.customer_id else
-                      [veh, "AT_DEALER", nid("Dealer", v.dealer_id)]]
+        if not vin:
+            return [[n, "LOT_OF", nid("Part", lot.part_id)], [n, "INSTALLED_AT", nid("Plant", lot.plant_id)]]
+        v = self.ds.vehicles[vin]
+        po, veh = nid("ProductionOrder", v.production_order_id), nid("Vehicle", vin)
+        chain = [[n, "USED_IN_ORDER", po], [veh, "BUILT_FROM", po], [veh, "AT_DEALER", nid("Dealer", v.dealer_id)]]
+        if v.customer_id:
+            chain.append([veh, "OWNED_BY", nid("Customer", v.customer_id)])
         return chain
 
     def _evidence(self, a: dict, sched: list[dict], quality: list) -> list:
@@ -347,19 +349,24 @@ class Coordinator:
             n = nid("PartLot", lot.lot_id)
             return [[n, "LOT_OF", nid("Part", lot.part_id)], [n, "LOT_FROM", nid("Supplier", lot.supplier_id)],
                     [n, "INSTALLED_AT", nid("Plant", lot.plant_id)]]
+        lot_node = next((nid("PartLot", qp["lot"].lot_id) for iid, qp in quality if iid == a.get("incident_id")), None)
         if tool == "dealer.stop_sale":
             out = []
             for v in args["vins"]:
                 veh = self.ds.vehicles[v]
-                out += [[nid("Vehicle", v), "BUILT_FROM", nid("ProductionOrder", veh.production_order_id)],
-                        [nid("Vehicle", v), "AT_DEALER", nid("Dealer", veh.dealer_id)]]
+                po = nid("ProductionOrder", veh.production_order_id)
+                out += ([[lot_node, "USED_IN_ORDER", po]] if lot_node else []) + [
+                    [nid("Vehicle", v), "BUILT_FROM", po], [nid("Vehicle", v), "AT_DEALER", nid("Dealer", veh.dealer_id)]]
             return out
         if tool == "crm.notify_customer":
             vins = [v.vin for v in self.ds.vehicles.values() if v.customer_id == args["customer_id"]
                     and any(v.vin in qp["sold"] for _, qp in quality)]
-            return [e for v in vins for e in
-                    ([nid("Vehicle", v), "BUILT_FROM", nid("ProductionOrder", self.ds.vehicles[v].production_order_id)],
-                     [nid("Vehicle", v), "OWNED_BY", nid("Customer", args["customer_id"])])]
+            out = []
+            for v in vins:
+                po = nid("ProductionOrder", self.ds.vehicles[v].production_order_id)
+                out += ([[lot_node, "USED_IN_ORDER", po]] if lot_node else []) + [
+                    [nid("Vehicle", v), "BUILT_FROM", po], [nid("Vehicle", v), "OWNED_BY", nid("Customer", args["customer_id"])]]
+            return out
         return []
 
     # ================================================================== read-back + summary
@@ -372,7 +379,8 @@ class Coordinator:
                 plant = a["args"].get("to_plant_id") or self.ds.production_orders[po].plant_id
                 targets.setdefault((plant, a["args"]["new_date"]), []).append(po)
         for (plant, day), pos in sorted(targets.items()):
-            ok, res = self.client.act(eid, "mes.get_schedule", {"plant_id": plant, "date": day}, agent="Verifier")
+            ok, res = self.client.act(eid, "mes.get_schedule", {"plant_id": plant, "date": day}, agent="Verifier",
+                                      rule_id="R3 read-back")
             there = {o["production_order_id"] for o in res.get("orders", [])} if ok else set()
             checks.append({"name": f"read-back {plant} {day}: {', '.join(pos)} present, free slots >= 0",
                            "ok": ok and set(pos) <= there and res.get("free_slots", -1) >= 0, "detail": "", "blocking": False})
@@ -382,7 +390,8 @@ class Coordinator:
                 d = self.ds.customer_orders[a["args"]["customer_order_id"]].dealer_id
                 loaned[d] = loaned.get(d, 0) + 1
         for d, n in sorted(loaned.items()):
-            ok, res = self.client.act(eid, "crm.loaner_availability", {"dealer_id": d}, agent="Verifier")
+            ok, res = self.client.act(eid, "crm.loaner_availability", {"dealer_id": d}, agent="Verifier",
+                                      rule_id="R5 read-back")
             checks.append({"name": f"read-back loaners {d}: {pools.get(d, 0)} - {n} = {pools.get(d, 0) - n}",
                            "ok": ok and res.get("available") == pools.get(d, 0) - n, "detail": "", "blocking": False})
         trace["verifier"]["readback_checks"] = checks
@@ -417,7 +426,8 @@ class Coordinator:
 
     def _finish(self, eid: str, trace: dict, res: dict, t0: float) -> None:
         calls = self.client.calls_for(eid)
-        trace["actions"] = [{k: c[k] for k in ("seq", "agent", "tool", "args", "ok", "error", "kind", "ts")}
+        trace["actions"] = [{k: c[k] for k in ("call_no", "seq", "rule_id", "agent", "tool", "args", "ok", "error",
+                                               "kind", "ts")}
                             for c in calls]
         trace["metrics"] = {"llm_calls": res["llm_calls"], "llm_model": res["llm_model"],
                             "llm_cached": res["cached"], "prompt_tokens": res["prompt_tokens"],

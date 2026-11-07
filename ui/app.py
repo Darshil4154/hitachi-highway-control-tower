@@ -58,8 +58,14 @@ mark.ev {background: #fef3c7; padding: 0 2px; border-radius: 3px;}
        padding: 1px 9px; font-size: .78rem; margin: 2px 4px 2px 0; font-family: ui-monospace, monospace;}
 .why {border-radius: 12px; padding: 16px 18px; color: #0f172a;}
 .check {font-size: .86rem; margin: 2px 0;}
-.path {font-family: ui-monospace, monospace; font-size: .8rem; background: #0b1220; color: #e2e8f0;
-       padding: 10px 12px; border-radius: 8px; overflow-x: auto; white-space: nowrap;}
+.pathbox {background: #0b1220; padding: 12px 14px; border-radius: 10px; line-height: 2.4; color: #e2e8f0;
+          font-size: .84rem;}
+.pnode {display: inline-block; border: 2px solid; border-radius: 8px; padding: 0 8px 0 0; background: #111827;
+        color: #f8fafc; font-family: ui-monospace, monospace; white-space: nowrap; line-height: 1.7;}
+.pkind {display: inline-block; color: white; font-size: .64rem; font-family: ui-sans-serif, sans-serif;
+        padding: 0 6px; margin-right: 6px; border-radius: 5px 0 0 5px; text-transform: uppercase;}
+.prel {color: #fde68a; font-family: ui-monospace, monospace; font-size: .72rem; margin: 0 6px; white-space: nowrap;}
+.pbranch {color: #94a3b8; font-size: .72rem; margin: 0 8px; font-style: italic;}
 .small {font-size: .8rem; color: #64748b;}
 </style>
 """, unsafe_allow_html=True)
@@ -171,34 +177,107 @@ def kpis() -> None:
 
 
 # ------------------------------------------------------------------------------------------- graph
-def graph_html(item: dict, max_extra: int = 70) -> str:
+def walk_chain(chain: list) -> list[dict]:
+    """Ordered steps of a cited chain: [{node, rel, dir, branch_from}] mirroring ontology.explain_path."""
+    if not chain:
+        return []
+    cur = chain[0][0]
+    if len(chain) > 1 and chain[0][0] in (chain[1][0], chain[1][2]) and chain[0][2] not in (chain[1][0], chain[1][2]):
+        cur = chain[0][2]
+    steps = [{"node": cur, "rel": None, "dir": None, "branch_from": None}]
+    for src, rel, dst in chain:
+        if src == cur:
+            steps.append({"node": dst, "rel": rel, "dir": "->", "branch_from": None})
+            cur = dst
+        elif dst == cur:
+            steps.append({"node": src, "rel": rel, "dir": "<-", "branch_from": None})
+            cur = src
+        else:
+            steps.append({"node": dst, "rel": rel, "dir": "->", "branch_from": src})
+            cur = dst
+    return steps
+
+
+def node_chip(n: str) -> str:
+    kind, _, key = n.partition(":")
+    c = NODE_COLOR.get(kind, "#64748b")
+    return (f"<span class='pnode' style='border-color:{c}'><span class='pkind' style='background:{c}'>{kind}</span>"
+            f"{html.escape(key)}</span>")
+
+
+def path_chips(item: dict) -> str:
+    gp = item.get("graph_path") or {}
+    steps = walk_chain(gp.get("chain", []))
+    if not steps:
+        return f"<div class='pathbox'>{html.escape(gp.get('text') or '')}</div>"
+    parts = [node_chip(steps[0]["node"])]
+    for s in steps[1:]:
+        if s["branch_from"]:
+            parts.append(f"<span class='pbranch'>and</span>{node_chip(s['branch_from'])}")
+        arrow = f"<span class='prel'>─ {s['rel']} →</span>" if s["dir"] == "->" else \
+            f"<span class='prel'>← {s['rel']} ─</span>"
+        parts.append(arrow + node_chip(s["node"]))
+    counts = (gp.get("text") or "").rsplit("[", 1)
+    tail = f"<div class='small' style='margin-top:6px'>Covers {html.escape(counts[1].rstrip(']'))}</div>" \
+        if len(counts) == 2 else ""
+    return f"<div class='pathbox'>{''.join(parts)}</div>{tail}"
+
+
+def graph_html(item: dict, context: bool, max_extra: int = 60) -> str:
     from pyvis.network import Network
 
     gp = item.get("graph_path") or {}
     chain = [tuple(e) for e in gp.get("chain", [])]
-    edges = [tuple(e) for e in gp.get("edges", [])]
     chain_set = set(chain)
-    rest = [e for e in edges if e not in chain_set]
-    shown = chain + rest[:max_extra]
-    net = Network(height="470px", width="100%", directed=True, bgcolor="#0b1220", font_color="#e2e8f0",
+    steps = walk_chain(gp.get("chain", []))
+    net = Network(height="430px", width="100%", directed=True, bgcolor="#0b1220", font_color="#e2e8f0",
                   cdn_resources="in_line")
-    net.barnes_hut(gravity=-6000, spring_length=110)
-    hot = {n for e in chain for n in (e[0], e[2])}
-    for e in shown:
-        for n in (e[0], e[2]):
-            if n not in net.get_nodes():
-                kind, _, key = n.partition(":")
-                net.add_node(n, label=key, title=f"{kind}: {key}", color=NODE_COLOR.get(kind, "#cbd5e1"),
-                             size=24 if n in hot else 12, borderWidth=3 if n in hot else 1,
-                             font={"size": 15 if n in hot else 10, "color": "#e2e8f0"})
-        net.add_edge(e[0], e[2], label=e[1] if e in chain_set else "", title=e[1],
-                     color="#facc15" if e in chain_set else "#334155", width=3.5 if e in chain_set else 1)
+    pos: dict[str, tuple[int, int]] = {}
+    x = 0
+    for s in steps:
+        if s["node"] in pos:
+            continue
+        if s["branch_from"] and s["branch_from"] in pos:
+            bx, _ = pos[s["branch_from"]]
+            pos[s["node"]] = (bx + 90, 150)
+        else:
+            pos[s["node"]] = (x, 0)
+            x += 190
+    for n, (px, py) in pos.items():
+        kind, _, key = n.partition(":")
+        net.add_node(n, label=f"{key}\n{kind}", title=f"{kind}: {key}", color=NODE_COLOR.get(kind, "#cbd5e1"),
+                     size=26, borderWidth=3, x=px, y=py, physics=False, shape="dot",
+                     font={"size": 17, "color": "#f8fafc", "strokeWidth": 3, "strokeColor": "#0b1220",
+                           "multi": False})
+    for a, rel, b in chain:
+        net.add_edge(a, b, label=rel, title=rel, color="#facc15", width=4,
+                     font={"size": 13, "color": "#fde68a", "strokeWidth": 0, "align": "top"})
+    if context:
+        rest = [e for e in (tuple(e) for e in gp.get("edges", [])) if e not in chain_set]
+        for a, rel, b in rest[:max_extra]:
+            for n in (a, b):
+                if n not in net.get_nodes():
+                    kind, _, key = n.partition(":")
+                    net.add_node(n, label=" ", title=f"{kind}: {key}", size=7, borderWidth=0,
+                                 color={"background": NODE_COLOR.get(kind, "#cbd5e1"), "border": "#0b1220"},
+                                 opacity=0.45, font={"size": 1})
+            net.add_edge(a, b, title=rel, color={"color": "#334155", "opacity": 0.5}, width=0.7)
+    net.set_options(json.dumps({
+        "physics": {"enabled": context, "barnesHut": {"gravitationalConstant": -2500, "springLength": 90},
+                    "stabilization": {"iterations": 250, "fit": True}},
+        "interaction": {"hover": True, "zoomView": True, "dragView": True},
+        "edges": {"arrows": {"to": {"enabled": True, "scaleFactor": 0.6}}, "smooth": {"type": "dynamic"}},
+    }))
     return net.generate_html(notebook=False)
 
 
-def legend() -> str:
-    return " ".join(f"<span class='chip' style='background:{c};color:white;border-color:{c}'>{k}</span>"
-                    for k, c in NODE_COLOR.items())
+def legend(item: dict) -> str:
+    gp = item.get("graph_path") or {}
+    order = list(NODE_COLOR)
+    kinds = sorted({e.partition(":")[0] for e in gp.get("nodes", [])},
+                   key=lambda k: order.index(k) if k in order else len(order))
+    return " ".join(f"<span class='chip' style='background:{NODE_COLOR.get(k, '#64748b')};color:white;"
+                    f"border-color:{NODE_COLOR.get(k, '#64748b')}'>{k}</span>" for k in kinds)
 
 
 # ------------------------------------------------------------------------------------------- heatmap
@@ -315,12 +394,17 @@ def incident_view(t: dict, it: dict) -> None:
             with st.expander(f"Excluded on purpose ({len(exc)}) - rule 10"):
                 st.dataframe(pd.DataFrame(exc), hide_index=True, width="stretch")
 
-    st.markdown("**Graph path** <span class='small'>(evidence chain; yellow = cited path, full subgraph sampled)"
-                "</span>", unsafe_allow_html=True)
-    st.markdown(f"<div class='path'>{html.escape(it['graph_path'].get('text') or '')}</div>", unsafe_allow_html=True)
+    st.markdown("**Graph path** <span class='small'>(the evidence chain cited in the trace)</span>",
+                unsafe_allow_html=True)
+    st.markdown(path_chips(it), unsafe_allow_html=True)
     if it["graph_path"].get("edges"):
-        st.iframe(graph_html(it), height=490)
-        st.markdown(legend(), unsafe_allow_html=True)
+        n_edges = len(it["graph_path"]["edges"])
+        context = st.toggle(f"Show context (sample of the {n_edges:,} edges in this incident's subgraph)",
+                            value=False, key=f"ctx-{it['incident_id']}")
+        st.iframe(graph_html(it, context), height=450)
+        st.markdown(f"<div class='small'>Yellow = cited path. Drag to pan, scroll to zoom"
+                    f"{', faded dots = sampled context' if context else ''}.</div>{legend(it)}",
+                    unsafe_allow_html=True)
 
     rs = it["decisions"].get("reschedule", [])
     if rs:
@@ -349,9 +433,13 @@ def incident_view(t: dict, it: dict) -> None:
 
 def actions_view(t: dict) -> None:
     plan = {a["seq"]: a for a in t["plan"]}
+    read_reasons = {"R5 pool check": "free read: live loaner pool used for the R5 ranking",
+                    "R5 read-back": "free read-back: pool dropped by exactly the loaners assigned",
+                    "R3 read-back": "free read-back: moved orders are on the live schedule"}
     rows = []
-    for a in t["actions"]:
+    for n, a in enumerate(t["actions"], 1):
         p = plan.get(a["seq"], {}) if a["seq"] else {}
+        rule = a.get("rule_id") or p.get("rule_id", "")
         args = a["args"]
         target = (args.get("production_order_id") or args.get("dealer_id") or args.get("customer_order_id")
                   or args.get("customer_id") or args.get("lot_id") or args.get("plant_id") or "")
@@ -364,9 +452,10 @@ def actions_view(t: dict) -> None:
             extra = f"{len(args['vins'])} VINs"
         elif a["tool"] == "mes.get_schedule":
             extra = args["date"]
-        rows.append({"ok": "✅" if a["ok"] else "❌", "seq": str(a["seq"] or ""), "agent": a["agent"], "tool": a["tool"],
-                     "kind": a["kind"], "target": f"{target} {extra}".strip(), "rule": p.get("rule_id", ""),
-                     "reason": p.get("reason") or (args.get("reason") or "read-only check")})
+        rows.append({"ok": "✅" if a["ok"] else "❌", "seq": str(a.get("call_no") or n),
+                     "plan seq": str(a["seq"] or "-"), "agent": a["agent"], "tool": a["tool"], "kind": a["kind"],
+                     "target": f"{target} {extra}".strip(), "rule": rule,
+                     "reason": p.get("reason") or args.get("reason") or read_reasons.get(rule, "free read-only check")})
     if not rows:
         st.markdown("<div class='small'>No tool calls for this event - by design.</div>", unsafe_allow_html=True)
         return
@@ -594,16 +683,21 @@ elif page == "Ask the control tower":
     question = st.chat_input("Ask about an event, dealer, plant day, lot or a path between two ids")
     question = question or clicked
     if question:
-        with st.spinner("Querying the graph…"):
-            st.session_state.chat.append(ask_mod.ask(question, use_llm=use_llm))
-    for r in reversed(st.session_state.chat):
+        st.session_state.chat.append({"question": question, "pending": True, "use_llm": use_llm})
+    for k in range(len(st.session_state.chat) - 1, -1, -1):
+        r = st.session_state.chat[k]
         with st.chat_message("user"):
             st.markdown(r["question"])
         with st.chat_message("assistant", avatar="🗼"):
+            if r.get("pending"):
+                with st.spinner("Thinking... picking a read-only query and walking the graph"):
+                    r = ask_mod.ask(r["question"], use_llm=r["use_llm"])
+                st.session_state.chat[k] = r
             if r["function"]:
                 st.markdown(f"<span class='chip'>{r['method']}</span><span class='chip'>{r['function']}"
-                            f"({', '.join(f'{k}={v}' for k, v in r['args'].items())})</span>", unsafe_allow_html=True)
-            st.code(r["answer"], language=None, wrap_lines=True)
+                            f"({', '.join(f'{k2}={v}' for k2, v in r['args'].items())})</span>",
+                            unsafe_allow_html=True)
+            st.markdown(ask_mod.to_markdown(r["answer"]))
             if r["function"]:
                 with st.expander("Raw function result"):
                     st.json(r["result"], expanded=False)
@@ -636,6 +730,7 @@ else:
     st.markdown(re.sub(r"\s+", " ", " ".join(
         f"<span class='chip'>{e}</span>" for e in ["SUPPLIES", "SENT_BY", "DELIVERS", "RECEIVED_AT", "USED_IN",
                                                    "CAN_BUILD", "SCHEDULED_AT", "BUILDS", "FULFILLS", "SOLD_THROUGH",
-                                                   "ORDERED_BY", "LOT_OF", "LOT_FROM", "INSTALLED_AT", "BUILT_FROM",
+                                                   "ORDERED_BY", "LOT_OF", "LOT_FROM", "INSTALLED_AT",
+                                                   "USED_IN_ORDER (derived)", "BUILT_FROM",
                                                    "AT_DEALER", "OWNED_BY", "HAS_POOL", "REFERS_TO", "MENTIONS",
                                                    "AFFECTS"])), unsafe_allow_html=True)

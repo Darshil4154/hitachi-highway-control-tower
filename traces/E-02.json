@@ -43,7 +43,9 @@
   },
   "actions": [
     {
+      "call_no": 1,
       "seq": 1,
+      "rule_id": "R8",
       "agent": "Coordinator",
       "tool": "escalate",
       "args": {
@@ -52,7 +54,7 @@
       "ok": true,
       "error": null,
       "kind": "escalate",
-      "ts": "2026-11-07T20:24:52.735+00:00"
+      "ts": "2026-11-07T20:47:36.694+00:00"
     }
   ],
   "escalation": {

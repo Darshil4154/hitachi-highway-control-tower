@@ -35,8 +35,11 @@ hedge-word detector; required fields per incident type; weekday/date consistency
 tool-client write guard (noise/rumor events cannot write); digital-twin dry run (must be 0 errors); verifier plan
 and world checks (R1-R10); stop on first live failure (no blind retries); live read-back; human-in-the-loop inbox.
 
-**Evaluation.** `pytest -q`: 77 tests, specialists tested on synthetic mini-worlds. Real server run: 961 calls,
-**0 failed**. `eval/self_check.py` replays the action log on a fresh `Enterprise` and scores it against a separate
+**Evaluation.** `pytest -q`: 80 tests, specialists tested on synthetic mini-worlds. Real server run: 961 calls,
+**0 failed**: 766 writes and 193 reads. The reads are free read-back checks that back up the verifier: 82 R5 pool
+checks (`crm.loaner_availability` before ranking Platinum/Gold customers), 82 R5 read-backs (pool dropped by exactly
+the loaners assigned) and 29 R3 read-backs (`mes.get_schedule` shows every moved order on its new plant/day). Every
+read row in `traces/audit_log.csv` carries its own seq and rule id. `eval/self_check.py` replays the action log on a fresh `Enterprise` and scores it against a separate
 minimal implementation of R1-R6 and R9-R10: **15/15 events green**. Both qwen2.5 3B and 7B pass the extraction table;
 the rule-based fallback alone also passes.
 
@@ -51,5 +54,5 @@ event).
 
 **What we would improve.** Confirm the interpretation switches with the organizers; LLM-written business summaries
 (facts still from the trace); a constraint solver for slot assignment when many incidents compete; per-dealer
-message templates; a streaming event bus instead of a batch run; the 3D "agent village" view and the
-"Ask the control tower" query panel from the stretch plan.
+message templates; a streaming event bus instead of a batch run; the 3D "agent village" view from the stretch plan.
+The read-only "Ask the control tower" panel (LLM picks a query function, code answers) is already in the UI.

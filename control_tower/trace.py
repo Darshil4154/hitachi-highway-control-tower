@@ -12,6 +12,13 @@ REQUIRED_KEYS = ["event", "classification", "incidents", "plan", "verifier", "ac
                  "metrics", "config_snapshot"]
 
 
+READ_REASONS = {
+    "R5 pool check": "free read: live loaner pool at this dealer, used to rank Platinum/Gold customers (R5)",
+    "R5 read-back": "free read-back: pool dropped by exactly the loaners assigned",
+    "R3 read-back": "free read-back: moved orders are on the live schedule and the day is within capacity",
+}
+
+
 def _default(o):
     if isinstance(o, date):
         return o.isoformat()
@@ -90,10 +97,11 @@ def write_run(traces: list[dict], mode: str, server: str, out_dir: Path | None =
     (out / "run_summary.json").write_text(json.dumps(summary, indent=2, default=_default), encoding="utf-8")
     with (out / "audit_log.csv").open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["event_id", "seq", "agent", "tool", "kind", "target", "rule_id", "reason", "ok", "error", "ts"])
+        w.writerow(["event_id", "seq", "plan_seq", "agent", "tool", "kind", "target", "rule_id", "reason", "ok",
+                    "error", "ts"])
         for t in traces:
             plan = {a["seq"]: a for a in t["plan"]}
-            for a in t["actions"]:
+            for n, a in enumerate(t["actions"], 1):
                 p = plan.get(a["seq"], {}) if a["seq"] is not None else {}
                 args = a["args"]
                 target = (args.get("production_order_id") or args.get("dealer_id") or args.get("customer_order_id")
@@ -104,8 +112,10 @@ def write_run(traces: list[dict], mode: str, server: str, out_dir: Path | None =
                     target = f"{target} -> {args['new_date']}"
                 elif a["tool"] == "mes.get_schedule":
                     target = f"{args['plant_id']} {args['date']}"
+                rule = a.get("rule_id") or p.get("rule_id") or (t.get("decision_rule") if a["tool"] == "escalate"
+                                                                else "")
                 reason = p.get("reason") or (args.get("reason") if a["tool"] == "escalate" else
-                                             "read-only check (free)" if a["kind"] == "read" else "")
-                rule = p.get("rule_id") or (t.get("decision_rule") if a["tool"] == "escalate" else "")
-                w.writerow([t["event"]["event_id"], a["seq"] or "", a["agent"], a["tool"], a["kind"], target,
-                            rule or "", reason, a["ok"], a["error"] or "", a["ts"]])
+                                             READ_REASONS.get(rule, "free read-only check") if a["kind"] == "read"
+                                             else "")
+                w.writerow([t["event"]["event_id"], a.get("call_no") or n, a["seq"] or "", a["agent"], a["tool"],
+                            a["kind"], target, rule or "", reason, a["ok"], a["error"] or "", a["ts"]])

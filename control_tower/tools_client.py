@@ -58,7 +58,8 @@ class ToolsClient:
         r.raise_for_status()
         return r.json()
 
-    def act(self, event_id: str, tool: str, args: dict, seq: int | None = None, agent: str = "") -> tuple[bool, dict]:
+    def act(self, event_id: str, tool: str, args: dict, seq: int | None = None, agent: str = "",
+            rule_id: str = "") -> tuple[bool, dict]:
         """One call, never retried automatically for writes. Returns (ok, result_or_error)."""
         self._guard(event_id, tool)
         ts = datetime.now(timezone.utc).isoformat(timespec="milliseconds")
@@ -73,7 +74,9 @@ class ToolsClient:
                 ok = r.status_code == 200 and "error" not in res
             except (requests.RequestException, ValueError) as e:
                 ok, res = False, {"error": f"{type(e).__name__}: {e}"}
-        self.calls.append({"seq": seq, "event_id": event_id, "agent": agent, "tool": tool, "args": args, "ok": ok,
+        call_no = sum(1 for c in self.calls if c["event_id"] == event_id) + 1
+        self.calls.append({"call_no": call_no, "seq": seq, "rule_id": rule_id, "event_id": event_id, "agent": agent,
+                           "tool": tool, "args": args, "ok": ok,
                            "error": None if ok else res.get("error"), "result": res if ok else None,
                            "kind": tool_kind(tool), "ts": ts})
         return ok, res
