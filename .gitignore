@@ -1,0 +1,9 @@
+.venv/
+cache/
+runs/smoke/
+__pycache__/
+*.pyc
+.pytest_cache/
+uploads/
+node_modules/
+ui/hitl_decisions.json
