@@ -39,6 +39,7 @@ st.markdown("""
 <style>
 [data-testid="stSidebar"] {background: #0b1220;}
 [data-testid="stSidebar"] * {color: #e2e8f0 !important;}
+[data-testid="stSidebar"] code {background: #1e293b !important; color: #facc15 !important;}
 .block-container {padding-top: 1.4rem; padding-bottom: 2rem;}
 .kpi {background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 14px 16px; height: 100%;}
 .kpi .v {font-size: 1.65rem; font-weight: 700; color: #0f172a; line-height: 1.1;}
