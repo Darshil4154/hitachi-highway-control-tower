@@ -16,7 +16,7 @@ RUNS_DIR = ROOT / "runs"
 SERVER_URL = os.environ.get("SERVER_URL", "http://127.0.0.1:8000")
 
 LLM_BASE_URL = os.environ.get("LLM_BASE_URL", "http://localhost:11434/v1")
-LLM_MODEL = os.environ.get("LLM_MODEL", "qwen2.5:7b-instruct")
+LLM_MODEL = os.environ.get("LLM_MODEL", "qwen2.5:3b-instruct")
 LLM_API_KEY = os.environ.get("LLM_API_KEY", "ollama")
 LLM_TIMEOUT_S = float(os.environ.get("LLM_TIMEOUT_S", "120"))
 LLM_DISABLED = os.environ.get("LLM_DISABLED", "0") == "1"
