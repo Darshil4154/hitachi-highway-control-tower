@@ -232,6 +232,51 @@ def extract(text: str) -> dict:
     return {**meta, "extraction": extraction}
 
 
+# ----------------------------------------------------------------------------- rationale grounding
+# Words a rationale may use without them appearing in the message (category vocabulary, not facts).
+_GENERIC = set("""incident incidents noise concrete operational operations problem problems message mentions
+mentioned mention specific category issue issues quality delay delayed supply part parts plant plants shipment
+shipments dates date build window hearsay rumor rumour confirmed unconfirmed details detail company about with from
+that this there rest other only phrases phrase provided indicating indicates item items report reports nothing
+contains named given real actual clear vague none their them they which what when where while also some something
+mentioned question request asks asking where find related unrelated not""".split())
+_COUNTS = {"one": 1, "two": 2, "three": 3, "four": 4}
+
+
+def rationale_check(rationale: str, text: str, incidents: list[dict]) -> list[str]:
+    """Problems with a free-text LLM rationale: facts not in the message, wrong incident count, or a claim that
+    part of the message is noise when every sentence belongs to an incident. Empty list = grounded."""
+    issues: list[str] = []
+    low = text.lower()
+    for w in sorted(set(re.findall(r"[a-z]{4,}", rationale.lower()))):
+        if w in _GENERIC or w[:5] in low:
+            continue
+        issues.append(f"'{w}' is not in the message")
+    m = re.search(r"\b(one|two|three|four)\s+(?:concrete\s+|specific\s+)?incidents?\b", rationale.lower())
+    if m and _COUNTS[m.group(1)] != len(incidents):
+        issues.append(f"says {m.group(1)} incident(s), the message has {len(incidents)}")
+    if incidents and re.search(r"\bnoise\b", rationale.lower()):
+        phrases = [str(v).lower() for i in incidents for k, v in i.items()
+                   if v and isinstance(v, str) and k not in ("type", "evidence_quote")]
+        quotes = [(i.get("evidence_quote") or "").lower() for i in incidents]
+        sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+|\(\d\)", low) if len(re.findall(r"[a-z]{3,}", s)) > 2]
+        spare = [s for s in sentences if not any(s in q or q and q in s for q in quotes)
+                 and not any(p in s for p in phrases)
+                 and not re.fullmatch(r"[\w\s,]*digest[\w\s,.]*", s)]
+        if not spare:
+            issues.append("calls part of the message noise, but every sentence belongs to an incident")
+    return issues
+
+
+def _incident_label(r: dict) -> str:
+    t = r.get("type")
+    if t == "supplier_delay":
+        return f"supplier delay of {r.get('part_id')} to {r.get('plant_id')} ({r.get('original_eta') or r.get('shipment_id')} -> {r.get('new_eta')})"
+    if t == "plant_outage":
+        return f"plant outage at {r.get('plant_id')} ({r.get('start')} to {r.get('end')})"
+    return f"quality hold on {r.get('lot_id') or r.get('part_id')} ({r.get('window_from')} to {r.get('window_to')})"
+
+
 # ----------------------------------------------------------------------------- gate
 REQUIRED = {
     "supplier_delay": "part + plant + new ETA + (original ETA or shipment id)",
@@ -272,7 +317,8 @@ def gate(extraction: Extraction, resolved: list[dict], text: str) -> dict:
                 return {"result": "needs_review", "reason": "LLM said noise but the message names a complete "
                         "incident (rule-based cross-check); a human should decide.", "missing_fields": [],
                         "hedges": hedges}
-        return {"result": "noise", "reason": extraction.rationale or "Not about our operations.",
+        return {"result": "noise", "reason": "Not about our operations: the LLM classified it as noise and the "
+                "rule-based cross-check found no complete incident (no plant, part or lot with dates).",
                 "missing_fields": [], "hedges": hedges}
     if extraction.category == "unconfirmed" or not resolved:
         fields = all_missing or ["part", "plant", "dates", "confirmation"]
@@ -289,7 +335,9 @@ def gate(extraction: Extraction, resolved: list[dict], text: str) -> dict:
         notes += [f"incident {i + 1}: {'; '.join(v)}" for i, v in review.items()]
         return {"result": "needs_review", "reason": "Cannot act safely: " + " | ".join(notes) + ".",
                 "missing_fields": all_missing + [n for v in review.values() for n in v], "hedges": hedges}
-    return {"result": "incident", "reason": extraction.rationale, "missing_fields": [], "hedges": hedges}
+    found = "; ".join(_incident_label(r) for r in resolved)
+    return {"result": "incident", "reason": f"{len(resolved)} confirmed incident(s), every phrase quoted from the "
+            f"message and every id resolved: {found}.", "missing_fields": [], "hedges": hedges}
 
 
 def main() -> None:

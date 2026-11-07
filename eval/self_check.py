@@ -81,9 +81,21 @@ def r2_affected(plant, start, end):
             and D(r["build_date"]) >= TODAY}
 
 
-def r3_expected(incidents):
+def r3_expected(incidents, switches=None):
     """Rule 3 greedy: orders by (build date, id) per incident in message order; same plant on/after restart,
-    else earliest day at another plant that builds the model (plants.csv order on ties)."""
+    else earliest day at another plant that builds the model (plants.csv order on ties).
+    `switches` (the trace's config_snapshot) selects the documented alternatives for the open questions."""
+    sw = switches or {}
+    by_promise = sw.get("SLOT_PRIORITY") == "promised_date"
+    plant_first = sw.get("TRANSFER_SEARCH") == "plant_first"
+    from_restart = sw.get("TRANSFER_LOWER_BOUND") == "restart"
+    promise = defaultdict(list)
+    for c in COS.values():
+        promise[c["production_order_id"]].append(c["promised_date"])
+
+    def order_key(x):
+        base = (POS[x]["build_date"], x)
+        return (min(promise[x]) if promise[x] else "9999-12-31",) + base if by_promise else base
     used = defaultdict(int)
     loc = {}
     for p, r in POS.items():
@@ -108,7 +120,7 @@ def r3_expected(incidents):
     result, seen = {}, set()
     window = days(TODAY, LAST)
     for i in incidents:
-        for p in sorted(i["pos"], key=lambda x: (POS[x]["build_date"], x)):
+        for p in sorted(i["pos"], key=order_key):
             if p in seen:
                 continue
             seen.add(p)
@@ -116,8 +128,12 @@ def r3_expected(incidents):
             target = next(((origin, d) for d in window if d >= restart[p] and used[(origin, d)] < SLOTS[origin]
                            and not blocked(origin, d, model)), None)
             if target is None:
-                target = next(((pl, d) for d in window for pl in PLANTS if pl != origin and model in CAN[pl]
-                               and used[(pl, d)] < SLOTS[pl] and not blocked(pl, d, model)), None)
+                tdays = [d for d in window if not from_restart or d >= restart[p]]
+                others = [pl for pl in PLANTS if pl != origin and model in CAN[pl]]
+                pairs = ((pl, d) for pl in others for d in tdays) if plant_first else \
+                    ((pl, d) for d in tdays for pl in others)
+                target = next(((pl, d) for pl, d in pairs
+                               if used[(pl, d)] < SLOTS[pl] and not blocked(pl, d, model)), None)
             if target:
                 used[loc[p]] -= 1
                 used[target] += 1
@@ -190,22 +206,28 @@ def score_event(eid, calls, trace):
     affected = set().union(*(i["pos"] for i in incidents)) if incidents else set()
     moved = {c["args"]["production_order_id"] for c in calls if c["tool"] in ("mes.reschedule", "mes.transfer")}
     ch["R10 no unaffected order moved"] = moved <= affected
-    expected_slots = r3_expected(incidents)
+    expected_slots = r3_expected(incidents, trace.get("config_snapshot"))
     unplaceable = {p for p, t in expected_slots.items() if t is None}
     ch["R1/R2 every affected order moved"] = affected - unplaceable <= moved
     ch["R3 final slots equal independent greedy"] = all(
         s["loc"].get(p) == (t[0], ent.date_to_idx(t[1])) for p, t in expected_slots.items() if t)
     aff_cos = {c for c, r in COS.items() if r["production_order_id"] in affected}
-    want = defaultdict(set)
-    for c in aff_cos:
-        want[COS[c]["dealer_id"]].add(c)
+    per_incident = (trace.get("config_snapshot") or {}).get("NOTIFY_SCOPE") == "per_incident"
+    want = defaultdict(list)
+    claimed = set()
+    for group in ([i["pos"] for i in incidents] if per_incident else [affected]):
+        sets = defaultdict(set)
+        for c in sorted(c for c, r in COS.items() if r["production_order_id"] in group and c not in claimed):
+            claimed.add(c)
+            sets[COS[c]["dealer_id"]].add(c)
+        for d, cos in sets.items():
+            want[d].append(sorted(cos))
     notify_calls = defaultdict(list)
     for c in calls:
         if c["tool"] == "dealer.notify":
-            notify_calls[c["args"]["dealer_id"]].append(set(c["args"]["customer_order_ids"]))
+            notify_calls[c["args"]["dealer_id"]].append(sorted(c["args"]["customer_order_ids"]))
     ch["R4 one notify per dealer, exact ids"] = (set(notify_calls) == set(want)
-                                                and all(len(v) == 1 and v[0] == want[d]
-                                                        for d, v in notify_calls.items()))
+                                                and all(sorted(notify_calls[d]) == sorted(want[d]) for d in want))
     ch["R5 loaners exactly as handbook priority"] = s["loaned"] == r5_expected(aff_cos)
     exp_unsold, exp_owners = set(), set()
     for lot in lots:

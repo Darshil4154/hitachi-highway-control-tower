@@ -187,9 +187,7 @@ class SupplyChainPlanner:
                 restart_of[po] = max(restart_of.get(po, inc["restart"]), inc["restart"])
         actions, decisions, done = [], [], set()
         for inc in incidents:
-            ordered = sorted(inc["affected_pos"],
-                             key=lambda p: (self.ds.production_orders[p].build_date, p))
-            for po in ordered:
+            for po in sorted(inc["affected_pos"], key=self.priority_key):
                 if po in done:
                     continue
                 done.add(po)
@@ -198,6 +196,13 @@ class SupplyChainPlanner:
                 if a:
                     actions.append(a)
         return actions, decisions
+
+    def priority_key(self, po: str) -> tuple:
+        build = self.ds.production_orders[po].build_date
+        if config.SLOT_PRIORITY == "promised_date":
+            promised = [c.promised_date for c in self.ds.customer_orders_by_po.get(po, [])]
+            return (min(promised) if promised else date.max, build, po)
+        return (build, po)
 
     def _place(self, po: str, restart: date, ledger: SlotLedger, inc: dict) -> tuple[dict | None, dict]:
         model = ledger.model_of[po]
@@ -216,18 +221,22 @@ class SupplyChainPlanner:
                          "reason": reason, "rule_id": R3})
         lb = 0 if config.TRANSFER_LOWER_BOUND == "today" else max(restart_idx, 0)
         plants = [p for p in self.ds.plant_order() if p != origin and model in self.ds.plant_models[p]]
-        for i in range(lb, LAST_IDX + 1):
-            for p in plants:
-                if ledger.free(p, i) and not ledger.blocked(p, i, model):
-                    ledger.move(po, p, i)
-                    to = idx_to_date(i).isoformat()
-                    reason = (f"{po} ({model}) affected by {inc['reason']}; no free slot at {origin} on/after "
-                              f"{restart}; earliest free slot at a plant that builds {model} is {p} {to}")
-                    return ({"agent": AGENT, "tool": "mes.transfer",
-                             "args": {"production_order_id": po, "to_plant_id": p, "new_date": to},
-                             "rule_id": R3, "reason": reason, "incident_id": inc["incident_id"]},
-                            {"po": po, "model": model, "from": frm, "to": f"{p} {to}", "kind": "transfer",
-                             "reason": reason, "rule_id": R3})
+        days = range(lb, LAST_IDX + 1)
+        candidates = ((i, p) for p in plants for i in days) if config.TRANSFER_SEARCH == "plant_first" \
+            else ((i, p) for i in days for p in plants)
+        where = ("first plant in plants.csv order with a free slot" if config.TRANSFER_SEARCH == "plant_first"
+                 else "earliest free slot at a plant")
+        for i, p in candidates:
+            if ledger.free(p, i) and not ledger.blocked(p, i, model):
+                ledger.move(po, p, i)
+                to = idx_to_date(i).isoformat()
+                reason = (f"{po} ({model}) affected by {inc['reason']}; no free slot at {origin} on/after "
+                          f"{restart}; {where} that builds {model} is {p} {to}")
+                return ({"agent": AGENT, "tool": "mes.transfer",
+                         "args": {"production_order_id": po, "to_plant_id": p, "new_date": to},
+                         "rule_id": R3, "reason": reason, "incident_id": inc["incident_id"]},
+                        {"po": po, "model": model, "from": frm, "to": f"{p} {to}", "kind": "transfer",
+                         "reason": reason, "rule_id": R3})
         reason = f"{po} ({model}): no feasible slot at any eligible plant before {idx_to_date(LAST_IDX)}"
         return None, {"po": po, "model": model, "from": frm, "to": None, "kind": "no_slot", "reason": reason,
                       "rule_id": R10 if config.NO_SLOT_ACTION == "skip" else R3}

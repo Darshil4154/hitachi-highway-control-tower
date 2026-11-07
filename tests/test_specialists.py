@@ -80,6 +80,18 @@ def test_capacity_overflow_forces_transfer_to_eligible_plant(world):
     assert all(d["kind"] != "no_slot" for d in decisions)
 
 
+def test_slot_priority_promised_date_serves_earliest_promise_first(world, monkeypatch):
+    from control_tower import config
+
+    ds, _, sc, _, _ = world
+    monkeypatch.setattr(config, "SLOT_PRIORITY", "promised_date")
+    inc = _outage(sc, date(2027, 3, 29), date(2027, 4, 1))
+    actions, _ = sc.plan_moves([inc], SlotLedger.from_store(ds))
+    # PO-0002 has the earlier promise (Mar 31 vs Apr 1), so it takes the only same-plant slot
+    assert actions[0]["args"] == {"production_order_id": "PO-0002", "new_date": "2027-04-02"}
+    assert actions[1]["tool"] == "mes.transfer" and actions[1]["args"]["production_order_id"] == "PO-0001"
+
+
 def test_blocked_days_never_used_and_past_orders_excluded(world):
     ds, _, sc, _, _ = world
     inc = _outage(sc, date(2027, 3, 1), date(2027, 3, 30))

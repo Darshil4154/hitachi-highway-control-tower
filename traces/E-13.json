@@ -54,7 +54,7 @@
       "ok": true,
       "error": null,
       "kind": "escalate",
-      "ts": "2026-11-07T20:47:37.369+00:00"
+      "ts": "2026-11-07T22:33:39.613+00:00"
     }
   ],
   "escalation": {
@@ -71,11 +71,12 @@
   "config_snapshot": {
     "NEXT_WEEKDAY": "following_week",
     "TRANSFER_LOWER_BOUND": "today",
+    "TRANSFER_SEARCH": "day_first",
     "PLANT_TIEBREAK": "plants_csv_order",
+    "SLOT_PRIORITY": "build_date",
     "COMPOUND_ORDER": "message_order",
     "NOTIFY_SCOPE": "per_event",
     "NO_SLOT_ACTION": "escalate",
-    "QUALITY_DEALER_NOTIFY": false,
     "ESCALATE_NOISE": false,
     "FUZZY_THRESHOLD": 90,
     "LLM_MODEL": "qwen2.5:3b-instruct"

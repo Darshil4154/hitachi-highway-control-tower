@@ -19,6 +19,18 @@ READ_REASONS = {
 }
 
 
+def plan_seq_label(a: dict) -> str:
+    """Plan step of a write, or for a read the plan steps it backs up."""
+    if a.get("seq"):
+        return str(a["seq"])
+    if a.get("kind") == "read":
+        refs = a.get("plan_refs") or []
+        if refs:
+            return "checks " + ",".join(str(r) for r in refs)
+        return "checks none (pool empty)" if a.get("tool") == "crm.loaner_availability" else "checks none"
+    return "no plan (escalate only)" if a.get("kind") == "escalate" else ""
+
+
 def _default(o):
     if isinstance(o, date):
         return o.isoformat()
@@ -117,5 +129,5 @@ def write_run(traces: list[dict], mode: str, server: str, out_dir: Path | None =
                 reason = p.get("reason") or (args.get("reason") if a["tool"] == "escalate" else
                                              READ_REASONS.get(rule, "free read-only check") if a["kind"] == "read"
                                              else "")
-                w.writerow([t["event"]["event_id"], a.get("call_no") or n, a["seq"] or "", a["agent"], a["tool"],
+                w.writerow([t["event"]["event_id"], a.get("call_no") or n, plan_seq_label(a), a["agent"], a["tool"],
                             a["kind"], target, rule or "", reason, a["ok"], a["error"] or "", a["ts"]])

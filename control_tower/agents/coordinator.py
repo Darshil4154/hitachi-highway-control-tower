@@ -40,7 +40,10 @@ class Coordinator:
         trace = {
             "event": {k: event.get(k) for k in ("event_id", "source", "received_at", "text")},
             "classification": {"category": ex.category, "gate": g["result"], "confidence": ex.confidence,
-                               "rationale": ex.rationale, "gate_reason": g["reason"], "hedges": g["hedges"],
+                               "rationale": ex.rationale,
+                               "rationale_issues": llm.rationale_check(ex.rationale, text,
+                                                                       [i.model_dump() for i in ex.incidents]),
+                               "gate_reason": g["reason"], "hedges": g["hedges"],
                                "llm_model": res["llm_model"], "llm_fallback": res["llm_fallback"],
                                "llm_cached": res["cached"], "llm_error": res["error"]},
             "incidents": [], "plan": [], "verifier": {"plan_checks": [], "world_checks": []}, "actions": [],
@@ -424,11 +427,25 @@ class Coordinator:
             tail += f" {len(no_slot)} orders had no feasible slot and were escalated."
         return " ".join(parts) + tail
 
+    def _plan_refs(self, read: dict, plan: list[dict]) -> list[int]:
+        """Plan steps a free read backs up: the moves onto that plant/day, or the loaners at that dealer."""
+        args = read["args"]
+        if read["tool"] == "mes.get_schedule":
+            return [p["seq"] for p in plan if p["tool"] in ("mes.reschedule", "mes.transfer")
+                    and p["args"]["new_date"] == args["date"]
+                    and (p["args"].get("to_plant_id")
+                         or self.ds.production_orders[p["args"]["production_order_id"]].plant_id) == args["plant_id"]]
+        return [p["seq"] for p in plan if p["tool"] == "crm.assign_loaner"
+                and self.ds.customer_orders[p["args"]["customer_order_id"]].dealer_id == args["dealer_id"]]
+
     def _finish(self, eid: str, trace: dict, res: dict, t0: float) -> None:
         calls = self.client.calls_for(eid)
         trace["actions"] = [{k: c[k] for k in ("call_no", "seq", "rule_id", "agent", "tool", "args", "ok", "error",
                                                "kind", "ts")}
                             for c in calls]
+        for a in trace["actions"]:
+            if a["kind"] == "read":
+                a["plan_refs"] = self._plan_refs(a, trace.get("plan", []))
         trace["metrics"] = {"llm_calls": res["llm_calls"], "llm_model": res["llm_model"],
                             "llm_cached": res["cached"], "prompt_tokens": res["prompt_tokens"],
                             "completion_tokens": res["completion_tokens"], "tool_calls": len(calls),

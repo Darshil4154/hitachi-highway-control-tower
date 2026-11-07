@@ -8,6 +8,7 @@ import html
 import json
 import math
 import re
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -17,6 +18,10 @@ import plotly.graph_objects as go
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from control_tower.trace import READ_REASONS, plan_seq_label  # noqa: E402
+
+STATIC = Path(__file__).resolve().parent / "static"
 TRACES = ROOT / "traces"
 EXPORTS = ROOT / "exports"
 HITL = ROOT / "ui" / "hitl_decisions.json"
@@ -123,8 +128,12 @@ def save_hitl(d: dict) -> None:
     HITL.write_text(json.dumps(d, indent=2), encoding="utf-8")
 
 
-traces = load_traces(traces_mtime())
-summary = load_summary(traces_mtime())
+with st.spinner("Loading the 15 event traces..."):
+    traces = load_traces(traces_mtime())
+    summary = load_summary(traces_mtime())
+if not traces:
+    st.error("No traces found in traces/. Run `python -m control_tower.run --dry-run` first.")
+    st.stop()
 
 # ------------------------------------------------------------------------------------------- sidebar
 with st.sidebar:
@@ -231,19 +240,27 @@ def graph_html(item: dict, context: bool, max_extra: int = 60) -> str:
     chain = [tuple(e) for e in gp.get("chain", [])]
     chain_set = set(chain)
     steps = walk_chain(gp.get("chain", []))
+    local_vis = (STATIC / "vis-network.min.js").exists()
     net = Network(height="430px", width="100%", directed=True, bgcolor="#0b1220", font_color="#e2e8f0",
-                  cdn_resources="in_line")
+                  cdn_resources="remote" if local_vis else "in_line")
+    # The spine snakes over rows of PER_ROW nodes (left-to-right, then right-to-left) so long chains keep
+    # their spacing; branch nodes sit between rows next to the node they hang off.
+    per_row, dx, dy = 4, 250, 250
     pos: dict[str, tuple[int, int]] = {}
-    x = 0
+    fan_up: dict[str, bool] = {}
+    k = 0
     for s in steps:
         if s["node"] in pos:
             continue
         if s["branch_from"] and s["branch_from"] in pos:
-            bx, _ = pos[s["branch_from"]]
-            pos[s["node"]] = (bx + 60, 170)
+            bx, by = pos[s["branch_from"]]
+            pos[s["node"]] = (bx + dx // 2, by + dy // 2)
+            fan_up[s["node"]] = False
         else:
-            pos[s["node"]] = (x, 0)
-            x += 190
+            row, col = divmod(k, per_row)
+            pos[s["node"]] = ((col if row % 2 == 0 else per_row - 1 - col) * dx, row * dy)
+            fan_up[s["node"]] = row == 0
+            k += 1
     for n, (px, py) in pos.items():
         kind, _, key = n.partition(":")
         net.add_node(n, label=f"{key}\n{kind}", title=f"{kind}: {key}", color=NODE_COLOR.get(kind, "#cbd5e1"),
@@ -252,8 +269,7 @@ def graph_html(item: dict, context: bool, max_extra: int = 60) -> str:
                            "multi": False})
     for a, rel, b in chain:
         net.add_edge(a, b, label=rel, title=rel, color="#facc15", width=4,
-                     font={"size": 13, "color": "#fde68a", "strokeWidth": 0, "align": "horizontal",
-                           "background": "#0b1220"})
+                     font={"size": 13, "color": "#fde68a", "strokeWidth": 0, "align": "top", "vadjust": -4})
     if context:
         rest = [e for e in (tuple(e) for e in gp.get("edges", [])) if e not in chain_set]
         adj: dict[str, list[str]] = {}
@@ -283,8 +299,8 @@ def graph_html(item: dict, context: bool, max_extra: int = 60) -> str:
                 if p in parent:
                     ang, r = 2 * math.pi * frac, 30 + 10 * (k % 2)
                 else:
-                    # fan away from the path labels: up from the spine, down from a branch node
-                    ang = math.pi * (1.1 + 0.8 * frac) if py == 0 else math.pi * (0.1 + 0.8 * frac)
+                    # fan away from the path labels underneath: up from the first row, down elsewhere
+                    ang = math.pi * (1.1 + 0.8 * frac) if fan_up.get(p) else math.pi * (0.1 + 0.8 * frac)
                     r = 64 + 16 * (k % 3)
                 pos[q] = (int(px + r * math.cos(ang)), int(py + r * math.sin(ang)))
         for q in parent:
@@ -301,7 +317,20 @@ def graph_html(item: dict, context: bool, max_extra: int = 60) -> str:
         "edges": {"arrows": {"to": {"enabled": True, "scaleFactor": 0.6}}, "smooth": {"enabled": False}},
     }))
     fit = "<script>setTimeout(function(){try{network.fit({animation:false});}catch(e){}}, 400);</script>"
-    return net.generate_html(notebook=False).replace("</body>", fit + "</body>")
+    page = net.generate_html(notebook=False).replace("</body>", fit + "</body>")
+    if local_vis:
+        # one browser-cached copy of vis-network from Streamlit static serving instead of 700 KB per graph
+        page = re.sub(r"<link[^>]*?(?:cdnjs|jsdelivr|node_modules)[^>]*?>", "", page)
+        page = re.sub(r"<script[^>]*?(?:cdnjs|jsdelivr|node_modules)[^>]*?>\s*</script>", "", page)
+        page = page.replace("<head>", "<head><link rel='stylesheet' href='/app/static/vis-network.min.css'>"
+                                      "<script src='/app/static/vis-network.min.js'></script>", 1)
+    return page
+
+
+@st.cache_data(show_spinner=False, max_entries=64)
+def cached_graph(eid: str, iid: str, context: bool, mtime: float) -> str:
+    item = next(i for i in load_traces(mtime)[eid]["incidents"] if i["incident_id"] == iid)
+    return graph_html(item, context)
 
 
 def legend(item: dict) -> str:
@@ -434,7 +463,7 @@ def incident_view(t: dict, it: dict) -> None:
         n_edges = len(it["graph_path"]["edges"])
         context = st.toggle(f"Show context (sample of the {n_edges:,} edges in this incident's subgraph)",
                             value=False, key=f"ctx-{it['incident_id']}")
-        st.iframe(graph_html(it, context), height=450)
+        st.iframe(cached_graph(t["event"]["event_id"], it["incident_id"], context, traces_mtime()), height=450)
         st.markdown(f"<div class='small'>Yellow = cited path. Drag to pan"
                     f"{', scroll to zoom, faded dots = sampled context' if context else ''}.</div>{legend(it)}",
                     unsafe_allow_html=True)
@@ -466,9 +495,6 @@ def incident_view(t: dict, it: dict) -> None:
 
 def actions_view(t: dict) -> None:
     plan = {a["seq"]: a for a in t["plan"]}
-    read_reasons = {"R5 pool check": "free read: live loaner pool used for the R5 ranking",
-                    "R5 read-back": "free read-back: pool dropped by exactly the loaners assigned",
-                    "R3 read-back": "free read-back: moved orders are on the live schedule"}
     rows = []
     for n, a in enumerate(t["actions"], 1):
         p = plan.get(a["seq"], {}) if a["seq"] else {}
@@ -486,9 +512,9 @@ def actions_view(t: dict) -> None:
         elif a["tool"] == "mes.get_schedule":
             extra = args["date"]
         rows.append({"ok": "✅" if a["ok"] else "❌", "seq": str(a.get("call_no") or n),
-                     "plan seq": str(a["seq"] or "-"), "agent": a["agent"], "tool": a["tool"], "kind": a["kind"],
+                     "plan seq": plan_seq_label(a), "agent": a["agent"], "tool": a["tool"], "kind": a["kind"],
                      "target": f"{target} {extra}".strip(), "rule": rule,
-                     "reason": p.get("reason") or args.get("reason") or read_reasons.get(rule, "free read-only check")})
+                     "reason": p.get("reason") or args.get("reason") or READ_REASONS.get(rule, "free read-only check")})
     if not rows:
         st.markdown("<div class='small'>No tool calls for this event - by design.</div>", unsafe_allow_html=True)
         return
@@ -530,6 +556,16 @@ def event_detail(eid: str) -> None:
                     unsafe_allow_html=True)
     st.markdown(f"<div style='margin:12px 0 6px 0;padding:10px 14px;background:#f0fdf4;border:1px solid #bbf7d0;"
                 f"border-radius:10px'><b>Summary.</b> {html.escape(t['summary'])}</div>", unsafe_allow_html=True)
+    c = t["classification"]
+    issues = c.get("rationale_issues") or []
+    note = html.escape(c.get("rationale") or "")
+    if issues:
+        st.markdown(f"<div class='small'>⚠️ LLM note not used: <i>“{note}”</i> failed the grounding check "
+                    f"({html.escape('; '.join(issues))}). The decision above comes from the validated extraction "
+                    f"and the deterministic gate.</div>", unsafe_allow_html=True)
+    elif note:
+        st.markdown(f"<div class='small'>LLM note (grounding check passed, not used for decisions): "
+                    f"<i>“{note}”</i></div>", unsafe_allow_html=True)
 
     if cat in ("noise", "escalated"):
         why_card(t)
@@ -547,10 +583,10 @@ def event_detail(eid: str) -> None:
             sr = t.get("shared_resources", {})
             st.info(f"**Compound event - {len(t['incidents'])} incidents handled in one plan.** "
                     f"{sr.get('slot_ledger_note', '')} {sr.get('loaner_ledger_note', '')}")
-            itabs = st.tabs([f"{i['incident_id']} · {i['type'].replace('_', ' ')}" for i in t["incidents"]])
-            for tab, it in zip(itabs, t["incidents"]):
-                with tab:
-                    incident_view(t, it)
+            labels = {f"{i['incident_id']} · {i['type'].replace('_', ' ')}": i for i in t["incidents"]}
+            pick = st.segmented_control("Incident", list(labels), default=next(iter(labels)),
+                                        key=f"inc-{t['event']['event_id']}", label_visibility="collapsed")
+            incident_view(t, labels[pick or next(iter(labels))])
         else:
             incident_view(t, t["incidents"][0])
     with tabs[1]:

@@ -107,8 +107,13 @@ def check_plan(ds: DataStore, plan: list[dict], incidents: list[dict], pools: di
             else:
                 lb = 0 if config.TRANSFER_LOWER_BOUND == "today" else max(r_idx, 0)
                 order = [pl for pl in ds.plant_order() if pl != origin and model in ds.plant_models[pl]]
-                earlier = any(free(pl, ix) for ix in range(lb, i) for pl in order)
-                tie = any(free(pl, i) for pl in order[: order.index(plant)]) if plant in order else True
+                if config.TRANSFER_SEARCH == "plant_first":
+                    earlier = any(free(plant, ix) for ix in range(lb, i))
+                    tie = any(free(pl, ix) for pl in order[: order.index(plant)] for ix in range(lb, LAST_IDX + 1)) \
+                        if plant in order else True
+                else:
+                    earlier = any(free(pl, ix) for ix in range(lb, i) for pl in order)
+                    tie = any(free(pl, i) for pl in order[: order.index(plant)]) if plant in order else True
                 if earlier or tie:
                     not_earliest.append(po)
         if used[(plant, i)] >= cap[plant]:
@@ -125,16 +130,29 @@ def check_plan(ds: DataStore, plan: list[dict], incidents: list[dict], pools: di
                          f"{not_earliest}" if not_earliest else ""))
 
     aff_cos = {c.customer_order_id for p in affected for c in ds.customer_orders_by_po.get(p, [])}
-    want: dict[str, set[str]] = defaultdict(set)
-    for c in aff_cos:
-        want[ds.customer_orders[c].dealer_id].add(c)
+    # per_event: one set per dealer. per_incident: one set per dealer per incident, each order counted once
+    # (under the first incident that affects it).
+    want_sets: dict[str, list[set[str]]] = defaultdict(list)
+    groups = [e["pos"] for e in exp] if config.NOTIFY_SCOPE == "per_incident" else [affected]
+    claimed: set[str] = set()
+    for pos in groups:
+        by_dealer: dict[str, set[str]] = defaultdict(set)
+        for p in sorted(pos):
+            for c in ds.customer_orders_by_po.get(p, []):
+                if c.customer_order_id not in claimed:
+                    claimed.add(c.customer_order_id)
+                    by_dealer[c.dealer_id].add(c.customer_order_id)
+        for d, cos in by_dealer.items():
+            want_sets[d].append(cos)
     notifies = [a for a in plan if a["tool"] == "dealer.notify"]
     got: dict[str, list[set[str]]] = defaultdict(list)
     for a in notifies:
         got[a["args"]["dealer_id"]].append(set(a["args"]["customer_order_ids"]))
-    r4_ok = set(got) == set(want) and all(len(v) == 1 and v[0] == want[d] for d, v in got.items())
+    canon = lambda sets: sorted(sorted(s) for s in sets)
+    r4_ok = set(got) == set(want_sets) and all(canon(got[d]) == canon(want_sets[d]) for d in want_sets)
+    scope = "per incident" if config.NOTIFY_SCOPE == "per_incident" else "per event"
     checks.append(_check("R4 exactly one notify per affected dealer with exactly its orders", r4_ok,
-                         f"{len(want)} dealers, {len(aff_cos)} customer orders"))
+                         f"{len(want_sets)} dealers, {len(aff_cos)} customer orders ({scope})"))
 
     assigned = {a["args"]["customer_order_id"] for a in plan if a["tool"] == "crm.assign_loaner"}
     exp_assigned: set[str] = set()

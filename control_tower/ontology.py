@@ -276,11 +276,26 @@ class KnowledgeGraph:
         return sorted(split_nid(x)[1] for x in result), _dedupe(edges)
 
     def path_between(self, a: str, b: str) -> list[Edge]:
-        und = self.g.to_undirected(as_view=True)
-        try:
-            nodes = nx.shortest_path(und, a, b)
-        except (nx.NetworkXNoPath, nx.NodeNotFound):
+        """Shortest path ignoring direction. Neighbours are visited in sorted order so the answer does not depend
+        on Python's per-process string hashing (networkx's undirected view iterates a set)."""
+        if a not in self.g or b not in self.g:
             return []
+        prev: dict[str, str | None] = {a: None}
+        frontier = [a]
+        while frontier and b not in prev:
+            nxt = []
+            for u in frontier:
+                for v in sorted(set(self.g.successors(u)) | set(self.g.predecessors(u))):
+                    if v not in prev:
+                        prev[v] = u
+                        nxt.append(v)
+            frontier = nxt
+        if b not in prev:
+            return []
+        nodes = [b]
+        while prev[nodes[-1]] is not None:
+            nodes.append(prev[nodes[-1]])
+        nodes.reverse()
         out = []
         for u, v in zip(nodes, nodes[1:]):
             if self.g.has_edge(u, v):

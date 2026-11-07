@@ -1,14 +1,15 @@
 {
-  "mode": "server",
+  "mode": "dry-run",
   "server": "http://127.0.0.1:8000",
   "config_snapshot": {
     "NEXT_WEEKDAY": "following_week",
     "TRANSFER_LOWER_BOUND": "today",
+    "TRANSFER_SEARCH": "day_first",
     "PLANT_TIEBREAK": "plants_csv_order",
+    "SLOT_PRIORITY": "build_date",
     "COMPOUND_ORDER": "message_order",
     "NOTIFY_SCOPE": "per_event",
     "NO_SLOT_ACTION": "escalate",
-    "QUALITY_DEALER_NOTIFY": false,
     "ESCALATE_NOISE": false,
     "FUZZY_THRESHOLD": 90,
     "LLM_MODEL": "qwen2.5:3b-instruct"

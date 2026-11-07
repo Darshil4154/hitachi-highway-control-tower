@@ -165,8 +165,10 @@ def route(question: str) -> tuple[str, dict] | None:
         return "vehicles_in_lot", {"lot_id": lot}
     if dealer and "loaner" in low:
         return "loaners_for_dealer", {"dealer_id": dealer, **({"event_id": ev} if ev else {})}
-    plant = next((i for i in ids if i.startswith("P_")), None)
-    day = next((i for i in ids if re.match(r"\d{4}-\d{2}-\d{2}", i)), None)
+    facts = question_facts(q)
+    ev = ev or facts.get("event_id")
+    plant = next((i for i in ids if i.startswith("P_")), None) or facts.get("plant_id")
+    day = next((i for i in ids if re.match(r"\d{4}-\d{2}-\d{2}", i)), None) or facts.get("day")
     if plant and day:
         return "orders_at_plant_day", {"plant_id": plant, "day": day}
     if ev and re.search(r"dealer|notif|stop", low):
@@ -195,6 +197,60 @@ def _llm_pick(question: str) -> tuple[str, dict] | None:
         return (name, args) if name in FUNCTIONS else None
     except Exception:
         return None
+
+
+_DATE_PHRASE = re.compile(r"\b\d{4}-\d{2}-\d{2}\b|(?:(?:mon|tue|wed|thu|fri)[a-z]*\s+)?(?:jan|feb|mar|apr)[a-z]*\.?"
+                          r"\s+\d{1,2}\b|\b(?:next|last|this)\s+(?:mon|tue|wed|thu|fri)[a-z]*\b|\btoday\b|\btomorrow\b",
+                          re.IGNORECASE)
+
+
+def question_facts(question: str) -> dict:
+    """Ids, names and dates in the question, resolved by code (the LLM's copies are checked against these)."""
+    from .resolvers import resolve_date, resolve_entity, scan_mentions
+
+    facts: dict = {}
+    m = re.search(r"\bE-?(\d{1,2})\b|\bevent\s+(\d{1,2})\b", question, re.IGNORECASE)
+    if m:
+        facts["event_id"] = f"E-{int(m.group(1) or m.group(2)):02d}"
+    for kind, phrase in scan_mentions(question).items():
+        rid = resolve_entity(phrase, kind)[0] if phrase else None
+        if rid:
+            facts[f"{kind}_id"] = rid
+    d = next((resolve_date(x.group(0))[0] for x in _DATE_PHRASE.finditer(question)), None)
+    if d:
+        facts["day"] = d.isoformat()
+    return facts
+
+
+def normalize_args(args: dict, question: str) -> tuple[dict, list[str]]:
+    """Replace LLM argument values by the code-resolved value from the question where one exists."""
+    facts, out, fixes = question_facts(question), dict(args), []
+    for key in ("event_id", "plant_id", "day"):
+        if key in out and key in facts and out[key] != facts[key]:
+            fixes.append(f"{key}: {out[key]} -> {facts[key]}")
+            out[key] = facts[key]
+    return out, fixes
+
+
+def ungrounded_args(args: dict, question: str) -> list[str]:
+    """Argument values the LLM did not take from the question. A value is grounded when it appears literally
+    (ignoring case and -/_) or when a name in the question resolves to it (\"Huntsville\" -> P_AL)."""
+    from .resolvers import resolve_date, resolve_entity, scan_mentions
+
+    flat = lambda s: re.sub(r"[-_\s]", "", str(s).lower())
+    q = flat(question)
+    resolved = set(question_facts(question).values())
+    for kind, phrase in scan_mentions(question).items():
+        if phrase:
+            rid = resolve_entity(phrase, kind)[0]
+            if rid:
+                resolved.add(rid)
+    for m in re.finditer(r"(?:(?:mon|tue|wed|thu|fri)[a-z]*\s+)?(?:jan|feb|mar|apr)[a-z]*\.?\s+\d{1,2}", question,
+                         re.IGNORECASE):
+        d = resolve_date(m.group(0))[0]
+        if d:
+            resolved.add(d.isoformat())
+    return [f"{k}={v}" for k, v in args.items() if v not in (None, "") and flat(v) not in q and v not in resolved]
 
 
 def render(name: str, res: dict) -> str:
@@ -266,11 +322,22 @@ def to_markdown(answer: str) -> str:
 
 def ask(question: str, use_llm: bool = True) -> dict:
     picked = _llm_pick(question) if use_llm else None
-    method = "llm_tool_call"
+    method, rejected, fixes = "llm_tool_call", [], []
+    if picked is not None:
+        norm, fixes = normalize_args(picked[1], question)
+        rejected = ungrounded_args(norm, question)
+        if rejected:
+            picked = None
+        else:
+            picked = (picked[0], norm)
+            if fixes:
+                method = "llm_tool_call (code corrected " + "; ".join(fixes) + ")"
     if picked is None:
-        picked, method = route(question), "keyword_router"
+        picked, method = route(question), ("keyword_router (LLM args rejected: " + ", ".join(rejected) + ")"
+                                           if rejected else "keyword_router")
     if picked is None:
         return {"question": question, "method": "none", "function": None, "args": {}, "result": {},
+                "rejected_args": rejected,
                 "answer": "I can answer questions about events (E-01..E-15), dealers' loaners, plant schedules, lots "
                           "and graph paths. Try: " + "; ".join(EXAMPLES[:3])}
     name, args = picked
@@ -279,7 +346,7 @@ def ask(question: str, use_llm: bool = True) -> dict:
     except Exception as e:  # bad args chosen by the LLM
         res = {"error": f"{type(e).__name__}: {e}"}
     return {"question": question, "method": method, "function": name, "args": args, "result": res,
-            "answer": render(name, res)}
+            "rejected_args": rejected, "answer": render(name, res)}
 
 
 def main() -> None:
