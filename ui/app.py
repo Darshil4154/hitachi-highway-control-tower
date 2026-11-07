@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import html
 import json
+import math
 import re
 import time
 from datetime import datetime, timezone
@@ -239,7 +240,7 @@ def graph_html(item: dict, context: bool, max_extra: int = 60) -> str:
             continue
         if s["branch_from"] and s["branch_from"] in pos:
             bx, _ = pos[s["branch_from"]]
-            pos[s["node"]] = (bx + 90, 150)
+            pos[s["node"]] = (bx + 60, 170)
         else:
             pos[s["node"]] = (x, 0)
             x += 190
@@ -251,24 +252,56 @@ def graph_html(item: dict, context: bool, max_extra: int = 60) -> str:
                            "multi": False})
     for a, rel, b in chain:
         net.add_edge(a, b, label=rel, title=rel, color="#facc15", width=4,
-                     font={"size": 13, "color": "#fde68a", "strokeWidth": 0, "align": "top"})
+                     font={"size": 13, "color": "#fde68a", "strokeWidth": 0, "align": "horizontal",
+                           "background": "#0b1220"})
     if context:
         rest = [e for e in (tuple(e) for e in gp.get("edges", [])) if e not in chain_set]
-        for a, rel, b in rest[:max_extra]:
-            for n in (a, b):
-                if n not in net.get_nodes():
-                    kind, _, key = n.partition(":")
-                    net.add_node(n, label=" ", title=f"{kind}: {key}", size=7, borderWidth=0,
-                                 color={"background": NODE_COLOR.get(kind, "#cbd5e1"), "border": "#0b1220"},
-                                 opacity=0.45, font={"size": 1})
-            net.add_edge(a, b, title=rel, color={"color": "#334155", "opacity": 0.5}, width=0.7)
+        adj: dict[str, list[str]] = {}
+        for a, _, b in rest:
+            adj.setdefault(a, []).append(b)
+            adj.setdefault(b, []).append(a)
+        parent: dict[str, str] = {}
+        frontier = list(pos)
+        while frontier and len(parent) < max_extra:
+            nxt = []
+            for p in frontier:
+                for q in sorted(adj.get(p, [])):
+                    if q not in pos and q not in parent and len(parent) < max_extra:
+                        parent[q] = p
+                        nxt.append(q)
+            frontier = nxt
+        kids: dict[str, list[str]] = {}
+        for q, p in parent.items():
+            kids.setdefault(p, []).append(q)
+        for p in list(pos) + list(parent):
+            ks = kids.get(p, [])
+            if p not in pos or not ks:
+                continue
+            px, py = pos[p]
+            for k, q in enumerate(ks):
+                frac = (k + 0.5) / len(ks)
+                if p in parent:
+                    ang, r = 2 * math.pi * frac, 30 + 10 * (k % 2)
+                else:
+                    # fan away from the path labels: up from the spine, down from a branch node
+                    ang = math.pi * (1.1 + 0.8 * frac) if py == 0 else math.pi * (0.1 + 0.8 * frac)
+                    r = 64 + 16 * (k % 3)
+                pos[q] = (int(px + r * math.cos(ang)), int(py + r * math.sin(ang)))
+        for q in parent:
+            kind, _, key = q.partition(":")
+            net.add_node(q, label=" ", title=f"{kind}: {key}", size=6, borderWidth=0, x=pos[q][0], y=pos[q][1],
+                         physics=False, color=NODE_COLOR.get(kind, "#cbd5e1"), opacity=0.4, font={"size": 1})
+        for a, rel, b in rest:
+            if a in net.get_nodes() and b in net.get_nodes() and (a in parent or b in parent):
+                net.add_edge(a, b, title=rel, color={"color": "#475569", "opacity": 0.45}, width=0.6,
+                             arrows={"to": {"enabled": False}})
     net.set_options(json.dumps({
-        "physics": {"enabled": context, "barnesHut": {"gravitationalConstant": -2500, "springLength": 90},
-                    "stabilization": {"iterations": 250, "fit": True}},
-        "interaction": {"hover": True, "zoomView": True, "dragView": True},
-        "edges": {"arrows": {"to": {"enabled": True, "scaleFactor": 0.6}}, "smooth": {"type": "dynamic"}},
+        "physics": {"enabled": False},
+        "interaction": {"hover": True, "zoomView": context, "dragView": True},
+        "edges": {"arrows": {"to": {"enabled": True, "scaleFactor": 0.6}}, "smooth": {"enabled": False}},
     }))
-    return net.generate_html(notebook=False)
+    fit = "<script>setTimeout(function(){try{network.fit({animation:false});}catch(e){}}, 400);</script>"
+    return net.generate_html(notebook=False).replace("</body>", fit + "</body>")
 
 
 def legend(item: dict) -> str:
@@ -402,8 +435,8 @@ def incident_view(t: dict, it: dict) -> None:
         context = st.toggle(f"Show context (sample of the {n_edges:,} edges in this incident's subgraph)",
                             value=False, key=f"ctx-{it['incident_id']}")
         st.iframe(graph_html(it, context), height=450)
-        st.markdown(f"<div class='small'>Yellow = cited path. Drag to pan, scroll to zoom"
-                    f"{', faded dots = sampled context' if context else ''}.</div>{legend(it)}",
+        st.markdown(f"<div class='small'>Yellow = cited path. Drag to pan"
+                    f"{', scroll to zoom, faded dots = sampled context' if context else ''}.</div>{legend(it)}",
                     unsafe_allow_html=True)
 
     rs = it["decisions"].get("reschedule", [])
