@@ -1,0 +1,338 @@
+{
+  "mode": "dry-run",
+  "server": "http://127.0.0.1:8000",
+  "config_snapshot": {
+    "NEXT_WEEKDAY": "following_week",
+    "TRANSFER_LOWER_BOUND": "today",
+    "PLANT_TIEBREAK": "plants_csv_order",
+    "COMPOUND_ORDER": "message_order",
+    "NOTIFY_SCOPE": "per_event",
+    "NO_SLOT_ACTION": "escalate",
+    "QUALITY_DEALER_NOTIFY": false,
+    "ESCALATE_NOISE": false,
+    "FUZZY_THRESHOLD": 90,
+    "LLM_MODEL": "qwen2.5:3b-instruct"
+  },
+  "llm_model": "qwen2.5:3b-instruct",
+  "totals": {
+    "events": 15,
+    "writes": 766,
+    "reads": 193,
+    "failed": 0,
+    "escalations": 2,
+    "noise": 3,
+    "incidents": 11,
+    "prompt_tokens": 17149,
+    "completion_tokens": 2267,
+    "llm_calls": 15
+  },
+  "events": [
+    {
+      "event_id": "E-01",
+      "source": "daily digest",
+      "received_at": "2027-03-08T07:17:00",
+      "category": "compound",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "plant_outage",
+        "supplier_delay"
+      ],
+      "writes_by_tool": {
+        "mes.reschedule": 14,
+        "dealer.notify": 41,
+        "crm.assign_loaner": 26
+      },
+      "writes": 81,
+      "reads": 45,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Plant outage: outage at P_TX (2027-03-19 to 2027-03-22) affects 6 production orders; 6 rescheduled at the same plant, 0 transferred; 27 dealers notified about 55 customer orders; 6 loaners assigned. Supplier delay: CHIP-IVI delay to P_IN (2027-03-15 -> 2027-03-19) affects 8 production orders; 8 rescheduled at the same plant, 0 transferred; 29 dealers notified about 67 customer orders; 20 loaners assigned. 81 actions of 3 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-02",
+      "source": "ops chat",
+      "received_at": "2027-03-08T07:34:00",
+      "category": "escalated",
+      "llm_category": "unconfirmed",
+      "gate": "unconfirmed",
+      "incident_types": [],
+      "writes_by_tool": {
+        "escalate": 1
+      },
+      "writes": 0,
+      "reads": 0,
+      "escalations": 1,
+      "failed": 0,
+      "verifier_ok": null,
+      "summary": "Escalated to a human, no operational change (handbook rule 8). Unconfirmed or unspecific report (hedges: rumor, may, nothing confirmed); missing: part, plant, dates, confirmation."
+    },
+    {
+      "event_id": "E-03",
+      "source": "quality bulletin",
+      "received_at": "2027-03-08T07:51:00",
+      "category": "quality",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "quality_hold"
+      ],
+      "writes_by_tool": {
+        "quality.hold_lot": 1,
+        "dealer.stop_sale": 37,
+        "crm.notify_customer": 150
+      },
+      "writes": 188,
+      "reads": 0,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Quality hold on LOT-0130 (CHIP-IVI at P_MS, built 2027-02-25 to 2027-03-01): 110 unsold vehicles stopped at 37 dealers and 150 owners contacted. 188 actions of 3 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-04",
+      "source": "ops chat",
+      "received_at": "2027-03-08T08:08:00",
+      "category": "outage",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "plant_outage"
+      ],
+      "writes_by_tool": {
+        "mes.reschedule": 9,
+        "dealer.notify": 32,
+        "crm.assign_loaner": 18
+      },
+      "writes": 59,
+      "reads": 37,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Plant outage: outage at P_KY (2027-03-16 to 2027-03-18) affects 9 production orders; 9 rescheduled at the same plant, 0 transferred; 32 dealers notified about 79 customer orders; 18 loaners assigned. 59 actions of 3 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-05",
+      "source": "news wire",
+      "received_at": "2027-03-08T08:25:00",
+      "category": "noise",
+      "llm_category": "noise",
+      "gate": "noise",
+      "incident_types": [],
+      "writes_by_tool": {},
+      "writes": 0,
+      "reads": 0,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": null,
+      "summary": "Judged not operational: The message is about a brochure for a customer, not an operational problem. No tool calls were made (handbook rule 7)."
+    },
+    {
+      "event_id": "E-06",
+      "source": "news wire",
+      "received_at": "2027-03-08T08:42:00",
+      "category": "noise",
+      "llm_category": "noise",
+      "gate": "noise",
+      "incident_types": [],
+      "writes_by_tool": {},
+      "writes": 0,
+      "reads": 0,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": null,
+      "summary": "Judged not operational: The message is about a brochure for a customer, not an operational problem. No tool calls were made (handbook rule 7)."
+    },
+    {
+      "event_id": "E-07",
+      "source": "news wire",
+      "received_at": "2027-03-08T08:59:00",
+      "category": "noise",
+      "llm_category": "noise",
+      "gate": "noise",
+      "incident_types": [],
+      "writes_by_tool": {},
+      "writes": 0,
+      "reads": 0,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": null,
+      "summary": "Judged not operational: The message is about a brochure for a dealer, not an operational problem. No tool calls were made (handbook rule 7)."
+    },
+    {
+      "event_id": "E-08",
+      "source": "plant alert",
+      "received_at": "2027-03-08T09:16:00",
+      "category": "outage",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "plant_outage"
+      ],
+      "writes_by_tool": {
+        "mes.reschedule": 6,
+        "dealer.notify": 25,
+        "crm.assign_loaner": 15
+      },
+      "writes": 46,
+      "reads": 25,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Plant outage: outage at P_KY (2027-03-24 to 2027-03-25) affects 6 production orders; 6 rescheduled at the same plant, 0 transferred; 25 dealers notified about 56 customer orders; 15 loaners assigned. 46 actions of 3 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-09",
+      "source": "supplier email",
+      "received_at": "2027-03-08T09:33:00",
+      "category": "delay",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "supplier_delay"
+      ],
+      "writes_by_tool": {
+        "mes.reschedule": 4,
+        "mes.transfer": 2,
+        "dealer.notify": 26,
+        "crm.assign_loaner": 10
+      },
+      "writes": 42,
+      "reads": 22,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Supplier delay: CAM-360 delay to P_AL (2027-03-29 -> 2027-04-01) affects 6 production orders; 4 rescheduled at the same plant, 2 transferred; 26 dealers notified about 54 customer orders; 10 loaners assigned. 42 actions of 4 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-10",
+      "source": "ops chat",
+      "received_at": "2027-03-08T09:50:00",
+      "category": "delay",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "supplier_delay"
+      ],
+      "writes_by_tool": {
+        "mes.reschedule": 3,
+        "dealer.notify": 18,
+        "crm.assign_loaner": 7
+      },
+      "writes": 28,
+      "reads": 16,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Supplier delay: BATT-60 delay to P_AL (2027-03-29 -> 2027-04-01) affects 3 production orders; 3 rescheduled at the same plant, 0 transferred; 18 dealers notified about 29 customer orders; 7 loaners assigned. 28 actions of 3 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-11",
+      "source": "ops chat",
+      "received_at": "2027-03-08T10:07:00",
+      "category": "outage",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "plant_outage"
+      ],
+      "writes_by_tool": {
+        "mes.reschedule": 6,
+        "mes.transfer": 3,
+        "dealer.notify": 36,
+        "crm.assign_loaner": 17
+      },
+      "writes": 62,
+      "reads": 32,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Plant outage: outage at P_MS (2027-03-26 to 2027-03-30) affects 9 production orders; 6 rescheduled at the same plant, 3 transferred; 36 dealers notified about 79 customer orders; 17 loaners assigned. 62 actions of 4 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-12",
+      "source": "supplier email",
+      "received_at": "2027-03-08T10:24:00",
+      "category": "delay",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "supplier_delay"
+      ],
+      "writes_by_tool": {
+        "mes.reschedule": 3,
+        "dealer.notify": 14,
+        "crm.assign_loaner": 10
+      },
+      "writes": 27,
+      "reads": 16,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Supplier delay: CAM-360 delay to P_IN (2027-03-15 -> 2027-03-18) affects 3 production orders; 3 rescheduled at the same plant, 0 transferred; 14 dealers notified about 26 customer orders; 10 loaners assigned. 27 actions of 3 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-13",
+      "source": "ops chat",
+      "received_at": "2027-03-08T10:41:00",
+      "category": "escalated",
+      "llm_category": "unconfirmed",
+      "gate": "unconfirmed",
+      "incident_types": [],
+      "writes_by_tool": {
+        "escalate": 1
+      },
+      "writes": 0,
+      "reads": 0,
+      "escalations": 1,
+      "failed": 0,
+      "verifier_ok": null,
+      "summary": "Escalated to a human, no operational change (handbook rule 8). Unconfirmed or unspecific report (hedges: possible, not confirmed, sometime); missing: part, plant, dates, confirmation."
+    },
+    {
+      "event_id": "E-14",
+      "source": "ops chat",
+      "received_at": "2027-03-08T10:58:00",
+      "category": "quality",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "quality_hold"
+      ],
+      "writes_by_tool": {
+        "quality.hold_lot": 1,
+        "dealer.stop_sale": 36,
+        "crm.notify_customer": 94
+      },
+      "writes": 131,
+      "reads": 0,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Quality hold on LOT-0017 (HARN-B at P_TX, built 2027-02-22 to 2027-02-24): 86 unsold vehicles stopped at 36 dealers and 94 owners contacted. 131 actions of 3 kinds, all verified in the digital twin before execution."
+    },
+    {
+      "event_id": "E-15",
+      "source": "quality bulletin",
+      "received_at": "2027-03-08T11:15:00",
+      "category": "quality",
+      "llm_category": "incident",
+      "gate": "incident",
+      "incident_types": [
+        "quality_hold"
+      ],
+      "writes_by_tool": {
+        "quality.hold_lot": 1,
+        "dealer.stop_sale": 25,
+        "crm.notify_customer": 76
+      },
+      "writes": 102,
+      "reads": 0,
+      "escalations": 0,
+      "failed": 0,
+      "verifier_ok": true,
+      "summary": "Quality hold on LOT-0191 (CHIP-IVI at P_IN, built 2027-03-02 to 2027-03-03): 40 unsold vehicles stopped at 25 dealers and 76 owners contacted. 102 actions of 3 kinds, all verified in the digital twin before execution."
+    }
+  ]
+}

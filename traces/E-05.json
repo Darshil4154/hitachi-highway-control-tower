@@ -1,0 +1,63 @@
+{
+  "event": {
+    "event_id": "E-05",
+    "source": "news wire",
+    "received_at": "2027-03-08T08:25:00",
+    "text": "Dealer Amarillo, TX asks where to find the new brochure PDF.",
+    "mentions": []
+  },
+  "classification": {
+    "category": "noise",
+    "gate": "noise",
+    "confidence": 0.99,
+    "rationale": "The message is about a brochure for a customer, not an operational problem.",
+    "gate_reason": "The message is about a brochure for a customer, not an operational problem.",
+    "hedges": [],
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_fallback": false,
+    "llm_cached": true,
+    "llm_error": null
+  },
+  "incidents": [],
+  "plan": [],
+  "verifier": {
+    "plan_checks": [],
+    "world_checks": []
+  },
+  "actions": [],
+  "escalation": {
+    "escalated": false,
+    "reason": "",
+    "missing_fields": []
+  },
+  "schedule": null,
+  "config_snapshot": {
+    "NEXT_WEEKDAY": "following_week",
+    "TRANSFER_LOWER_BOUND": "today",
+    "PLANT_TIEBREAK": "plants_csv_order",
+    "COMPOUND_ORDER": "message_order",
+    "NOTIFY_SCOPE": "per_event",
+    "NO_SLOT_ACTION": "escalate",
+    "QUALITY_DEALER_NOTIFY": false,
+    "ESCALATE_NOISE": false,
+    "FUZZY_THRESHOLD": 90,
+    "LLM_MODEL": "qwen2.5:3b-instruct"
+  },
+  "decision_rule": "R7",
+  "summary": "Judged not operational: The message is about a brochure for a customer, not an operational problem. No tool calls were made (handbook rule 7).",
+  "metrics": {
+    "llm_calls": 1,
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_cached": true,
+    "prompt_tokens": 1118,
+    "completion_tokens": 42,
+    "tool_calls": 0,
+    "reads": 0,
+    "writes": 0,
+    "escalations": 0,
+    "failed": 0,
+    "runtime_s": 0.0
+  },
+  "ui_category": "noise",
+  "schema_errors": []
+}

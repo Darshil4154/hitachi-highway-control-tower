@@ -1,0 +1,962 @@
+event_id,seq,agent,tool,kind,target,rule_id,reason,ok,error,ts
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D01,,read-only check (free),True,,2026-11-07T20:14:57.828+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D06,,read-only check (free),True,,2026-11-07T20:14:57.852+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D17,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D18,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D20,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D21,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D22,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D23,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D29,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D32,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D36,,read-only check (free),True,,2026-11-07T20:14:57.853+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D42,,read-only check (free),True,,2026-11-07T20:14:57.854+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D43,,read-only check (free),True,,2026-11-07T20:14:57.854+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D44,,read-only check (free),True,,2026-11-07T20:14:57.854+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D45,,read-only check (free),True,,2026-11-07T20:14:57.854+00:00
+E-01,,CustomerCareQuality,crm.loaner_availability,read,D46,,read-only check (free),True,,2026-11-07T20:14:57.854+00:00
+E-01,1,SupplyChainPlanner,mes.reschedule,write,PO-0058 -> 2027-03-23,R3,PO-0058 (RANGER) affected by plant outage at P_TX 2027-03-19 to 2027-03-22; earliest free unblocked slot at P_TX on/after restart 2027-03-23 is 2027-03-23,True,,2026-11-07T20:14:57.857+00:00
+E-01,2,SupplyChainPlanner,mes.reschedule,write,PO-0059 -> 2027-03-23,R3,PO-0059 (SUMMIT) affected by plant outage at P_TX 2027-03-19 to 2027-03-22; earliest free unblocked slot at P_TX on/after restart 2027-03-23 is 2027-03-23,True,,2026-11-07T20:14:57.857+00:00
+E-01,3,SupplyChainPlanner,mes.reschedule,write,PO-0060 -> 2027-03-24,R3,PO-0060 (TERRA) affected by plant outage at P_TX 2027-03-19 to 2027-03-22; earliest free unblocked slot at P_TX on/after restart 2027-03-23 is 2027-03-24,True,,2026-11-07T20:14:57.857+00:00
+E-01,4,SupplyChainPlanner,mes.reschedule,write,PO-0061 -> 2027-03-24,R3,PO-0061 (RANGER) affected by plant outage at P_TX 2027-03-19 to 2027-03-22; earliest free unblocked slot at P_TX on/after restart 2027-03-23 is 2027-03-24,True,,2026-11-07T20:14:57.857+00:00
+E-01,5,SupplyChainPlanner,mes.reschedule,write,PO-0062 -> 2027-03-25,R3,PO-0062 (SUMMIT) affected by plant outage at P_TX 2027-03-19 to 2027-03-22; earliest free unblocked slot at P_TX on/after restart 2027-03-23 is 2027-03-25,True,,2026-11-07T20:14:57.857+00:00
+E-01,6,SupplyChainPlanner,mes.reschedule,write,PO-0063 -> 2027-03-25,R3,PO-0063 (TERRA) affected by plant outage at P_TX 2027-03-19 to 2027-03-22; earliest free unblocked slot at P_TX on/after restart 2027-03-23 is 2027-03-25,True,,2026-11-07T20:14:57.857+00:00
+E-01,7,SupplyChainPlanner,mes.reschedule,write,PO-0316 -> 2027-03-19,R3,PO-0316 (VOYAGER) affected by supplier delay: CHIP-IVI shipment SH-0190 to P_IN moved from 2027-03-15 to 2027-03-19; earliest free unblocked slot at P_IN on/after restart 2027-03-19 is 2027-03-19,True,,2026-11-07T20:14:57.857+00:00
+E-01,8,SupplyChainPlanner,mes.reschedule,write,PO-0318 -> 2027-03-19,R3,PO-0318 (NOVA) affected by supplier delay: CHIP-IVI shipment SH-0190 to P_IN moved from 2027-03-15 to 2027-03-19; earliest free unblocked slot at P_IN on/after restart 2027-03-19 is 2027-03-19,True,,2026-11-07T20:14:57.857+00:00
+E-01,9,SupplyChainPlanner,mes.reschedule,write,PO-0319 -> 2027-03-22,R3,PO-0319 (VOYAGER) affected by supplier delay: CHIP-IVI shipment SH-0190 to P_IN moved from 2027-03-15 to 2027-03-19; earliest free unblocked slot at P_IN on/after restart 2027-03-19 is 2027-03-22,True,,2026-11-07T20:14:57.857+00:00
+E-01,10,SupplyChainPlanner,mes.reschedule,write,PO-0321 -> 2027-03-22,R3,PO-0321 (NOVA) affected by supplier delay: CHIP-IVI shipment SH-0190 to P_IN moved from 2027-03-15 to 2027-03-19; earliest free unblocked slot at P_IN on/after restart 2027-03-19 is 2027-03-22,True,,2026-11-07T20:14:57.857+00:00
+E-01,11,SupplyChainPlanner,mes.reschedule,write,PO-0322 -> 2027-03-23,R3,PO-0322 (VOYAGER) affected by supplier delay: CHIP-IVI shipment SH-0190 to P_IN moved from 2027-03-15 to 2027-03-19; earliest free unblocked slot at P_IN on/after restart 2027-03-19 is 2027-03-23,True,,2026-11-07T20:14:57.857+00:00
+E-01,12,SupplyChainPlanner,mes.reschedule,write,PO-0324 -> 2027-03-23,R3,PO-0324 (NOVA) affected by supplier delay: CHIP-IVI shipment SH-0190 to P_IN moved from 2027-03-15 to 2027-03-19; earliest free unblocked slot at P_IN on/after restart 2027-03-19 is 2027-03-23,True,,2026-11-07T20:14:57.858+00:00
+E-01,13,SupplyChainPlanner,mes.reschedule,write,PO-0325 -> 2027-03-24,R3,PO-0325 (VOYAGER) affected by supplier delay: CHIP-IVI shipment SH-0190 to P_IN moved from 2027-03-15 to 2027-03-19; earliest free unblocked slot at P_IN on/after restart 2027-03-19 is 2027-03-24,True,,2026-11-07T20:14:57.858+00:00
+E-01,14,SupplyChainPlanner,mes.reschedule,write,PO-0327 -> 2027-03-24,R3,PO-0327 (NOVA) affected by supplier delay: CHIP-IVI shipment SH-0190 to P_IN moved from 2027-03-15 to 2027-03-19; earliest free unblocked slot at P_IN on/after restart 2027-03-19 is 2027-03-24,True,,2026-11-07T20:14:57.858+00:00
+E-01,15,DealerNetwork,dealer.notify,write,D01,R4,D01 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,16,DealerNetwork,dealer.notify,write,D02,R4,D02 has 7 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,17,DealerNetwork,dealer.notify,write,D04,R4,D04 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,18,DealerNetwork,dealer.notify,write,D06,R4,D06 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,19,DealerNetwork,dealer.notify,write,D07,R4,D07 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,20,DealerNetwork,dealer.notify,write,D08,R4,D08 has 9 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,21,DealerNetwork,dealer.notify,write,D09,R4,D09 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,22,DealerNetwork,dealer.notify,write,D11,R4,D11 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,23,DealerNetwork,dealer.notify,write,D13,R4,D13 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.858+00:00
+E-01,24,DealerNetwork,dealer.notify,write,D14,R4,D14 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,25,DealerNetwork,dealer.notify,write,D15,R4,D15 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,26,DealerNetwork,dealer.notify,write,D16,R4,D16 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,27,DealerNetwork,dealer.notify,write,D17,R4,D17 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,28,DealerNetwork,dealer.notify,write,D18,R4,D18 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,29,DealerNetwork,dealer.notify,write,D19,R4,D19 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,30,DealerNetwork,dealer.notify,write,D20,R4,D20 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,31,DealerNetwork,dealer.notify,write,D21,R4,D21 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,32,DealerNetwork,dealer.notify,write,D22,R4,D22 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,33,DealerNetwork,dealer.notify,write,D23,R4,D23 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,34,DealerNetwork,dealer.notify,write,D24,R4,D24 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.859+00:00
+E-01,35,DealerNetwork,dealer.notify,write,D25,R4,D25 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,36,DealerNetwork,dealer.notify,write,D26,R4,D26 has 8 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,37,DealerNetwork,dealer.notify,write,D27,R4,D27 has 5 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,38,DealerNetwork,dealer.notify,write,D29,R4,D29 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,39,DealerNetwork,dealer.notify,write,D30,R4,D30 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,40,DealerNetwork,dealer.notify,write,D31,R4,D31 has 9 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,41,DealerNetwork,dealer.notify,write,D32,R4,D32 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,42,DealerNetwork,dealer.notify,write,D33,R4,D33 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,43,DealerNetwork,dealer.notify,write,D34,R4,D34 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,44,DealerNetwork,dealer.notify,write,D35,R4,D35 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,45,DealerNetwork,dealer.notify,write,D36,R4,D36 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,46,DealerNetwork,dealer.notify,write,D38,R4,D38 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.860+00:00
+E-01,47,DealerNetwork,dealer.notify,write,D39,R4,D39 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,48,DealerNetwork,dealer.notify,write,D41,R4,D41 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,49,DealerNetwork,dealer.notify,write,D42,R4,D42 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,50,DealerNetwork,dealer.notify,write,D43,R4,D43 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,51,DealerNetwork,dealer.notify,write,D44,R4,D44 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,52,DealerNetwork,dealer.notify,write,D45,R4,D45 has 9 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,53,DealerNetwork,dealer.notify,write,D46,R4,D46 has 5 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,54,DealerNetwork,dealer.notify,write,D47,R4,D47 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,55,DealerNetwork,dealer.notify,write,D50,R4,D50 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.861+00:00
+E-01,56,CustomerCareQuality,crm.assign_loaner,write,CO-01812,R5,"rank 1 at D01 (Platinum, promised 2027-03-20); pool 3",True,,2026-11-07T20:14:57.861+00:00
+E-01,57,CustomerCareQuality,crm.assign_loaner,write,CO-01781,R5,"rank 1 at D06 (Gold, promised 2027-03-20); pool 3",True,,2026-11-07T20:14:57.861+00:00
+E-01,58,CustomerCareQuality,crm.assign_loaner,write,CO-01761,R5,"rank 1 at D08 (Platinum, promised 2027-03-18); pool 3",True,,2026-11-07T20:14:57.861+00:00
+E-01,59,CustomerCareQuality,crm.assign_loaner,write,CO-01780,R5,"rank 2 at D08 (Gold, promised 2027-03-19); pool 3",True,,2026-11-07T20:14:57.862+00:00
+E-01,60,CustomerCareQuality,crm.assign_loaner,write,CO-01833,R5,"rank 3 at D08 (Gold, promised 2027-03-20); pool 3",True,,2026-11-07T20:14:57.862+00:00
+E-01,61,CustomerCareQuality,crm.assign_loaner,write,CO-01774,R5,"rank 1 at D17 (Gold, promised 2027-03-18); pool 1",True,,2026-11-07T20:14:57.862+00:00
+E-01,62,CustomerCareQuality,crm.assign_loaner,write,CO-00247,R5,"rank 1 at D18 (Gold, promised 2027-03-24); pool 2",True,,2026-11-07T20:14:57.862+00:00
+E-01,63,CustomerCareQuality,crm.assign_loaner,write,CO-01786,R5,"rank 1 at D20 (Platinum, promised 2027-03-21); pool 1",True,,2026-11-07T20:14:57.862+00:00
+E-01,64,CustomerCareQuality,crm.assign_loaner,write,CO-01783,R5,"rank 1 at D21 (Platinum, promised 2027-03-20); pool 3",True,,2026-11-07T20:14:57.862+00:00
+E-01,65,CustomerCareQuality,crm.assign_loaner,write,CO-01808,R5,"rank 2 at D21 (Gold, promised 2027-03-21); pool 3",True,,2026-11-07T20:14:57.862+00:00
+E-01,66,CustomerCareQuality,crm.assign_loaner,write,CO-01799,R5,"rank 1 at D22 (Platinum, promised 2027-03-21); pool 1",True,,2026-11-07T20:14:57.862+00:00
+E-01,67,CustomerCareQuality,crm.assign_loaner,write,CO-01853,R5,"rank 1 at D23 (Gold, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.862+00:00
+E-01,68,CustomerCareQuality,crm.assign_loaner,write,CO-00263,R5,"rank 1 at D26 (Gold, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.862+00:00
+E-01,69,CustomerCareQuality,crm.assign_loaner,write,CO-00283,R5,"rank 2 at D26 (Gold, promised 2027-03-25); pool 2",True,,2026-11-07T20:14:57.862+00:00
+E-01,70,CustomerCareQuality,crm.assign_loaner,write,CO-00249,R5,"rank 1 at D29 (Gold, promised 2027-03-22); pool 1",True,,2026-11-07T20:14:57.863+00:00
+E-01,71,CustomerCareQuality,crm.assign_loaner,write,CO-00278,R5,"rank 1 at D31 (Gold, promised 2027-03-26); pool 2",True,,2026-11-07T20:14:57.863+00:00
+E-01,72,CustomerCareQuality,crm.assign_loaner,write,CO-01802,R5,"rank 1 at D32 (Gold, promised 2027-03-21); pool 2",True,,2026-11-07T20:14:57.863+00:00
+E-01,73,CustomerCareQuality,crm.assign_loaner,write,CO-00296,R5,"rank 1 at D36 (Gold, promised 2027-03-27); pool 2",True,,2026-11-07T20:14:57.863+00:00
+E-01,74,CustomerCareQuality,crm.assign_loaner,write,CO-01772,R5,"rank 1 at D42 (Gold, promised 2027-03-20); pool 2",True,,2026-11-07T20:14:57.863+00:00
+E-01,75,CustomerCareQuality,crm.assign_loaner,write,CO-01851,R5,"rank 1 at D43 (Platinum, promised 2027-03-20); pool 2",True,,2026-11-07T20:14:57.863+00:00
+E-01,76,CustomerCareQuality,crm.assign_loaner,write,CO-01785,R5,"rank 1 at D44 (Platinum, promised 2027-03-21); pool 2",True,,2026-11-07T20:14:57.863+00:00
+E-01,77,CustomerCareQuality,crm.assign_loaner,write,CO-01814,R5,"rank 2 at D44 (Gold, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.863+00:00
+E-01,78,CustomerCareQuality,crm.assign_loaner,write,CO-01810,R5,"rank 1 at D45 (Platinum, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.863+00:00
+E-01,79,CustomerCareQuality,crm.assign_loaner,write,CO-01827,R5,"rank 2 at D45 (Gold, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.864+00:00
+E-01,80,CustomerCareQuality,crm.assign_loaner,write,CO-01798,R5,"rank 1 at D46 (Gold, promised 2027-03-20); pool 2",True,,2026-11-07T20:14:57.864+00:00
+E-01,81,CustomerCareQuality,crm.assign_loaner,write,CO-01830,R5,"rank 2 at D46 (Gold, promised 2027-03-21); pool 2",True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,mes.get_schedule,read,P_IN 2027-03-19,,read-only check (free),True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,mes.get_schedule,read,P_IN 2027-03-22,,read-only check (free),True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,mes.get_schedule,read,P_IN 2027-03-23,,read-only check (free),True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,mes.get_schedule,read,P_IN 2027-03-24,,read-only check (free),True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,mes.get_schedule,read,P_TX 2027-03-23,,read-only check (free),True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,mes.get_schedule,read,P_TX 2027-03-24,,read-only check (free),True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,mes.get_schedule,read,P_TX 2027-03-25,,read-only check (free),True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,crm.loaner_availability,read,D01,,read-only check (free),True,,2026-11-07T20:14:57.864+00:00
+E-01,,Verifier,crm.loaner_availability,read,D06,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D17,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D18,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D20,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D21,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D22,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D23,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D29,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D32,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D36,,read-only check (free),True,,2026-11-07T20:14:57.865+00:00
+E-01,,Verifier,crm.loaner_availability,read,D42,,read-only check (free),True,,2026-11-07T20:14:57.866+00:00
+E-01,,Verifier,crm.loaner_availability,read,D43,,read-only check (free),True,,2026-11-07T20:14:57.866+00:00
+E-01,,Verifier,crm.loaner_availability,read,D44,,read-only check (free),True,,2026-11-07T20:14:57.866+00:00
+E-01,,Verifier,crm.loaner_availability,read,D45,,read-only check (free),True,,2026-11-07T20:14:57.866+00:00
+E-01,,Verifier,crm.loaner_availability,read,D46,,read-only check (free),True,,2026-11-07T20:14:57.866+00:00
+E-02,1,Coordinator,escalate,escalate,,R8,not actionable without a human,True,,2026-11-07T20:14:57.872+00:00
+E-03,1,CustomerCareQuality,quality.hold_lot,write,LOT-0130,R6,"LOT-0130 (CHIP-IVI from SUP-06, P_MS 2027-02-25..2027-03-01) is suspect",True,,2026-11-07T20:14:57.904+00:00
+E-03,2,DealerNetwork,dealer.stop_sale,write,D02,R6,6 unsold vehicle(s) at D02 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.904+00:00
+E-03,3,DealerNetwork,dealer.stop_sale,write,D03,R6,3 unsold vehicle(s) at D03 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.904+00:00
+E-03,4,DealerNetwork,dealer.stop_sale,write,D04,R6,3 unsold vehicle(s) at D04 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.904+00:00
+E-03,5,DealerNetwork,dealer.stop_sale,write,D06,R6,6 unsold vehicle(s) at D06 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.904+00:00
+E-03,6,DealerNetwork,dealer.stop_sale,write,D07,R6,1 unsold vehicle(s) at D07 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.904+00:00
+E-03,7,DealerNetwork,dealer.stop_sale,write,D08,R6,3 unsold vehicle(s) at D08 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,8,DealerNetwork,dealer.stop_sale,write,D10,R6,2 unsold vehicle(s) at D10 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,9,DealerNetwork,dealer.stop_sale,write,D11,R6,2 unsold vehicle(s) at D11 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,10,DealerNetwork,dealer.stop_sale,write,D12,R6,2 unsold vehicle(s) at D12 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,11,DealerNetwork,dealer.stop_sale,write,D13,R6,3 unsold vehicle(s) at D13 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,12,DealerNetwork,dealer.stop_sale,write,D15,R6,3 unsold vehicle(s) at D15 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,13,DealerNetwork,dealer.stop_sale,write,D16,R6,3 unsold vehicle(s) at D16 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,14,DealerNetwork,dealer.stop_sale,write,D19,R6,1 unsold vehicle(s) at D19 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,15,DealerNetwork,dealer.stop_sale,write,D20,R6,2 unsold vehicle(s) at D20 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,16,DealerNetwork,dealer.stop_sale,write,D21,R6,8 unsold vehicle(s) at D21 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,17,DealerNetwork,dealer.stop_sale,write,D23,R6,6 unsold vehicle(s) at D23 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.905+00:00
+E-03,18,DealerNetwork,dealer.stop_sale,write,D24,R6,1 unsold vehicle(s) at D24 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,19,DealerNetwork,dealer.stop_sale,write,D25,R6,2 unsold vehicle(s) at D25 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,20,DealerNetwork,dealer.stop_sale,write,D26,R6,7 unsold vehicle(s) at D26 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,21,DealerNetwork,dealer.stop_sale,write,D27,R6,5 unsold vehicle(s) at D27 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,22,DealerNetwork,dealer.stop_sale,write,D28,R6,1 unsold vehicle(s) at D28 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,23,DealerNetwork,dealer.stop_sale,write,D29,R6,1 unsold vehicle(s) at D29 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,24,DealerNetwork,dealer.stop_sale,write,D30,R6,1 unsold vehicle(s) at D30 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,25,DealerNetwork,dealer.stop_sale,write,D31,R6,4 unsold vehicle(s) at D31 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,26,DealerNetwork,dealer.stop_sale,write,D32,R6,2 unsold vehicle(s) at D32 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,27,DealerNetwork,dealer.stop_sale,write,D33,R6,1 unsold vehicle(s) at D33 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,28,DealerNetwork,dealer.stop_sale,write,D34,R6,2 unsold vehicle(s) at D34 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,29,DealerNetwork,dealer.stop_sale,write,D35,R6,4 unsold vehicle(s) at D35 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.906+00:00
+E-03,30,DealerNetwork,dealer.stop_sale,write,D37,R6,1 unsold vehicle(s) at D37 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,31,DealerNetwork,dealer.stop_sale,write,D38,R6,5 unsold vehicle(s) at D38 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,32,DealerNetwork,dealer.stop_sale,write,D40,R6,1 unsold vehicle(s) at D40 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,33,DealerNetwork,dealer.stop_sale,write,D41,R6,1 unsold vehicle(s) at D41 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,34,DealerNetwork,dealer.stop_sale,write,D43,R6,1 unsold vehicle(s) at D43 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,35,DealerNetwork,dealer.stop_sale,write,D44,R6,2 unsold vehicle(s) at D44 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,36,DealerNetwork,dealer.stop_sale,write,D45,R6,7 unsold vehicle(s) at D45 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,37,DealerNetwork,dealer.stop_sale,write,D46,R6,5 unsold vehicle(s) at D46 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,38,DealerNetwork,dealer.stop_sale,write,D50,R6,2 unsold vehicle(s) at D50 contain suspect lot LOT-0130,True,,2026-11-07T20:14:57.907+00:00
+E-03,39,CustomerCareQuality,crm.notify_customer,write,C0022,R6,owner of sold affected vehicle(s) AUR0002267,True,,2026-11-07T20:14:57.907+00:00
+E-03,40,CustomerCareQuality,crm.notify_customer,write,C0038,R6,owner of sold affected vehicle(s) AUR0002136,True,,2026-11-07T20:14:57.907+00:00
+E-03,41,CustomerCareQuality,crm.notify_customer,write,C0088,R6,owner of sold affected vehicle(s) AUR0002138,True,,2026-11-07T20:14:57.907+00:00
+E-03,42,CustomerCareQuality,crm.notify_customer,write,C0089,R6,owner of sold affected vehicle(s) AUR0002236,True,,2026-11-07T20:14:57.908+00:00
+E-03,43,CustomerCareQuality,crm.notify_customer,write,C0232,R6,owner of sold affected vehicle(s) AUR0002162,True,,2026-11-07T20:14:57.908+00:00
+E-03,44,CustomerCareQuality,crm.notify_customer,write,C0278,R6,owner of sold affected vehicle(s) AUR0002219,True,,2026-11-07T20:14:57.908+00:00
+E-03,45,CustomerCareQuality,crm.notify_customer,write,C0299,R6,owner of sold affected vehicle(s) AUR0002055,True,,2026-11-07T20:14:57.908+00:00
+E-03,46,CustomerCareQuality,crm.notify_customer,write,C0392,R6,owner of sold affected vehicle(s) AUR0002178,True,,2026-11-07T20:14:57.908+00:00
+E-03,47,CustomerCareQuality,crm.notify_customer,write,C0485,R6,owner of sold affected vehicle(s) AUR0002069,True,,2026-11-07T20:14:57.908+00:00
+E-03,48,CustomerCareQuality,crm.notify_customer,write,C0491,R6,owner of sold affected vehicle(s) AUR0002123,True,,2026-11-07T20:14:57.908+00:00
+E-03,49,CustomerCareQuality,crm.notify_customer,write,C0598,R6,owner of sold affected vehicle(s) AUR0002098,True,,2026-11-07T20:14:57.908+00:00
+E-03,50,CustomerCareQuality,crm.notify_customer,write,C0605,R6,owner of sold affected vehicle(s) AUR0002140,True,,2026-11-07T20:14:57.908+00:00
+E-03,51,CustomerCareQuality,crm.notify_customer,write,C0633,R6,owner of sold affected vehicle(s) AUR0002079,True,,2026-11-07T20:14:57.908+00:00
+E-03,52,CustomerCareQuality,crm.notify_customer,write,C0697,R6,owner of sold affected vehicle(s) AUR0002241,True,,2026-11-07T20:14:57.908+00:00
+E-03,53,CustomerCareQuality,crm.notify_customer,write,C0760,R6,owner of sold affected vehicle(s) AUR0002131,True,,2026-11-07T20:14:57.909+00:00
+E-03,54,CustomerCareQuality,crm.notify_customer,write,C0796,R6,owner of sold affected vehicle(s) AUR0002169,True,,2026-11-07T20:14:57.909+00:00
+E-03,55,CustomerCareQuality,crm.notify_customer,write,C0858,R6,owner of sold affected vehicle(s) AUR0002111,True,,2026-11-07T20:14:57.909+00:00
+E-03,56,CustomerCareQuality,crm.notify_customer,write,C0863,R6,owner of sold affected vehicle(s) AUR0002117,True,,2026-11-07T20:14:57.909+00:00
+E-03,57,CustomerCareQuality,crm.notify_customer,write,C1040,R6,owner of sold affected vehicle(s) AUR0002213,True,,2026-11-07T20:14:57.909+00:00
+E-03,58,CustomerCareQuality,crm.notify_customer,write,C1086,R6,owner of sold affected vehicle(s) AUR0002068,True,,2026-11-07T20:14:57.909+00:00
+E-03,59,CustomerCareQuality,crm.notify_customer,write,C1087,R6,owner of sold affected vehicle(s) AUR0002063,True,,2026-11-07T20:14:57.909+00:00
+E-03,60,CustomerCareQuality,crm.notify_customer,write,C1141,R6,owner of sold affected vehicle(s) AUR0002292,True,,2026-11-07T20:14:57.909+00:00
+E-03,61,CustomerCareQuality,crm.notify_customer,write,C1228,R6,owner of sold affected vehicle(s) AUR0002099,True,,2026-11-07T20:14:57.909+00:00
+E-03,62,CustomerCareQuality,crm.notify_customer,write,C1240,R6,owner of sold affected vehicle(s) AUR0002167,True,,2026-11-07T20:14:57.909+00:00
+E-03,63,CustomerCareQuality,crm.notify_customer,write,C1311,R6,owner of sold affected vehicle(s) AUR0002090,True,,2026-11-07T20:14:57.909+00:00
+E-03,64,CustomerCareQuality,crm.notify_customer,write,C1341,R6,owner of sold affected vehicle(s) AUR0002206,True,,2026-11-07T20:14:57.909+00:00
+E-03,65,CustomerCareQuality,crm.notify_customer,write,C1359,R6,owner of sold affected vehicle(s) AUR0002273,True,,2026-11-07T20:14:57.910+00:00
+E-03,66,CustomerCareQuality,crm.notify_customer,write,C1362,R6,owner of sold affected vehicle(s) AUR0002253,True,,2026-11-07T20:14:57.910+00:00
+E-03,67,CustomerCareQuality,crm.notify_customer,write,C1383,R6,owner of sold affected vehicle(s) AUR0002094,True,,2026-11-07T20:14:57.910+00:00
+E-03,68,CustomerCareQuality,crm.notify_customer,write,C1445,R6,owner of sold affected vehicle(s) AUR0002135,True,,2026-11-07T20:14:57.910+00:00
+E-03,69,CustomerCareQuality,crm.notify_customer,write,C1581,R6,owner of sold affected vehicle(s) AUR0002040,True,,2026-11-07T20:14:57.910+00:00
+E-03,70,CustomerCareQuality,crm.notify_customer,write,C1612,R6,owner of sold affected vehicle(s) AUR0002156,True,,2026-11-07T20:14:57.910+00:00
+E-03,71,CustomerCareQuality,crm.notify_customer,write,C1642,R6,owner of sold affected vehicle(s) AUR0002160,True,,2026-11-07T20:14:57.910+00:00
+E-03,72,CustomerCareQuality,crm.notify_customer,write,C1668,R6,owner of sold affected vehicle(s) AUR0002103,True,,2026-11-07T20:14:57.910+00:00
+E-03,73,CustomerCareQuality,crm.notify_customer,write,C1677,R6,owner of sold affected vehicle(s) AUR0002044,True,,2026-11-07T20:14:57.910+00:00
+E-03,74,CustomerCareQuality,crm.notify_customer,write,C1678,R6,owner of sold affected vehicle(s) AUR0002159,True,,2026-11-07T20:14:57.910+00:00
+E-03,75,CustomerCareQuality,crm.notify_customer,write,C1681,R6,owner of sold affected vehicle(s) AUR0002215,True,,2026-11-07T20:14:57.910+00:00
+E-03,76,CustomerCareQuality,crm.notify_customer,write,C1693,R6,owner of sold affected vehicle(s) AUR0002056,True,,2026-11-07T20:14:57.910+00:00
+E-03,77,CustomerCareQuality,crm.notify_customer,write,C1699,R6,owner of sold affected vehicle(s) AUR0002134,True,,2026-11-07T20:14:57.910+00:00
+E-03,78,CustomerCareQuality,crm.notify_customer,write,C1701,R6,owner of sold affected vehicle(s) AUR0002285,True,,2026-11-07T20:14:57.911+00:00
+E-03,79,CustomerCareQuality,crm.notify_customer,write,C1771,R6,owner of sold affected vehicle(s) AUR0002155,True,,2026-11-07T20:14:57.911+00:00
+E-03,80,CustomerCareQuality,crm.notify_customer,write,C1837,R6,owner of sold affected vehicle(s) AUR0002075,True,,2026-11-07T20:14:57.911+00:00
+E-03,81,CustomerCareQuality,crm.notify_customer,write,C1838,R6,owner of sold affected vehicle(s) AUR0002220,True,,2026-11-07T20:14:57.911+00:00
+E-03,82,CustomerCareQuality,crm.notify_customer,write,C1865,R6,owner of sold affected vehicle(s) AUR0002036,True,,2026-11-07T20:14:57.911+00:00
+E-03,83,CustomerCareQuality,crm.notify_customer,write,C1884,R6,owner of sold affected vehicle(s) AUR0002230,True,,2026-11-07T20:14:57.911+00:00
+E-03,84,CustomerCareQuality,crm.notify_customer,write,C1898,R6,owner of sold affected vehicle(s) AUR0002275,True,,2026-11-07T20:14:57.911+00:00
+E-03,85,CustomerCareQuality,crm.notify_customer,write,C1903,R6,owner of sold affected vehicle(s) AUR0002095,True,,2026-11-07T20:14:57.911+00:00
+E-03,86,CustomerCareQuality,crm.notify_customer,write,C1924,R6,owner of sold affected vehicle(s) AUR0002064,True,,2026-11-07T20:14:57.911+00:00
+E-03,87,CustomerCareQuality,crm.notify_customer,write,C1933,R6,owner of sold affected vehicle(s) AUR0002043,True,,2026-11-07T20:14:57.911+00:00
+E-03,88,CustomerCareQuality,crm.notify_customer,write,C1950,R6,owner of sold affected vehicle(s) AUR0002163,True,,2026-11-07T20:14:57.911+00:00
+E-03,89,CustomerCareQuality,crm.notify_customer,write,C2026,R6,owner of sold affected vehicle(s) AUR0002170,True,,2026-11-07T20:14:57.911+00:00
+E-03,90,CustomerCareQuality,crm.notify_customer,write,C2070,R6,owner of sold affected vehicle(s) AUR0002259,True,,2026-11-07T20:14:57.912+00:00
+E-03,91,CustomerCareQuality,crm.notify_customer,write,C2203,R6,owner of sold affected vehicle(s) AUR0002183,True,,2026-11-07T20:14:57.912+00:00
+E-03,92,CustomerCareQuality,crm.notify_customer,write,C2213,R6,owner of sold affected vehicle(s) AUR0002126,True,,2026-11-07T20:14:57.912+00:00
+E-03,93,CustomerCareQuality,crm.notify_customer,write,C2224,R6,owner of sold affected vehicle(s) AUR0002295,True,,2026-11-07T20:14:57.912+00:00
+E-03,94,CustomerCareQuality,crm.notify_customer,write,C2283,R6,owner of sold affected vehicle(s) AUR0002225,True,,2026-11-07T20:14:57.912+00:00
+E-03,95,CustomerCareQuality,crm.notify_customer,write,C2364,R6,owner of sold affected vehicle(s) AUR0002192,True,,2026-11-07T20:14:57.912+00:00
+E-03,96,CustomerCareQuality,crm.notify_customer,write,C2464,R6,owner of sold affected vehicle(s) AUR0002132,True,,2026-11-07T20:14:57.912+00:00
+E-03,97,CustomerCareQuality,crm.notify_customer,write,C2466,R6,owner of sold affected vehicle(s) AUR0002116,True,,2026-11-07T20:14:57.912+00:00
+E-03,98,CustomerCareQuality,crm.notify_customer,write,C2493,R6,owner of sold affected vehicle(s) AUR0002053,True,,2026-11-07T20:14:57.912+00:00
+E-03,99,CustomerCareQuality,crm.notify_customer,write,C2510,R6,owner of sold affected vehicle(s) AUR0002097,True,,2026-11-07T20:14:57.912+00:00
+E-03,100,CustomerCareQuality,crm.notify_customer,write,C2631,R6,owner of sold affected vehicle(s) AUR0002166,True,,2026-11-07T20:14:57.913+00:00
+E-03,101,CustomerCareQuality,crm.notify_customer,write,C2637,R6,owner of sold affected vehicle(s) AUR0002209,True,,2026-11-07T20:14:57.913+00:00
+E-03,102,CustomerCareQuality,crm.notify_customer,write,C2777,R6,owner of sold affected vehicle(s) AUR0002107,True,,2026-11-07T20:14:57.913+00:00
+E-03,103,CustomerCareQuality,crm.notify_customer,write,C2913,R6,owner of sold affected vehicle(s) AUR0002042,True,,2026-11-07T20:14:57.913+00:00
+E-03,104,CustomerCareQuality,crm.notify_customer,write,C2914,R6,owner of sold affected vehicle(s) AUR0002207,True,,2026-11-07T20:14:57.913+00:00
+E-03,105,CustomerCareQuality,crm.notify_customer,write,C3005,R6,owner of sold affected vehicle(s) AUR0002144,True,,2026-11-07T20:14:57.913+00:00
+E-03,106,CustomerCareQuality,crm.notify_customer,write,C3086,R6,owner of sold affected vehicle(s) AUR0002240,True,,2026-11-07T20:14:57.913+00:00
+E-03,107,CustomerCareQuality,crm.notify_customer,write,C3126,R6,owner of sold affected vehicle(s) AUR0002100,True,,2026-11-07T20:14:57.913+00:00
+E-03,108,CustomerCareQuality,crm.notify_customer,write,C3305,R6,owner of sold affected vehicle(s) AUR0002221,True,,2026-11-07T20:14:57.913+00:00
+E-03,109,CustomerCareQuality,crm.notify_customer,write,C3319,R6,owner of sold affected vehicle(s) AUR0002235,True,,2026-11-07T20:14:57.913+00:00
+E-03,110,CustomerCareQuality,crm.notify_customer,write,C3485,R6,owner of sold affected vehicle(s) AUR0002152,True,,2026-11-07T20:14:57.913+00:00
+E-03,111,CustomerCareQuality,crm.notify_customer,write,C3551,R6,owner of sold affected vehicle(s) AUR0002193,True,,2026-11-07T20:14:57.913+00:00
+E-03,112,CustomerCareQuality,crm.notify_customer,write,C3563,R6,owner of sold affected vehicle(s) AUR0002244,True,,2026-11-07T20:14:57.913+00:00
+E-03,113,CustomerCareQuality,crm.notify_customer,write,C3589,R6,owner of sold affected vehicle(s) AUR0002271,True,,2026-11-07T20:14:57.914+00:00
+E-03,114,CustomerCareQuality,crm.notify_customer,write,C3597,R6,owner of sold affected vehicle(s) AUR0002112,True,,2026-11-07T20:14:57.914+00:00
+E-03,115,CustomerCareQuality,crm.notify_customer,write,C3647,R6,owner of sold affected vehicle(s) AUR0002289,True,,2026-11-07T20:14:57.914+00:00
+E-03,116,CustomerCareQuality,crm.notify_customer,write,C3659,R6,owner of sold affected vehicle(s) AUR0002173,True,,2026-11-07T20:14:57.914+00:00
+E-03,117,CustomerCareQuality,crm.notify_customer,write,C3673,R6,owner of sold affected vehicle(s) AUR0002141,True,,2026-11-07T20:14:57.914+00:00
+E-03,118,CustomerCareQuality,crm.notify_customer,write,C3692,R6,owner of sold affected vehicle(s) AUR0002080,True,,2026-11-07T20:14:57.914+00:00
+E-03,119,CustomerCareQuality,crm.notify_customer,write,C3852,R6,owner of sold affected vehicle(s) AUR0002226,True,,2026-11-07T20:14:57.914+00:00
+E-03,120,CustomerCareQuality,crm.notify_customer,write,C3905,R6,owner of sold affected vehicle(s) AUR0002125,True,,2026-11-07T20:14:57.914+00:00
+E-03,121,CustomerCareQuality,crm.notify_customer,write,C3930,R6,owner of sold affected vehicle(s) AUR0002198,True,,2026-11-07T20:14:57.914+00:00
+E-03,122,CustomerCareQuality,crm.notify_customer,write,C3939,R6,owner of sold affected vehicle(s) AUR0002060,True,,2026-11-07T20:14:57.914+00:00
+E-03,123,CustomerCareQuality,crm.notify_customer,write,C3968,R6,owner of sold affected vehicle(s) AUR0002256,True,,2026-11-07T20:14:57.914+00:00
+E-03,124,CustomerCareQuality,crm.notify_customer,write,C3995,R6,owner of sold affected vehicle(s) AUR0002216,True,,2026-11-07T20:14:57.915+00:00
+E-03,125,CustomerCareQuality,crm.notify_customer,write,C4050,R6,owner of sold affected vehicle(s) AUR0002158,True,,2026-11-07T20:14:57.915+00:00
+E-03,126,CustomerCareQuality,crm.notify_customer,write,C4169,R6,owner of sold affected vehicle(s) AUR0002148,True,,2026-11-07T20:14:57.915+00:00
+E-03,127,CustomerCareQuality,crm.notify_customer,write,C4189,R6,owner of sold affected vehicle(s) AUR0002174,True,,2026-11-07T20:14:57.915+00:00
+E-03,128,CustomerCareQuality,crm.notify_customer,write,C4245,R6,owner of sold affected vehicle(s) AUR0002070,True,,2026-11-07T20:14:57.915+00:00
+E-03,129,CustomerCareQuality,crm.notify_customer,write,C4283,R6,owner of sold affected vehicle(s) AUR0002093,True,,2026-11-07T20:14:57.915+00:00
+E-03,130,CustomerCareQuality,crm.notify_customer,write,C4303,R6,owner of sold affected vehicle(s) AUR0002146,True,,2026-11-07T20:14:57.915+00:00
+E-03,131,CustomerCareQuality,crm.notify_customer,write,C4315,R6,owner of sold affected vehicle(s) AUR0002108,True,,2026-11-07T20:14:57.915+00:00
+E-03,132,CustomerCareQuality,crm.notify_customer,write,C4381,R6,owner of sold affected vehicle(s) AUR0002243,True,,2026-11-07T20:14:57.915+00:00
+E-03,133,CustomerCareQuality,crm.notify_customer,write,C4427,R6,owner of sold affected vehicle(s) AUR0002142,True,,2026-11-07T20:14:57.915+00:00
+E-03,134,CustomerCareQuality,crm.notify_customer,write,C4434,R6,owner of sold affected vehicle(s) AUR0002280,True,,2026-11-07T20:14:57.915+00:00
+E-03,135,CustomerCareQuality,crm.notify_customer,write,C4523,R6,owner of sold affected vehicle(s) AUR0002177,True,,2026-11-07T20:14:57.915+00:00
+E-03,136,CustomerCareQuality,crm.notify_customer,write,C4565,R6,owner of sold affected vehicle(s) AUR0002165,True,,2026-11-07T20:14:57.916+00:00
+E-03,137,CustomerCareQuality,crm.notify_customer,write,C4594,R6,owner of sold affected vehicle(s) AUR0002200,True,,2026-11-07T20:14:57.916+00:00
+E-03,138,CustomerCareQuality,crm.notify_customer,write,C4625,R6,owner of sold affected vehicle(s) AUR0002290,True,,2026-11-07T20:14:57.916+00:00
+E-03,139,CustomerCareQuality,crm.notify_customer,write,C4662,R6,owner of sold affected vehicle(s) AUR0002262,True,,2026-11-07T20:14:57.916+00:00
+E-03,140,CustomerCareQuality,crm.notify_customer,write,C4663,R6,owner of sold affected vehicle(s) AUR0002228,True,,2026-11-07T20:14:57.916+00:00
+E-03,141,CustomerCareQuality,crm.notify_customer,write,C4681,R6,owner of sold affected vehicle(s) AUR0002153,True,,2026-11-07T20:14:57.916+00:00
+E-03,142,CustomerCareQuality,crm.notify_customer,write,C4757,R6,owner of sold affected vehicle(s) AUR0002071,True,,2026-11-07T20:14:57.916+00:00
+E-03,143,CustomerCareQuality,crm.notify_customer,write,C4771,R6,owner of sold affected vehicle(s) AUR0002272,True,,2026-11-07T20:14:57.916+00:00
+E-03,144,CustomerCareQuality,crm.notify_customer,write,C4833,R6,owner of sold affected vehicle(s) AUR0002172,True,,2026-11-07T20:14:57.916+00:00
+E-03,145,CustomerCareQuality,crm.notify_customer,write,C4852,R6,owner of sold affected vehicle(s) AUR0002130,True,,2026-11-07T20:14:57.916+00:00
+E-03,146,CustomerCareQuality,crm.notify_customer,write,C4865,R6,owner of sold affected vehicle(s) AUR0002039,True,,2026-11-07T20:14:57.916+00:00
+E-03,147,CustomerCareQuality,crm.notify_customer,write,C4942,R6,owner of sold affected vehicle(s) AUR0002281,True,,2026-11-07T20:14:57.916+00:00
+E-03,148,CustomerCareQuality,crm.notify_customer,write,C5024,R6,owner of sold affected vehicle(s) AUR0002046,True,,2026-11-07T20:14:57.917+00:00
+E-03,149,CustomerCareQuality,crm.notify_customer,write,C5070,R6,owner of sold affected vehicle(s) AUR0002211,True,,2026-11-07T20:14:57.917+00:00
+E-03,150,CustomerCareQuality,crm.notify_customer,write,C5108,R6,owner of sold affected vehicle(s) AUR0002176,True,,2026-11-07T20:14:57.917+00:00
+E-03,151,CustomerCareQuality,crm.notify_customer,write,C5238,R6,owner of sold affected vehicle(s) AUR0002054,True,,2026-11-07T20:14:57.917+00:00
+E-03,152,CustomerCareQuality,crm.notify_customer,write,C5271,R6,owner of sold affected vehicle(s) AUR0002196,True,,2026-11-07T20:14:57.917+00:00
+E-03,153,CustomerCareQuality,crm.notify_customer,write,C5320,R6,owner of sold affected vehicle(s) AUR0002269,True,,2026-11-07T20:14:57.917+00:00
+E-03,154,CustomerCareQuality,crm.notify_customer,write,C5364,R6,owner of sold affected vehicle(s) AUR0002104,True,,2026-11-07T20:14:57.917+00:00
+E-03,155,CustomerCareQuality,crm.notify_customer,write,C5417,R6,owner of sold affected vehicle(s) AUR0002185,True,,2026-11-07T20:14:57.917+00:00
+E-03,156,CustomerCareQuality,crm.notify_customer,write,C5511,R6,owner of sold affected vehicle(s) AUR0002242,True,,2026-11-07T20:14:57.917+00:00
+E-03,157,CustomerCareQuality,crm.notify_customer,write,C5530,R6,owner of sold affected vehicle(s) AUR0002199,True,,2026-11-07T20:14:57.917+00:00
+E-03,158,CustomerCareQuality,crm.notify_customer,write,C5551,R6,owner of sold affected vehicle(s) AUR0002124,True,,2026-11-07T20:14:57.917+00:00
+E-03,159,CustomerCareQuality,crm.notify_customer,write,C5564,R6,owner of sold affected vehicle(s) AUR0002118,True,,2026-11-07T20:14:57.917+00:00
+E-03,160,CustomerCareQuality,crm.notify_customer,write,C5647,R6,owner of sold affected vehicle(s) AUR0002150,True,,2026-11-07T20:14:57.918+00:00
+E-03,161,CustomerCareQuality,crm.notify_customer,write,C5671,R6,owner of sold affected vehicle(s) AUR0002222,True,,2026-11-07T20:14:57.918+00:00
+E-03,162,CustomerCareQuality,crm.notify_customer,write,C5834,R6,owner of sold affected vehicle(s) AUR0002128,True,,2026-11-07T20:14:57.918+00:00
+E-03,163,CustomerCareQuality,crm.notify_customer,write,C6003,R6,owner of sold affected vehicle(s) AUR0002286,True,,2026-11-07T20:14:57.918+00:00
+E-03,164,CustomerCareQuality,crm.notify_customer,write,C6074,R6,owner of sold affected vehicle(s) AUR0002265,True,,2026-11-07T20:14:57.918+00:00
+E-03,165,CustomerCareQuality,crm.notify_customer,write,C6076,R6,owner of sold affected vehicle(s) AUR0002224,True,,2026-11-07T20:14:57.918+00:00
+E-03,166,CustomerCareQuality,crm.notify_customer,write,C6092,R6,owner of sold affected vehicle(s) AUR0002106,True,,2026-11-07T20:14:57.918+00:00
+E-03,167,CustomerCareQuality,crm.notify_customer,write,C6133,R6,owner of sold affected vehicle(s) AUR0002050,True,,2026-11-07T20:14:57.918+00:00
+E-03,168,CustomerCareQuality,crm.notify_customer,write,C6190,R6,owner of sold affected vehicle(s) AUR0002263,True,,2026-11-07T20:14:57.918+00:00
+E-03,169,CustomerCareQuality,crm.notify_customer,write,C6248,R6,owner of sold affected vehicle(s) AUR0002182,True,,2026-11-07T20:14:57.918+00:00
+E-03,170,CustomerCareQuality,crm.notify_customer,write,C6297,R6,owner of sold affected vehicle(s) AUR0002089,True,,2026-11-07T20:14:57.918+00:00
+E-03,171,CustomerCareQuality,crm.notify_customer,write,C6333,R6,owner of sold affected vehicle(s) AUR0002204,True,,2026-11-07T20:14:57.918+00:00
+E-03,172,CustomerCareQuality,crm.notify_customer,write,C6340,R6,owner of sold affected vehicle(s) AUR0002137,True,,2026-11-07T20:14:57.919+00:00
+E-03,173,CustomerCareQuality,crm.notify_customer,write,C6542,R6,owner of sold affected vehicle(s) AUR0002105,True,,2026-11-07T20:14:57.919+00:00
+E-03,174,CustomerCareQuality,crm.notify_customer,write,C6575,R6,owner of sold affected vehicle(s) AUR0002197,True,,2026-11-07T20:14:57.919+00:00
+E-03,175,CustomerCareQuality,crm.notify_customer,write,C6603,R6,owner of sold affected vehicle(s) AUR0002113,True,,2026-11-07T20:14:57.919+00:00
+E-03,176,CustomerCareQuality,crm.notify_customer,write,C6614,R6,owner of sold affected vehicle(s) AUR0002188,True,,2026-11-07T20:14:57.919+00:00
+E-03,177,CustomerCareQuality,crm.notify_customer,write,C6618,R6,owner of sold affected vehicle(s) AUR0002218,True,,2026-11-07T20:14:57.919+00:00
+E-03,178,CustomerCareQuality,crm.notify_customer,write,C6631,R6,owner of sold affected vehicle(s) AUR0002282,True,,2026-11-07T20:14:57.919+00:00
+E-03,179,CustomerCareQuality,crm.notify_customer,write,C6679,R6,owner of sold affected vehicle(s) AUR0002168,True,,2026-11-07T20:14:57.919+00:00
+E-03,180,CustomerCareQuality,crm.notify_customer,write,C6683,R6,owner of sold affected vehicle(s) AUR0002091,True,,2026-11-07T20:14:57.919+00:00
+E-03,181,CustomerCareQuality,crm.notify_customer,write,C6699,R6,owner of sold affected vehicle(s) AUR0002190,True,,2026-11-07T20:14:57.919+00:00
+E-03,182,CustomerCareQuality,crm.notify_customer,write,C6716,R6,owner of sold affected vehicle(s) AUR0002255,True,,2026-11-07T20:14:57.919+00:00
+E-03,183,CustomerCareQuality,crm.notify_customer,write,C6719,R6,owner of sold affected vehicle(s) AUR0002274,True,,2026-11-07T20:14:57.919+00:00
+E-03,184,CustomerCareQuality,crm.notify_customer,write,C6773,R6,owner of sold affected vehicle(s) AUR0002109,True,,2026-11-07T20:14:57.920+00:00
+E-03,185,CustomerCareQuality,crm.notify_customer,write,C6831,R6,owner of sold affected vehicle(s) AUR0002078,True,,2026-11-07T20:14:57.920+00:00
+E-03,186,CustomerCareQuality,crm.notify_customer,write,C6928,R6,owner of sold affected vehicle(s) AUR0002184,True,,2026-11-07T20:14:57.920+00:00
+E-03,187,CustomerCareQuality,crm.notify_customer,write,C6939,R6,owner of sold affected vehicle(s) AUR0002232,True,,2026-11-07T20:14:57.920+00:00
+E-03,188,CustomerCareQuality,crm.notify_customer,write,C6999,R6,owner of sold affected vehicle(s) AUR0002081,True,,2026-11-07T20:14:57.920+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D02,,read-only check (free),True,,2026-11-07T20:14:57.928+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D03,,read-only check (free),True,,2026-11-07T20:14:57.928+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D04,,read-only check (free),True,,2026-11-07T20:14:57.928+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D06,,read-only check (free),True,,2026-11-07T20:14:57.928+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D07,,read-only check (free),True,,2026-11-07T20:14:57.928+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D15,,read-only check (free),True,,2026-11-07T20:14:57.928+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D23,,read-only check (free),True,,2026-11-07T20:14:57.928+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D25,,read-only check (free),True,,2026-11-07T20:14:57.928+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.929+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D27,,read-only check (free),True,,2026-11-07T20:14:57.929+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.929+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D34,,read-only check (free),True,,2026-11-07T20:14:57.929+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D36,,read-only check (free),True,,2026-11-07T20:14:57.929+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D38,,read-only check (free),True,,2026-11-07T20:14:57.929+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D44,,read-only check (free),True,,2026-11-07T20:14:57.929+00:00
+E-04,,CustomerCareQuality,crm.loaner_availability,read,D45,,read-only check (free),True,,2026-11-07T20:14:57.929+00:00
+E-04,1,SupplyChainPlanner,mes.reschedule,write,PO-0139 -> 2027-03-19,R3,PO-0139 (PIONEER) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-19,True,,2026-11-07T20:14:57.931+00:00
+E-04,2,SupplyChainPlanner,mes.reschedule,write,PO-0140 -> 2027-03-19,R3,PO-0140 (SUMMIT) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-19,True,,2026-11-07T20:14:57.931+00:00
+E-04,3,SupplyChainPlanner,mes.reschedule,write,PO-0141 -> 2027-03-22,R3,PO-0141 (VOYAGER) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-22,True,,2026-11-07T20:14:57.931+00:00
+E-04,4,SupplyChainPlanner,mes.reschedule,write,PO-0142 -> 2027-03-22,R3,PO-0142 (PIONEER) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-22,True,,2026-11-07T20:14:57.931+00:00
+E-04,5,SupplyChainPlanner,mes.reschedule,write,PO-0143 -> 2027-03-23,R3,PO-0143 (SUMMIT) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-23,True,,2026-11-07T20:14:57.931+00:00
+E-04,6,SupplyChainPlanner,mes.reschedule,write,PO-0144 -> 2027-03-23,R3,PO-0144 (VOYAGER) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-23,True,,2026-11-07T20:14:57.931+00:00
+E-04,7,SupplyChainPlanner,mes.reschedule,write,PO-0145 -> 2027-03-24,R3,PO-0145 (PIONEER) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-24,True,,2026-11-07T20:14:57.931+00:00
+E-04,8,SupplyChainPlanner,mes.reschedule,write,PO-0146 -> 2027-03-24,R3,PO-0146 (SUMMIT) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-24,True,,2026-11-07T20:14:57.931+00:00
+E-04,9,SupplyChainPlanner,mes.reschedule,write,PO-0147 -> 2027-03-25,R3,PO-0147 (VOYAGER) affected by plant outage at P_KY 2027-03-16 to 2027-03-18; earliest free unblocked slot at P_KY on/after restart 2027-03-19 is 2027-03-25,True,,2026-11-07T20:14:57.932+00:00
+E-04,10,DealerNetwork,dealer.notify,write,D02,R4,D02 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,11,DealerNetwork,dealer.notify,write,D03,R4,D03 has 7 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,12,DealerNetwork,dealer.notify,write,D04,R4,D04 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,13,DealerNetwork,dealer.notify,write,D05,R4,D05 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,14,DealerNetwork,dealer.notify,write,D06,R4,D06 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,15,DealerNetwork,dealer.notify,write,D07,R4,D07 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,16,DealerNetwork,dealer.notify,write,D08,R4,D08 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,17,DealerNetwork,dealer.notify,write,D10,R4,D10 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,18,DealerNetwork,dealer.notify,write,D15,R4,D15 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.932+00:00
+E-04,19,DealerNetwork,dealer.notify,write,D16,R4,D16 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,20,DealerNetwork,dealer.notify,write,D17,R4,D17 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,21,DealerNetwork,dealer.notify,write,D20,R4,D20 has 5 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,22,DealerNetwork,dealer.notify,write,D21,R4,D21 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,23,DealerNetwork,dealer.notify,write,D22,R4,D22 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,24,DealerNetwork,dealer.notify,write,D23,R4,D23 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,25,DealerNetwork,dealer.notify,write,D25,R4,D25 has 7 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,26,DealerNetwork,dealer.notify,write,D26,R4,D26 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,27,DealerNetwork,dealer.notify,write,D27,R4,D27 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,28,DealerNetwork,dealer.notify,write,D30,R4,D30 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,29,DealerNetwork,dealer.notify,write,D31,R4,D31 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,30,DealerNetwork,dealer.notify,write,D32,R4,D32 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.933+00:00
+E-04,31,DealerNetwork,dealer.notify,write,D34,R4,D34 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,32,DealerNetwork,dealer.notify,write,D35,R4,D35 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,33,DealerNetwork,dealer.notify,write,D36,R4,D36 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,34,DealerNetwork,dealer.notify,write,D38,R4,D38 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,35,DealerNetwork,dealer.notify,write,D39,R4,D39 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,36,DealerNetwork,dealer.notify,write,D40,R4,D40 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,37,DealerNetwork,dealer.notify,write,D42,R4,D42 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,38,DealerNetwork,dealer.notify,write,D44,R4,D44 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,39,DealerNetwork,dealer.notify,write,D45,R4,D45 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,40,DealerNetwork,dealer.notify,write,D46,R4,D46 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,41,DealerNetwork,dealer.notify,write,D49,R4,D49 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.934+00:00
+E-04,42,CustomerCareQuality,crm.assign_loaner,write,CO-00789,R5,"rank 1 at D02 (Platinum, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.934+00:00
+E-04,43,CustomerCareQuality,crm.assign_loaner,write,CO-00765,R5,"rank 1 at D03 (Gold, promised 2027-03-20); pool 2",True,,2026-11-07T20:14:57.935+00:00
+E-04,44,CustomerCareQuality,crm.assign_loaner,write,CO-00758,R5,"rank 1 at D04 (Platinum, promised 2027-03-20); pool 1",True,,2026-11-07T20:14:57.935+00:00
+E-04,45,CustomerCareQuality,crm.assign_loaner,write,CO-00772,R5,"rank 1 at D06 (Platinum, promised 2027-03-22); pool 3",True,,2026-11-07T20:14:57.935+00:00
+E-04,46,CustomerCareQuality,crm.assign_loaner,write,CO-00787,R5,"rank 1 at D07 (Gold, promised 2027-03-22); pool 3",True,,2026-11-07T20:14:57.935+00:00
+E-04,47,CustomerCareQuality,crm.assign_loaner,write,CO-00736,R5,"rank 1 at D15 (Gold, promised 2027-03-19); pool 1",True,,2026-11-07T20:14:57.935+00:00
+E-04,48,CustomerCareQuality,crm.assign_loaner,write,CO-00729,R5,"rank 1 at D23 (Platinum, promised 2027-03-20); pool 2",True,,2026-11-07T20:14:57.935+00:00
+E-04,49,CustomerCareQuality,crm.assign_loaner,write,CO-00738,R5,"rank 1 at D25 (Platinum, promised 2027-03-19); pool 1",True,,2026-11-07T20:14:57.935+00:00
+E-04,50,CustomerCareQuality,crm.assign_loaner,write,CO-00725,R5,"rank 1 at D26 (Platinum, promised 2027-03-19); pool 2",True,,2026-11-07T20:14:57.935+00:00
+E-04,51,CustomerCareQuality,crm.assign_loaner,write,CO-00771,R5,"rank 2 at D26 (Platinum, promised 2027-03-21); pool 2",True,,2026-11-07T20:14:57.935+00:00
+E-04,52,CustomerCareQuality,crm.assign_loaner,write,CO-00784,R5,"rank 1 at D27 (Gold, promised 2027-03-23); pool 1",True,,2026-11-07T20:14:57.935+00:00
+E-04,53,CustomerCareQuality,crm.assign_loaner,write,CO-00757,R5,"rank 1 at D31 (Gold, promised 2027-03-21); pool 2",True,,2026-11-07T20:14:57.935+00:00
+E-04,54,CustomerCareQuality,crm.assign_loaner,write,CO-00750,R5,"rank 1 at D34 (Gold, promised 2027-03-21); pool 1",True,,2026-11-07T20:14:57.935+00:00
+E-04,55,CustomerCareQuality,crm.assign_loaner,write,CO-00727,R5,"rank 1 at D36 (Gold, promised 2027-03-21); pool 2",True,,2026-11-07T20:14:57.935+00:00
+E-04,56,CustomerCareQuality,crm.assign_loaner,write,CO-00737,R5,"rank 1 at D38 (Gold, promised 2027-03-19); pool 1",True,,2026-11-07T20:14:57.936+00:00
+E-04,57,CustomerCareQuality,crm.assign_loaner,write,CO-00747,R5,"rank 1 at D44 (Platinum, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.936+00:00
+E-04,58,CustomerCareQuality,crm.assign_loaner,write,CO-00793,R5,"rank 2 at D44 (Gold, promised 2027-03-23); pool 2",True,,2026-11-07T20:14:57.936+00:00
+E-04,59,CustomerCareQuality,crm.assign_loaner,write,CO-00770,R5,"rank 1 at D45 (Gold, promised 2027-03-23); pool 2",True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,mes.get_schedule,read,P_KY 2027-03-19,,read-only check (free),True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,mes.get_schedule,read,P_KY 2027-03-22,,read-only check (free),True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,mes.get_schedule,read,P_KY 2027-03-23,,read-only check (free),True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,mes.get_schedule,read,P_KY 2027-03-24,,read-only check (free),True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,mes.get_schedule,read,P_KY 2027-03-25,,read-only check (free),True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,crm.loaner_availability,read,D02,,read-only check (free),True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,crm.loaner_availability,read,D03,,read-only check (free),True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,crm.loaner_availability,read,D04,,read-only check (free),True,,2026-11-07T20:14:57.936+00:00
+E-04,,Verifier,crm.loaner_availability,read,D06,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D07,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D15,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D23,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D25,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D27,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D34,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D36,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D38,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D44,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-04,,Verifier,crm.loaner_availability,read,D45,,read-only check (free),True,,2026-11-07T20:14:57.937+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D07,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D16,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D17,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D20,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D21,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D35,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D39,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,,CustomerCareQuality,crm.loaner_availability,read,D46,,read-only check (free),True,,2026-11-07T20:14:57.944+00:00
+E-08,1,SupplyChainPlanner,mes.reschedule,write,PO-0157 -> 2027-03-26,R3,PO-0157 (PIONEER) affected by plant outage at P_KY 2027-03-24 to 2027-03-25; earliest free unblocked slot at P_KY on/after restart 2027-03-26 is 2027-03-26,True,,2026-11-07T20:14:57.946+00:00
+E-08,2,SupplyChainPlanner,mes.reschedule,write,PO-0158 -> 2027-03-26,R3,PO-0158 (SUMMIT) affected by plant outage at P_KY 2027-03-24 to 2027-03-25; earliest free unblocked slot at P_KY on/after restart 2027-03-26 is 2027-03-26,True,,2026-11-07T20:14:57.946+00:00
+E-08,3,SupplyChainPlanner,mes.reschedule,write,PO-0159 -> 2027-03-29,R3,PO-0159 (VOYAGER) affected by plant outage at P_KY 2027-03-24 to 2027-03-25; earliest free unblocked slot at P_KY on/after restart 2027-03-26 is 2027-03-29,True,,2026-11-07T20:14:57.946+00:00
+E-08,4,SupplyChainPlanner,mes.reschedule,write,PO-0160 -> 2027-03-29,R3,PO-0160 (PIONEER) affected by plant outage at P_KY 2027-03-24 to 2027-03-25; earliest free unblocked slot at P_KY on/after restart 2027-03-26 is 2027-03-29,True,,2026-11-07T20:14:57.946+00:00
+E-08,5,SupplyChainPlanner,mes.reschedule,write,PO-0161 -> 2027-03-30,R3,PO-0161 (SUMMIT) affected by plant outage at P_KY 2027-03-24 to 2027-03-25; earliest free unblocked slot at P_KY on/after restart 2027-03-26 is 2027-03-30,True,,2026-11-07T20:14:57.946+00:00
+E-08,6,SupplyChainPlanner,mes.reschedule,write,PO-0162 -> 2027-03-30,R3,PO-0162 (VOYAGER) affected by plant outage at P_KY 2027-03-24 to 2027-03-25; earliest free unblocked slot at P_KY on/after restart 2027-03-26 is 2027-03-30,True,,2026-11-07T20:14:57.946+00:00
+E-08,7,DealerNetwork,dealer.notify,write,D02,R4,D02 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.946+00:00
+E-08,8,DealerNetwork,dealer.notify,write,D03,R4,D03 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.946+00:00
+E-08,9,DealerNetwork,dealer.notify,write,D05,R4,D05 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,10,DealerNetwork,dealer.notify,write,D07,R4,D07 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,11,DealerNetwork,dealer.notify,write,D08,R4,D08 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,12,DealerNetwork,dealer.notify,write,D14,R4,D14 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,13,DealerNetwork,dealer.notify,write,D15,R4,D15 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,14,DealerNetwork,dealer.notify,write,D16,R4,D16 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,15,DealerNetwork,dealer.notify,write,D17,R4,D17 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,16,DealerNetwork,dealer.notify,write,D19,R4,D19 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,17,DealerNetwork,dealer.notify,write,D20,R4,D20 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,18,DealerNetwork,dealer.notify,write,D21,R4,D21 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,19,DealerNetwork,dealer.notify,write,D22,R4,D22 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,20,DealerNetwork,dealer.notify,write,D23,R4,D23 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.947+00:00
+E-08,21,DealerNetwork,dealer.notify,write,D24,R4,D24 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,22,DealerNetwork,dealer.notify,write,D26,R4,D26 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,23,DealerNetwork,dealer.notify,write,D27,R4,D27 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,24,DealerNetwork,dealer.notify,write,D31,R4,D31 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,25,DealerNetwork,dealer.notify,write,D32,R4,D32 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,26,DealerNetwork,dealer.notify,write,D35,R4,D35 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,27,DealerNetwork,dealer.notify,write,D38,R4,D38 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,28,DealerNetwork,dealer.notify,write,D39,R4,D39 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,29,DealerNetwork,dealer.notify,write,D45,R4,D45 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,30,DealerNetwork,dealer.notify,write,D46,R4,D46 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,31,DealerNetwork,dealer.notify,write,D49,R4,D49 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.948+00:00
+E-08,32,CustomerCareQuality,crm.assign_loaner,write,CO-00876,R5,"rank 1 at D07 (Gold, promised 2027-03-28); pool 3",True,,2026-11-07T20:14:57.948+00:00
+E-08,33,CustomerCareQuality,crm.assign_loaner,write,CO-00930,R5,"rank 1 at D08 (Platinum, promised 2027-03-28); pool 3",True,,2026-11-07T20:14:57.948+00:00
+E-08,34,CustomerCareQuality,crm.assign_loaner,write,CO-00911,R5,"rank 2 at D08 (Gold, promised 2027-03-28); pool 3",True,,2026-11-07T20:14:57.949+00:00
+E-08,35,CustomerCareQuality,crm.assign_loaner,write,CO-00915,R5,"rank 3 at D08 (Gold, promised 2027-03-28); pool 3",True,,2026-11-07T20:14:57.949+00:00
+E-08,36,CustomerCareQuality,crm.assign_loaner,write,CO-00927,R5,"rank 1 at D16 (Platinum, promised 2027-03-29); pool 3",True,,2026-11-07T20:14:57.949+00:00
+E-08,37,CustomerCareQuality,crm.assign_loaner,write,CO-00918,R5,"rank 2 at D16 (Gold, promised 2027-03-29); pool 3",True,,2026-11-07T20:14:57.949+00:00
+E-08,38,CustomerCareQuality,crm.assign_loaner,write,CO-00886,R5,"rank 1 at D17 (Gold, promised 2027-03-27); pool 1",True,,2026-11-07T20:14:57.949+00:00
+E-08,39,CustomerCareQuality,crm.assign_loaner,write,CO-00908,R5,"rank 1 at D20 (Gold, promised 2027-03-30); pool 1",True,,2026-11-07T20:14:57.949+00:00
+E-08,40,CustomerCareQuality,crm.assign_loaner,write,CO-00899,R5,"rank 1 at D21 (Platinum, promised 2027-03-28); pool 3",True,,2026-11-07T20:14:57.949+00:00
+E-08,41,CustomerCareQuality,crm.assign_loaner,write,CO-00887,R5,"rank 1 at D26 (Gold, promised 2027-03-27); pool 2",True,,2026-11-07T20:14:57.949+00:00
+E-08,42,CustomerCareQuality,crm.assign_loaner,write,CO-00904,R5,"rank 2 at D26 (Gold, promised 2027-03-28); pool 2",True,,2026-11-07T20:14:57.949+00:00
+E-08,43,CustomerCareQuality,crm.assign_loaner,write,CO-00880,R5,"rank 1 at D31 (Gold, promised 2027-03-28); pool 2",True,,2026-11-07T20:14:57.949+00:00
+E-08,44,CustomerCareQuality,crm.assign_loaner,write,CO-00926,R5,"rank 1 at D35 (Platinum, promised 2027-03-29); pool 1",True,,2026-11-07T20:14:57.949+00:00
+E-08,45,CustomerCareQuality,crm.assign_loaner,write,CO-00906,R5,"rank 1 at D39 (Platinum, promised 2027-03-29); pool 2",True,,2026-11-07T20:14:57.949+00:00
+E-08,46,CustomerCareQuality,crm.assign_loaner,write,CO-00884,R5,"rank 1 at D46 (Gold, promised 2027-03-28); pool 2",True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,mes.get_schedule,read,P_KY 2027-03-26,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,mes.get_schedule,read,P_KY 2027-03-29,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,mes.get_schedule,read,P_KY 2027-03-30,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D07,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D16,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D17,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D20,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D21,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.950+00:00
+E-08,,Verifier,crm.loaner_availability,read,D35,,read-only check (free),True,,2026-11-07T20:14:57.951+00:00
+E-08,,Verifier,crm.loaner_availability,read,D39,,read-only check (free),True,,2026-11-07T20:14:57.951+00:00
+E-08,,Verifier,crm.loaner_availability,read,D46,,read-only check (free),True,,2026-11-07T20:14:57.951+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D04,,read-only check (free),True,,2026-11-07T20:14:57.956+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.956+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D16,,read-only check (free),True,,2026-11-07T20:14:57.956+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D25,,read-only check (free),True,,2026-11-07T20:14:57.956+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.956+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D27,,read-only check (free),True,,2026-11-07T20:14:57.956+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.956+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D34,,read-only check (free),True,,2026-11-07T20:14:57.957+00:00
+E-09,,CustomerCareQuality,crm.loaner_availability,read,D44,,read-only check (free),True,,2026-11-07T20:14:57.957+00:00
+E-09,1,SupplyChainPlanner,mes.reschedule,write,PO-0436 -> 2027-04-01,R3,PO-0436 (SUMMIT) affected by supplier delay: CAM-360 shipment SH-0256 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-01,True,,2026-11-07T20:14:57.958+00:00
+E-09,2,SupplyChainPlanner,mes.reschedule,write,PO-0438 -> 2027-04-01,R3,PO-0438 (VOYAGER) affected by supplier delay: CAM-360 shipment SH-0256 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-01,True,,2026-11-07T20:14:57.958+00:00
+E-09,3,SupplyChainPlanner,mes.reschedule,write,PO-0439 -> 2027-04-02,R3,PO-0439 (SUMMIT) affected by supplier delay: CAM-360 shipment SH-0256 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-02,True,,2026-11-07T20:14:57.959+00:00
+E-09,4,SupplyChainPlanner,mes.reschedule,write,PO-0441 -> 2027-04-02,R3,PO-0441 (VOYAGER) affected by supplier delay: CAM-360 shipment SH-0256 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-02,True,,2026-11-07T20:14:57.959+00:00
+E-09,5,SupplyChainPlanner,mes.transfer,write,PO-0442 -> P_TX 2027-03-08,R3,PO-0442 (SUMMIT) affected by supplier delay: CAM-360 shipment SH-0256 to P_AL moved from 2027-03-29 to 2027-04-01; no free slot at P_AL on/after 2027-04-01; earliest free slot at a plant that builds SUMMIT is P_TX 2027-03-08,True,,2026-11-07T20:14:57.959+00:00
+E-09,6,SupplyChainPlanner,mes.transfer,write,PO-0444 -> P_KY 2027-03-08,R3,PO-0444 (VOYAGER) affected by supplier delay: CAM-360 shipment SH-0256 to P_AL moved from 2027-03-29 to 2027-04-01; no free slot at P_AL on/after 2027-04-01; earliest free slot at a plant that builds VOYAGER is P_KY 2027-03-08,True,,2026-11-07T20:14:57.959+00:00
+E-09,7,DealerNetwork,dealer.notify,write,D02,R4,D02 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.959+00:00
+E-09,8,DealerNetwork,dealer.notify,write,D03,R4,D03 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.959+00:00
+E-09,9,DealerNetwork,dealer.notify,write,D04,R4,D04 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.959+00:00
+E-09,10,DealerNetwork,dealer.notify,write,D06,R4,D06 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.959+00:00
+E-09,11,DealerNetwork,dealer.notify,write,D08,R4,D08 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.959+00:00
+E-09,12,DealerNetwork,dealer.notify,write,D12,R4,D12 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.959+00:00
+E-09,13,DealerNetwork,dealer.notify,write,D15,R4,D15 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.959+00:00
+E-09,14,DealerNetwork,dealer.notify,write,D16,R4,D16 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,15,DealerNetwork,dealer.notify,write,D20,R4,D20 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,16,DealerNetwork,dealer.notify,write,D21,R4,D21 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,17,DealerNetwork,dealer.notify,write,D23,R4,D23 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,18,DealerNetwork,dealer.notify,write,D24,R4,D24 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,19,DealerNetwork,dealer.notify,write,D25,R4,D25 has 7 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,20,DealerNetwork,dealer.notify,write,D26,R4,D26 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,21,DealerNetwork,dealer.notify,write,D27,R4,D27 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,22,DealerNetwork,dealer.notify,write,D30,R4,D30 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,23,DealerNetwork,dealer.notify,write,D31,R4,D31 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,24,DealerNetwork,dealer.notify,write,D34,R4,D34 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,25,DealerNetwork,dealer.notify,write,D35,R4,D35 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.960+00:00
+E-09,26,DealerNetwork,dealer.notify,write,D36,R4,D36 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.961+00:00
+E-09,27,DealerNetwork,dealer.notify,write,D38,R4,D38 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.961+00:00
+E-09,28,DealerNetwork,dealer.notify,write,D44,R4,D44 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.961+00:00
+E-09,29,DealerNetwork,dealer.notify,write,D45,R4,D45 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.961+00:00
+E-09,30,DealerNetwork,dealer.notify,write,D46,R4,D46 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.961+00:00
+E-09,31,DealerNetwork,dealer.notify,write,D47,R4,D47 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.961+00:00
+E-09,32,DealerNetwork,dealer.notify,write,D50,R4,D50 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.961+00:00
+E-09,33,CustomerCareQuality,crm.assign_loaner,write,CO-02628,R5,"rank 1 at D04 (Gold, promised 2027-04-03); pool 1",True,,2026-11-07T20:14:57.961+00:00
+E-09,34,CustomerCareQuality,crm.assign_loaner,write,CO-02590,R5,"rank 1 at D08 (Gold, promised 2027-04-01); pool 3",True,,2026-11-07T20:14:57.961+00:00
+E-09,35,CustomerCareQuality,crm.assign_loaner,write,CO-02640,R5,"rank 1 at D16 (Platinum, promised 2027-04-04); pool 3",True,,2026-11-07T20:14:57.961+00:00
+E-09,36,CustomerCareQuality,crm.assign_loaner,write,CO-02570,R5,"rank 1 at D25 (Platinum, promised 2027-04-01); pool 1",True,,2026-11-07T20:14:57.961+00:00
+E-09,37,CustomerCareQuality,crm.assign_loaner,write,CO-02593,R5,"rank 1 at D26 (Platinum, promised 2027-04-02); pool 2",True,,2026-11-07T20:14:57.961+00:00
+E-09,38,CustomerCareQuality,crm.assign_loaner,write,CO-02615,R5,"rank 1 at D27 (Gold, promised 2027-04-04); pool 1",True,,2026-11-07T20:14:57.962+00:00
+E-09,39,CustomerCareQuality,crm.assign_loaner,write,CO-02587,R5,"rank 1 at D31 (Gold, promised 2027-04-02); pool 2",True,,2026-11-07T20:14:57.962+00:00
+E-09,40,CustomerCareQuality,crm.assign_loaner,write,CO-02641,R5,"rank 1 at D34 (Gold, promised 2027-04-04); pool 1",True,,2026-11-07T20:14:57.962+00:00
+E-09,41,CustomerCareQuality,crm.assign_loaner,write,CO-02645,R5,"rank 1 at D44 (Platinum, promised 2027-04-05); pool 2",True,,2026-11-07T20:14:57.962+00:00
+E-09,42,CustomerCareQuality,crm.assign_loaner,write,CO-02598,R5,"rank 2 at D44 (Gold, promised 2027-04-04); pool 2",True,,2026-11-07T20:14:57.962+00:00
+E-09,,Verifier,mes.get_schedule,read,P_AL 2027-04-01,,read-only check (free),True,,2026-11-07T20:14:57.962+00:00
+E-09,,Verifier,mes.get_schedule,read,P_AL 2027-04-02,,read-only check (free),True,,2026-11-07T20:14:57.962+00:00
+E-09,,Verifier,mes.get_schedule,read,P_KY 2027-03-08,,read-only check (free),True,,2026-11-07T20:14:57.962+00:00
+E-09,,Verifier,mes.get_schedule,read,P_TX 2027-03-08,,read-only check (free),True,,2026-11-07T20:14:57.962+00:00
+E-09,,Verifier,crm.loaner_availability,read,D04,,read-only check (free),True,,2026-11-07T20:14:57.962+00:00
+E-09,,Verifier,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.963+00:00
+E-09,,Verifier,crm.loaner_availability,read,D16,,read-only check (free),True,,2026-11-07T20:14:57.963+00:00
+E-09,,Verifier,crm.loaner_availability,read,D25,,read-only check (free),True,,2026-11-07T20:14:57.963+00:00
+E-09,,Verifier,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.963+00:00
+E-09,,Verifier,crm.loaner_availability,read,D27,,read-only check (free),True,,2026-11-07T20:14:57.963+00:00
+E-09,,Verifier,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.963+00:00
+E-09,,Verifier,crm.loaner_availability,read,D34,,read-only check (free),True,,2026-11-07T20:14:57.963+00:00
+E-09,,Verifier,crm.loaner_availability,read,D44,,read-only check (free),True,,2026-11-07T20:14:57.963+00:00
+E-10,,CustomerCareQuality,crm.loaner_availability,read,D02,,read-only check (free),True,,2026-11-07T20:14:57.968+00:00
+E-10,,CustomerCareQuality,crm.loaner_availability,read,D04,,read-only check (free),True,,2026-11-07T20:14:57.968+00:00
+E-10,,CustomerCareQuality,crm.loaner_availability,read,D20,,read-only check (free),True,,2026-11-07T20:14:57.968+00:00
+E-10,,CustomerCareQuality,crm.loaner_availability,read,D23,,read-only check (free),True,,2026-11-07T20:14:57.968+00:00
+E-10,,CustomerCareQuality,crm.loaner_availability,read,D25,,read-only check (free),True,,2026-11-07T20:14:57.968+00:00
+E-10,,CustomerCareQuality,crm.loaner_availability,read,D27,,read-only check (free),True,,2026-11-07T20:14:57.968+00:00
+E-10,,CustomerCareQuality,crm.loaner_availability,read,D34,,read-only check (free),True,,2026-11-07T20:14:57.969+00:00
+E-10,1,SupplyChainPlanner,mes.reschedule,write,PO-0437 -> 2027-04-01,R3,PO-0437 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-01,True,,2026-11-07T20:14:57.970+00:00
+E-10,2,SupplyChainPlanner,mes.reschedule,write,PO-0440 -> 2027-04-01,R3,PO-0440 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-01,True,,2026-11-07T20:14:57.970+00:00
+E-10,3,SupplyChainPlanner,mes.reschedule,write,PO-0443 -> 2027-04-02,R3,PO-0443 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-02,True,,2026-11-07T20:14:57.970+00:00
+E-10,4,DealerNetwork,dealer.notify,write,D02,R4,D02 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.970+00:00
+E-10,5,DealerNetwork,dealer.notify,write,D04,R4,D04 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.970+00:00
+E-10,6,DealerNetwork,dealer.notify,write,D08,R4,D08 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.970+00:00
+E-10,7,DealerNetwork,dealer.notify,write,D10,R4,D10 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.970+00:00
+E-10,8,DealerNetwork,dealer.notify,write,D17,R4,D17 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.970+00:00
+E-10,9,DealerNetwork,dealer.notify,write,D20,R4,D20 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.970+00:00
+E-10,10,DealerNetwork,dealer.notify,write,D21,R4,D21 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.970+00:00
+E-10,11,DealerNetwork,dealer.notify,write,D23,R4,D23 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.970+00:00
+E-10,12,DealerNetwork,dealer.notify,write,D25,R4,D25 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,13,DealerNetwork,dealer.notify,write,D27,R4,D27 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,14,DealerNetwork,dealer.notify,write,D28,R4,D28 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,15,DealerNetwork,dealer.notify,write,D31,R4,D31 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,16,DealerNetwork,dealer.notify,write,D34,R4,D34 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,17,DealerNetwork,dealer.notify,write,D44,R4,D44 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,18,DealerNetwork,dealer.notify,write,D45,R4,D45 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,19,DealerNetwork,dealer.notify,write,D46,R4,D46 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,20,DealerNetwork,dealer.notify,write,D47,R4,D47 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,21,DealerNetwork,dealer.notify,write,D48,R4,D48 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.971+00:00
+E-10,22,CustomerCareQuality,crm.assign_loaner,write,CO-02638,R5,"rank 1 at D02 (Gold, promised 2027-04-04); pool 2",True,,2026-11-07T20:14:57.971+00:00
+E-10,23,CustomerCareQuality,crm.assign_loaner,write,CO-02575,R5,"rank 1 at D04 (Gold, promised 2027-04-01); pool 1",True,,2026-11-07T20:14:57.971+00:00
+E-10,24,CustomerCareQuality,crm.assign_loaner,write,CO-02578,R5,"rank 1 at D20 (Gold, promised 2027-04-03); pool 1",True,,2026-11-07T20:14:57.971+00:00
+E-10,25,CustomerCareQuality,crm.assign_loaner,write,CO-02579,R5,"rank 1 at D23 (Gold, promised 2027-04-02); pool 2",True,,2026-11-07T20:14:57.972+00:00
+E-10,26,CustomerCareQuality,crm.assign_loaner,write,CO-02636,R5,"rank 1 at D25 (Platinum, promised 2027-04-03); pool 1",True,,2026-11-07T20:14:57.972+00:00
+E-10,27,CustomerCareQuality,crm.assign_loaner,write,CO-02604,R5,"rank 1 at D27 (Gold, promised 2027-04-04); pool 1",True,,2026-11-07T20:14:57.972+00:00
+E-10,28,CustomerCareQuality,crm.assign_loaner,write,CO-02605,R5,"rank 1 at D34 (Gold, promised 2027-04-03); pool 1",True,,2026-11-07T20:14:57.972+00:00
+E-10,,Verifier,mes.get_schedule,read,P_AL 2027-04-01,,read-only check (free),True,,2026-11-07T20:14:57.972+00:00
+E-10,,Verifier,mes.get_schedule,read,P_AL 2027-04-02,,read-only check (free),True,,2026-11-07T20:14:57.972+00:00
+E-10,,Verifier,crm.loaner_availability,read,D02,,read-only check (free),True,,2026-11-07T20:14:57.972+00:00
+E-10,,Verifier,crm.loaner_availability,read,D04,,read-only check (free),True,,2026-11-07T20:14:57.972+00:00
+E-10,,Verifier,crm.loaner_availability,read,D20,,read-only check (free),True,,2026-11-07T20:14:57.972+00:00
+E-10,,Verifier,crm.loaner_availability,read,D23,,read-only check (free),True,,2026-11-07T20:14:57.972+00:00
+E-10,,Verifier,crm.loaner_availability,read,D25,,read-only check (free),True,,2026-11-07T20:14:57.973+00:00
+E-10,,Verifier,crm.loaner_availability,read,D27,,read-only check (free),True,,2026-11-07T20:14:57.973+00:00
+E-10,,Verifier,crm.loaner_availability,read,D34,,read-only check (free),True,,2026-11-07T20:14:57.973+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D02,,read-only check (free),True,,2026-11-07T20:14:57.976+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D03,,read-only check (free),True,,2026-11-07T20:14:57.976+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D06,,read-only check (free),True,,2026-11-07T20:14:57.976+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.976+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D16,,read-only check (free),True,,2026-11-07T20:14:57.976+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D24,,read-only check (free),True,,2026-11-07T20:14:57.977+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D25,,read-only check (free),True,,2026-11-07T20:14:57.977+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.977+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D30,,read-only check (free),True,,2026-11-07T20:14:57.977+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.977+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D33,,read-only check (free),True,,2026-11-07T20:14:57.977+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D41,,read-only check (free),True,,2026-11-07T20:14:57.977+00:00
+E-11,,CustomerCareQuality,crm.loaner_availability,read,D45,,read-only check (free),True,,2026-11-07T20:14:57.977+00:00
+E-11,1,SupplyChainPlanner,mes.reschedule,write,PO-0253 -> 2027-03-31,R3,PO-0253 (PIONEER) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; earliest free unblocked slot at P_MS on/after restart 2027-03-31 is 2027-03-31,True,,2026-11-07T20:14:57.979+00:00
+E-11,2,SupplyChainPlanner,mes.reschedule,write,PO-0254 -> 2027-03-31,R3,PO-0254 (NOVA) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; earliest free unblocked slot at P_MS on/after restart 2027-03-31 is 2027-03-31,True,,2026-11-07T20:14:57.979+00:00
+E-11,3,SupplyChainPlanner,mes.reschedule,write,PO-0255 -> 2027-04-01,R3,PO-0255 (TERRA) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; earliest free unblocked slot at P_MS on/after restart 2027-03-31 is 2027-04-01,True,,2026-11-07T20:14:57.979+00:00
+E-11,4,SupplyChainPlanner,mes.reschedule,write,PO-0256 -> 2027-04-01,R3,PO-0256 (PIONEER) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; earliest free unblocked slot at P_MS on/after restart 2027-03-31 is 2027-04-01,True,,2026-11-07T20:14:57.979+00:00
+E-11,5,SupplyChainPlanner,mes.reschedule,write,PO-0257 -> 2027-04-02,R3,PO-0257 (NOVA) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; earliest free unblocked slot at P_MS on/after restart 2027-03-31 is 2027-04-02,True,,2026-11-07T20:14:57.979+00:00
+E-11,6,SupplyChainPlanner,mes.reschedule,write,PO-0258 -> 2027-04-02,R3,PO-0258 (TERRA) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; earliest free unblocked slot at P_MS on/after restart 2027-03-31 is 2027-04-02,True,,2026-11-07T20:14:57.979+00:00
+E-11,7,SupplyChainPlanner,mes.transfer,write,PO-0259 -> P_KY 2027-03-08,R3,PO-0259 (PIONEER) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; no free slot at P_MS on/after 2027-03-31; earliest free slot at a plant that builds PIONEER is P_KY 2027-03-08,True,,2026-11-07T20:14:57.979+00:00
+E-11,8,SupplyChainPlanner,mes.transfer,write,PO-0260 -> P_IN 2027-03-08,R3,PO-0260 (NOVA) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; no free slot at P_MS on/after 2027-03-31; earliest free slot at a plant that builds NOVA is P_IN 2027-03-08,True,,2026-11-07T20:14:57.979+00:00
+E-11,9,SupplyChainPlanner,mes.transfer,write,PO-0261 -> P_TX 2027-03-08,R3,PO-0261 (TERRA) affected by plant outage at P_MS 2027-03-26 to 2027-03-30; no free slot at P_MS on/after 2027-03-31; earliest free slot at a plant that builds TERRA is P_TX 2027-03-08,True,,2026-11-07T20:14:57.980+00:00
+E-11,10,DealerNetwork,dealer.notify,write,D01,R4,D01 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,11,DealerNetwork,dealer.notify,write,D02,R4,D02 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,12,DealerNetwork,dealer.notify,write,D03,R4,D03 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,13,DealerNetwork,dealer.notify,write,D04,R4,D04 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,14,DealerNetwork,dealer.notify,write,D05,R4,D05 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,15,DealerNetwork,dealer.notify,write,D06,R4,D06 has 8 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,16,DealerNetwork,dealer.notify,write,D08,R4,D08 has 7 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,17,DealerNetwork,dealer.notify,write,D10,R4,D10 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,18,DealerNetwork,dealer.notify,write,D11,R4,D11 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,19,DealerNetwork,dealer.notify,write,D12,R4,D12 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,20,DealerNetwork,dealer.notify,write,D13,R4,D13 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.980+00:00
+E-11,21,DealerNetwork,dealer.notify,write,D16,R4,D16 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,22,DealerNetwork,dealer.notify,write,D18,R4,D18 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,23,DealerNetwork,dealer.notify,write,D20,R4,D20 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,24,DealerNetwork,dealer.notify,write,D21,R4,D21 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,25,DealerNetwork,dealer.notify,write,D22,R4,D22 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,26,DealerNetwork,dealer.notify,write,D23,R4,D23 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,27,DealerNetwork,dealer.notify,write,D24,R4,D24 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,28,DealerNetwork,dealer.notify,write,D25,R4,D25 has 6 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,29,DealerNetwork,dealer.notify,write,D26,R4,D26 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,30,DealerNetwork,dealer.notify,write,D27,R4,D27 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,31,DealerNetwork,dealer.notify,write,D28,R4,D28 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,32,DealerNetwork,dealer.notify,write,D29,R4,D29 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.981+00:00
+E-11,33,DealerNetwork,dealer.notify,write,D30,R4,D30 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,34,DealerNetwork,dealer.notify,write,D31,R4,D31 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,35,DealerNetwork,dealer.notify,write,D32,R4,D32 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,36,DealerNetwork,dealer.notify,write,D33,R4,D33 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,37,DealerNetwork,dealer.notify,write,D35,R4,D35 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,38,DealerNetwork,dealer.notify,write,D38,R4,D38 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,39,DealerNetwork,dealer.notify,write,D39,R4,D39 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,40,DealerNetwork,dealer.notify,write,D41,R4,D41 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,41,DealerNetwork,dealer.notify,write,D43,R4,D43 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,42,DealerNetwork,dealer.notify,write,D44,R4,D44 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.982+00:00
+E-11,43,DealerNetwork,dealer.notify,write,D45,R4,D45 has 5 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.983+00:00
+E-11,44,DealerNetwork,dealer.notify,write,D46,R4,D46 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.983+00:00
+E-11,45,DealerNetwork,dealer.notify,write,D48,R4,D48 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.983+00:00
+E-11,46,CustomerCareQuality,crm.assign_loaner,write,CO-01471,R5,"rank 1 at D02 (Gold, promised 2027-03-30); pool 2",True,,2026-11-07T20:14:57.983+00:00
+E-11,47,CustomerCareQuality,crm.assign_loaner,write,CO-01508,R5,"rank 2 at D02 (Gold, promised 2027-04-02); pool 2",True,,2026-11-07T20:14:57.983+00:00
+E-11,48,CustomerCareQuality,crm.assign_loaner,write,CO-01468,R5,"rank 1 at D03 (Platinum, promised 2027-03-29); pool 2",True,,2026-11-07T20:14:57.983+00:00
+E-11,49,CustomerCareQuality,crm.assign_loaner,write,CO-01490,R5,"rank 1 at D06 (Platinum, promised 2027-04-02); pool 3",True,,2026-11-07T20:14:57.983+00:00
+E-11,50,CustomerCareQuality,crm.assign_loaner,write,CO-01493,R5,"rank 2 at D06 (Gold, promised 2027-04-02); pool 3",True,,2026-11-07T20:14:57.983+00:00
+E-11,51,CustomerCareQuality,crm.assign_loaner,write,CO-01502,R5,"rank 3 at D06 (Gold, promised 2027-04-02); pool 3",True,,2026-11-07T20:14:57.983+00:00
+E-11,52,CustomerCareQuality,crm.assign_loaner,write,CO-01518,R5,"rank 1 at D08 (Gold, promised 2027-04-02); pool 3",True,,2026-11-07T20:14:57.983+00:00
+E-11,53,CustomerCareQuality,crm.assign_loaner,write,CO-01523,R5,"rank 1 at D16 (Platinum, promised 2027-04-03); pool 3",True,,2026-11-07T20:14:57.983+00:00
+E-11,54,CustomerCareQuality,crm.assign_loaner,write,CO-01492,R5,"rank 2 at D16 (Gold, promised 2027-04-02); pool 3",True,,2026-11-07T20:14:57.983+00:00
+E-11,55,CustomerCareQuality,crm.assign_loaner,write,CO-01491,R5,"rank 1 at D24 (Gold, promised 2027-04-02); pool 3",True,,2026-11-07T20:14:57.984+00:00
+E-11,56,CustomerCareQuality,crm.assign_loaner,write,CO-01488,R5,"rank 1 at D25 (Gold, promised 2027-04-01); pool 1",True,,2026-11-07T20:14:57.984+00:00
+E-11,57,CustomerCareQuality,crm.assign_loaner,write,CO-01496,R5,"rank 1 at D26 (Gold, promised 2027-04-01); pool 2",True,,2026-11-07T20:14:57.984+00:00
+E-11,58,CustomerCareQuality,crm.assign_loaner,write,CO-01489,R5,"rank 1 at D30 (Gold, promised 2027-04-03); pool 1",True,,2026-11-07T20:14:57.984+00:00
+E-11,59,CustomerCareQuality,crm.assign_loaner,write,CO-01501,R5,"rank 1 at D31 (Gold, promised 2027-04-02); pool 2",True,,2026-11-07T20:14:57.984+00:00
+E-11,60,CustomerCareQuality,crm.assign_loaner,write,CO-01527,R5,"rank 1 at D33 (Gold, promised 2027-04-04); pool 3",True,,2026-11-07T20:14:57.984+00:00
+E-11,61,CustomerCareQuality,crm.assign_loaner,write,CO-01533,R5,"rank 1 at D41 (Platinum, promised 2027-04-04); pool 1",True,,2026-11-07T20:14:57.984+00:00
+E-11,62,CustomerCareQuality,crm.assign_loaner,write,CO-01464,R5,"rank 1 at D45 (Platinum, promised 2027-03-31); pool 2",True,,2026-11-07T20:14:57.984+00:00
+E-11,,Verifier,mes.get_schedule,read,P_IN 2027-03-08,,read-only check (free),True,,2026-11-07T20:14:57.984+00:00
+E-11,,Verifier,mes.get_schedule,read,P_KY 2027-03-08,,read-only check (free),True,,2026-11-07T20:14:57.984+00:00
+E-11,,Verifier,mes.get_schedule,read,P_MS 2027-03-31,,read-only check (free),True,,2026-11-07T20:14:57.984+00:00
+E-11,,Verifier,mes.get_schedule,read,P_MS 2027-04-01,,read-only check (free),True,,2026-11-07T20:14:57.984+00:00
+E-11,,Verifier,mes.get_schedule,read,P_MS 2027-04-02,,read-only check (free),True,,2026-11-07T20:14:57.984+00:00
+E-11,,Verifier,mes.get_schedule,read,P_TX 2027-03-08,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D02,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D03,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D06,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D16,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D24,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D25,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D26,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D30,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D31,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D33,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D41,,read-only check (free),True,,2026-11-07T20:14:57.985+00:00
+E-11,,Verifier,crm.loaner_availability,read,D45,,read-only check (free),True,,2026-11-07T20:14:57.986+00:00
+E-12,,CustomerCareQuality,crm.loaner_availability,read,D01,,read-only check (free),True,,2026-11-07T20:14:57.992+00:00
+E-12,,CustomerCareQuality,crm.loaner_availability,read,D06,,read-only check (free),True,,2026-11-07T20:14:57.992+00:00
+E-12,,CustomerCareQuality,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.992+00:00
+E-12,,CustomerCareQuality,crm.loaner_availability,read,D20,,read-only check (free),True,,2026-11-07T20:14:57.992+00:00
+E-12,,CustomerCareQuality,crm.loaner_availability,read,D21,,read-only check (free),True,,2026-11-07T20:14:57.992+00:00
+E-12,,CustomerCareQuality,crm.loaner_availability,read,D44,,read-only check (free),True,,2026-11-07T20:14:57.993+00:00
+E-12,,CustomerCareQuality,crm.loaner_availability,read,D45,,read-only check (free),True,,2026-11-07T20:14:57.993+00:00
+E-12,1,SupplyChainPlanner,mes.reschedule,write,PO-0316 -> 2027-03-18,R3,PO-0316 (VOYAGER) affected by supplier delay: CAM-360 shipment SH-0182 to P_IN moved from 2027-03-15 to 2027-03-18; earliest free unblocked slot at P_IN on/after restart 2027-03-18 is 2027-03-18,True,,2026-11-07T20:14:57.994+00:00
+E-12,2,SupplyChainPlanner,mes.reschedule,write,PO-0319 -> 2027-03-18,R3,PO-0319 (VOYAGER) affected by supplier delay: CAM-360 shipment SH-0182 to P_IN moved from 2027-03-15 to 2027-03-18; earliest free unblocked slot at P_IN on/after restart 2027-03-18 is 2027-03-18,True,,2026-11-07T20:14:57.994+00:00
+E-12,3,SupplyChainPlanner,mes.reschedule,write,PO-0322 -> 2027-03-19,R3,PO-0322 (VOYAGER) affected by supplier delay: CAM-360 shipment SH-0182 to P_IN moved from 2027-03-15 to 2027-03-18; earliest free unblocked slot at P_IN on/after restart 2027-03-18 is 2027-03-19,True,,2026-11-07T20:14:57.994+00:00
+E-12,4,DealerNetwork,dealer.notify,write,D01,R4,D01 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.994+00:00
+E-12,5,DealerNetwork,dealer.notify,write,D02,R4,D02 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.994+00:00
+E-12,6,DealerNetwork,dealer.notify,write,D06,R4,D06 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.994+00:00
+E-12,7,DealerNetwork,dealer.notify,write,D07,R4,D07 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.994+00:00
+E-12,8,DealerNetwork,dealer.notify,write,D08,R4,D08 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.994+00:00
+E-12,9,DealerNetwork,dealer.notify,write,D14,R4,D14 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.994+00:00
+E-12,10,DealerNetwork,dealer.notify,write,D20,R4,D20 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.995+00:00
+E-12,11,DealerNetwork,dealer.notify,write,D21,R4,D21 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.995+00:00
+E-12,12,DealerNetwork,dealer.notify,write,D25,R4,D25 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.995+00:00
+E-12,13,DealerNetwork,dealer.notify,write,D30,R4,D30 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.995+00:00
+E-12,14,DealerNetwork,dealer.notify,write,D31,R4,D31 has 2 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.995+00:00
+E-12,15,DealerNetwork,dealer.notify,write,D42,R4,D42 has 1 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.995+00:00
+E-12,16,DealerNetwork,dealer.notify,write,D44,R4,D44 has 4 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.995+00:00
+E-12,17,DealerNetwork,dealer.notify,write,D45,R4,D45 has 3 affected customer order(s); exactly one notify listing only those ids,True,,2026-11-07T20:14:57.995+00:00
+E-12,18,CustomerCareQuality,crm.assign_loaner,write,CO-01812,R5,"rank 1 at D01 (Platinum, promised 2027-03-20); pool 3",True,,2026-11-07T20:14:57.995+00:00
+E-12,19,CustomerCareQuality,crm.assign_loaner,write,CO-01781,R5,"rank 1 at D06 (Gold, promised 2027-03-20); pool 3",True,,2026-11-07T20:14:57.995+00:00
+E-12,20,CustomerCareQuality,crm.assign_loaner,write,CO-01761,R5,"rank 1 at D08 (Platinum, promised 2027-03-18); pool 3",True,,2026-11-07T20:14:57.995+00:00
+E-12,21,CustomerCareQuality,crm.assign_loaner,write,CO-01780,R5,"rank 2 at D08 (Gold, promised 2027-03-19); pool 3",True,,2026-11-07T20:14:57.995+00:00
+E-12,22,CustomerCareQuality,crm.assign_loaner,write,CO-01786,R5,"rank 1 at D20 (Platinum, promised 2027-03-21); pool 1",True,,2026-11-07T20:14:57.996+00:00
+E-12,23,CustomerCareQuality,crm.assign_loaner,write,CO-01783,R5,"rank 1 at D21 (Platinum, promised 2027-03-20); pool 3",True,,2026-11-07T20:14:57.996+00:00
+E-12,24,CustomerCareQuality,crm.assign_loaner,write,CO-01808,R5,"rank 2 at D21 (Gold, promised 2027-03-21); pool 3",True,,2026-11-07T20:14:57.996+00:00
+E-12,25,CustomerCareQuality,crm.assign_loaner,write,CO-01785,R5,"rank 1 at D44 (Platinum, promised 2027-03-21); pool 2",True,,2026-11-07T20:14:57.996+00:00
+E-12,26,CustomerCareQuality,crm.assign_loaner,write,CO-01814,R5,"rank 2 at D44 (Gold, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.996+00:00
+E-12,27,CustomerCareQuality,crm.assign_loaner,write,CO-01810,R5,"rank 1 at D45 (Platinum, promised 2027-03-22); pool 2",True,,2026-11-07T20:14:57.996+00:00
+E-12,,Verifier,mes.get_schedule,read,P_IN 2027-03-18,,read-only check (free),True,,2026-11-07T20:14:57.996+00:00
+E-12,,Verifier,mes.get_schedule,read,P_IN 2027-03-19,,read-only check (free),True,,2026-11-07T20:14:57.996+00:00
+E-12,,Verifier,crm.loaner_availability,read,D01,,read-only check (free),True,,2026-11-07T20:14:57.996+00:00
+E-12,,Verifier,crm.loaner_availability,read,D06,,read-only check (free),True,,2026-11-07T20:14:57.996+00:00
+E-12,,Verifier,crm.loaner_availability,read,D08,,read-only check (free),True,,2026-11-07T20:14:57.996+00:00
+E-12,,Verifier,crm.loaner_availability,read,D20,,read-only check (free),True,,2026-11-07T20:14:57.996+00:00
+E-12,,Verifier,crm.loaner_availability,read,D21,,read-only check (free),True,,2026-11-07T20:14:57.997+00:00
+E-12,,Verifier,crm.loaner_availability,read,D44,,read-only check (free),True,,2026-11-07T20:14:57.997+00:00
+E-12,,Verifier,crm.loaner_availability,read,D45,,read-only check (free),True,,2026-11-07T20:14:57.997+00:00
+E-13,1,Coordinator,escalate,escalate,,R8,not actionable without a human,True,,2026-11-07T20:14:57.998+00:00
+E-14,1,CustomerCareQuality,quality.hold_lot,write,LOT-0017,R6,"LOT-0017 (HARN-B from SUP-07, P_TX 2027-02-22..2027-02-24) is suspect",True,,2026-11-07T20:14:58.019+00:00
+E-14,2,DealerNetwork,dealer.stop_sale,write,D02,R6,2 unsold vehicle(s) at D02 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.019+00:00
+E-14,3,DealerNetwork,dealer.stop_sale,write,D03,R6,4 unsold vehicle(s) at D03 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.019+00:00
+E-14,4,DealerNetwork,dealer.stop_sale,write,D04,R6,2 unsold vehicle(s) at D04 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.019+00:00
+E-14,5,DealerNetwork,dealer.stop_sale,write,D06,R6,5 unsold vehicle(s) at D06 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.019+00:00
+E-14,6,DealerNetwork,dealer.stop_sale,write,D07,R6,2 unsold vehicle(s) at D07 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,7,DealerNetwork,dealer.stop_sale,write,D08,R6,5 unsold vehicle(s) at D08 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,8,DealerNetwork,dealer.stop_sale,write,D10,R6,2 unsold vehicle(s) at D10 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,9,DealerNetwork,dealer.stop_sale,write,D12,R6,1 unsold vehicle(s) at D12 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,10,DealerNetwork,dealer.stop_sale,write,D13,R6,2 unsold vehicle(s) at D13 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,11,DealerNetwork,dealer.stop_sale,write,D14,R6,2 unsold vehicle(s) at D14 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,12,DealerNetwork,dealer.stop_sale,write,D16,R6,1 unsold vehicle(s) at D16 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,13,DealerNetwork,dealer.stop_sale,write,D17,R6,1 unsold vehicle(s) at D17 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,14,DealerNetwork,dealer.stop_sale,write,D19,R6,1 unsold vehicle(s) at D19 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,15,DealerNetwork,dealer.stop_sale,write,D20,R6,2 unsold vehicle(s) at D20 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,16,DealerNetwork,dealer.stop_sale,write,D21,R6,3 unsold vehicle(s) at D21 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,17,DealerNetwork,dealer.stop_sale,write,D22,R6,2 unsold vehicle(s) at D22 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.020+00:00
+E-14,18,DealerNetwork,dealer.stop_sale,write,D23,R6,3 unsold vehicle(s) at D23 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,19,DealerNetwork,dealer.stop_sale,write,D25,R6,6 unsold vehicle(s) at D25 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,20,DealerNetwork,dealer.stop_sale,write,D26,R6,2 unsold vehicle(s) at D26 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,21,DealerNetwork,dealer.stop_sale,write,D27,R6,2 unsold vehicle(s) at D27 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,22,DealerNetwork,dealer.stop_sale,write,D28,R6,1 unsold vehicle(s) at D28 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,23,DealerNetwork,dealer.stop_sale,write,D29,R6,1 unsold vehicle(s) at D29 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,24,DealerNetwork,dealer.stop_sale,write,D31,R6,2 unsold vehicle(s) at D31 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,25,DealerNetwork,dealer.stop_sale,write,D32,R6,4 unsold vehicle(s) at D32 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,26,DealerNetwork,dealer.stop_sale,write,D33,R6,1 unsold vehicle(s) at D33 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,27,DealerNetwork,dealer.stop_sale,write,D34,R6,3 unsold vehicle(s) at D34 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,28,DealerNetwork,dealer.stop_sale,write,D36,R6,2 unsold vehicle(s) at D36 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,29,DealerNetwork,dealer.stop_sale,write,D37,R6,1 unsold vehicle(s) at D37 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.021+00:00
+E-14,30,DealerNetwork,dealer.stop_sale,write,D38,R6,2 unsold vehicle(s) at D38 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.022+00:00
+E-14,31,DealerNetwork,dealer.stop_sale,write,D39,R6,2 unsold vehicle(s) at D39 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.022+00:00
+E-14,32,DealerNetwork,dealer.stop_sale,write,D43,R6,3 unsold vehicle(s) at D43 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.022+00:00
+E-14,33,DealerNetwork,dealer.stop_sale,write,D44,R6,2 unsold vehicle(s) at D44 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.022+00:00
+E-14,34,DealerNetwork,dealer.stop_sale,write,D45,R6,7 unsold vehicle(s) at D45 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.022+00:00
+E-14,35,DealerNetwork,dealer.stop_sale,write,D46,R6,3 unsold vehicle(s) at D46 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.022+00:00
+E-14,36,DealerNetwork,dealer.stop_sale,write,D47,R6,1 unsold vehicle(s) at D47 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.022+00:00
+E-14,37,DealerNetwork,dealer.stop_sale,write,D48,R6,1 unsold vehicle(s) at D48 contain suspect lot LOT-0017,True,,2026-11-07T20:14:58.022+00:00
+E-14,38,CustomerCareQuality,crm.notify_customer,write,C0130,R6,owner of sold affected vehicle(s) AUR0000032,True,,2026-11-07T20:14:58.022+00:00
+E-14,39,CustomerCareQuality,crm.notify_customer,write,C0226,R6,owner of sold affected vehicle(s) AUR0000212,True,,2026-11-07T20:14:58.022+00:00
+E-14,40,CustomerCareQuality,crm.notify_customer,write,C0419,R6,owner of sold affected vehicle(s) AUR0000114,True,,2026-11-07T20:14:58.023+00:00
+E-14,41,CustomerCareQuality,crm.notify_customer,write,C0459,R6,owner of sold affected vehicle(s) AUR0000116,True,,2026-11-07T20:14:58.023+00:00
+E-14,42,CustomerCareQuality,crm.notify_customer,write,C0630,R6,owner of sold affected vehicle(s) AUR0000037,True,,2026-11-07T20:14:58.023+00:00
+E-14,43,CustomerCareQuality,crm.notify_customer,write,C0641,R6,owner of sold affected vehicle(s) AUR0000099,True,,2026-11-07T20:14:58.023+00:00
+E-14,44,CustomerCareQuality,crm.notify_customer,write,C0643,R6,owner of sold affected vehicle(s) AUR0000203,True,,2026-11-07T20:14:58.023+00:00
+E-14,45,CustomerCareQuality,crm.notify_customer,write,C0664,R6,owner of sold affected vehicle(s) AUR0000177,True,,2026-11-07T20:14:58.023+00:00
+E-14,46,CustomerCareQuality,crm.notify_customer,write,C0665,R6,owner of sold affected vehicle(s) AUR0000128,True,,2026-11-07T20:14:58.023+00:00
+E-14,47,CustomerCareQuality,crm.notify_customer,write,C0789,R6,owner of sold affected vehicle(s) AUR0000021,True,,2026-11-07T20:14:58.023+00:00
+E-14,48,CustomerCareQuality,crm.notify_customer,write,C0804,R6,owner of sold affected vehicle(s) AUR0000227,True,,2026-11-07T20:14:58.023+00:00
+E-14,49,CustomerCareQuality,crm.notify_customer,write,C0832,R6,owner of sold affected vehicle(s) AUR0000005,True,,2026-11-07T20:14:58.023+00:00
+E-14,50,CustomerCareQuality,crm.notify_customer,write,C0871,R6,owner of sold affected vehicle(s) AUR0000206,True,,2026-11-07T20:14:58.023+00:00
+E-14,51,CustomerCareQuality,crm.notify_customer,write,C1006,R6,owner of sold affected vehicle(s) AUR0000179,True,,2026-11-07T20:14:58.023+00:00
+E-14,52,CustomerCareQuality,crm.notify_customer,write,C1218,R6,owner of sold affected vehicle(s) AUR0000001,True,,2026-11-07T20:14:58.023+00:00
+E-14,53,CustomerCareQuality,crm.notify_customer,write,C1233,R6,owner of sold affected vehicle(s) AUR0000095,True,,2026-11-07T20:14:58.024+00:00
+E-14,54,CustomerCareQuality,crm.notify_customer,write,C1244,R6,owner of sold affected vehicle(s) AUR0000055,True,,2026-11-07T20:14:58.024+00:00
+E-14,55,CustomerCareQuality,crm.notify_customer,write,C1367,R6,owner of sold affected vehicle(s) AUR0000130,True,,2026-11-07T20:14:58.024+00:00
+E-14,56,CustomerCareQuality,crm.notify_customer,write,C1373,R6,owner of sold affected vehicle(s) AUR0000127,True,,2026-11-07T20:14:58.024+00:00
+E-14,57,CustomerCareQuality,crm.notify_customer,write,C1380,R6,owner of sold affected vehicle(s) AUR0000183,True,,2026-11-07T20:14:58.024+00:00
+E-14,58,CustomerCareQuality,crm.notify_customer,write,C1508,R6,owner of sold affected vehicle(s) AUR0000113,True,,2026-11-07T20:14:58.024+00:00
+E-14,59,CustomerCareQuality,crm.notify_customer,write,C1516,R6,owner of sold affected vehicle(s) AUR0000102,True,,2026-11-07T20:14:58.024+00:00
+E-14,60,CustomerCareQuality,crm.notify_customer,write,C1610,R6,owner of sold affected vehicle(s) AUR0000133,True,,2026-11-07T20:14:58.024+00:00
+E-14,61,CustomerCareQuality,crm.notify_customer,write,C1629,R6,owner of sold affected vehicle(s) AUR0000233,True,,2026-11-07T20:14:58.024+00:00
+E-14,62,CustomerCareQuality,crm.notify_customer,write,C1660,R6,owner of sold affected vehicle(s) AUR0000048,True,,2026-11-07T20:14:58.024+00:00
+E-14,63,CustomerCareQuality,crm.notify_customer,write,C1665,R6,owner of sold affected vehicle(s) AUR0000214,True,,2026-11-07T20:14:58.024+00:00
+E-14,64,CustomerCareQuality,crm.notify_customer,write,C1735,R6,owner of sold affected vehicle(s) AUR0000036,True,,2026-11-07T20:14:58.024+00:00
+E-14,65,CustomerCareQuality,crm.notify_customer,write,C1751,R6,owner of sold affected vehicle(s) AUR0000018,True,,2026-11-07T20:14:58.025+00:00
+E-14,66,CustomerCareQuality,crm.notify_customer,write,C1799,R6,owner of sold affected vehicle(s) AUR0000234,True,,2026-11-07T20:14:58.025+00:00
+E-14,67,CustomerCareQuality,crm.notify_customer,write,C1800,R6,owner of sold affected vehicle(s) AUR0000086,True,,2026-11-07T20:14:58.025+00:00
+E-14,68,CustomerCareQuality,crm.notify_customer,write,C1808,R6,owner of sold affected vehicle(s) AUR0000138,True,,2026-11-07T20:14:58.025+00:00
+E-14,69,CustomerCareQuality,crm.notify_customer,write,C1848,R6,owner of sold affected vehicle(s) AUR0000232,True,,2026-11-07T20:14:58.025+00:00
+E-14,70,CustomerCareQuality,crm.notify_customer,write,C1876,R6,owner of sold affected vehicle(s) AUR0000108,True,,2026-11-07T20:14:58.025+00:00
+E-14,71,CustomerCareQuality,crm.notify_customer,write,C2123,R6,owner of sold affected vehicle(s) AUR0000223,True,,2026-11-07T20:14:58.025+00:00
+E-14,72,CustomerCareQuality,crm.notify_customer,write,C2480,R6,owner of sold affected vehicle(s) AUR0000135,True,,2026-11-07T20:14:58.025+00:00
+E-14,73,CustomerCareQuality,crm.notify_customer,write,C2499,R6,owner of sold affected vehicle(s) AUR0000115,True,,2026-11-07T20:14:58.025+00:00
+E-14,74,CustomerCareQuality,crm.notify_customer,write,C2655,R6,owner of sold affected vehicle(s) AUR0000119,True,,2026-11-07T20:14:58.025+00:00
+E-14,75,CustomerCareQuality,crm.notify_customer,write,C2789,R6,owner of sold affected vehicle(s) AUR0000012,True,,2026-11-07T20:14:58.025+00:00
+E-14,76,CustomerCareQuality,crm.notify_customer,write,C2919,R6,owner of sold affected vehicle(s) AUR0000216,True,,2026-11-07T20:14:58.025+00:00
+E-14,77,CustomerCareQuality,crm.notify_customer,write,C2945,R6,owner of sold affected vehicle(s) AUR0000228,True,,2026-11-07T20:14:58.025+00:00
+E-14,78,CustomerCareQuality,crm.notify_customer,write,C3102,R6,owner of sold affected vehicle(s) AUR0000189,True,,2026-11-07T20:14:58.026+00:00
+E-14,79,CustomerCareQuality,crm.notify_customer,write,C3196,R6,owner of sold affected vehicle(s) AUR0000098,True,,2026-11-07T20:14:58.026+00:00
+E-14,80,CustomerCareQuality,crm.notify_customer,write,C3197,R6,owner of sold affected vehicle(s) AUR0000112,True,,2026-11-07T20:14:58.026+00:00
+E-14,81,CustomerCareQuality,crm.notify_customer,write,C3200,R6,owner of sold affected vehicle(s) AUR0000122,True,,2026-11-07T20:14:58.026+00:00
+E-14,82,CustomerCareQuality,crm.notify_customer,write,C3277,R6,owner of sold affected vehicle(s) AUR0000208,True,,2026-11-07T20:14:58.026+00:00
+E-14,83,CustomerCareQuality,crm.notify_customer,write,C3512,R6,owner of sold affected vehicle(s) AUR0000218,True,,2026-11-07T20:14:58.026+00:00
+E-14,84,CustomerCareQuality,crm.notify_customer,write,C3527,R6,owner of sold affected vehicle(s) AUR0000038,True,,2026-11-07T20:14:58.026+00:00
+E-14,85,CustomerCareQuality,crm.notify_customer,write,C3634,R6,owner of sold affected vehicle(s) AUR0000175,True,,2026-11-07T20:14:58.026+00:00
+E-14,86,CustomerCareQuality,crm.notify_customer,write,C3788,R6,owner of sold affected vehicle(s) AUR0000221,True,,2026-11-07T20:14:58.026+00:00
+E-14,87,CustomerCareQuality,crm.notify_customer,write,C3821,R6,owner of sold affected vehicle(s) AUR0000026,True,,2026-11-07T20:14:58.026+00:00
+E-14,88,CustomerCareQuality,crm.notify_customer,write,C3896,R6,owner of sold affected vehicle(s) AUR0000040,True,,2026-11-07T20:14:58.026+00:00
+E-14,89,CustomerCareQuality,crm.notify_customer,write,C3913,R6,owner of sold affected vehicle(s) AUR0000094,True,,2026-11-07T20:14:58.026+00:00
+E-14,90,CustomerCareQuality,crm.notify_customer,write,C3949,R6,owner of sold affected vehicle(s) AUR0000016,True,,2026-11-07T20:14:58.027+00:00
+E-14,91,CustomerCareQuality,crm.notify_customer,write,C4029,R6,owner of sold affected vehicle(s) AUR0000050,True,,2026-11-07T20:14:58.027+00:00
+E-14,92,CustomerCareQuality,crm.notify_customer,write,C4064,R6,owner of sold affected vehicle(s) AUR0000039,True,,2026-11-07T20:14:58.027+00:00
+E-14,93,CustomerCareQuality,crm.notify_customer,write,C4203,R6,owner of sold affected vehicle(s) AUR0000106,True,,2026-11-07T20:14:58.027+00:00
+E-14,94,CustomerCareQuality,crm.notify_customer,write,C4248,R6,owner of sold affected vehicle(s) AUR0000125,True,,2026-11-07T20:14:58.027+00:00
+E-14,95,CustomerCareQuality,crm.notify_customer,write,C4261,R6,owner of sold affected vehicle(s) AUR0000182,True,,2026-11-07T20:14:58.027+00:00
+E-14,96,CustomerCareQuality,crm.notify_customer,write,C4439,R6,owner of sold affected vehicle(s) AUR0000084,True,,2026-11-07T20:14:58.027+00:00
+E-14,97,CustomerCareQuality,crm.notify_customer,write,C4449,R6,owner of sold affected vehicle(s) AUR0000199,True,,2026-11-07T20:14:58.027+00:00
+E-14,98,CustomerCareQuality,crm.notify_customer,write,C4598,R6,owner of sold affected vehicle(s) AUR0000139,True,,2026-11-07T20:14:58.027+00:00
+E-14,99,CustomerCareQuality,crm.notify_customer,write,C4614,R6,owner of sold affected vehicle(s) AUR0000043,True,,2026-11-07T20:14:58.027+00:00
+E-14,100,CustomerCareQuality,crm.notify_customer,write,C4711,R6,owner of sold affected vehicle(s) AUR0000056,True,,2026-11-07T20:14:58.027+00:00
+E-14,101,CustomerCareQuality,crm.notify_customer,write,C4961,R6,owner of sold affected vehicle(s) AUR0000101,True,,2026-11-07T20:14:58.027+00:00
+E-14,102,CustomerCareQuality,crm.notify_customer,write,C5019,R6,owner of sold affected vehicle(s) AUR0000004,True,,2026-11-07T20:14:58.028+00:00
+E-14,103,CustomerCareQuality,crm.notify_customer,write,C5077,R6,owner of sold affected vehicle(s) AUR0000224,True,,2026-11-07T20:14:58.028+00:00
+E-14,104,CustomerCareQuality,crm.notify_customer,write,C5125,R6,owner of sold affected vehicle(s) AUR0000192,True,,2026-11-07T20:14:58.028+00:00
+E-14,105,CustomerCareQuality,crm.notify_customer,write,C5353,R6,owner of sold affected vehicle(s) AUR0000033,True,,2026-11-07T20:14:58.028+00:00
+E-14,106,CustomerCareQuality,crm.notify_customer,write,C5356,R6,owner of sold affected vehicle(s) AUR0000129,True,,2026-11-07T20:14:58.028+00:00
+E-14,107,CustomerCareQuality,crm.notify_customer,write,C5360,R6,owner of sold affected vehicle(s) AUR0000185,True,,2026-11-07T20:14:58.028+00:00
+E-14,108,CustomerCareQuality,crm.notify_customer,write,C5388,R6,owner of sold affected vehicle(s) AUR0000014,True,,2026-11-07T20:14:58.028+00:00
+E-14,109,CustomerCareQuality,crm.notify_customer,write,C5443,R6,owner of sold affected vehicle(s) AUR0000104,True,,2026-11-07T20:14:58.028+00:00
+E-14,110,CustomerCareQuality,crm.notify_customer,write,C5533,R6,owner of sold affected vehicle(s) AUR0000202,True,,2026-11-07T20:14:58.028+00:00
+E-14,111,CustomerCareQuality,crm.notify_customer,write,C5603,R6,owner of sold affected vehicle(s) AUR0000045,True,,2026-11-07T20:14:58.028+00:00
+E-14,112,CustomerCareQuality,crm.notify_customer,write,C5654,R6,owner of sold affected vehicle(s) AUR0000087,True,,2026-11-07T20:14:58.028+00:00
+E-14,113,CustomerCareQuality,crm.notify_customer,write,C5677,R6,owner of sold affected vehicle(s) AUR0000091,True,,2026-11-07T20:14:58.028+00:00
+E-14,114,CustomerCareQuality,crm.notify_customer,write,C5701,R6,owner of sold affected vehicle(s) AUR0000118,True,,2026-11-07T20:14:58.028+00:00
+E-14,115,CustomerCareQuality,crm.notify_customer,write,C5751,R6,owner of sold affected vehicle(s) AUR0000181,True,,2026-11-07T20:14:58.029+00:00
+E-14,116,CustomerCareQuality,crm.notify_customer,write,C5898,R6,owner of sold affected vehicle(s) AUR0000184,True,,2026-11-07T20:14:58.029+00:00
+E-14,117,CustomerCareQuality,crm.notify_customer,write,C6091,R6,owner of sold affected vehicle(s) AUR0000196,True,,2026-11-07T20:14:58.029+00:00
+E-14,118,CustomerCareQuality,crm.notify_customer,write,C6168,R6,owner of sold affected vehicle(s) AUR0000054,True,,2026-11-07T20:14:58.029+00:00
+E-14,119,CustomerCareQuality,crm.notify_customer,write,C6212,R6,owner of sold affected vehicle(s) AUR0000205,True,,2026-11-07T20:14:58.029+00:00
+E-14,120,CustomerCareQuality,crm.notify_customer,write,C6288,R6,owner of sold affected vehicle(s) AUR0000092,True,,2026-11-07T20:14:58.029+00:00
+E-14,121,CustomerCareQuality,crm.notify_customer,write,C6446,R6,owner of sold affected vehicle(s) AUR0000124,True,,2026-11-07T20:14:58.029+00:00
+E-14,122,CustomerCareQuality,crm.notify_customer,write,C6447,R6,owner of sold affected vehicle(s) AUR0000009,True,,2026-11-07T20:14:58.029+00:00
+E-14,123,CustomerCareQuality,crm.notify_customer,write,C6448,R6,owner of sold affected vehicle(s) AUR0000176,True,,2026-11-07T20:14:58.029+00:00
+E-14,124,CustomerCareQuality,crm.notify_customer,write,C6490,R6,owner of sold affected vehicle(s) AUR0000213,True,,2026-11-07T20:14:58.029+00:00
+E-14,125,CustomerCareQuality,crm.notify_customer,write,C6561,R6,owner of sold affected vehicle(s) AUR0000170,True,,2026-11-07T20:14:58.029+00:00
+E-14,126,CustomerCareQuality,crm.notify_customer,write,C6563,R6,owner of sold affected vehicle(s) AUR0000029,True,,2026-11-07T20:14:58.029+00:00
+E-14,127,CustomerCareQuality,crm.notify_customer,write,C6624,R6,owner of sold affected vehicle(s) AUR0000049,True,,2026-11-07T20:14:58.030+00:00
+E-14,128,CustomerCareQuality,crm.notify_customer,write,C6676,R6,owner of sold affected vehicle(s) AUR0000041,True,,2026-11-07T20:14:58.030+00:00
+E-14,129,CustomerCareQuality,crm.notify_customer,write,C6796,R6,owner of sold affected vehicle(s) AUR0000180,True,,2026-11-07T20:14:58.030+00:00
+E-14,130,CustomerCareQuality,crm.notify_customer,write,C6829,R6,owner of sold affected vehicle(s) AUR0000193,True,,2026-11-07T20:14:58.030+00:00
+E-14,131,CustomerCareQuality,crm.notify_customer,write,C6847,R6,owner of sold affected vehicle(s) AUR0000211,True,,2026-11-07T20:14:58.030+00:00
+E-15,1,CustomerCareQuality,quality.hold_lot,write,LOT-0191,R6,"LOT-0191 (CHIP-IVI from SUP-12, P_IN 2027-03-02..2027-03-03) is suspect",True,,2026-11-07T20:14:58.051+00:00
+E-15,2,DealerNetwork,dealer.stop_sale,write,D02,R6,1 unsold vehicle(s) at D02 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.051+00:00
+E-15,3,DealerNetwork,dealer.stop_sale,write,D03,R6,3 unsold vehicle(s) at D03 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,4,DealerNetwork,dealer.stop_sale,write,D04,R6,1 unsold vehicle(s) at D04 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,5,DealerNetwork,dealer.stop_sale,write,D06,R6,1 unsold vehicle(s) at D06 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,6,DealerNetwork,dealer.stop_sale,write,D07,R6,1 unsold vehicle(s) at D07 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,7,DealerNetwork,dealer.stop_sale,write,D08,R6,2 unsold vehicle(s) at D08 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,8,DealerNetwork,dealer.stop_sale,write,D10,R6,2 unsold vehicle(s) at D10 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,9,DealerNetwork,dealer.stop_sale,write,D12,R6,1 unsold vehicle(s) at D12 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,10,DealerNetwork,dealer.stop_sale,write,D13,R6,1 unsold vehicle(s) at D13 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,11,DealerNetwork,dealer.stop_sale,write,D15,R6,2 unsold vehicle(s) at D15 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,12,DealerNetwork,dealer.stop_sale,write,D20,R6,2 unsold vehicle(s) at D20 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.052+00:00
+E-15,13,DealerNetwork,dealer.stop_sale,write,D21,R6,1 unsold vehicle(s) at D21 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,14,DealerNetwork,dealer.stop_sale,write,D22,R6,1 unsold vehicle(s) at D22 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,15,DealerNetwork,dealer.stop_sale,write,D23,R6,3 unsold vehicle(s) at D23 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,16,DealerNetwork,dealer.stop_sale,write,D24,R6,1 unsold vehicle(s) at D24 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,17,DealerNetwork,dealer.stop_sale,write,D25,R6,2 unsold vehicle(s) at D25 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,18,DealerNetwork,dealer.stop_sale,write,D26,R6,2 unsold vehicle(s) at D26 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,19,DealerNetwork,dealer.stop_sale,write,D27,R6,1 unsold vehicle(s) at D27 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,20,DealerNetwork,dealer.stop_sale,write,D28,R6,1 unsold vehicle(s) at D28 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,21,DealerNetwork,dealer.stop_sale,write,D31,R6,2 unsold vehicle(s) at D31 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,22,DealerNetwork,dealer.stop_sale,write,D32,R6,1 unsold vehicle(s) at D32 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,23,DealerNetwork,dealer.stop_sale,write,D35,R6,1 unsold vehicle(s) at D35 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,24,DealerNetwork,dealer.stop_sale,write,D39,R6,2 unsold vehicle(s) at D39 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,25,DealerNetwork,dealer.stop_sale,write,D44,R6,2 unsold vehicle(s) at D44 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.053+00:00
+E-15,26,DealerNetwork,dealer.stop_sale,write,D45,R6,3 unsold vehicle(s) at D45 contain suspect lot LOT-0191,True,,2026-11-07T20:14:58.054+00:00
+E-15,27,CustomerCareQuality,crm.notify_customer,write,C0053,R6,owner of sold affected vehicle(s) AUR0003263,True,,2026-11-07T20:14:58.054+00:00
+E-15,28,CustomerCareQuality,crm.notify_customer,write,C0093,R6,owner of sold affected vehicle(s) AUR0003185,True,,2026-11-07T20:14:58.054+00:00
+E-15,29,CustomerCareQuality,crm.notify_customer,write,C0100,R6,owner of sold affected vehicle(s) AUR0003295,True,,2026-11-07T20:14:58.054+00:00
+E-15,30,CustomerCareQuality,crm.notify_customer,write,C0102,R6,owner of sold affected vehicle(s) AUR0003190,True,,2026-11-07T20:14:58.054+00:00
+E-15,31,CustomerCareQuality,crm.notify_customer,write,C0104,R6,owner of sold affected vehicle(s) AUR0003177,True,,2026-11-07T20:14:58.054+00:00
+E-15,32,CustomerCareQuality,crm.notify_customer,write,C0163,R6,owner of sold affected vehicle(s) AUR0003348,True,,2026-11-07T20:14:58.054+00:00
+E-15,33,CustomerCareQuality,crm.notify_customer,write,C0260,R6,owner of sold affected vehicle(s) AUR0003259,True,,2026-11-07T20:14:58.054+00:00
+E-15,34,CustomerCareQuality,crm.notify_customer,write,C0310,R6,owner of sold affected vehicle(s) AUR0003174,True,,2026-11-07T20:14:58.054+00:00
+E-15,35,CustomerCareQuality,crm.notify_customer,write,C0434,R6,owner of sold affected vehicle(s) AUR0003272,True,,2026-11-07T20:14:58.054+00:00
+E-15,36,CustomerCareQuality,crm.notify_customer,write,C0437,R6,owner of sold affected vehicle(s) AUR0003193,True,,2026-11-07T20:14:58.054+00:00
+E-15,37,CustomerCareQuality,crm.notify_customer,write,C0501,R6,owner of sold affected vehicle(s) AUR0003260,True,,2026-11-07T20:14:58.054+00:00
+E-15,38,CustomerCareQuality,crm.notify_customer,write,C0541,R6,owner of sold affected vehicle(s) AUR0003196,True,,2026-11-07T20:14:58.055+00:00
+E-15,39,CustomerCareQuality,crm.notify_customer,write,C0604,R6,owner of sold affected vehicle(s) AUR0003298,True,,2026-11-07T20:14:58.055+00:00
+E-15,40,CustomerCareQuality,crm.notify_customer,write,C0632,R6,owner of sold affected vehicle(s) AUR0003187,True,,2026-11-07T20:14:58.055+00:00
+E-15,41,CustomerCareQuality,crm.notify_customer,write,C0743,R6,owner of sold affected vehicle(s) AUR0003268,True,,2026-11-07T20:14:58.055+00:00
+E-15,42,CustomerCareQuality,crm.notify_customer,write,C0959,R6,owner of sold affected vehicle(s) AUR0003347,True,,2026-11-07T20:14:58.055+00:00
+E-15,43,CustomerCareQuality,crm.notify_customer,write,C1109,R6,owner of sold affected vehicle(s) AUR0003252,True,,2026-11-07T20:14:58.055+00:00
+E-15,44,CustomerCareQuality,crm.notify_customer,write,C1145,R6,owner of sold affected vehicle(s) AUR0003266,True,,2026-11-07T20:14:58.055+00:00
+E-15,45,CustomerCareQuality,crm.notify_customer,write,C1159,R6,owner of sold affected vehicle(s) AUR0003189,True,,2026-11-07T20:14:58.055+00:00
+E-15,46,CustomerCareQuality,crm.notify_customer,write,C1171,R6,owner of sold affected vehicle(s) AUR0003200,True,,2026-11-07T20:14:58.055+00:00
+E-15,47,CustomerCareQuality,crm.notify_customer,write,C1236,R6,owner of sold affected vehicle(s) AUR0003183,True,,2026-11-07T20:14:58.055+00:00
+E-15,48,CustomerCareQuality,crm.notify_customer,write,C1357,R6,owner of sold affected vehicle(s) AUR0003182,True,,2026-11-07T20:14:58.055+00:00
+E-15,49,CustomerCareQuality,crm.notify_customer,write,C1366,R6,owner of sold affected vehicle(s) AUR0003192,True,,2026-11-07T20:14:58.056+00:00
+E-15,50,CustomerCareQuality,crm.notify_customer,write,C1386,R6,owner of sold affected vehicle(s) AUR0003358,True,,2026-11-07T20:14:58.056+00:00
+E-15,51,CustomerCareQuality,crm.notify_customer,write,C1439,R6,owner of sold affected vehicle(s) AUR0003179,True,,2026-11-07T20:14:58.056+00:00
+E-15,52,CustomerCareQuality,crm.notify_customer,write,C1550,R6,owner of sold affected vehicle(s) AUR0003178,True,,2026-11-07T20:14:58.056+00:00
+E-15,53,CustomerCareQuality,crm.notify_customer,write,C1596,R6,owner of sold affected vehicle(s) AUR0003289,True,,2026-11-07T20:14:58.056+00:00
+E-15,54,CustomerCareQuality,crm.notify_customer,write,C1649,R6,owner of sold affected vehicle(s) AUR0003275,True,,2026-11-07T20:14:58.056+00:00
+E-15,55,CustomerCareQuality,crm.notify_customer,write,C1731,R6,owner of sold affected vehicle(s) AUR0003198,True,,2026-11-07T20:14:58.056+00:00
+E-15,56,CustomerCareQuality,crm.notify_customer,write,C1779,R6,owner of sold affected vehicle(s) AUR0003237,True,,2026-11-07T20:14:58.056+00:00
+E-15,57,CustomerCareQuality,crm.notify_customer,write,C1844,R6,owner of sold affected vehicle(s) AUR0003346,True,,2026-11-07T20:14:58.056+00:00
+E-15,58,CustomerCareQuality,crm.notify_customer,write,C1963,R6,owner of sold affected vehicle(s) AUR0003279,True,,2026-11-07T20:14:58.056+00:00
+E-15,59,CustomerCareQuality,crm.notify_customer,write,C2115,R6,owner of sold affected vehicle(s) AUR0003246,True,,2026-11-07T20:14:58.056+00:00
+E-15,60,CustomerCareQuality,crm.notify_customer,write,C2275,R6,owner of sold affected vehicle(s) AUR0003181,True,,2026-11-07T20:14:58.056+00:00
+E-15,61,CustomerCareQuality,crm.notify_customer,write,C2281,R6,owner of sold affected vehicle(s) AUR0003241,True,,2026-11-07T20:14:58.057+00:00
+E-15,62,CustomerCareQuality,crm.notify_customer,write,C2418,R6,owner of sold affected vehicle(s) AUR0003191,True,,2026-11-07T20:14:58.057+00:00
+E-15,63,CustomerCareQuality,crm.notify_customer,write,C2549,R6,owner of sold affected vehicle(s) AUR0003194,True,,2026-11-07T20:14:58.057+00:00
+E-15,64,CustomerCareQuality,crm.notify_customer,write,C2583,R6,owner of sold affected vehicle(s) AUR0003249,True,,2026-11-07T20:14:58.057+00:00
+E-15,65,CustomerCareQuality,crm.notify_customer,write,C2605,R6,owner of sold affected vehicle(s) AUR0003284,True,,2026-11-07T20:14:58.057+00:00
+E-15,66,CustomerCareQuality,crm.notify_customer,write,C2622,R6,owner of sold affected vehicle(s) AUR0003290,True,,2026-11-07T20:14:58.057+00:00
+E-15,67,CustomerCareQuality,crm.notify_customer,write,C2701,R6,owner of sold affected vehicle(s) AUR0003199,True,,2026-11-07T20:14:58.057+00:00
+E-15,68,CustomerCareQuality,crm.notify_customer,write,C2708,R6,owner of sold affected vehicle(s) AUR0003197,True,,2026-11-07T20:14:58.057+00:00
+E-15,69,CustomerCareQuality,crm.notify_customer,write,C2749,R6,owner of sold affected vehicle(s) AUR0003269,True,,2026-11-07T20:14:58.057+00:00
+E-15,70,CustomerCareQuality,crm.notify_customer,write,C2823,R6,owner of sold affected vehicle(s) AUR0003342,True,,2026-11-07T20:14:58.057+00:00
+E-15,71,CustomerCareQuality,crm.notify_customer,write,C2898,R6,owner of sold affected vehicle(s) AUR0003265,True,,2026-11-07T20:14:58.057+00:00
+E-15,72,CustomerCareQuality,crm.notify_customer,write,C3029,R6,owner of sold affected vehicle(s) AUR0003253,True,,2026-11-07T20:14:58.057+00:00
+E-15,73,CustomerCareQuality,crm.notify_customer,write,C3355,R6,owner of sold affected vehicle(s) AUR0003297,True,,2026-11-07T20:14:58.058+00:00
+E-15,74,CustomerCareQuality,crm.notify_customer,write,C3697,R6,owner of sold affected vehicle(s) AUR0003353,True,,2026-11-07T20:14:58.058+00:00
+E-15,75,CustomerCareQuality,crm.notify_customer,write,C3771,R6,owner of sold affected vehicle(s) AUR0003276,True,,2026-11-07T20:14:58.058+00:00
+E-15,76,CustomerCareQuality,crm.notify_customer,write,C4033,R6,owner of sold affected vehicle(s) AUR0003291,True,,2026-11-07T20:14:58.058+00:00
+E-15,77,CustomerCareQuality,crm.notify_customer,write,C4096,R6,owner of sold affected vehicle(s) AUR0003281,True,,2026-11-07T20:14:58.058+00:00
+E-15,78,CustomerCareQuality,crm.notify_customer,write,C4180,R6,owner of sold affected vehicle(s) AUR0003357,True,,2026-11-07T20:14:58.058+00:00
+E-15,79,CustomerCareQuality,crm.notify_customer,write,C4244,R6,owner of sold affected vehicle(s) AUR0003239,True,,2026-11-07T20:14:58.058+00:00
+E-15,80,CustomerCareQuality,crm.notify_customer,write,C4249,R6,owner of sold affected vehicle(s) AUR0003186,True,,2026-11-07T20:14:58.058+00:00
+E-15,81,CustomerCareQuality,crm.notify_customer,write,C4447,R6,owner of sold affected vehicle(s) AUR0003336,True,,2026-11-07T20:14:58.058+00:00
+E-15,82,CustomerCareQuality,crm.notify_customer,write,C4522,R6,owner of sold affected vehicle(s) AUR0003245,True,,2026-11-07T20:14:58.058+00:00
+E-15,83,CustomerCareQuality,crm.notify_customer,write,C4595,R6,owner of sold affected vehicle(s) AUR0003354,True,,2026-11-07T20:14:58.058+00:00
+E-15,84,CustomerCareQuality,crm.notify_customer,write,C4863,R6,owner of sold affected vehicle(s) AUR0003257,True,,2026-11-07T20:14:58.058+00:00
+E-15,85,CustomerCareQuality,crm.notify_customer,write,C4937,R6,owner of sold affected vehicle(s) AUR0003261,True,,2026-11-07T20:14:58.059+00:00
+E-15,86,CustomerCareQuality,crm.notify_customer,write,C5016,R6,owner of sold affected vehicle(s) AUR0003356,True,,2026-11-07T20:14:58.059+00:00
+E-15,87,CustomerCareQuality,crm.notify_customer,write,C5021,R6,owner of sold affected vehicle(s) AUR0003195,True,,2026-11-07T20:14:58.059+00:00
+E-15,88,CustomerCareQuality,crm.notify_customer,write,C5099,R6,owner of sold affected vehicle(s) AUR0003188,True,,2026-11-07T20:14:58.059+00:00
+E-15,89,CustomerCareQuality,crm.notify_customer,write,C5234,R6,owner of sold affected vehicle(s) AUR0003351,True,,2026-11-07T20:14:58.059+00:00
+E-15,90,CustomerCareQuality,crm.notify_customer,write,C5279,R6,owner of sold affected vehicle(s) AUR0003292,True,,2026-11-07T20:14:58.059+00:00
+E-15,91,CustomerCareQuality,crm.notify_customer,write,C5489,R6,owner of sold affected vehicle(s) AUR0003271,True,,2026-11-07T20:14:58.059+00:00
+E-15,92,CustomerCareQuality,crm.notify_customer,write,C5623,R6,owner of sold affected vehicle(s) AUR0003255,True,,2026-11-07T20:14:58.059+00:00
+E-15,93,CustomerCareQuality,crm.notify_customer,write,C5998,R6,owner of sold affected vehicle(s) AUR0003335,True,,2026-11-07T20:14:58.059+00:00
+E-15,94,CustomerCareQuality,crm.notify_customer,write,C6063,R6,owner of sold affected vehicle(s) AUR0003251,True,,2026-11-07T20:14:58.059+00:00
+E-15,95,CustomerCareQuality,crm.notify_customer,write,C6067,R6,owner of sold affected vehicle(s) AUR0003350,True,,2026-11-07T20:14:58.059+00:00
+E-15,96,CustomerCareQuality,crm.notify_customer,write,C6399,R6,owner of sold affected vehicle(s) AUR0003247,True,,2026-11-07T20:14:58.059+00:00
+E-15,97,CustomerCareQuality,crm.notify_customer,write,C6418,R6,owner of sold affected vehicle(s) AUR0003344,True,,2026-11-07T20:14:58.059+00:00
+E-15,98,CustomerCareQuality,crm.notify_customer,write,C6727,R6,owner of sold affected vehicle(s) AUR0003234,True,,2026-11-07T20:14:58.060+00:00
+E-15,99,CustomerCareQuality,crm.notify_customer,write,C6746,R6,owner of sold affected vehicle(s) AUR0003278,True,,2026-11-07T20:14:58.060+00:00
+E-15,100,CustomerCareQuality,crm.notify_customer,write,C6816,R6,owner of sold affected vehicle(s) AUR0003244,True,,2026-11-07T20:14:58.060+00:00
+E-15,101,CustomerCareQuality,crm.notify_customer,write,C6890,R6,owner of sold affected vehicle(s) AUR0003248,True,,2026-11-07T20:14:58.060+00:00
+E-15,102,CustomerCareQuality,crm.notify_customer,write,C7000,R6,owner of sold affected vehicle(s) AUR0003282,True,,2026-11-07T20:14:58.060+00:00

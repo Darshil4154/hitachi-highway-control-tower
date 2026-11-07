@@ -1,0 +1,3384 @@
+{
+  "event": {
+    "event_id": "E-10",
+    "source": "ops chat",
+    "received_at": "2027-03-08T09:50:00",
+    "text": "Huntsville line is waiting on 60 kWh battery packs from Lumen. Original drop was Monday Mar 29, new ETA is Thursday Apr 1 because of a truck breakdown.",
+    "mentions": [
+      "BATT-60",
+      "P_AL",
+      "SUP-18"
+    ]
+  },
+  "classification": {
+    "category": "incident",
+    "gate": "incident",
+    "confidence": 0.95,
+    "rationale": "One concrete incident; the message mentions a delay in a part supply.",
+    "gate_reason": "One concrete incident; the message mentions a delay in a part supply.",
+    "hedges": [],
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_fallback": false,
+    "llm_cached": true,
+    "llm_error": null
+  },
+  "incidents": [
+    {
+      "incident_id": "E-10-I1",
+      "type": "supplier_delay",
+      "evidence_quote": "Huntsville line is waiting on 60 kWh battery packs from Lumen. Original drop was Monday Mar 29, new ETA is Thursday Apr 1 because of a truck breakdown.",
+      "extracted": [
+        {
+          "field": "supplier_mention",
+          "phrase": "Lumen",
+          "resolved": "SUP-18",
+          "method": "alias",
+          "confidence": 1.0
+        },
+        {
+          "field": "part_mention",
+          "phrase": "60 kWh battery packs",
+          "resolved": "BATT-60",
+          "method": "alias",
+          "confidence": 1.0
+        },
+        {
+          "field": "plant_mention",
+          "phrase": "Huntsville",
+          "resolved": "P_AL",
+          "method": "scan_quote+alias",
+          "confidence": 1.0
+        },
+        {
+          "field": "original_eta_phrase",
+          "phrase": "Monday Mar 29",
+          "resolved": "2027-03-29",
+          "method": "date:weekday_month_day_literal",
+          "confidence": 1.0
+        },
+        {
+          "field": "new_eta_phrase",
+          "phrase": "Thursday Apr 1",
+          "resolved": "2027-04-01",
+          "method": "date:weekday_month_day_literal",
+          "confidence": 1.0
+        }
+      ],
+      "validation": [
+        {
+          "check": "new_eta > original_eta",
+          "ok": true
+        },
+        {
+          "check": "exactly one shipment of BATT-60 to P_AL from SUP-18 due 2027-03-29",
+          "ok": true
+        },
+        {
+          "check": "new ETA 2027-04-01 after original ETA 2027-03-29",
+          "ok": true
+        }
+      ],
+      "disruption": {
+        "plant_id": "P_AL",
+        "part_id": "BATT-60",
+        "shipment_id": "SH-0248",
+        "supplier_id": "SUP-18",
+        "blocked_from": "2027-03-29",
+        "blocked_until_excl": "2027-04-01",
+        "restart": "2027-04-01",
+        "models_blocked": [
+          "NOVA"
+        ]
+      },
+      "graph_path": {
+        "nodes": [
+          "Customer:C0208",
+          "Customer:C0466",
+          "Customer:C0979",
+          "Customer:C0987",
+          "Customer:C0990",
+          "Customer:C1069",
+          "Customer:C1094",
+          "Customer:C1129",
+          "Customer:C1237",
+          "Customer:C1565",
+          "Customer:C1608",
+          "Customer:C1633",
+          "Customer:C1708",
+          "Customer:C1917",
+          "Customer:C2182",
+          "Customer:C2439",
+          "Customer:C3028",
+          "Customer:C3147",
+          "Customer:C3218",
+          "Customer:C3279",
+          "Customer:C3999",
+          "Customer:C4939",
+          "Customer:C5474",
+          "Customer:C5954",
+          "Customer:C5976",
+          "Customer:C6332",
+          "Customer:C6520",
+          "Customer:C6660",
+          "Customer:C6785",
+          "CustomerOrder:CO-02575",
+          "CustomerOrder:CO-02576",
+          "CustomerOrder:CO-02577",
+          "CustomerOrder:CO-02578",
+          "CustomerOrder:CO-02579",
+          "CustomerOrder:CO-02580",
+          "CustomerOrder:CO-02581",
+          "CustomerOrder:CO-02582",
+          "CustomerOrder:CO-02583",
+          "CustomerOrder:CO-02603",
+          "CustomerOrder:CO-02604",
+          "CustomerOrder:CO-02605",
+          "CustomerOrder:CO-02606",
+          "CustomerOrder:CO-02607",
+          "CustomerOrder:CO-02608",
+          "CustomerOrder:CO-02609",
+          "CustomerOrder:CO-02610",
+          "CustomerOrder:CO-02611",
+          "CustomerOrder:CO-02612",
+          "CustomerOrder:CO-02630",
+          "CustomerOrder:CO-02631",
+          "CustomerOrder:CO-02632",
+          "CustomerOrder:CO-02633",
+          "CustomerOrder:CO-02634",
+          "CustomerOrder:CO-02635",
+          "CustomerOrder:CO-02636",
+          "CustomerOrder:CO-02637",
+          "CustomerOrder:CO-02638",
+          "CustomerOrder:CO-02639",
+          "Dealer:D02",
+          "Dealer:D04",
+          "Dealer:D08",
+          "Dealer:D10",
+          "Dealer:D17",
+          "Dealer:D20",
+          "Dealer:D21",
+          "Dealer:D23",
+          "Dealer:D25",
+          "Dealer:D27",
+          "Dealer:D28",
+          "Dealer:D31",
+          "Dealer:D34",
+          "Dealer:D44",
+          "Dealer:D45",
+          "Dealer:D46",
+          "Dealer:D47",
+          "Dealer:D48",
+          "LoanerPool:D02",
+          "LoanerPool:D04",
+          "LoanerPool:D08",
+          "LoanerPool:D10",
+          "LoanerPool:D17",
+          "LoanerPool:D20",
+          "LoanerPool:D21",
+          "LoanerPool:D23",
+          "LoanerPool:D25",
+          "LoanerPool:D27",
+          "LoanerPool:D28",
+          "LoanerPool:D31",
+          "LoanerPool:D34",
+          "LoanerPool:D44",
+          "LoanerPool:D45",
+          "LoanerPool:D46",
+          "LoanerPool:D47",
+          "LoanerPool:D48",
+          "Model:NOVA",
+          "Part:BATT-60",
+          "Plant:P_AL",
+          "ProductionOrder:PO-0437",
+          "ProductionOrder:PO-0440",
+          "ProductionOrder:PO-0443",
+          "Shipment:SH-0248",
+          "Supplier:SUP-18"
+        ],
+        "edges": [
+          [
+            "Shipment:SH-0248",
+            "SENT_BY",
+            "Supplier:SUP-18"
+          ],
+          [
+            "Shipment:SH-0248",
+            "DELIVERS",
+            "Part:BATT-60"
+          ],
+          [
+            "Shipment:SH-0248",
+            "RECEIVED_AT",
+            "Plant:P_AL"
+          ],
+          [
+            "Part:BATT-60",
+            "USED_IN",
+            "Model:NOVA"
+          ],
+          [
+            "Part:BATT-60",
+            "USED_IN",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "BUILDS",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "SCHEDULED_AT",
+            "Plant:P_AL"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "BUILDS",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "SCHEDULED_AT",
+            "Plant:P_AL"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "BUILDS",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "SCHEDULED_AT",
+            "Plant:P_AL"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02575"
+          ],
+          [
+            "CustomerOrder:CO-02575",
+            "SOLD_THROUGH",
+            "Dealer:D04"
+          ],
+          [
+            "CustomerOrder:CO-02575",
+            "ORDERED_BY",
+            "Customer:C6785"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02576"
+          ],
+          [
+            "CustomerOrder:CO-02576",
+            "SOLD_THROUGH",
+            "Dealer:D20"
+          ],
+          [
+            "CustomerOrder:CO-02576",
+            "ORDERED_BY",
+            "Customer:C1069"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02577"
+          ],
+          [
+            "CustomerOrder:CO-02577",
+            "SOLD_THROUGH",
+            "Dealer:D45"
+          ],
+          [
+            "CustomerOrder:CO-02577",
+            "ORDERED_BY",
+            "Customer:C5954"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02578"
+          ],
+          [
+            "CustomerOrder:CO-02578",
+            "SOLD_THROUGH",
+            "Dealer:D20"
+          ],
+          [
+            "CustomerOrder:CO-02578",
+            "ORDERED_BY",
+            "Customer:C3147"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02579"
+          ],
+          [
+            "CustomerOrder:CO-02579",
+            "SOLD_THROUGH",
+            "Dealer:D23"
+          ],
+          [
+            "CustomerOrder:CO-02579",
+            "ORDERED_BY",
+            "Customer:C1129"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02580"
+          ],
+          [
+            "CustomerOrder:CO-02580",
+            "SOLD_THROUGH",
+            "Dealer:D28"
+          ],
+          [
+            "CustomerOrder:CO-02580",
+            "ORDERED_BY",
+            "Customer:C6660"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02581"
+          ],
+          [
+            "CustomerOrder:CO-02581",
+            "SOLD_THROUGH",
+            "Dealer:D47"
+          ],
+          [
+            "CustomerOrder:CO-02581",
+            "ORDERED_BY",
+            "Customer:C1608"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02582"
+          ],
+          [
+            "CustomerOrder:CO-02582",
+            "SOLD_THROUGH",
+            "Dealer:D45"
+          ],
+          [
+            "CustomerOrder:CO-02582",
+            "ORDERED_BY",
+            "Customer:C1237"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02583"
+          ],
+          [
+            "CustomerOrder:CO-02583",
+            "SOLD_THROUGH",
+            "Dealer:D31"
+          ],
+          [
+            "CustomerOrder:CO-02583",
+            "ORDERED_BY",
+            "Customer:C6520"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02603"
+          ],
+          [
+            "CustomerOrder:CO-02603",
+            "SOLD_THROUGH",
+            "Dealer:D23"
+          ],
+          [
+            "CustomerOrder:CO-02603",
+            "ORDERED_BY",
+            "Customer:C1708"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02604"
+          ],
+          [
+            "CustomerOrder:CO-02604",
+            "SOLD_THROUGH",
+            "Dealer:D27"
+          ],
+          [
+            "CustomerOrder:CO-02604",
+            "ORDERED_BY",
+            "Customer:C3999"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02605"
+          ],
+          [
+            "CustomerOrder:CO-02605",
+            "SOLD_THROUGH",
+            "Dealer:D34"
+          ],
+          [
+            "CustomerOrder:CO-02605",
+            "ORDERED_BY",
+            "Customer:C1094"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02606"
+          ],
+          [
+            "CustomerOrder:CO-02606",
+            "SOLD_THROUGH",
+            "Dealer:D45"
+          ],
+          [
+            "CustomerOrder:CO-02606",
+            "ORDERED_BY",
+            "Customer:C0208"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02607"
+          ],
+          [
+            "CustomerOrder:CO-02607",
+            "SOLD_THROUGH",
+            "Dealer:D21"
+          ],
+          [
+            "CustomerOrder:CO-02607",
+            "ORDERED_BY",
+            "Customer:C0987"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02608"
+          ],
+          [
+            "CustomerOrder:CO-02608",
+            "SOLD_THROUGH",
+            "Dealer:D45"
+          ],
+          [
+            "CustomerOrder:CO-02608",
+            "ORDERED_BY",
+            "Customer:C1917"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02609"
+          ],
+          [
+            "CustomerOrder:CO-02609",
+            "SOLD_THROUGH",
+            "Dealer:D34"
+          ],
+          [
+            "CustomerOrder:CO-02609",
+            "ORDERED_BY",
+            "Customer:C0990"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02610"
+          ],
+          [
+            "CustomerOrder:CO-02610",
+            "SOLD_THROUGH",
+            "Dealer:D44"
+          ],
+          [
+            "CustomerOrder:CO-02610",
+            "ORDERED_BY",
+            "Customer:C4939"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02611"
+          ],
+          [
+            "CustomerOrder:CO-02611",
+            "SOLD_THROUGH",
+            "Dealer:D10"
+          ],
+          [
+            "CustomerOrder:CO-02611",
+            "ORDERED_BY",
+            "Customer:C5976"
+          ],
+          [
+            "ProductionOrder:PO-0440",
+            "FULFILLS",
+            "CustomerOrder:CO-02612"
+          ],
+          [
+            "CustomerOrder:CO-02612",
+            "SOLD_THROUGH",
+            "Dealer:D46"
+          ],
+          [
+            "CustomerOrder:CO-02612",
+            "ORDERED_BY",
+            "Customer:C0979"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02630"
+          ],
+          [
+            "CustomerOrder:CO-02630",
+            "SOLD_THROUGH",
+            "Dealer:D27"
+          ],
+          [
+            "CustomerOrder:CO-02630",
+            "ORDERED_BY",
+            "Customer:C2182"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02631"
+          ],
+          [
+            "CustomerOrder:CO-02631",
+            "SOLD_THROUGH",
+            "Dealer:D20"
+          ],
+          [
+            "CustomerOrder:CO-02631",
+            "ORDERED_BY",
+            "Customer:C1565"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02632"
+          ],
+          [
+            "CustomerOrder:CO-02632",
+            "SOLD_THROUGH",
+            "Dealer:D45"
+          ],
+          [
+            "CustomerOrder:CO-02632",
+            "ORDERED_BY",
+            "Customer:C0466"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02633"
+          ],
+          [
+            "CustomerOrder:CO-02633",
+            "SOLD_THROUGH",
+            "Dealer:D46"
+          ],
+          [
+            "CustomerOrder:CO-02633",
+            "ORDERED_BY",
+            "Customer:C3218"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02634"
+          ],
+          [
+            "CustomerOrder:CO-02634",
+            "SOLD_THROUGH",
+            "Dealer:D17"
+          ],
+          [
+            "CustomerOrder:CO-02634",
+            "ORDERED_BY",
+            "Customer:C3279"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02635"
+          ],
+          [
+            "CustomerOrder:CO-02635",
+            "SOLD_THROUGH",
+            "Dealer:D45"
+          ],
+          [
+            "CustomerOrder:CO-02635",
+            "ORDERED_BY",
+            "Customer:C5474"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02636"
+          ],
+          [
+            "CustomerOrder:CO-02636",
+            "SOLD_THROUGH",
+            "Dealer:D25"
+          ],
+          [
+            "CustomerOrder:CO-02636",
+            "ORDERED_BY",
+            "Customer:C3028"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02637"
+          ],
+          [
+            "CustomerOrder:CO-02637",
+            "SOLD_THROUGH",
+            "Dealer:D08"
+          ],
+          [
+            "CustomerOrder:CO-02637",
+            "ORDERED_BY",
+            "Customer:C2439"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02638"
+          ],
+          [
+            "CustomerOrder:CO-02638",
+            "SOLD_THROUGH",
+            "Dealer:D02"
+          ],
+          [
+            "CustomerOrder:CO-02638",
+            "ORDERED_BY",
+            "Customer:C1633"
+          ],
+          [
+            "ProductionOrder:PO-0443",
+            "FULFILLS",
+            "CustomerOrder:CO-02639"
+          ],
+          [
+            "CustomerOrder:CO-02639",
+            "SOLD_THROUGH",
+            "Dealer:D48"
+          ],
+          [
+            "CustomerOrder:CO-02639",
+            "ORDERED_BY",
+            "Customer:C6332"
+          ],
+          [
+            "Dealer:D02",
+            "HAS_POOL",
+            "LoanerPool:D02"
+          ],
+          [
+            "Dealer:D04",
+            "HAS_POOL",
+            "LoanerPool:D04"
+          ],
+          [
+            "Dealer:D08",
+            "HAS_POOL",
+            "LoanerPool:D08"
+          ],
+          [
+            "Dealer:D10",
+            "HAS_POOL",
+            "LoanerPool:D10"
+          ],
+          [
+            "Dealer:D17",
+            "HAS_POOL",
+            "LoanerPool:D17"
+          ],
+          [
+            "Dealer:D20",
+            "HAS_POOL",
+            "LoanerPool:D20"
+          ],
+          [
+            "Dealer:D21",
+            "HAS_POOL",
+            "LoanerPool:D21"
+          ],
+          [
+            "Dealer:D23",
+            "HAS_POOL",
+            "LoanerPool:D23"
+          ],
+          [
+            "Dealer:D25",
+            "HAS_POOL",
+            "LoanerPool:D25"
+          ],
+          [
+            "Dealer:D27",
+            "HAS_POOL",
+            "LoanerPool:D27"
+          ],
+          [
+            "Dealer:D28",
+            "HAS_POOL",
+            "LoanerPool:D28"
+          ],
+          [
+            "Dealer:D31",
+            "HAS_POOL",
+            "LoanerPool:D31"
+          ],
+          [
+            "Dealer:D34",
+            "HAS_POOL",
+            "LoanerPool:D34"
+          ],
+          [
+            "Dealer:D44",
+            "HAS_POOL",
+            "LoanerPool:D44"
+          ],
+          [
+            "Dealer:D45",
+            "HAS_POOL",
+            "LoanerPool:D45"
+          ],
+          [
+            "Dealer:D46",
+            "HAS_POOL",
+            "LoanerPool:D46"
+          ],
+          [
+            "Dealer:D47",
+            "HAS_POOL",
+            "LoanerPool:D47"
+          ],
+          [
+            "Dealer:D48",
+            "HAS_POOL",
+            "LoanerPool:D48"
+          ]
+        ],
+        "text": "P_AL <-[RECEIVED_AT]- SH-0248 -[DELIVERS]-> BATT-60 -[USED_IN]-> NOVA <-[BUILDS]- PO-0437 -[FULFILLS]-> CO-02575 -[SOLD_THROUGH]-> D04 | CO-02575 -[ORDERED_BY]-> C6785  [3 production orders, 29 customer orders, 18 dealers]",
+        "chain": [
+          [
+            "Shipment:SH-0248",
+            "RECEIVED_AT",
+            "Plant:P_AL"
+          ],
+          [
+            "Shipment:SH-0248",
+            "DELIVERS",
+            "Part:BATT-60"
+          ],
+          [
+            "Part:BATT-60",
+            "USED_IN",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "BUILDS",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0437",
+            "FULFILLS",
+            "CustomerOrder:CO-02575"
+          ],
+          [
+            "CustomerOrder:CO-02575",
+            "SOLD_THROUGH",
+            "Dealer:D04"
+          ],
+          [
+            "CustomerOrder:CO-02575",
+            "ORDERED_BY",
+            "Customer:C6785"
+          ]
+        ],
+        "anchor": "Shipment:SH-0248"
+      },
+      "affected": {
+        "production_orders": [
+          "PO-0437",
+          "PO-0440",
+          "PO-0443"
+        ],
+        "customer_orders": [
+          "CO-02575",
+          "CO-02576",
+          "CO-02577",
+          "CO-02578",
+          "CO-02579",
+          "CO-02580",
+          "CO-02581",
+          "CO-02582",
+          "CO-02583",
+          "CO-02603",
+          "CO-02604",
+          "CO-02605",
+          "CO-02606",
+          "CO-02607",
+          "CO-02608",
+          "CO-02609",
+          "CO-02610",
+          "CO-02611",
+          "CO-02612",
+          "CO-02630",
+          "CO-02631",
+          "CO-02632",
+          "CO-02633",
+          "CO-02634",
+          "CO-02635",
+          "CO-02636",
+          "CO-02637",
+          "CO-02638",
+          "CO-02639"
+        ],
+        "dealers": [
+          "D02",
+          "D04",
+          "D08",
+          "D10",
+          "D17",
+          "D20",
+          "D21",
+          "D23",
+          "D25",
+          "D27",
+          "D28",
+          "D31",
+          "D34",
+          "D44",
+          "D45",
+          "D46",
+          "D47",
+          "D48"
+        ],
+        "customers": [
+          "C0208",
+          "C0466",
+          "C0979",
+          "C0987",
+          "C0990",
+          "C1069",
+          "C1094",
+          "C1129",
+          "C1237",
+          "C1565",
+          "C1608",
+          "C1633",
+          "C1708",
+          "C1917",
+          "C2182",
+          "C2439",
+          "C3028",
+          "C3147",
+          "C3218",
+          "C3279",
+          "C3999",
+          "C4939",
+          "C5474",
+          "C5954",
+          "C5976",
+          "C6332",
+          "C6520",
+          "C6660",
+          "C6785"
+        ],
+        "lots": [],
+        "vehicles_unsold": [],
+        "vehicles_sold": []
+      },
+      "excluded": [
+        {
+          "id": "PO-0436",
+          "reason": "SUMMIT does not use BATT-60"
+        },
+        {
+          "id": "PO-0438",
+          "reason": "VOYAGER does not use BATT-60"
+        },
+        {
+          "id": "PO-0439",
+          "reason": "SUMMIT does not use BATT-60"
+        },
+        {
+          "id": "PO-0441",
+          "reason": "VOYAGER does not use BATT-60"
+        },
+        {
+          "id": "PO-0442",
+          "reason": "SUMMIT does not use BATT-60"
+        },
+        {
+          "id": "PO-0444",
+          "reason": "VOYAGER does not use BATT-60"
+        }
+      ],
+      "decisions": {
+        "reschedule": [
+          {
+            "po": "PO-0437",
+            "model": "NOVA",
+            "from": "P_AL 2027-03-29",
+            "to": "P_AL 2027-04-01",
+            "kind": "same_plant",
+            "reason": "PO-0437 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-01",
+            "rule_id": "R3"
+          },
+          {
+            "po": "PO-0440",
+            "model": "NOVA",
+            "from": "P_AL 2027-03-30",
+            "to": "P_AL 2027-04-01",
+            "kind": "same_plant",
+            "reason": "PO-0440 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-01",
+            "rule_id": "R3"
+          },
+          {
+            "po": "PO-0443",
+            "model": "NOVA",
+            "from": "P_AL 2027-03-31",
+            "to": "P_AL 2027-04-02",
+            "kind": "same_plant",
+            "reason": "PO-0443 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-02",
+            "rule_id": "R3"
+          }
+        ],
+        "loaners": [
+          {
+            "co": "CO-02638",
+            "dealer": "D02",
+            "customer": "C1633",
+            "tier": "Gold",
+            "promised": "2027-04-04",
+            "rank": 1,
+            "decision": "assigned",
+            "reason": "rank 1 at D02 (Gold, promised 2027-04-04); pool 2",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02575",
+            "dealer": "D04",
+            "customer": "C6785",
+            "tier": "Gold",
+            "promised": "2027-04-01",
+            "rank": 1,
+            "decision": "assigned",
+            "reason": "rank 1 at D04 (Gold, promised 2027-04-01); pool 1",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02637",
+            "dealer": "D08",
+            "customer": "C2439",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02611",
+            "dealer": "D10",
+            "customer": "C5976",
+            "tier": "Standard",
+            "promised": "2027-04-04",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02634",
+            "dealer": "D17",
+            "customer": "C3279",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02578",
+            "dealer": "D20",
+            "customer": "C3147",
+            "tier": "Gold",
+            "promised": "2027-04-03",
+            "rank": 1,
+            "decision": "assigned",
+            "reason": "rank 1 at D20 (Gold, promised 2027-04-03); pool 1",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02576",
+            "dealer": "D20",
+            "customer": "C1069",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02631",
+            "dealer": "D20",
+            "customer": "C1565",
+            "tier": "Standard",
+            "promised": "2027-04-05",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02607",
+            "dealer": "D21",
+            "customer": "C0987",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02579",
+            "dealer": "D23",
+            "customer": "C1129",
+            "tier": "Gold",
+            "promised": "2027-04-02",
+            "rank": 1,
+            "decision": "assigned",
+            "reason": "rank 1 at D23 (Gold, promised 2027-04-02); pool 2",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02603",
+            "dealer": "D23",
+            "customer": "C1708",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02636",
+            "dealer": "D25",
+            "customer": "C3028",
+            "tier": "Platinum",
+            "promised": "2027-04-03",
+            "rank": 1,
+            "decision": "assigned",
+            "reason": "rank 1 at D25 (Platinum, promised 2027-04-03); pool 1",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02604",
+            "dealer": "D27",
+            "customer": "C3999",
+            "tier": "Gold",
+            "promised": "2027-04-04",
+            "rank": 1,
+            "decision": "assigned",
+            "reason": "rank 1 at D27 (Gold, promised 2027-04-04); pool 1",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02630",
+            "dealer": "D27",
+            "customer": "C2182",
+            "tier": "Standard",
+            "promised": "2027-04-05",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02580",
+            "dealer": "D28",
+            "customer": "C6660",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02583",
+            "dealer": "D31",
+            "customer": "C6520",
+            "tier": "Standard",
+            "promised": "2027-04-02",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02605",
+            "dealer": "D34",
+            "customer": "C1094",
+            "tier": "Gold",
+            "promised": "2027-04-03",
+            "rank": 1,
+            "decision": "assigned",
+            "reason": "rank 1 at D34 (Gold, promised 2027-04-03); pool 1",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02609",
+            "dealer": "D34",
+            "customer": "C0990",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02610",
+            "dealer": "D44",
+            "customer": "C4939",
+            "tier": "Standard",
+            "promised": "2027-04-04",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02577",
+            "dealer": "D45",
+            "customer": "C5954",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02582",
+            "dealer": "D45",
+            "customer": "C1237",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02606",
+            "dealer": "D45",
+            "customer": "C0208",
+            "tier": "Standard",
+            "promised": "2027-04-04",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02608",
+            "dealer": "D45",
+            "customer": "C1917",
+            "tier": "Standard",
+            "promised": "2027-04-04",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02632",
+            "dealer": "D45",
+            "customer": "C0466",
+            "tier": "Standard",
+            "promised": "2027-04-05",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02635",
+            "dealer": "D45",
+            "customer": "C5474",
+            "tier": "Standard",
+            "promised": "2027-04-05",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02612",
+            "dealer": "D46",
+            "customer": "C0979",
+            "tier": "Standard",
+            "promised": "2027-04-03",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02633",
+            "dealer": "D46",
+            "customer": "C3218",
+            "tier": "Standard",
+            "promised": "2027-04-04",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02581",
+            "dealer": "D47",
+            "customer": "C1608",
+            "tier": "Standard",
+            "promised": "2027-04-01",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          },
+          {
+            "co": "CO-02639",
+            "dealer": "D48",
+            "customer": "C6332",
+            "tier": "Standard",
+            "promised": "2027-04-04",
+            "rank": null,
+            "decision": "not_eligible",
+            "reason": "Standard tier gets no loaner (dealer is told)",
+            "rule_id": "R5"
+          }
+        ]
+      }
+    }
+  ],
+  "plan": [
+    {
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0437",
+        "new_date": "2027-04-01"
+      },
+      "rule_id": "R3",
+      "reason": "PO-0437 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-01",
+      "incident_id": "E-10-I1",
+      "seq": 1,
+      "evidence_path": [
+        [
+          "Shipment:SH-0248",
+          "DELIVERS",
+          "Part:BATT-60"
+        ],
+        [
+          "Shipment:SH-0248",
+          "RECEIVED_AT",
+          "Plant:P_AL"
+        ],
+        [
+          "Part:BATT-60",
+          "USED_IN",
+          "Model:NOVA"
+        ],
+        [
+          "ProductionOrder:PO-0437",
+          "BUILDS",
+          "Model:NOVA"
+        ],
+        [
+          "ProductionOrder:PO-0437",
+          "SCHEDULED_AT",
+          "Plant:P_AL"
+        ]
+      ]
+    },
+    {
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0440",
+        "new_date": "2027-04-01"
+      },
+      "rule_id": "R3",
+      "reason": "PO-0440 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-01",
+      "incident_id": "E-10-I1",
+      "seq": 2,
+      "evidence_path": [
+        [
+          "Shipment:SH-0248",
+          "DELIVERS",
+          "Part:BATT-60"
+        ],
+        [
+          "Shipment:SH-0248",
+          "RECEIVED_AT",
+          "Plant:P_AL"
+        ],
+        [
+          "Part:BATT-60",
+          "USED_IN",
+          "Model:NOVA"
+        ],
+        [
+          "ProductionOrder:PO-0440",
+          "BUILDS",
+          "Model:NOVA"
+        ],
+        [
+          "ProductionOrder:PO-0440",
+          "SCHEDULED_AT",
+          "Plant:P_AL"
+        ]
+      ]
+    },
+    {
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0443",
+        "new_date": "2027-04-02"
+      },
+      "rule_id": "R3",
+      "reason": "PO-0443 (NOVA) affected by supplier delay: BATT-60 shipment SH-0248 to P_AL moved from 2027-03-29 to 2027-04-01; earliest free unblocked slot at P_AL on/after restart 2027-04-01 is 2027-04-02",
+      "incident_id": "E-10-I1",
+      "seq": 3,
+      "evidence_path": [
+        [
+          "Shipment:SH-0248",
+          "DELIVERS",
+          "Part:BATT-60"
+        ],
+        [
+          "Shipment:SH-0248",
+          "RECEIVED_AT",
+          "Plant:P_AL"
+        ],
+        [
+          "Part:BATT-60",
+          "USED_IN",
+          "Model:NOVA"
+        ],
+        [
+          "ProductionOrder:PO-0443",
+          "BUILDS",
+          "Model:NOVA"
+        ],
+        [
+          "ProductionOrder:PO-0443",
+          "SCHEDULED_AT",
+          "Plant:P_AL"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D02",
+        "customer_order_ids": [
+          "CO-02638"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02638 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D02 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 4,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02638"
+        ],
+        [
+          "CustomerOrder:CO-02638",
+          "SOLD_THROUGH",
+          "Dealer:D02"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D04",
+        "customer_order_ids": [
+          "CO-02575"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02575 (PO-0437): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D04 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 5,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02575"
+        ],
+        [
+          "CustomerOrder:CO-02575",
+          "SOLD_THROUGH",
+          "Dealer:D04"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D08",
+        "customer_order_ids": [
+          "CO-02637"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02637 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D08 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 6,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02637"
+        ],
+        [
+          "CustomerOrder:CO-02637",
+          "SOLD_THROUGH",
+          "Dealer:D08"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D10",
+        "customer_order_ids": [
+          "CO-02611"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02611 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D10 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 7,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02611"
+        ],
+        [
+          "CustomerOrder:CO-02611",
+          "SOLD_THROUGH",
+          "Dealer:D10"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D17",
+        "customer_order_ids": [
+          "CO-02634"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02634 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D17 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 8,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02634"
+        ],
+        [
+          "CustomerOrder:CO-02634",
+          "SOLD_THROUGH",
+          "Dealer:D17"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D20",
+        "customer_order_ids": [
+          "CO-02576",
+          "CO-02578",
+          "CO-02631"
+        ],
+        "message": "Wacky Wheels operations: 3 of your customer orders are affected by a supplier delay at P_AL. CO-02576 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02578 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02631 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D20 has 3 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 9,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02576"
+        ],
+        [
+          "CustomerOrder:CO-02576",
+          "SOLD_THROUGH",
+          "Dealer:D20"
+        ],
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02578"
+        ],
+        [
+          "CustomerOrder:CO-02578",
+          "SOLD_THROUGH",
+          "Dealer:D20"
+        ],
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02631"
+        ],
+        [
+          "CustomerOrder:CO-02631",
+          "SOLD_THROUGH",
+          "Dealer:D20"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D21",
+        "customer_order_ids": [
+          "CO-02607"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02607 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D21 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 10,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02607"
+        ],
+        [
+          "CustomerOrder:CO-02607",
+          "SOLD_THROUGH",
+          "Dealer:D21"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D23",
+        "customer_order_ids": [
+          "CO-02579",
+          "CO-02603"
+        ],
+        "message": "Wacky Wheels operations: 2 of your customer orders are affected by a supplier delay at P_AL. CO-02579 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02603 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D23 has 2 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 11,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02579"
+        ],
+        [
+          "CustomerOrder:CO-02579",
+          "SOLD_THROUGH",
+          "Dealer:D23"
+        ],
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02603"
+        ],
+        [
+          "CustomerOrder:CO-02603",
+          "SOLD_THROUGH",
+          "Dealer:D23"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D25",
+        "customer_order_ids": [
+          "CO-02636"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02636 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D25 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 12,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02636"
+        ],
+        [
+          "CustomerOrder:CO-02636",
+          "SOLD_THROUGH",
+          "Dealer:D25"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D27",
+        "customer_order_ids": [
+          "CO-02604",
+          "CO-02630"
+        ],
+        "message": "Wacky Wheels operations: 2 of your customer orders are affected by a supplier delay at P_AL. CO-02604 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02630 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D27 has 2 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 13,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02604"
+        ],
+        [
+          "CustomerOrder:CO-02604",
+          "SOLD_THROUGH",
+          "Dealer:D27"
+        ],
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02630"
+        ],
+        [
+          "CustomerOrder:CO-02630",
+          "SOLD_THROUGH",
+          "Dealer:D27"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D28",
+        "customer_order_ids": [
+          "CO-02580"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02580 (PO-0437): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D28 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 14,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02580"
+        ],
+        [
+          "CustomerOrder:CO-02580",
+          "SOLD_THROUGH",
+          "Dealer:D28"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D31",
+        "customer_order_ids": [
+          "CO-02583"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02583 (PO-0437): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D31 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 15,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02583"
+        ],
+        [
+          "CustomerOrder:CO-02583",
+          "SOLD_THROUGH",
+          "Dealer:D31"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D34",
+        "customer_order_ids": [
+          "CO-02605",
+          "CO-02609"
+        ],
+        "message": "Wacky Wheels operations: 2 of your customer orders are affected by a supplier delay at P_AL. CO-02605 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02609 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D34 has 2 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 16,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02605"
+        ],
+        [
+          "CustomerOrder:CO-02605",
+          "SOLD_THROUGH",
+          "Dealer:D34"
+        ],
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02609"
+        ],
+        [
+          "CustomerOrder:CO-02609",
+          "SOLD_THROUGH",
+          "Dealer:D34"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D44",
+        "customer_order_ids": [
+          "CO-02610"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02610 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D44 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 17,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02610"
+        ],
+        [
+          "CustomerOrder:CO-02610",
+          "SOLD_THROUGH",
+          "Dealer:D44"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D45",
+        "customer_order_ids": [
+          "CO-02577",
+          "CO-02582",
+          "CO-02606",
+          "CO-02608",
+          "CO-02632",
+          "CO-02635"
+        ],
+        "message": "Wacky Wheels operations: 6 of your customer orders are affected by a supplier delay at P_AL. CO-02577 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02582 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02606 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02608 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02632 (PO-0443): rescheduled to 2027-04-02 at P_AL; CO-02635 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D45 has 6 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 18,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02577"
+        ],
+        [
+          "CustomerOrder:CO-02577",
+          "SOLD_THROUGH",
+          "Dealer:D45"
+        ],
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02582"
+        ],
+        [
+          "CustomerOrder:CO-02582",
+          "SOLD_THROUGH",
+          "Dealer:D45"
+        ],
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02606"
+        ],
+        [
+          "CustomerOrder:CO-02606",
+          "SOLD_THROUGH",
+          "Dealer:D45"
+        ],
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02608"
+        ],
+        [
+          "CustomerOrder:CO-02608",
+          "SOLD_THROUGH",
+          "Dealer:D45"
+        ],
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02632"
+        ],
+        [
+          "CustomerOrder:CO-02632",
+          "SOLD_THROUGH",
+          "Dealer:D45"
+        ],
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02635"
+        ],
+        [
+          "CustomerOrder:CO-02635",
+          "SOLD_THROUGH",
+          "Dealer:D45"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D46",
+        "customer_order_ids": [
+          "CO-02612",
+          "CO-02633"
+        ],
+        "message": "Wacky Wheels operations: 2 of your customer orders are affected by a supplier delay at P_AL. CO-02612 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02633 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D46 has 2 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 19,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02612"
+        ],
+        [
+          "CustomerOrder:CO-02612",
+          "SOLD_THROUGH",
+          "Dealer:D46"
+        ],
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02633"
+        ],
+        [
+          "CustomerOrder:CO-02633",
+          "SOLD_THROUGH",
+          "Dealer:D46"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D47",
+        "customer_order_ids": [
+          "CO-02581"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02581 (PO-0437): rescheduled to 2027-04-01 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D47 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 20,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02581"
+        ],
+        [
+          "CustomerOrder:CO-02581",
+          "SOLD_THROUGH",
+          "Dealer:D47"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D48",
+        "customer_order_ids": [
+          "CO-02639"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02639 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "rule_id": "R4",
+      "incident_id": "E-10-I1",
+      "reason": "D48 has 1 affected customer order(s); exactly one notify listing only those ids",
+      "seq": 21,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02639"
+        ],
+        [
+          "CustomerOrder:CO-02639",
+          "SOLD_THROUGH",
+          "Dealer:D48"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02638"
+      },
+      "rule_id": "R5",
+      "incident_id": "E-10-I1",
+      "reason": "rank 1 at D02 (Gold, promised 2027-04-04); pool 2",
+      "seq": 22,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02638"
+        ],
+        [
+          "CustomerOrder:CO-02638",
+          "ORDERED_BY",
+          "Customer:C1633"
+        ],
+        [
+          "CustomerOrder:CO-02638",
+          "SOLD_THROUGH",
+          "Dealer:D02"
+        ],
+        [
+          "Dealer:D02",
+          "HAS_POOL",
+          "LoanerPool:D02"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02575"
+      },
+      "rule_id": "R5",
+      "incident_id": "E-10-I1",
+      "reason": "rank 1 at D04 (Gold, promised 2027-04-01); pool 1",
+      "seq": 23,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02575"
+        ],
+        [
+          "CustomerOrder:CO-02575",
+          "ORDERED_BY",
+          "Customer:C6785"
+        ],
+        [
+          "CustomerOrder:CO-02575",
+          "SOLD_THROUGH",
+          "Dealer:D04"
+        ],
+        [
+          "Dealer:D04",
+          "HAS_POOL",
+          "LoanerPool:D04"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02578"
+      },
+      "rule_id": "R5",
+      "incident_id": "E-10-I1",
+      "reason": "rank 1 at D20 (Gold, promised 2027-04-03); pool 1",
+      "seq": 24,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02578"
+        ],
+        [
+          "CustomerOrder:CO-02578",
+          "ORDERED_BY",
+          "Customer:C3147"
+        ],
+        [
+          "CustomerOrder:CO-02578",
+          "SOLD_THROUGH",
+          "Dealer:D20"
+        ],
+        [
+          "Dealer:D20",
+          "HAS_POOL",
+          "LoanerPool:D20"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02579"
+      },
+      "rule_id": "R5",
+      "incident_id": "E-10-I1",
+      "reason": "rank 1 at D23 (Gold, promised 2027-04-02); pool 2",
+      "seq": 25,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0437",
+          "FULFILLS",
+          "CustomerOrder:CO-02579"
+        ],
+        [
+          "CustomerOrder:CO-02579",
+          "ORDERED_BY",
+          "Customer:C1129"
+        ],
+        [
+          "CustomerOrder:CO-02579",
+          "SOLD_THROUGH",
+          "Dealer:D23"
+        ],
+        [
+          "Dealer:D23",
+          "HAS_POOL",
+          "LoanerPool:D23"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02636"
+      },
+      "rule_id": "R5",
+      "incident_id": "E-10-I1",
+      "reason": "rank 1 at D25 (Platinum, promised 2027-04-03); pool 1",
+      "seq": 26,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0443",
+          "FULFILLS",
+          "CustomerOrder:CO-02636"
+        ],
+        [
+          "CustomerOrder:CO-02636",
+          "ORDERED_BY",
+          "Customer:C3028"
+        ],
+        [
+          "CustomerOrder:CO-02636",
+          "SOLD_THROUGH",
+          "Dealer:D25"
+        ],
+        [
+          "Dealer:D25",
+          "HAS_POOL",
+          "LoanerPool:D25"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02604"
+      },
+      "rule_id": "R5",
+      "incident_id": "E-10-I1",
+      "reason": "rank 1 at D27 (Gold, promised 2027-04-04); pool 1",
+      "seq": 27,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02604"
+        ],
+        [
+          "CustomerOrder:CO-02604",
+          "ORDERED_BY",
+          "Customer:C3999"
+        ],
+        [
+          "CustomerOrder:CO-02604",
+          "SOLD_THROUGH",
+          "Dealer:D27"
+        ],
+        [
+          "Dealer:D27",
+          "HAS_POOL",
+          "LoanerPool:D27"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02605"
+      },
+      "rule_id": "R5",
+      "incident_id": "E-10-I1",
+      "reason": "rank 1 at D34 (Gold, promised 2027-04-03); pool 1",
+      "seq": 28,
+      "evidence_path": [
+        [
+          "ProductionOrder:PO-0440",
+          "FULFILLS",
+          "CustomerOrder:CO-02605"
+        ],
+        [
+          "CustomerOrder:CO-02605",
+          "ORDERED_BY",
+          "Customer:C1094"
+        ],
+        [
+          "CustomerOrder:CO-02605",
+          "SOLD_THROUGH",
+          "Dealer:D34"
+        ],
+        [
+          "Dealer:D34",
+          "HAS_POOL",
+          "LoanerPool:D34"
+        ]
+      ]
+    }
+  ],
+  "verifier": {
+    "plan_checks": [
+      {
+        "name": "R10 only affected orders are moved",
+        "ok": true,
+        "detail": "3 moves, all affected",
+        "blocking": true
+      },
+      {
+        "name": "R3 each order moved at most once",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R3 every affected order is moved or escalated",
+        "ok": true,
+        "detail": "3 affected handled",
+        "blocking": true
+      },
+      {
+        "name": "R3 no slot over capacity",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R1/R2 no move into a blocked day",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R3 same-plant moves on/after restart",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R3 transfers go to another plant that builds the model",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R3 earliest feasible slot chosen",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R4 exactly one notify per affected dealer with exactly its orders",
+        "ok": true,
+        "detail": "18 dealers, 29 customer orders",
+        "blocking": true
+      },
+      {
+        "name": "R5 loaners: only Platinum/Gold, within pool, priority respected",
+        "ok": true,
+        "detail": "assigned 7 of 7 eligible",
+        "blocking": true
+      },
+      {
+        "name": "R6 hold exactly the suspect lot(s)",
+        "ok": true,
+        "detail": "[]",
+        "blocking": true
+      },
+      {
+        "name": "R6 every unsold affected vehicle stopped at its dealer (one call per dealer)",
+        "ok": true,
+        "detail": "0 unsold vehicles at 0 dealers",
+        "blocking": true
+      },
+      {
+        "name": "R6 every owner of a sold affected vehicle contacted once",
+        "ok": true,
+        "detail": "0 owners",
+        "blocking": true
+      },
+      {
+        "name": "R9 at least three different kinds of action",
+        "ok": true,
+        "detail": "3 kinds: crm.assign_loaner, dealer.notify, mes.reschedule",
+        "blocking": false
+      }
+    ],
+    "world_checks": [
+      {
+        "name": "twin dry run: zero failed calls",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: every moved order is at its planned slot",
+        "ok": true,
+        "detail": "[]",
+        "blocking": true
+      },
+      {
+        "name": "world: no plant-day over capacity",
+        "ok": true,
+        "detail": "[]",
+        "blocking": true
+      },
+      {
+        "name": "world: no loaner pool below zero",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: loaners match plan",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: held lots match plan",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: stopped VINs match plan",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: contacted customers match plan",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      }
+    ],
+    "readback_checks": [
+      {
+        "name": "read-back P_AL 2027-04-01: PO-0437, PO-0440 present, free slots >= 0",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      },
+      {
+        "name": "read-back P_AL 2027-04-02: PO-0443 present, free slots >= 0",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      },
+      {
+        "name": "read-back loaners D02: 2 - 1 = 1",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      },
+      {
+        "name": "read-back loaners D04: 1 - 1 = 0",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      },
+      {
+        "name": "read-back loaners D20: 1 - 1 = 0",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      },
+      {
+        "name": "read-back loaners D23: 2 - 1 = 1",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      },
+      {
+        "name": "read-back loaners D25: 1 - 1 = 0",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      },
+      {
+        "name": "read-back loaners D27: 1 - 1 = 0",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      },
+      {
+        "name": "read-back loaners D34: 1 - 1 = 0",
+        "ok": true,
+        "detail": "",
+        "blocking": false
+      }
+    ]
+  },
+  "actions": [
+    {
+      "seq": null,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D02"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.968+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D04"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.968+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D20"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.968+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D23"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.968+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D25"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.968+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D27"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.968+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D34"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.969+00:00"
+    },
+    {
+      "seq": 1,
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0437",
+        "new_date": "2027-04-01"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 2,
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0440",
+        "new_date": "2027-04-01"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 3,
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0443",
+        "new_date": "2027-04-02"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 4,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D02",
+        "customer_order_ids": [
+          "CO-02638"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02638 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 5,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D04",
+        "customer_order_ids": [
+          "CO-02575"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02575 (PO-0437): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 6,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D08",
+        "customer_order_ids": [
+          "CO-02637"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02637 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 7,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D10",
+        "customer_order_ids": [
+          "CO-02611"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02611 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 8,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D17",
+        "customer_order_ids": [
+          "CO-02634"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02634 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 9,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D20",
+        "customer_order_ids": [
+          "CO-02576",
+          "CO-02578",
+          "CO-02631"
+        ],
+        "message": "Wacky Wheels operations: 3 of your customer orders are affected by a supplier delay at P_AL. CO-02576 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02578 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02631 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 10,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D21",
+        "customer_order_ids": [
+          "CO-02607"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02607 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 11,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D23",
+        "customer_order_ids": [
+          "CO-02579",
+          "CO-02603"
+        ],
+        "message": "Wacky Wheels operations: 2 of your customer orders are affected by a supplier delay at P_AL. CO-02579 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02603 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.970+00:00"
+    },
+    {
+      "seq": 12,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D25",
+        "customer_order_ids": [
+          "CO-02636"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02636 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 13,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D27",
+        "customer_order_ids": [
+          "CO-02604",
+          "CO-02630"
+        ],
+        "message": "Wacky Wheels operations: 2 of your customer orders are affected by a supplier delay at P_AL. CO-02604 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02630 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 14,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D28",
+        "customer_order_ids": [
+          "CO-02580"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02580 (PO-0437): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 15,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D31",
+        "customer_order_ids": [
+          "CO-02583"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02583 (PO-0437): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 16,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D34",
+        "customer_order_ids": [
+          "CO-02605",
+          "CO-02609"
+        ],
+        "message": "Wacky Wheels operations: 2 of your customer orders are affected by a supplier delay at P_AL. CO-02605 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02609 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 17,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D44",
+        "customer_order_ids": [
+          "CO-02610"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02610 (PO-0440): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 18,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D45",
+        "customer_order_ids": [
+          "CO-02577",
+          "CO-02582",
+          "CO-02606",
+          "CO-02608",
+          "CO-02632",
+          "CO-02635"
+        ],
+        "message": "Wacky Wheels operations: 6 of your customer orders are affected by a supplier delay at P_AL. CO-02577 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02582 (PO-0437): rescheduled to 2027-04-01 at P_AL; CO-02606 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02608 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02632 (PO-0443): rescheduled to 2027-04-02 at P_AL; CO-02635 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 19,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D46",
+        "customer_order_ids": [
+          "CO-02612",
+          "CO-02633"
+        ],
+        "message": "Wacky Wheels operations: 2 of your customer orders are affected by a supplier delay at P_AL. CO-02612 (PO-0440): rescheduled to 2027-04-01 at P_AL; CO-02633 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 20,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D47",
+        "customer_order_ids": [
+          "CO-02581"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02581 (PO-0437): rescheduled to 2027-04-01 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 21,
+      "agent": "DealerNetwork",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D48",
+        "customer_order_ids": [
+          "CO-02639"
+        ],
+        "message": "Wacky Wheels operations: 1 of your customer orders are affected by a supplier delay at P_AL. CO-02639 (PO-0443): rescheduled to 2027-04-02 at P_AL."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 22,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02638"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 23,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02575"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 24,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02578"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.971+00:00"
+    },
+    {
+      "seq": 25,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02579"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": 26,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02636"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": 27,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02604"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": 28,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-02605"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "mes.get_schedule",
+      "args": {
+        "plant_id": "P_AL",
+        "date": "2027-04-01"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "mes.get_schedule",
+      "args": {
+        "plant_id": "P_AL",
+        "date": "2027-04-02"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D02"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D04"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D20"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D23"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.972+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D25"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.973+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D27"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.973+00:00"
+    },
+    {
+      "seq": null,
+      "agent": "Verifier",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D34"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "read",
+      "ts": "2026-11-07T20:14:57.973+00:00"
+    }
+  ],
+  "escalation": {
+    "escalated": false,
+    "reason": "",
+    "missing_fields": []
+  },
+  "schedule": {
+    "plants": [
+      "P_TX",
+      "P_KY",
+      "P_MS",
+      "P_IN",
+      "P_AL",
+      "P_NC"
+    ],
+    "touched_plants": [
+      "P_AL"
+    ],
+    "transfer_targets": [],
+    "capacity": {
+      "P_TX": 5,
+      "P_KY": 5,
+      "P_MS": 5,
+      "P_IN": 5,
+      "P_AL": 5,
+      "P_NC": 5
+    },
+    "before": {
+      "P_TX": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_KY": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_MS": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_IN": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_AL": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_NC": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      }
+    },
+    "after": {
+      "P_TX": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_KY": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_MS": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_IN": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_AL": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 2,
+        "2027-03-30": 2,
+        "2027-03-31": 2,
+        "2027-04-01": 5,
+        "2027-04-02": 4
+      },
+      "P_NC": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      }
+    }
+  },
+  "config_snapshot": {
+    "NEXT_WEEKDAY": "following_week",
+    "TRANSFER_LOWER_BOUND": "today",
+    "PLANT_TIEBREAK": "plants_csv_order",
+    "COMPOUND_ORDER": "message_order",
+    "NOTIFY_SCOPE": "per_event",
+    "NO_SLOT_ACTION": "escalate",
+    "QUALITY_DEALER_NOTIFY": false,
+    "ESCALATE_NOISE": false,
+    "FUZZY_THRESHOLD": 90,
+    "LLM_MODEL": "qwen2.5:3b-instruct"
+  },
+  "summary": "Supplier delay: BATT-60 delay to P_AL (2027-03-29 -> 2027-04-01) affects 3 production orders; 3 rescheduled at the same plant, 0 transferred; 18 dealers notified about 29 customer orders; 7 loaners assigned. 28 actions of 3 kinds, all verified in the digital twin before execution.",
+  "metrics": {
+    "llm_calls": 1,
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_cached": true,
+    "prompt_tokens": 1143,
+    "completion_tokens": 188,
+    "tool_calls": 44,
+    "reads": 16,
+    "writes": 28,
+    "escalations": 0,
+    "failed": 0,
+    "runtime_s": 0.01
+  },
+  "ui_category": "delay",
+  "schema_errors": []
+}

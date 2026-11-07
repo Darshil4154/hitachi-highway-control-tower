@@ -282,20 +282,26 @@ class KnowledgeGraph:
                 out.append([v, next(iter(self.g[v][u])), u])
         return out
 
-    def explain_path(self, edges: list[Edge], limit: int = 8) -> str:
-        """Readable chain, e.g. 'SH-0182 -[DELIVERS]-> CAM-360 -[USED_IN]-> VOYAGER <-[BUILDS]- PO-0412'."""
+    def explain_path(self, edges: list[Edge], limit: int = 8, ordered: bool = False) -> str:
+        """Readable chain, e.g. 'SH-0182 -[DELIVERS]-> CAM-360 -[USED_IN]-> VOYAGER <-[BUILDS]- PO-0412'.
+        ordered=True keeps the given edge order (a pre-built connected chain)."""
         if not edges:
             return ""
-        chain = _chain(edges)
-        parts = [split_nid(chain[0][0])[1]]
+        chain = list(edges) if ordered else _chain(edges)
         cur = chain[0][0]
+        if len(chain) > 1 and chain[0][0] in (chain[1][0], chain[1][2]) and chain[0][2] not in (chain[1][0], chain[1][2]):
+            cur = chain[0][2]
+        parts = [split_nid(cur)[1]]
         for src, rel, dst in chain[:limit]:
             if src == cur:
                 parts.append(f"-[{rel}]-> {split_nid(dst)[1]}")
                 cur = dst
-            else:
+            elif dst == cur:
                 parts.append(f"<-[{rel}]- {split_nid(src)[1]}")
                 cur = src
+            else:
+                parts.append(f"| {split_nid(src)[1]} -[{rel}]-> {split_nid(dst)[1]}")
+                cur = dst
         text = " ".join(parts)
         if len(edges) > len(chain[:limit]):
             text += f"  (+{len(edges) - len(chain[:limit])} more edges)"

@@ -1,0 +1,6775 @@
+{
+  "event": {
+    "event_id": "E-15",
+    "source": "quality bulletin",
+    "received_at": "2027-03-08T11:15:00",
+    "text": "QUALITY BULLETIN QB-368: Lot LOT-0191 (CHIP-IVI, supplier SUP-12) installed at P_IN on vehicles built 2027-03-02 to 2027-03-03 has a faulty weld. Place the lot on hold, stop sale of unsold vehicles and contact owners.",
+    "mentions": [
+      "CHIP-IVI",
+      "LOT-0191",
+      "P_IN",
+      "SUP-12"
+    ]
+  },
+  "classification": {
+    "category": "incident",
+    "gate": "incident",
+    "confidence": 0.95,
+    "rationale": "Lot on hold and contact owners are mentioned, indicating a specific quality issue.",
+    "gate_reason": "Lot on hold and contact owners are mentioned, indicating a specific quality issue.",
+    "hedges": [],
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_fallback": false,
+    "llm_cached": true,
+    "llm_error": null
+  },
+  "incidents": [
+    {
+      "incident_id": "E-15-I1",
+      "type": "quality_hold",
+      "evidence_quote": "LOT LOT-0191 (CHIP-IVI, supplier SUP-12) installed at P_IN on vehicles built 2027-03-02 to 2027-03-03 has a faulty weld. Place the lot on hold, stop sale of unsold vehicles and contact owners.",
+      "extracted": [
+        {
+          "field": "supplier_mention",
+          "phrase": "SUP-12",
+          "resolved": "SUP-12",
+          "method": "exact_id",
+          "confidence": 1.0
+        },
+        {
+          "field": "part_mention",
+          "phrase": "CHIP-IVI",
+          "resolved": "CHIP-IVI",
+          "method": "exact_id",
+          "confidence": 1.0
+        },
+        {
+          "field": "plant_mention",
+          "phrase": "P_IN",
+          "resolved": "P_IN",
+          "method": "exact_id",
+          "confidence": 1.0
+        },
+        {
+          "field": "lot_id",
+          "phrase": "LOT-0191",
+          "resolved": "LOT-0191",
+          "method": "llm+exact_id",
+          "confidence": 1.0
+        },
+        {
+          "field": "window_from_phrase",
+          "phrase": "2027-03-02",
+          "resolved": "2027-03-02",
+          "method": "date:iso_literal",
+          "confidence": 1.0
+        },
+        {
+          "field": "window_to_phrase",
+          "phrase": "2027-03-03",
+          "resolved": "2027-03-03",
+          "method": "date:iso_literal",
+          "confidence": 1.0
+        }
+      ],
+      "validation": [
+        {
+          "check": "window_to >= window_from",
+          "ok": true
+        },
+        {
+          "check": "lot exists",
+          "ok": true
+        },
+        {
+          "check": "lot part CHIP-IVI == CHIP-IVI",
+          "ok": true
+        },
+        {
+          "check": "lot plant P_IN == P_IN",
+          "ok": true
+        },
+        {
+          "check": "lot supplier SUP-12 == SUP-12",
+          "ok": true
+        },
+        {
+          "check": "lot window 2027-03-02..2027-03-03 == message 2027-03-02..2027-03-03",
+          "ok": true
+        }
+      ],
+      "disruption": {
+        "lot_id": "LOT-0191",
+        "part_id": "CHIP-IVI",
+        "supplier_id": "SUP-12",
+        "plant_id": "P_IN",
+        "window_from": "2027-03-02",
+        "window_to": "2027-03-03",
+        "lot_match": "explicit lot id, validated"
+      },
+      "graph_path": {
+        "nodes": [
+          "Customer:C0053",
+          "Customer:C0093",
+          "Customer:C0100",
+          "Customer:C0102",
+          "Customer:C0104",
+          "Customer:C0163",
+          "Customer:C0260",
+          "Customer:C0310",
+          "Customer:C0434",
+          "Customer:C0437",
+          "Customer:C0501",
+          "Customer:C0541",
+          "Customer:C0604",
+          "Customer:C0632",
+          "Customer:C0743",
+          "Customer:C0959",
+          "Customer:C1109",
+          "Customer:C1145",
+          "Customer:C1159",
+          "Customer:C1171",
+          "Customer:C1236",
+          "Customer:C1357",
+          "Customer:C1366",
+          "Customer:C1386",
+          "Customer:C1439",
+          "Customer:C1550",
+          "Customer:C1596",
+          "Customer:C1649",
+          "Customer:C1731",
+          "Customer:C1779",
+          "Customer:C1844",
+          "Customer:C1963",
+          "Customer:C2115",
+          "Customer:C2275",
+          "Customer:C2281",
+          "Customer:C2418",
+          "Customer:C2549",
+          "Customer:C2583",
+          "Customer:C2605",
+          "Customer:C2622",
+          "Customer:C2701",
+          "Customer:C2708",
+          "Customer:C2749",
+          "Customer:C2823",
+          "Customer:C2898",
+          "Customer:C3029",
+          "Customer:C3355",
+          "Customer:C3697",
+          "Customer:C3771",
+          "Customer:C4033",
+          "Customer:C4096",
+          "Customer:C4180",
+          "Customer:C4244",
+          "Customer:C4249",
+          "Customer:C4447",
+          "Customer:C4522",
+          "Customer:C4595",
+          "Customer:C4863",
+          "Customer:C4937",
+          "Customer:C5016",
+          "Customer:C5021",
+          "Customer:C5099",
+          "Customer:C5234",
+          "Customer:C5279",
+          "Customer:C5489",
+          "Customer:C5623",
+          "Customer:C5998",
+          "Customer:C6063",
+          "Customer:C6067",
+          "Customer:C6399",
+          "Customer:C6418",
+          "Customer:C6727",
+          "Customer:C6746",
+          "Customer:C6816",
+          "Customer:C6890",
+          "Customer:C7000",
+          "Dealer:D02",
+          "Dealer:D03",
+          "Dealer:D04",
+          "Dealer:D05",
+          "Dealer:D06",
+          "Dealer:D07",
+          "Dealer:D08",
+          "Dealer:D10",
+          "Dealer:D12",
+          "Dealer:D13",
+          "Dealer:D14",
+          "Dealer:D15",
+          "Dealer:D16",
+          "Dealer:D19",
+          "Dealer:D20",
+          "Dealer:D21",
+          "Dealer:D22",
+          "Dealer:D23",
+          "Dealer:D24",
+          "Dealer:D25",
+          "Dealer:D26",
+          "Dealer:D27",
+          "Dealer:D28",
+          "Dealer:D29",
+          "Dealer:D31",
+          "Dealer:D32",
+          "Dealer:D35",
+          "Dealer:D37",
+          "Dealer:D38",
+          "Dealer:D39",
+          "Dealer:D40",
+          "Dealer:D42",
+          "Dealer:D44",
+          "Dealer:D45",
+          "Dealer:D46",
+          "Dealer:D47",
+          "Dealer:D49",
+          "Dealer:D50",
+          "Model:NOVA",
+          "Model:VOYAGER",
+          "Part:CHIP-IVI",
+          "PartLot:LOT-0191",
+          "Plant:P_IN",
+          "ProductionOrder:PO-0289",
+          "ProductionOrder:PO-0291",
+          "ProductionOrder:PO-0292",
+          "ProductionOrder:PO-0294",
+          "Supplier:SUP-12",
+          "Vehicle:AUR0003174",
+          "Vehicle:AUR0003175",
+          "Vehicle:AUR0003176",
+          "Vehicle:AUR0003177",
+          "Vehicle:AUR0003178",
+          "Vehicle:AUR0003179",
+          "Vehicle:AUR0003180",
+          "Vehicle:AUR0003181",
+          "Vehicle:AUR0003182",
+          "Vehicle:AUR0003183",
+          "Vehicle:AUR0003184",
+          "Vehicle:AUR0003185",
+          "Vehicle:AUR0003186",
+          "Vehicle:AUR0003187",
+          "Vehicle:AUR0003188",
+          "Vehicle:AUR0003189",
+          "Vehicle:AUR0003190",
+          "Vehicle:AUR0003191",
+          "Vehicle:AUR0003192",
+          "Vehicle:AUR0003193",
+          "Vehicle:AUR0003194",
+          "Vehicle:AUR0003195",
+          "Vehicle:AUR0003196",
+          "Vehicle:AUR0003197",
+          "Vehicle:AUR0003198",
+          "Vehicle:AUR0003199",
+          "Vehicle:AUR0003200",
+          "Vehicle:AUR0003234",
+          "Vehicle:AUR0003235",
+          "Vehicle:AUR0003236",
+          "Vehicle:AUR0003237",
+          "Vehicle:AUR0003238",
+          "Vehicle:AUR0003239",
+          "Vehicle:AUR0003240",
+          "Vehicle:AUR0003241",
+          "Vehicle:AUR0003242",
+          "Vehicle:AUR0003243",
+          "Vehicle:AUR0003244",
+          "Vehicle:AUR0003245",
+          "Vehicle:AUR0003246",
+          "Vehicle:AUR0003247",
+          "Vehicle:AUR0003248",
+          "Vehicle:AUR0003249",
+          "Vehicle:AUR0003250",
+          "Vehicle:AUR0003251",
+          "Vehicle:AUR0003252",
+          "Vehicle:AUR0003253",
+          "Vehicle:AUR0003254",
+          "Vehicle:AUR0003255",
+          "Vehicle:AUR0003256",
+          "Vehicle:AUR0003257",
+          "Vehicle:AUR0003258",
+          "Vehicle:AUR0003259",
+          "Vehicle:AUR0003260",
+          "Vehicle:AUR0003261",
+          "Vehicle:AUR0003262",
+          "Vehicle:AUR0003263",
+          "Vehicle:AUR0003264",
+          "Vehicle:AUR0003265",
+          "Vehicle:AUR0003266",
+          "Vehicle:AUR0003267",
+          "Vehicle:AUR0003268",
+          "Vehicle:AUR0003269",
+          "Vehicle:AUR0003270",
+          "Vehicle:AUR0003271",
+          "Vehicle:AUR0003272",
+          "Vehicle:AUR0003273",
+          "Vehicle:AUR0003274",
+          "Vehicle:AUR0003275",
+          "Vehicle:AUR0003276",
+          "Vehicle:AUR0003277",
+          "Vehicle:AUR0003278",
+          "Vehicle:AUR0003279",
+          "Vehicle:AUR0003280",
+          "Vehicle:AUR0003281",
+          "Vehicle:AUR0003282",
+          "Vehicle:AUR0003283",
+          "Vehicle:AUR0003284",
+          "Vehicle:AUR0003285",
+          "Vehicle:AUR0003286",
+          "Vehicle:AUR0003287",
+          "Vehicle:AUR0003288",
+          "Vehicle:AUR0003289",
+          "Vehicle:AUR0003290",
+          "Vehicle:AUR0003291",
+          "Vehicle:AUR0003292",
+          "Vehicle:AUR0003293",
+          "Vehicle:AUR0003294",
+          "Vehicle:AUR0003295",
+          "Vehicle:AUR0003296",
+          "Vehicle:AUR0003297",
+          "Vehicle:AUR0003298",
+          "Vehicle:AUR0003335",
+          "Vehicle:AUR0003336",
+          "Vehicle:AUR0003337",
+          "Vehicle:AUR0003338",
+          "Vehicle:AUR0003339",
+          "Vehicle:AUR0003340",
+          "Vehicle:AUR0003341",
+          "Vehicle:AUR0003342",
+          "Vehicle:AUR0003343",
+          "Vehicle:AUR0003344",
+          "Vehicle:AUR0003345",
+          "Vehicle:AUR0003346",
+          "Vehicle:AUR0003347",
+          "Vehicle:AUR0003348",
+          "Vehicle:AUR0003349",
+          "Vehicle:AUR0003350",
+          "Vehicle:AUR0003351",
+          "Vehicle:AUR0003352",
+          "Vehicle:AUR0003353",
+          "Vehicle:AUR0003354",
+          "Vehicle:AUR0003355",
+          "Vehicle:AUR0003356",
+          "Vehicle:AUR0003357",
+          "Vehicle:AUR0003358"
+        ],
+        "edges": [
+          [
+            "PartLot:LOT-0191",
+            "LOT_OF",
+            "Part:CHIP-IVI"
+          ],
+          [
+            "PartLot:LOT-0191",
+            "LOT_FROM",
+            "Supplier:SUP-12"
+          ],
+          [
+            "PartLot:LOT-0191",
+            "INSTALLED_AT",
+            "Plant:P_IN"
+          ],
+          [
+            "PartLot:LOT-0191",
+            "LOT_OF",
+            "Part:CHIP-IVI"
+          ],
+          [
+            "PartLot:LOT-0191",
+            "INSTALLED_AT",
+            "Plant:P_IN"
+          ],
+          [
+            "Part:CHIP-IVI",
+            "USED_IN",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0291",
+            "BUILDS",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0291",
+            "SCHEDULED_AT",
+            "Plant:P_IN"
+          ],
+          [
+            "Vehicle:AUR0003234",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003234",
+            "AT_DEALER",
+            "Dealer:D12"
+          ],
+          [
+            "Vehicle:AUR0003234",
+            "OWNED_BY",
+            "Customer:C6727"
+          ],
+          [
+            "Vehicle:AUR0003235",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003235",
+            "AT_DEALER",
+            "Dealer:D06"
+          ],
+          [
+            "Vehicle:AUR0003236",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003236",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0003237",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003237",
+            "AT_DEALER",
+            "Dealer:D27"
+          ],
+          [
+            "Vehicle:AUR0003237",
+            "OWNED_BY",
+            "Customer:C1779"
+          ],
+          [
+            "Vehicle:AUR0003238",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003238",
+            "AT_DEALER",
+            "Dealer:D03"
+          ],
+          [
+            "Vehicle:AUR0003239",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003239",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003239",
+            "OWNED_BY",
+            "Customer:C4244"
+          ],
+          [
+            "Vehicle:AUR0003240",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003240",
+            "AT_DEALER",
+            "Dealer:D25"
+          ],
+          [
+            "Vehicle:AUR0003241",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003241",
+            "AT_DEALER",
+            "Dealer:D02"
+          ],
+          [
+            "Vehicle:AUR0003241",
+            "OWNED_BY",
+            "Customer:C2281"
+          ],
+          [
+            "Vehicle:AUR0003242",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003242",
+            "AT_DEALER",
+            "Dealer:D02"
+          ],
+          [
+            "Vehicle:AUR0003243",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003243",
+            "AT_DEALER",
+            "Dealer:D13"
+          ],
+          [
+            "Vehicle:AUR0003244",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003244",
+            "AT_DEALER",
+            "Dealer:D32"
+          ],
+          [
+            "Vehicle:AUR0003244",
+            "OWNED_BY",
+            "Customer:C6816"
+          ],
+          [
+            "Vehicle:AUR0003245",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003245",
+            "AT_DEALER",
+            "Dealer:D31"
+          ],
+          [
+            "Vehicle:AUR0003245",
+            "OWNED_BY",
+            "Customer:C4522"
+          ],
+          [
+            "Vehicle:AUR0003246",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003246",
+            "AT_DEALER",
+            "Dealer:D22"
+          ],
+          [
+            "Vehicle:AUR0003246",
+            "OWNED_BY",
+            "Customer:C2115"
+          ],
+          [
+            "Vehicle:AUR0003247",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003247",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003247",
+            "OWNED_BY",
+            "Customer:C6399"
+          ],
+          [
+            "Vehicle:AUR0003248",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003248",
+            "AT_DEALER",
+            "Dealer:D06"
+          ],
+          [
+            "Vehicle:AUR0003248",
+            "OWNED_BY",
+            "Customer:C6890"
+          ],
+          [
+            "Vehicle:AUR0003249",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003249",
+            "AT_DEALER",
+            "Dealer:D14"
+          ],
+          [
+            "Vehicle:AUR0003249",
+            "OWNED_BY",
+            "Customer:C2583"
+          ],
+          [
+            "Vehicle:AUR0003250",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003250",
+            "AT_DEALER",
+            "Dealer:D31"
+          ],
+          [
+            "Vehicle:AUR0003251",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003251",
+            "AT_DEALER",
+            "Dealer:D47"
+          ],
+          [
+            "Vehicle:AUR0003251",
+            "OWNED_BY",
+            "Customer:C6063"
+          ],
+          [
+            "Vehicle:AUR0003252",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003252",
+            "AT_DEALER",
+            "Dealer:D03"
+          ],
+          [
+            "Vehicle:AUR0003252",
+            "OWNED_BY",
+            "Customer:C1109"
+          ],
+          [
+            "Vehicle:AUR0003253",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003253",
+            "AT_DEALER",
+            "Dealer:D02"
+          ],
+          [
+            "Vehicle:AUR0003253",
+            "OWNED_BY",
+            "Customer:C3029"
+          ],
+          [
+            "Vehicle:AUR0003254",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003254",
+            "AT_DEALER",
+            "Dealer:D03"
+          ],
+          [
+            "Vehicle:AUR0003255",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003255",
+            "AT_DEALER",
+            "Dealer:D28"
+          ],
+          [
+            "Vehicle:AUR0003255",
+            "OWNED_BY",
+            "Customer:C5623"
+          ],
+          [
+            "Vehicle:AUR0003256",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003256",
+            "AT_DEALER",
+            "Dealer:D39"
+          ],
+          [
+            "Vehicle:AUR0003257",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003257",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0003257",
+            "OWNED_BY",
+            "Customer:C4863"
+          ],
+          [
+            "Vehicle:AUR0003258",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003258",
+            "AT_DEALER",
+            "Dealer:D10"
+          ],
+          [
+            "Vehicle:AUR0003259",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003259",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003259",
+            "OWNED_BY",
+            "Customer:C0260"
+          ],
+          [
+            "Vehicle:AUR0003260",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003260",
+            "AT_DEALER",
+            "Dealer:D07"
+          ],
+          [
+            "Vehicle:AUR0003260",
+            "OWNED_BY",
+            "Customer:C0501"
+          ],
+          [
+            "Vehicle:AUR0003261",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003261",
+            "AT_DEALER",
+            "Dealer:D22"
+          ],
+          [
+            "Vehicle:AUR0003261",
+            "OWNED_BY",
+            "Customer:C4937"
+          ],
+          [
+            "Vehicle:AUR0003262",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003262",
+            "AT_DEALER",
+            "Dealer:D25"
+          ],
+          [
+            "Vehicle:AUR0003263",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003263",
+            "AT_DEALER",
+            "Dealer:D06"
+          ],
+          [
+            "Vehicle:AUR0003263",
+            "OWNED_BY",
+            "Customer:C0053"
+          ],
+          [
+            "Vehicle:AUR0003264",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003264",
+            "AT_DEALER",
+            "Dealer:D15"
+          ],
+          [
+            "Vehicle:AUR0003265",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003265",
+            "AT_DEALER",
+            "Dealer:D35"
+          ],
+          [
+            "Vehicle:AUR0003265",
+            "OWNED_BY",
+            "Customer:C2898"
+          ],
+          [
+            "Vehicle:AUR0003266",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003266",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0003266",
+            "OWNED_BY",
+            "Customer:C1145"
+          ],
+          [
+            "Vehicle:AUR0003267",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0291"
+          ],
+          [
+            "Vehicle:AUR0003267",
+            "AT_DEALER",
+            "Dealer:D03"
+          ],
+          [
+            "ProductionOrder:PO-0294",
+            "BUILDS",
+            "Model:NOVA"
+          ],
+          [
+            "ProductionOrder:PO-0294",
+            "SCHEDULED_AT",
+            "Plant:P_IN"
+          ],
+          [
+            "Vehicle:AUR0003335",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003335",
+            "AT_DEALER",
+            "Dealer:D49"
+          ],
+          [
+            "Vehicle:AUR0003335",
+            "OWNED_BY",
+            "Customer:C5998"
+          ],
+          [
+            "Vehicle:AUR0003336",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003336",
+            "AT_DEALER",
+            "Dealer:D29"
+          ],
+          [
+            "Vehicle:AUR0003336",
+            "OWNED_BY",
+            "Customer:C4447"
+          ],
+          [
+            "Vehicle:AUR0003337",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003337",
+            "AT_DEALER",
+            "Dealer:D35"
+          ],
+          [
+            "Vehicle:AUR0003338",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003338",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0003339",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003339",
+            "AT_DEALER",
+            "Dealer:D28"
+          ],
+          [
+            "Vehicle:AUR0003340",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003340",
+            "AT_DEALER",
+            "Dealer:D44"
+          ],
+          [
+            "Vehicle:AUR0003341",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003341",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003342",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003342",
+            "AT_DEALER",
+            "Dealer:D16"
+          ],
+          [
+            "Vehicle:AUR0003342",
+            "OWNED_BY",
+            "Customer:C2823"
+          ],
+          [
+            "Vehicle:AUR0003343",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003343",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003344",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003344",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0003344",
+            "OWNED_BY",
+            "Customer:C6418"
+          ],
+          [
+            "Vehicle:AUR0003345",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003345",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003346",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003346",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003346",
+            "OWNED_BY",
+            "Customer:C1844"
+          ],
+          [
+            "Vehicle:AUR0003347",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003347",
+            "AT_DEALER",
+            "Dealer:D50"
+          ],
+          [
+            "Vehicle:AUR0003347",
+            "OWNED_BY",
+            "Customer:C0959"
+          ],
+          [
+            "Vehicle:AUR0003348",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003348",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0003348",
+            "OWNED_BY",
+            "Customer:C0163"
+          ],
+          [
+            "Vehicle:AUR0003349",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003349",
+            "AT_DEALER",
+            "Dealer:D15"
+          ],
+          [
+            "Vehicle:AUR0003350",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003350",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0003350",
+            "OWNED_BY",
+            "Customer:C6067"
+          ],
+          [
+            "Vehicle:AUR0003351",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003351",
+            "AT_DEALER",
+            "Dealer:D46"
+          ],
+          [
+            "Vehicle:AUR0003351",
+            "OWNED_BY",
+            "Customer:C5234"
+          ],
+          [
+            "Vehicle:AUR0003352",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003352",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0003353",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003353",
+            "AT_DEALER",
+            "Dealer:D38"
+          ],
+          [
+            "Vehicle:AUR0003353",
+            "OWNED_BY",
+            "Customer:C3697"
+          ],
+          [
+            "Vehicle:AUR0003354",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003354",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0003354",
+            "OWNED_BY",
+            "Customer:C4595"
+          ],
+          [
+            "Vehicle:AUR0003355",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003355",
+            "AT_DEALER",
+            "Dealer:D04"
+          ],
+          [
+            "Vehicle:AUR0003356",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003356",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003356",
+            "OWNED_BY",
+            "Customer:C5016"
+          ],
+          [
+            "Vehicle:AUR0003357",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003357",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003357",
+            "OWNED_BY",
+            "Customer:C4180"
+          ],
+          [
+            "Vehicle:AUR0003358",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0294"
+          ],
+          [
+            "Vehicle:AUR0003358",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0003358",
+            "OWNED_BY",
+            "Customer:C1386"
+          ],
+          [
+            "Part:CHIP-IVI",
+            "USED_IN",
+            "Model:VOYAGER"
+          ],
+          [
+            "ProductionOrder:PO-0289",
+            "BUILDS",
+            "Model:VOYAGER"
+          ],
+          [
+            "ProductionOrder:PO-0289",
+            "SCHEDULED_AT",
+            "Plant:P_IN"
+          ],
+          [
+            "Vehicle:AUR0003174",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003174",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0003174",
+            "OWNED_BY",
+            "Customer:C0310"
+          ],
+          [
+            "Vehicle:AUR0003175",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003175",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003176",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003176",
+            "AT_DEALER",
+            "Dealer:D12"
+          ],
+          [
+            "Vehicle:AUR0003177",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003177",
+            "AT_DEALER",
+            "Dealer:D37"
+          ],
+          [
+            "Vehicle:AUR0003177",
+            "OWNED_BY",
+            "Customer:C0104"
+          ],
+          [
+            "Vehicle:AUR0003178",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003178",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0003178",
+            "OWNED_BY",
+            "Customer:C1550"
+          ],
+          [
+            "Vehicle:AUR0003179",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003179",
+            "AT_DEALER",
+            "Dealer:D46"
+          ],
+          [
+            "Vehicle:AUR0003179",
+            "OWNED_BY",
+            "Customer:C1439"
+          ],
+          [
+            "Vehicle:AUR0003180",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003180",
+            "AT_DEALER",
+            "Dealer:D10"
+          ],
+          [
+            "Vehicle:AUR0003181",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003181",
+            "AT_DEALER",
+            "Dealer:D39"
+          ],
+          [
+            "Vehicle:AUR0003181",
+            "OWNED_BY",
+            "Customer:C2275"
+          ],
+          [
+            "Vehicle:AUR0003182",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003182",
+            "AT_DEALER",
+            "Dealer:D44"
+          ],
+          [
+            "Vehicle:AUR0003182",
+            "OWNED_BY",
+            "Customer:C1357"
+          ],
+          [
+            "Vehicle:AUR0003183",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003183",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003183",
+            "OWNED_BY",
+            "Customer:C1236"
+          ],
+          [
+            "Vehicle:AUR0003184",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003184",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003185",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003185",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0003185",
+            "OWNED_BY",
+            "Customer:C0093"
+          ],
+          [
+            "Vehicle:AUR0003186",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003186",
+            "AT_DEALER",
+            "Dealer:D27"
+          ],
+          [
+            "Vehicle:AUR0003186",
+            "OWNED_BY",
+            "Customer:C4249"
+          ],
+          [
+            "Vehicle:AUR0003187",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003187",
+            "AT_DEALER",
+            "Dealer:D21"
+          ],
+          [
+            "Vehicle:AUR0003187",
+            "OWNED_BY",
+            "Customer:C0632"
+          ],
+          [
+            "Vehicle:AUR0003188",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003188",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003188",
+            "OWNED_BY",
+            "Customer:C5099"
+          ],
+          [
+            "Vehicle:AUR0003189",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003189",
+            "AT_DEALER",
+            "Dealer:D05"
+          ],
+          [
+            "Vehicle:AUR0003189",
+            "OWNED_BY",
+            "Customer:C1159"
+          ],
+          [
+            "Vehicle:AUR0003190",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003190",
+            "AT_DEALER",
+            "Dealer:D40"
+          ],
+          [
+            "Vehicle:AUR0003190",
+            "OWNED_BY",
+            "Customer:C0102"
+          ],
+          [
+            "Vehicle:AUR0003191",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003191",
+            "AT_DEALER",
+            "Dealer:D21"
+          ],
+          [
+            "Vehicle:AUR0003191",
+            "OWNED_BY",
+            "Customer:C2418"
+          ],
+          [
+            "Vehicle:AUR0003192",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003192",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003192",
+            "OWNED_BY",
+            "Customer:C1366"
+          ],
+          [
+            "Vehicle:AUR0003193",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003193",
+            "AT_DEALER",
+            "Dealer:D06"
+          ],
+          [
+            "Vehicle:AUR0003193",
+            "OWNED_BY",
+            "Customer:C0437"
+          ],
+          [
+            "Vehicle:AUR0003194",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003194",
+            "AT_DEALER",
+            "Dealer:D07"
+          ],
+          [
+            "Vehicle:AUR0003194",
+            "OWNED_BY",
+            "Customer:C2549"
+          ],
+          [
+            "Vehicle:AUR0003195",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003195",
+            "AT_DEALER",
+            "Dealer:D19"
+          ],
+          [
+            "Vehicle:AUR0003195",
+            "OWNED_BY",
+            "Customer:C5021"
+          ],
+          [
+            "Vehicle:AUR0003196",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003196",
+            "AT_DEALER",
+            "Dealer:D16"
+          ],
+          [
+            "Vehicle:AUR0003196",
+            "OWNED_BY",
+            "Customer:C0541"
+          ],
+          [
+            "Vehicle:AUR0003197",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003197",
+            "AT_DEALER",
+            "Dealer:D39"
+          ],
+          [
+            "Vehicle:AUR0003197",
+            "OWNED_BY",
+            "Customer:C2708"
+          ],
+          [
+            "Vehicle:AUR0003198",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003198",
+            "AT_DEALER",
+            "Dealer:D02"
+          ],
+          [
+            "Vehicle:AUR0003198",
+            "OWNED_BY",
+            "Customer:C1731"
+          ],
+          [
+            "Vehicle:AUR0003199",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003199",
+            "AT_DEALER",
+            "Dealer:D10"
+          ],
+          [
+            "Vehicle:AUR0003199",
+            "OWNED_BY",
+            "Customer:C2701"
+          ],
+          [
+            "Vehicle:AUR0003200",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003200",
+            "AT_DEALER",
+            "Dealer:D10"
+          ],
+          [
+            "Vehicle:AUR0003200",
+            "OWNED_BY",
+            "Customer:C1171"
+          ],
+          [
+            "ProductionOrder:PO-0292",
+            "BUILDS",
+            "Model:VOYAGER"
+          ],
+          [
+            "ProductionOrder:PO-0292",
+            "SCHEDULED_AT",
+            "Plant:P_IN"
+          ],
+          [
+            "Vehicle:AUR0003268",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003268",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003268",
+            "OWNED_BY",
+            "Customer:C0743"
+          ],
+          [
+            "Vehicle:AUR0003269",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003269",
+            "AT_DEALER",
+            "Dealer:D24"
+          ],
+          [
+            "Vehicle:AUR0003269",
+            "OWNED_BY",
+            "Customer:C2749"
+          ],
+          [
+            "Vehicle:AUR0003270",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003270",
+            "AT_DEALER",
+            "Dealer:D32"
+          ],
+          [
+            "Vehicle:AUR0003271",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003271",
+            "AT_DEALER",
+            "Dealer:D35"
+          ],
+          [
+            "Vehicle:AUR0003271",
+            "OWNED_BY",
+            "Customer:C5489"
+          ],
+          [
+            "Vehicle:AUR0003272",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003272",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0003272",
+            "OWNED_BY",
+            "Customer:C0434"
+          ],
+          [
+            "Vehicle:AUR0003273",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003273",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003274",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003274",
+            "AT_DEALER",
+            "Dealer:D31"
+          ],
+          [
+            "Vehicle:AUR0003275",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003275",
+            "AT_DEALER",
+            "Dealer:D03"
+          ],
+          [
+            "Vehicle:AUR0003275",
+            "OWNED_BY",
+            "Customer:C1649"
+          ],
+          [
+            "Vehicle:AUR0003276",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003276",
+            "AT_DEALER",
+            "Dealer:D08"
+          ],
+          [
+            "Vehicle:AUR0003276",
+            "OWNED_BY",
+            "Customer:C3771"
+          ],
+          [
+            "Vehicle:AUR0003277",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003277",
+            "AT_DEALER",
+            "Dealer:D22"
+          ],
+          [
+            "Vehicle:AUR0003278",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003278",
+            "AT_DEALER",
+            "Dealer:D45"
+          ],
+          [
+            "Vehicle:AUR0003278",
+            "OWNED_BY",
+            "Customer:C6746"
+          ],
+          [
+            "Vehicle:AUR0003279",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003279",
+            "AT_DEALER",
+            "Dealer:D42"
+          ],
+          [
+            "Vehicle:AUR0003279",
+            "OWNED_BY",
+            "Customer:C1963"
+          ],
+          [
+            "Vehicle:AUR0003280",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003280",
+            "AT_DEALER",
+            "Dealer:D44"
+          ],
+          [
+            "Vehicle:AUR0003281",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003281",
+            "AT_DEALER",
+            "Dealer:D25"
+          ],
+          [
+            "Vehicle:AUR0003281",
+            "OWNED_BY",
+            "Customer:C4096"
+          ],
+          [
+            "Vehicle:AUR0003282",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003282",
+            "AT_DEALER",
+            "Dealer:D15"
+          ],
+          [
+            "Vehicle:AUR0003282",
+            "OWNED_BY",
+            "Customer:C7000"
+          ],
+          [
+            "Vehicle:AUR0003283",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003283",
+            "AT_DEALER",
+            "Dealer:D07"
+          ],
+          [
+            "Vehicle:AUR0003284",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003284",
+            "AT_DEALER",
+            "Dealer:D23"
+          ],
+          [
+            "Vehicle:AUR0003284",
+            "OWNED_BY",
+            "Customer:C2605"
+          ],
+          [
+            "Vehicle:AUR0003285",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003285",
+            "AT_DEALER",
+            "Dealer:D39"
+          ],
+          [
+            "Vehicle:AUR0003286",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003286",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0003287",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003287",
+            "AT_DEALER",
+            "Dealer:D21"
+          ],
+          [
+            "Vehicle:AUR0003288",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003288",
+            "AT_DEALER",
+            "Dealer:D27"
+          ],
+          [
+            "Vehicle:AUR0003289",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003289",
+            "AT_DEALER",
+            "Dealer:D25"
+          ],
+          [
+            "Vehicle:AUR0003289",
+            "OWNED_BY",
+            "Customer:C1596"
+          ],
+          [
+            "Vehicle:AUR0003290",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003290",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0003290",
+            "OWNED_BY",
+            "Customer:C2622"
+          ],
+          [
+            "Vehicle:AUR0003291",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003291",
+            "AT_DEALER",
+            "Dealer:D25"
+          ],
+          [
+            "Vehicle:AUR0003291",
+            "OWNED_BY",
+            "Customer:C4033"
+          ],
+          [
+            "Vehicle:AUR0003292",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003292",
+            "AT_DEALER",
+            "Dealer:D35"
+          ],
+          [
+            "Vehicle:AUR0003292",
+            "OWNED_BY",
+            "Customer:C5279"
+          ],
+          [
+            "Vehicle:AUR0003293",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003293",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0003294",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003294",
+            "AT_DEALER",
+            "Dealer:D24"
+          ],
+          [
+            "Vehicle:AUR0003295",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003295",
+            "AT_DEALER",
+            "Dealer:D21"
+          ],
+          [
+            "Vehicle:AUR0003295",
+            "OWNED_BY",
+            "Customer:C0100"
+          ],
+          [
+            "Vehicle:AUR0003296",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003296",
+            "AT_DEALER",
+            "Dealer:D26"
+          ],
+          [
+            "Vehicle:AUR0003297",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003297",
+            "AT_DEALER",
+            "Dealer:D25"
+          ],
+          [
+            "Vehicle:AUR0003297",
+            "OWNED_BY",
+            "Customer:C3355"
+          ],
+          [
+            "Vehicle:AUR0003298",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0292"
+          ],
+          [
+            "Vehicle:AUR0003298",
+            "AT_DEALER",
+            "Dealer:D20"
+          ],
+          [
+            "Vehicle:AUR0003298",
+            "OWNED_BY",
+            "Customer:C0604"
+          ]
+        ],
+        "text": "P_IN <-[INSTALLED_AT]- LOT-0191 -[LOT_OF]-> CHIP-IVI -[USED_IN]-> VOYAGER <-[BUILDS]- PO-0289 <-[BUILT_FROM]- AUR0003174 -[OWNED_BY]-> C0310  [116 vehicles: 40 unsold, 76 sold to 76 owners]",
+        "chain": [
+          [
+            "PartLot:LOT-0191",
+            "INSTALLED_AT",
+            "Plant:P_IN"
+          ],
+          [
+            "PartLot:LOT-0191",
+            "LOT_OF",
+            "Part:CHIP-IVI"
+          ],
+          [
+            "Part:CHIP-IVI",
+            "USED_IN",
+            "Model:VOYAGER"
+          ],
+          [
+            "ProductionOrder:PO-0289",
+            "BUILDS",
+            "Model:VOYAGER"
+          ],
+          [
+            "Vehicle:AUR0003174",
+            "BUILT_FROM",
+            "ProductionOrder:PO-0289"
+          ],
+          [
+            "Vehicle:AUR0003174",
+            "OWNED_BY",
+            "Customer:C0310"
+          ]
+        ],
+        "anchor": "PartLot:LOT-0191"
+      },
+      "affected": {
+        "production_orders": [
+          "PO-0289",
+          "PO-0291",
+          "PO-0292",
+          "PO-0294"
+        ],
+        "customer_orders": [],
+        "dealers": [
+          "D02",
+          "D03",
+          "D04",
+          "D06",
+          "D07",
+          "D08",
+          "D10",
+          "D12",
+          "D13",
+          "D15",
+          "D20",
+          "D21",
+          "D22",
+          "D23",
+          "D24",
+          "D25",
+          "D26",
+          "D27",
+          "D28",
+          "D31",
+          "D32",
+          "D35",
+          "D39",
+          "D44",
+          "D45"
+        ],
+        "customers": [
+          "C0053",
+          "C0093",
+          "C0100",
+          "C0102",
+          "C0104",
+          "C0163",
+          "C0260",
+          "C0310",
+          "C0434",
+          "C0437",
+          "C0501",
+          "C0541",
+          "C0604",
+          "C0632",
+          "C0743",
+          "C0959",
+          "C1109",
+          "C1145",
+          "C1159",
+          "C1171",
+          "C1236",
+          "C1357",
+          "C1366",
+          "C1386",
+          "C1439",
+          "C1550",
+          "C1596",
+          "C1649",
+          "C1731",
+          "C1779",
+          "C1844",
+          "C1963",
+          "C2115",
+          "C2275",
+          "C2281",
+          "C2418",
+          "C2549",
+          "C2583",
+          "C2605",
+          "C2622",
+          "C2701",
+          "C2708",
+          "C2749",
+          "C2823",
+          "C2898",
+          "C3029",
+          "C3355",
+          "C3697",
+          "C3771",
+          "C4033",
+          "C4096",
+          "C4180",
+          "C4244",
+          "C4249",
+          "C4447",
+          "C4522",
+          "C4595",
+          "C4863",
+          "C4937",
+          "C5016",
+          "C5021",
+          "C5099",
+          "C5234",
+          "C5279",
+          "C5489",
+          "C5623",
+          "C5998",
+          "C6063",
+          "C6067",
+          "C6399",
+          "C6418",
+          "C6727",
+          "C6746",
+          "C6816",
+          "C6890",
+          "C7000"
+        ],
+        "lots": [
+          "LOT-0191"
+        ],
+        "vehicles_unsold": [
+          "AUR0003175",
+          "AUR0003176",
+          "AUR0003180",
+          "AUR0003184",
+          "AUR0003235",
+          "AUR0003236",
+          "AUR0003238",
+          "AUR0003240",
+          "AUR0003242",
+          "AUR0003243",
+          "AUR0003250",
+          "AUR0003254",
+          "AUR0003256",
+          "AUR0003258",
+          "AUR0003262",
+          "AUR0003264",
+          "AUR0003267",
+          "AUR0003270",
+          "AUR0003273",
+          "AUR0003274",
+          "AUR0003277",
+          "AUR0003280",
+          "AUR0003283",
+          "AUR0003285",
+          "AUR0003286",
+          "AUR0003287",
+          "AUR0003288",
+          "AUR0003293",
+          "AUR0003294",
+          "AUR0003296",
+          "AUR0003337",
+          "AUR0003338",
+          "AUR0003339",
+          "AUR0003340",
+          "AUR0003341",
+          "AUR0003343",
+          "AUR0003345",
+          "AUR0003349",
+          "AUR0003352",
+          "AUR0003355"
+        ],
+        "vehicles_sold": [
+          "AUR0003174",
+          "AUR0003177",
+          "AUR0003178",
+          "AUR0003179",
+          "AUR0003181",
+          "AUR0003182",
+          "AUR0003183",
+          "AUR0003185",
+          "AUR0003186",
+          "AUR0003187",
+          "AUR0003188",
+          "AUR0003189",
+          "AUR0003190",
+          "AUR0003191",
+          "AUR0003192",
+          "AUR0003193",
+          "AUR0003194",
+          "AUR0003195",
+          "AUR0003196",
+          "AUR0003197",
+          "AUR0003198",
+          "AUR0003199",
+          "AUR0003200",
+          "AUR0003234",
+          "AUR0003237",
+          "AUR0003239",
+          "AUR0003241",
+          "AUR0003244",
+          "AUR0003245",
+          "AUR0003246",
+          "AUR0003247",
+          "AUR0003248",
+          "AUR0003249",
+          "AUR0003251",
+          "AUR0003252",
+          "AUR0003253",
+          "AUR0003255",
+          "AUR0003257",
+          "AUR0003259",
+          "AUR0003260",
+          "AUR0003261",
+          "AUR0003263",
+          "AUR0003265",
+          "AUR0003266",
+          "AUR0003268",
+          "AUR0003269",
+          "AUR0003271",
+          "AUR0003272",
+          "AUR0003275",
+          "AUR0003276",
+          "AUR0003278",
+          "AUR0003279",
+          "AUR0003281",
+          "AUR0003282",
+          "AUR0003284",
+          "AUR0003289",
+          "AUR0003290",
+          "AUR0003291",
+          "AUR0003292",
+          "AUR0003295",
+          "AUR0003297",
+          "AUR0003298",
+          "AUR0003335",
+          "AUR0003336",
+          "AUR0003342",
+          "AUR0003344",
+          "AUR0003346",
+          "AUR0003347",
+          "AUR0003348",
+          "AUR0003350",
+          "AUR0003351",
+          "AUR0003353",
+          "AUR0003354",
+          "AUR0003356",
+          "AUR0003357",
+          "AUR0003358"
+        ]
+      },
+      "excluded": [
+        {
+          "id": "RANGER",
+          "reason": "RANGER does not use CHIP-IVI"
+        }
+      ],
+      "decisions": {
+        "reschedule": [],
+        "loaners": []
+      }
+    }
+  ],
+  "plan": [
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "quality.hold_lot",
+      "args": {
+        "lot_id": "LOT-0191"
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "LOT-0191 (CHIP-IVI from SUP-12, P_IN 2027-03-02..2027-03-03) is suspect",
+      "seq": 1,
+      "evidence_path": [
+        [
+          "PartLot:LOT-0191",
+          "LOT_OF",
+          "Part:CHIP-IVI"
+        ],
+        [
+          "PartLot:LOT-0191",
+          "LOT_FROM",
+          "Supplier:SUP-12"
+        ],
+        [
+          "PartLot:LOT-0191",
+          "INSTALLED_AT",
+          "Plant:P_IN"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D02",
+        "vins": [
+          "AUR0003242"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D02 contain suspect lot LOT-0191",
+      "seq": 2,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003242",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003242",
+          "AT_DEALER",
+          "Dealer:D02"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D03",
+        "vins": [
+          "AUR0003238",
+          "AUR0003254",
+          "AUR0003267"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "3 unsold vehicle(s) at D03 contain suspect lot LOT-0191",
+      "seq": 3,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003238",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003238",
+          "AT_DEALER",
+          "Dealer:D03"
+        ],
+        [
+          "Vehicle:AUR0003254",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003254",
+          "AT_DEALER",
+          "Dealer:D03"
+        ],
+        [
+          "Vehicle:AUR0003267",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003267",
+          "AT_DEALER",
+          "Dealer:D03"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D04",
+        "vins": [
+          "AUR0003355"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D04 contain suspect lot LOT-0191",
+      "seq": 4,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003355",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003355",
+          "AT_DEALER",
+          "Dealer:D04"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D06",
+        "vins": [
+          "AUR0003235"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D06 contain suspect lot LOT-0191",
+      "seq": 5,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003235",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003235",
+          "AT_DEALER",
+          "Dealer:D06"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D07",
+        "vins": [
+          "AUR0003283"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D07 contain suspect lot LOT-0191",
+      "seq": 6,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003283",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003283",
+          "AT_DEALER",
+          "Dealer:D07"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D08",
+        "vins": [
+          "AUR0003236",
+          "AUR0003338"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D08 contain suspect lot LOT-0191",
+      "seq": 7,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003236",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003236",
+          "AT_DEALER",
+          "Dealer:D08"
+        ],
+        [
+          "Vehicle:AUR0003338",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003338",
+          "AT_DEALER",
+          "Dealer:D08"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D10",
+        "vins": [
+          "AUR0003180",
+          "AUR0003258"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D10 contain suspect lot LOT-0191",
+      "seq": 8,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003180",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003180",
+          "AT_DEALER",
+          "Dealer:D10"
+        ],
+        [
+          "Vehicle:AUR0003258",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003258",
+          "AT_DEALER",
+          "Dealer:D10"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D12",
+        "vins": [
+          "AUR0003176"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D12 contain suspect lot LOT-0191",
+      "seq": 9,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003176",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003176",
+          "AT_DEALER",
+          "Dealer:D12"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D13",
+        "vins": [
+          "AUR0003243"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D13 contain suspect lot LOT-0191",
+      "seq": 10,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003243",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003243",
+          "AT_DEALER",
+          "Dealer:D13"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D15",
+        "vins": [
+          "AUR0003264",
+          "AUR0003349"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D15 contain suspect lot LOT-0191",
+      "seq": 11,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003264",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003264",
+          "AT_DEALER",
+          "Dealer:D15"
+        ],
+        [
+          "Vehicle:AUR0003349",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003349",
+          "AT_DEALER",
+          "Dealer:D15"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D20",
+        "vins": [
+          "AUR0003293",
+          "AUR0003352"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D20 contain suspect lot LOT-0191",
+      "seq": 12,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003293",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003293",
+          "AT_DEALER",
+          "Dealer:D20"
+        ],
+        [
+          "Vehicle:AUR0003352",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003352",
+          "AT_DEALER",
+          "Dealer:D20"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D21",
+        "vins": [
+          "AUR0003287"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D21 contain suspect lot LOT-0191",
+      "seq": 13,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003287",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003287",
+          "AT_DEALER",
+          "Dealer:D21"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D22",
+        "vins": [
+          "AUR0003277"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D22 contain suspect lot LOT-0191",
+      "seq": 14,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003277",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003277",
+          "AT_DEALER",
+          "Dealer:D22"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D23",
+        "vins": [
+          "AUR0003175",
+          "AUR0003184",
+          "AUR0003273"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "3 unsold vehicle(s) at D23 contain suspect lot LOT-0191",
+      "seq": 15,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003175",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003175",
+          "AT_DEALER",
+          "Dealer:D23"
+        ],
+        [
+          "Vehicle:AUR0003184",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003184",
+          "AT_DEALER",
+          "Dealer:D23"
+        ],
+        [
+          "Vehicle:AUR0003273",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003273",
+          "AT_DEALER",
+          "Dealer:D23"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D24",
+        "vins": [
+          "AUR0003294"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D24 contain suspect lot LOT-0191",
+      "seq": 16,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003294",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003294",
+          "AT_DEALER",
+          "Dealer:D24"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D25",
+        "vins": [
+          "AUR0003240",
+          "AUR0003262"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D25 contain suspect lot LOT-0191",
+      "seq": 17,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003240",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003240",
+          "AT_DEALER",
+          "Dealer:D25"
+        ],
+        [
+          "Vehicle:AUR0003262",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003262",
+          "AT_DEALER",
+          "Dealer:D25"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D26",
+        "vins": [
+          "AUR0003286",
+          "AUR0003296"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D26 contain suspect lot LOT-0191",
+      "seq": 18,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003286",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003286",
+          "AT_DEALER",
+          "Dealer:D26"
+        ],
+        [
+          "Vehicle:AUR0003296",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003296",
+          "AT_DEALER",
+          "Dealer:D26"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D27",
+        "vins": [
+          "AUR0003288"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D27 contain suspect lot LOT-0191",
+      "seq": 19,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003288",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003288",
+          "AT_DEALER",
+          "Dealer:D27"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D28",
+        "vins": [
+          "AUR0003339"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D28 contain suspect lot LOT-0191",
+      "seq": 20,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003339",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003339",
+          "AT_DEALER",
+          "Dealer:D28"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D31",
+        "vins": [
+          "AUR0003250",
+          "AUR0003274"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D31 contain suspect lot LOT-0191",
+      "seq": 21,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003250",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003250",
+          "AT_DEALER",
+          "Dealer:D31"
+        ],
+        [
+          "Vehicle:AUR0003274",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003274",
+          "AT_DEALER",
+          "Dealer:D31"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D32",
+        "vins": [
+          "AUR0003270"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D32 contain suspect lot LOT-0191",
+      "seq": 22,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003270",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003270",
+          "AT_DEALER",
+          "Dealer:D32"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D35",
+        "vins": [
+          "AUR0003337"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "1 unsold vehicle(s) at D35 contain suspect lot LOT-0191",
+      "seq": 23,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003337",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003337",
+          "AT_DEALER",
+          "Dealer:D35"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D39",
+        "vins": [
+          "AUR0003256",
+          "AUR0003285"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D39 contain suspect lot LOT-0191",
+      "seq": 24,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003256",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003256",
+          "AT_DEALER",
+          "Dealer:D39"
+        ],
+        [
+          "Vehicle:AUR0003285",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003285",
+          "AT_DEALER",
+          "Dealer:D39"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D44",
+        "vins": [
+          "AUR0003280",
+          "AUR0003340"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "2 unsold vehicle(s) at D44 contain suspect lot LOT-0191",
+      "seq": 25,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003280",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003280",
+          "AT_DEALER",
+          "Dealer:D44"
+        ],
+        [
+          "Vehicle:AUR0003340",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003340",
+          "AT_DEALER",
+          "Dealer:D44"
+        ]
+      ]
+    },
+    {
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D45",
+        "vins": [
+          "AUR0003341",
+          "AUR0003343",
+          "AUR0003345"
+        ]
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "3 unsold vehicle(s) at D45 contain suspect lot LOT-0191",
+      "seq": 26,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003341",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003341",
+          "AT_DEALER",
+          "Dealer:D45"
+        ],
+        [
+          "Vehicle:AUR0003343",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003343",
+          "AT_DEALER",
+          "Dealer:D45"
+        ],
+        [
+          "Vehicle:AUR0003345",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003345",
+          "AT_DEALER",
+          "Dealer:D45"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0053",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003263 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003263",
+      "seq": 27,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003263",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003263",
+          "OWNED_BY",
+          "Customer:C0053"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0093",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003185 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003185",
+      "seq": 28,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003185",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003185",
+          "OWNED_BY",
+          "Customer:C0093"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0100",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003295 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003295",
+      "seq": 29,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003295",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003295",
+          "OWNED_BY",
+          "Customer:C0100"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0102",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003190 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003190",
+      "seq": 30,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003190",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003190",
+          "OWNED_BY",
+          "Customer:C0102"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0104",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003177 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003177",
+      "seq": 31,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003177",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003177",
+          "OWNED_BY",
+          "Customer:C0104"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0163",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003348 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003348",
+      "seq": 32,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003348",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003348",
+          "OWNED_BY",
+          "Customer:C0163"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0260",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003259 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003259",
+      "seq": 33,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003259",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003259",
+          "OWNED_BY",
+          "Customer:C0260"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0310",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003174 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003174",
+      "seq": 34,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003174",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003174",
+          "OWNED_BY",
+          "Customer:C0310"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0434",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003272 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003272",
+      "seq": 35,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003272",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003272",
+          "OWNED_BY",
+          "Customer:C0434"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0437",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003193 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003193",
+      "seq": 36,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003193",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003193",
+          "OWNED_BY",
+          "Customer:C0437"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0501",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003260 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003260",
+      "seq": 37,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003260",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003260",
+          "OWNED_BY",
+          "Customer:C0501"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0541",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003196 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003196",
+      "seq": 38,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003196",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003196",
+          "OWNED_BY",
+          "Customer:C0541"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0604",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003298 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003298",
+      "seq": 39,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003298",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003298",
+          "OWNED_BY",
+          "Customer:C0604"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0632",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003187 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003187",
+      "seq": 40,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003187",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003187",
+          "OWNED_BY",
+          "Customer:C0632"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0743",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003268 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003268",
+      "seq": 41,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003268",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003268",
+          "OWNED_BY",
+          "Customer:C0743"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0959",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003347 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003347",
+      "seq": 42,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003347",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003347",
+          "OWNED_BY",
+          "Customer:C0959"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1109",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003252 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003252",
+      "seq": 43,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003252",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003252",
+          "OWNED_BY",
+          "Customer:C1109"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1145",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003266 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003266",
+      "seq": 44,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003266",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003266",
+          "OWNED_BY",
+          "Customer:C1145"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1159",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003189 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003189",
+      "seq": 45,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003189",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003189",
+          "OWNED_BY",
+          "Customer:C1159"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1171",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003200 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003200",
+      "seq": 46,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003200",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003200",
+          "OWNED_BY",
+          "Customer:C1171"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1236",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003183 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003183",
+      "seq": 47,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003183",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003183",
+          "OWNED_BY",
+          "Customer:C1236"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1357",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003182 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003182",
+      "seq": 48,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003182",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003182",
+          "OWNED_BY",
+          "Customer:C1357"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1366",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003192 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003192",
+      "seq": 49,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003192",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003192",
+          "OWNED_BY",
+          "Customer:C1366"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1386",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003358 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003358",
+      "seq": 50,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003358",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003358",
+          "OWNED_BY",
+          "Customer:C1386"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1439",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003179 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003179",
+      "seq": 51,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003179",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003179",
+          "OWNED_BY",
+          "Customer:C1439"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1550",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003178 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003178",
+      "seq": 52,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003178",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003178",
+          "OWNED_BY",
+          "Customer:C1550"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1596",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003289 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003289",
+      "seq": 53,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003289",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003289",
+          "OWNED_BY",
+          "Customer:C1596"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1649",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003275 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003275",
+      "seq": 54,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003275",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003275",
+          "OWNED_BY",
+          "Customer:C1649"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1731",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003198 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003198",
+      "seq": 55,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003198",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003198",
+          "OWNED_BY",
+          "Customer:C1731"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1779",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003237 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003237",
+      "seq": 56,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003237",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003237",
+          "OWNED_BY",
+          "Customer:C1779"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1844",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003346 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003346",
+      "seq": 57,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003346",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003346",
+          "OWNED_BY",
+          "Customer:C1844"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1963",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003279 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003279",
+      "seq": 58,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003279",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003279",
+          "OWNED_BY",
+          "Customer:C1963"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2115",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003246 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003246",
+      "seq": 59,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003246",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003246",
+          "OWNED_BY",
+          "Customer:C2115"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2275",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003181 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003181",
+      "seq": 60,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003181",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003181",
+          "OWNED_BY",
+          "Customer:C2275"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2281",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003241 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003241",
+      "seq": 61,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003241",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003241",
+          "OWNED_BY",
+          "Customer:C2281"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2418",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003191 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003191",
+      "seq": 62,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003191",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003191",
+          "OWNED_BY",
+          "Customer:C2418"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2549",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003194 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003194",
+      "seq": 63,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003194",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003194",
+          "OWNED_BY",
+          "Customer:C2549"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2583",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003249 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003249",
+      "seq": 64,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003249",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003249",
+          "OWNED_BY",
+          "Customer:C2583"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2605",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003284 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003284",
+      "seq": 65,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003284",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003284",
+          "OWNED_BY",
+          "Customer:C2605"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2622",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003290 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003290",
+      "seq": 66,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003290",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003290",
+          "OWNED_BY",
+          "Customer:C2622"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2701",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003199 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003199",
+      "seq": 67,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003199",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003199",
+          "OWNED_BY",
+          "Customer:C2701"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2708",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003197 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003197",
+      "seq": 68,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003197",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003197",
+          "OWNED_BY",
+          "Customer:C2708"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2749",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003269 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003269",
+      "seq": 69,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003269",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003269",
+          "OWNED_BY",
+          "Customer:C2749"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2823",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003342 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003342",
+      "seq": 70,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003342",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003342",
+          "OWNED_BY",
+          "Customer:C2823"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2898",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003265 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003265",
+      "seq": 71,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003265",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003265",
+          "OWNED_BY",
+          "Customer:C2898"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3029",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003253 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003253",
+      "seq": 72,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003253",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003253",
+          "OWNED_BY",
+          "Customer:C3029"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3355",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003297 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003297",
+      "seq": 73,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003297",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003297",
+          "OWNED_BY",
+          "Customer:C3355"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3697",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003353 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003353",
+      "seq": 74,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003353",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003353",
+          "OWNED_BY",
+          "Customer:C3697"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3771",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003276 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003276",
+      "seq": 75,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003276",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003276",
+          "OWNED_BY",
+          "Customer:C3771"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4033",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003291 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003291",
+      "seq": 76,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003291",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003291",
+          "OWNED_BY",
+          "Customer:C4033"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4096",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003281 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003281",
+      "seq": 77,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003281",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003281",
+          "OWNED_BY",
+          "Customer:C4096"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4180",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003357 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003357",
+      "seq": 78,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003357",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003357",
+          "OWNED_BY",
+          "Customer:C4180"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4244",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003239 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003239",
+      "seq": 79,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003239",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003239",
+          "OWNED_BY",
+          "Customer:C4244"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4249",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003186 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003186",
+      "seq": 80,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003186",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003186",
+          "OWNED_BY",
+          "Customer:C4249"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4447",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003336 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003336",
+      "seq": 81,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003336",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003336",
+          "OWNED_BY",
+          "Customer:C4447"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4522",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003245 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003245",
+      "seq": 82,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003245",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003245",
+          "OWNED_BY",
+          "Customer:C4522"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4595",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003354 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003354",
+      "seq": 83,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003354",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003354",
+          "OWNED_BY",
+          "Customer:C4595"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4863",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003257 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003257",
+      "seq": 84,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003257",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003257",
+          "OWNED_BY",
+          "Customer:C4863"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4937",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003261 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003261",
+      "seq": 85,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003261",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003261",
+          "OWNED_BY",
+          "Customer:C4937"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5016",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003356 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003356",
+      "seq": 86,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003356",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003356",
+          "OWNED_BY",
+          "Customer:C5016"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5021",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003195 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003195",
+      "seq": 87,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003195",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003195",
+          "OWNED_BY",
+          "Customer:C5021"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5099",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003188 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003188",
+      "seq": 88,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003188",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0289"
+        ],
+        [
+          "Vehicle:AUR0003188",
+          "OWNED_BY",
+          "Customer:C5099"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5234",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003351 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003351",
+      "seq": 89,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003351",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003351",
+          "OWNED_BY",
+          "Customer:C5234"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5279",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003292 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003292",
+      "seq": 90,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003292",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003292",
+          "OWNED_BY",
+          "Customer:C5279"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5489",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003271 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003271",
+      "seq": 91,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003271",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003271",
+          "OWNED_BY",
+          "Customer:C5489"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5623",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003255 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003255",
+      "seq": 92,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003255",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003255",
+          "OWNED_BY",
+          "Customer:C5623"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5998",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003335 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003335",
+      "seq": 93,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003335",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003335",
+          "OWNED_BY",
+          "Customer:C5998"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6063",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003251 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003251",
+      "seq": 94,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003251",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003251",
+          "OWNED_BY",
+          "Customer:C6063"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6067",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003350 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003350",
+      "seq": 95,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003350",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003350",
+          "OWNED_BY",
+          "Customer:C6067"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6399",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003247 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003247",
+      "seq": 96,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003247",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003247",
+          "OWNED_BY",
+          "Customer:C6399"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6418",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003344 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003344",
+      "seq": 97,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003344",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0294"
+        ],
+        [
+          "Vehicle:AUR0003344",
+          "OWNED_BY",
+          "Customer:C6418"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6727",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003234 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003234",
+      "seq": 98,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003234",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003234",
+          "OWNED_BY",
+          "Customer:C6727"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6746",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003278 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003278",
+      "seq": 99,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003278",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003278",
+          "OWNED_BY",
+          "Customer:C6746"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6816",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003244 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003244",
+      "seq": 100,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003244",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003244",
+          "OWNED_BY",
+          "Customer:C6816"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6890",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003248 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003248",
+      "seq": 101,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003248",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0291"
+        ],
+        [
+          "Vehicle:AUR0003248",
+          "OWNED_BY",
+          "Customer:C6890"
+        ]
+      ]
+    },
+    {
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C7000",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003282 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "rule_id": "R6",
+      "incident_id": "E-15-I1",
+      "reason": "owner of sold affected vehicle(s) AUR0003282",
+      "seq": 102,
+      "evidence_path": [
+        [
+          "Vehicle:AUR0003282",
+          "BUILT_FROM",
+          "ProductionOrder:PO-0292"
+        ],
+        [
+          "Vehicle:AUR0003282",
+          "OWNED_BY",
+          "Customer:C7000"
+        ]
+      ]
+    }
+  ],
+  "verifier": {
+    "plan_checks": [
+      {
+        "name": "R10 only affected orders are moved",
+        "ok": true,
+        "detail": "0 moves, all affected",
+        "blocking": true
+      },
+      {
+        "name": "R3 each order moved at most once",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R3 every affected order is moved or escalated",
+        "ok": true,
+        "detail": "0 affected handled",
+        "blocking": true
+      },
+      {
+        "name": "R3 no slot over capacity",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R1/R2 no move into a blocked day",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R3 same-plant moves on/after restart",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R3 transfers go to another plant that builds the model",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R3 earliest feasible slot chosen",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "R4 exactly one notify per affected dealer with exactly its orders",
+        "ok": true,
+        "detail": "0 dealers, 0 customer orders",
+        "blocking": true
+      },
+      {
+        "name": "R5 loaners: only Platinum/Gold, within pool, priority respected",
+        "ok": true,
+        "detail": "assigned 0 of 0 eligible",
+        "blocking": true
+      },
+      {
+        "name": "R6 hold exactly the suspect lot(s)",
+        "ok": true,
+        "detail": "['LOT-0191']",
+        "blocking": true
+      },
+      {
+        "name": "R6 every unsold affected vehicle stopped at its dealer (one call per dealer)",
+        "ok": true,
+        "detail": "40 unsold vehicles at 25 dealers",
+        "blocking": true
+      },
+      {
+        "name": "R6 every owner of a sold affected vehicle contacted once",
+        "ok": true,
+        "detail": "76 owners",
+        "blocking": true
+      },
+      {
+        "name": "R9 at least three different kinds of action",
+        "ok": true,
+        "detail": "3 kinds: crm.notify_customer, dealer.stop_sale, quality.hold_lot",
+        "blocking": false
+      }
+    ],
+    "world_checks": [
+      {
+        "name": "twin dry run: zero failed calls",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: every moved order is at its planned slot",
+        "ok": true,
+        "detail": "[]",
+        "blocking": true
+      },
+      {
+        "name": "world: no plant-day over capacity",
+        "ok": true,
+        "detail": "[]",
+        "blocking": true
+      },
+      {
+        "name": "world: no loaner pool below zero",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: loaners match plan",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: held lots match plan",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: stopped VINs match plan",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      },
+      {
+        "name": "world: contacted customers match plan",
+        "ok": true,
+        "detail": "",
+        "blocking": true
+      }
+    ],
+    "readback_checks": []
+  },
+  "actions": [
+    {
+      "seq": 1,
+      "agent": "CustomerCareQuality",
+      "tool": "quality.hold_lot",
+      "args": {
+        "lot_id": "LOT-0191"
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.051+00:00"
+    },
+    {
+      "seq": 2,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D02",
+        "vins": [
+          "AUR0003242"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.051+00:00"
+    },
+    {
+      "seq": 3,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D03",
+        "vins": [
+          "AUR0003238",
+          "AUR0003254",
+          "AUR0003267"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 4,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D04",
+        "vins": [
+          "AUR0003355"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 5,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D06",
+        "vins": [
+          "AUR0003235"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 6,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D07",
+        "vins": [
+          "AUR0003283"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 7,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D08",
+        "vins": [
+          "AUR0003236",
+          "AUR0003338"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 8,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D10",
+        "vins": [
+          "AUR0003180",
+          "AUR0003258"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 9,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D12",
+        "vins": [
+          "AUR0003176"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 10,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D13",
+        "vins": [
+          "AUR0003243"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 11,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D15",
+        "vins": [
+          "AUR0003264",
+          "AUR0003349"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 12,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D20",
+        "vins": [
+          "AUR0003293",
+          "AUR0003352"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.052+00:00"
+    },
+    {
+      "seq": 13,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D21",
+        "vins": [
+          "AUR0003287"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 14,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D22",
+        "vins": [
+          "AUR0003277"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 15,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D23",
+        "vins": [
+          "AUR0003175",
+          "AUR0003184",
+          "AUR0003273"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 16,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D24",
+        "vins": [
+          "AUR0003294"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 17,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D25",
+        "vins": [
+          "AUR0003240",
+          "AUR0003262"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 18,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D26",
+        "vins": [
+          "AUR0003286",
+          "AUR0003296"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 19,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D27",
+        "vins": [
+          "AUR0003288"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 20,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D28",
+        "vins": [
+          "AUR0003339"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 21,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D31",
+        "vins": [
+          "AUR0003250",
+          "AUR0003274"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 22,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D32",
+        "vins": [
+          "AUR0003270"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 23,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D35",
+        "vins": [
+          "AUR0003337"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 24,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D39",
+        "vins": [
+          "AUR0003256",
+          "AUR0003285"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 25,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D44",
+        "vins": [
+          "AUR0003280",
+          "AUR0003340"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.053+00:00"
+    },
+    {
+      "seq": 26,
+      "agent": "DealerNetwork",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D45",
+        "vins": [
+          "AUR0003341",
+          "AUR0003343",
+          "AUR0003345"
+        ]
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 27,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0053",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003263 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 28,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0093",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003185 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 29,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0100",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003295 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 30,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0102",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003190 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 31,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0104",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003177 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 32,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0163",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003348 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 33,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0260",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003259 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 34,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0310",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003174 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 35,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0434",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003272 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 36,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0437",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003193 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 37,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0501",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003260 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.054+00:00"
+    },
+    {
+      "seq": 38,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0541",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003196 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 39,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0604",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003298 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 40,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0632",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003187 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 41,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0743",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003268 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 42,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0959",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003347 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 43,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1109",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003252 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 44,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1145",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003266 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 45,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1159",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003189 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 46,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1171",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003200 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 47,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1236",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003183 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 48,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1357",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003182 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.055+00:00"
+    },
+    {
+      "seq": 49,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1366",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003192 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 50,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1386",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003358 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 51,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1439",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003179 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 52,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1550",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003178 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 53,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1596",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003289 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 54,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1649",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003275 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 55,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1731",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003198 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 56,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1779",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003237 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 57,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1844",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003346 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 58,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1963",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003279 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 59,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2115",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003246 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 60,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2275",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003181 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.056+00:00"
+    },
+    {
+      "seq": 61,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2281",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003241 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 62,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2418",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003191 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 63,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2549",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003194 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 64,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2583",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003249 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 65,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2605",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003284 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 66,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2622",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003290 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 67,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2701",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003199 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 68,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2708",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003197 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 69,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2749",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003269 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 70,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2823",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003342 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 71,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2898",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003265 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 72,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3029",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003253 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.057+00:00"
+    },
+    {
+      "seq": 73,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3355",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003297 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 74,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3697",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003353 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 75,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3771",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003276 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 76,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4033",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003291 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 77,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4096",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003281 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 78,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4180",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003357 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 79,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4244",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003239 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 80,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4249",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003186 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 81,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4447",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003336 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 82,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4522",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003245 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 83,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4595",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003354 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 84,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4863",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003257 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.058+00:00"
+    },
+    {
+      "seq": 85,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4937",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003261 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 86,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5016",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003356 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 87,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5021",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003195 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 88,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5099",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003188 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 89,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5234",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003351 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 90,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5279",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003292 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 91,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5489",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003271 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 92,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5623",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003255 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 93,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5998",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003335 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 94,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6063",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003251 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 95,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6067",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003350 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 96,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6399",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003247 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 97,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6418",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003344 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.059+00:00"
+    },
+    {
+      "seq": 98,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6727",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003234 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.060+00:00"
+    },
+    {
+      "seq": 99,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6746",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003278 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.060+00:00"
+    },
+    {
+      "seq": 100,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6816",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003244 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.060+00:00"
+    },
+    {
+      "seq": 101,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6890",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003248 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.060+00:00"
+    },
+    {
+      "seq": 102,
+      "agent": "CustomerCareQuality",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C7000",
+        "message": "Wacky Wheels safety notice: your vehicle AUR0003282 contains a infotainment chip from lot LOT-0191 that is on quality hold. Your dealer will contact you to arrange an inspection."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "write",
+      "ts": "2026-11-07T20:14:58.060+00:00"
+    }
+  ],
+  "escalation": {
+    "escalated": false,
+    "reason": "",
+    "missing_fields": []
+  },
+  "schedule": {
+    "plants": [
+      "P_TX",
+      "P_KY",
+      "P_MS",
+      "P_IN",
+      "P_AL",
+      "P_NC"
+    ],
+    "touched_plants": [],
+    "transfer_targets": [],
+    "capacity": {
+      "P_TX": 5,
+      "P_KY": 5,
+      "P_MS": 5,
+      "P_IN": 5,
+      "P_AL": 5,
+      "P_NC": 5
+    },
+    "before": {
+      "P_TX": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_KY": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_MS": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_IN": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_AL": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_NC": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      }
+    },
+    "after": {
+      "P_TX": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_KY": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_MS": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_IN": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_AL": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      },
+      "P_NC": {
+        "2027-03-08": 3,
+        "2027-03-09": 3,
+        "2027-03-10": 3,
+        "2027-03-11": 3,
+        "2027-03-12": 3,
+        "2027-03-15": 3,
+        "2027-03-16": 3,
+        "2027-03-17": 3,
+        "2027-03-18": 3,
+        "2027-03-19": 3,
+        "2027-03-22": 3,
+        "2027-03-23": 3,
+        "2027-03-24": 3,
+        "2027-03-25": 3,
+        "2027-03-26": 3,
+        "2027-03-29": 3,
+        "2027-03-30": 3,
+        "2027-03-31": 3,
+        "2027-04-01": 3,
+        "2027-04-02": 3
+      }
+    }
+  },
+  "config_snapshot": {
+    "NEXT_WEEKDAY": "following_week",
+    "TRANSFER_LOWER_BOUND": "today",
+    "PLANT_TIEBREAK": "plants_csv_order",
+    "COMPOUND_ORDER": "message_order",
+    "NOTIFY_SCOPE": "per_event",
+    "NO_SLOT_ACTION": "escalate",
+    "QUALITY_DEALER_NOTIFY": false,
+    "ESCALATE_NOISE": false,
+    "FUZZY_THRESHOLD": 90,
+    "LLM_MODEL": "qwen2.5:3b-instruct"
+  },
+  "summary": "Quality hold on LOT-0191 (CHIP-IVI at P_IN, built 2027-03-02 to 2027-03-03): 40 unsold vehicles stopped at 25 dealers and 76 owners contacted. 102 actions of 3 kinds, all verified in the digital twin before execution.",
+  "metrics": {
+    "llm_calls": 1,
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_cached": true,
+    "prompt_tokens": 1185,
+    "completion_tokens": 260,
+    "tool_calls": 102,
+    "reads": 0,
+    "writes": 102,
+    "escalations": 0,
+    "failed": 0,
+    "runtime_s": 0.03
+  },
+  "ui_category": "quality",
+  "schema_errors": []
+}
