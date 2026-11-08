@@ -324,9 +324,10 @@ function layoutCards() {
     let x = anchor.x + dx * 120;
     let y = anchor.y + dy * 90 - 20;
     // Pin corner/side preferences by agent id for a stable explain layout
+    // Keep clear of top pills, left hint, right detail panel, bottom controls/toast
     const pin = {
-      llm: [0.14, 0.18], supply_chain: [0.86, 0.18], care: [0.12, 0.55], dealer: [0.88, 0.55],
-      twin: [0.22, 0.78], server: [0.78, 0.78], verifier: [0.50, 0.86], coordinator: [0.50, 0.14],
+      llm: [0.16, 0.28], supply_chain: [0.72, 0.28], care: [0.14, 0.48], dealer: [0.72, 0.48],
+      twin: [0.16, 0.68], server: [0.72, 0.68], verifier: [0.42, 0.82], coordinator: [0.42, 0.28],
     }[id];
     if (pin) {
       x = pin[0] * view.clientWidth;
@@ -351,8 +352,10 @@ function layoutCards() {
           b.y += sy * pushY * 0.6;
         }
       }
-      items[i].x = Math.min(view.clientWidth - W / 2 - 10, Math.max(W / 2 + 10, items[i].x));
-      items[i].y = Math.min(view.clientHeight - 64, Math.max(72, items[i].y));
+      // Clamp away from top bar (~56), right detail (~320), bottom controls (~110)
+      const maxX = view.clientWidth - 320 - W / 2;
+      items[i].x = Math.min(maxX, Math.max(W / 2 + 12, items[i].x));
+      items[i].y = Math.min(view.clientHeight - 110, Math.max(96, items[i].y));
     }
   }
   const leaders = document.getElementById("leaders");
