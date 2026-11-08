@@ -1,0 +1,207 @@
+1
+00:00:00,100 --> 00:00:04,721
+Wacky Wheels builds cars just in time — no parts inventory.
+
+2
+00:00:04,671 --> 00:00:12,539
+A late shipment, a plant outage, or a bad lot ripples into schedules, dealers, loaner cars, and owners.
+
+3
+00:00:12,539 --> 00:00:16,144
+Messages arrive as messy emails and chats.
+
+4
+00:00:16,144 --> 00:00:22,552
+Our Control Tower turns each one into exactly the actions the handbook demands — and proves why.
+
+5
+00:00:22,552 --> 00:00:29,907
+One small local language model, Qwen two point five three B, only classifies and copies phrases.
+
+6
+00:00:29,907 --> 00:00:42,500
+Everything else is deterministic code: a knowledge graph of seventeen thousand nodes, specialist agents, a verifier, and a digital twin that dry-runs every plan before the real server sees it.
+
+7
+00:00:42,500 --> 00:00:46,986
+The rule is simple: the LLM reads, code decides.
+
+8
+00:00:46,986 --> 00:00:50,184
+Here is the live Event Operations desk.
+
+9
+00:00:50,184 --> 00:00:53,000
+Fifteen events from the scored run.
+
+10
+00:00:53,000 --> 00:00:58,618
+We open E-09 — a supplier delay on surround-view cameras into Huntsville.
+
+11
+00:00:58,618 --> 00:01:01,486
+The model extracts the phrases.
+
+12
+00:01:01,486 --> 00:01:05,328
+Code resolves them to shipment, part, and plant.
+
+13
+00:01:05,328 --> 00:01:08,276
+The graph path shows who is affected.
+
+14
+00:01:08,276 --> 00:01:15,263
+The twin plans reschedules and transfers, ranks Platinum and Gold for loaners, and notifies dealers.
+
+15
+00:01:15,263 --> 00:01:18,500
+Every action cites a rule and evidence.
+
+16
+00:01:18,500 --> 00:01:26,026
+E-01 is a compound digest: a San Antonio outage and a chip delay to Princeton, in one message.
+
+17
+00:01:26,026 --> 00:01:29,236
+Next Friday resolves to March nineteenth.
+
+18
+00:01:29,236 --> 00:01:34,684
+One shared slot ledger, one notify per dealer, loaners ranked together.
+
+19
+00:01:34,684 --> 00:01:38,197
+The before-and-after heatmap shows blocked days.
+
+20
+00:01:38,197 --> 00:01:41,092
+E-03 is a quality hold.
+
+21
+00:01:41,092 --> 00:01:43,434
+The lot is identified.
+
+22
+00:01:43,434 --> 00:01:46,592
+Unsold vehicles are stopped at dealers.
+
+23
+00:01:46,592 --> 00:01:49,131
+Sold owners are contacted.
+
+24
+00:01:49,131 --> 00:01:53,105
+Noise like E-05 makes zero tool calls.
+
+25
+00:01:53,105 --> 00:01:57,302
+An unconfirmed rumor escalates once — nothing else.
+
+26
+00:01:57,302 --> 00:02:02,394
+The verifier tab shows plan checks and twin world checks, all green.
+
+27
+00:02:02,394 --> 00:02:05,868
+The Audit trail filters by rule or dealer.
+
+28
+00:02:05,868 --> 00:02:09,750
+Human review can approve or reject escalations.
+
+29
+00:02:09,750 --> 00:02:13,263
+Managers edit policy without hard-coding.
+
+30
+00:02:13,263 --> 00:02:20,210
+Policy Studio versions event types, playbooks, rules, switches, and verifier checks.
+
+31
+00:02:20,210 --> 00:02:23,500
+Handbook V1 stays the scored baseline.
+
+32
+00:02:23,500 --> 00:02:26,368
+Preview impact runs twin-only.
+
+33
+00:02:26,368 --> 00:02:28,921
+Publish creates a new version.
+
+34
+00:02:28,921 --> 00:02:34,657
+The official run still refuses edited profiles unless you pass the policy flag.
+
+35
+00:02:34,657 --> 00:02:37,065
+What-if is a sandbox.
+
+36
+00:02:37,065 --> 00:02:41,381
+Pick plant outage, supplier delay, or quality hold.
+
+37
+00:02:41,381 --> 00:02:46,026
+Fill plant, part, supplier, and dates from the tables.
+
+38
+00:02:46,026 --> 00:02:51,802
+The normal planner and verifier run on the twin only — nothing is sent to any server.
+
+39
+00:02:51,802 --> 00:03:03,750
+You see affected orders, units delayed, Platinum and Gold customers, dealers to notify, loaners needed versus available, transfers, promise misses, and the graph path.
+
+40
+00:03:03,750 --> 00:03:06,894
+Compare two scenarios side by side.
+
+41
+00:03:06,894 --> 00:03:10,855
+Everything is labeled simulation, not executed.
+
+42
+00:03:10,855 --> 00:03:14,250
+Operations health reads only from traces.
+
+43
+00:03:14,250 --> 00:03:22,355
+Per-stage timing: extract, resolve, gate, plan, verify, twin, execute, and read-back.
+
+44
+00:03:22,355 --> 00:03:29,657
+Totals, slowest events, cache hit rate, failure count — which should be zero — and the model used.
+
+45
+00:03:29,657 --> 00:03:34,921
+The Daily briefing is plain business language generated from the same traces.
+
+46
+00:03:34,921 --> 00:03:50,960
+Events by type, incidents handled, actions by tool, customers affected, Platinum and Gold protected, loaners assigned versus requested, quality lots held, vehicles stopped, open escalations, zero failed calls, and three highlights.
+
+47
+00:03:50,960 --> 00:03:54,460
+Download Markdown or a one-page PDF.
+
+48
+00:03:54,460 --> 00:04:02,421
+Self-check on the recorded run: fifteen of fifteen green, seven hundred sixty-six writes, zero failed calls.
+
+49
+00:04:02,421 --> 00:04:04,381
+LLM reads.
+
+50
+00:04:04,381 --> 00:04:06,315
+Code decides.
+
+51
+00:04:06,315 --> 00:04:09,894
+Every action cites a rule and a graph path.
+
+52
+00:04:09,894 --> 00:04:14,460
+That is the Wacky Wheels Control Tower — ready for Hack the Highway.

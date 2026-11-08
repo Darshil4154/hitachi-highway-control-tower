@@ -1,0 +1,21 @@
+Wacky Wheels builds cars just in time — no parts inventory. A late shipment, a plant outage, or a bad lot ripples into schedules, dealers, loaner cars, and owners. Messages arrive as messy emails and chats. Our Control Tower turns each one into exactly the actions the handbook demands — and proves why.
+
+One small local language model, Qwen two point five three B, only classifies and copies phrases. Everything else is deterministic code: a knowledge graph of seventeen thousand nodes, specialist agents, a verifier, and a digital twin that dry-runs every plan before the real server sees it. The rule is simple: the LLM reads, code decides.
+
+Here is the live Event Operations desk. Fifteen events from the scored run. We open E-09 — a supplier delay on surround-view cameras into Huntsville. The model extracts the phrases. Code resolves them to shipment, part, and plant. The graph path shows who is affected. The twin plans reschedules and transfers, ranks Platinum and Gold for loaners, and notifies dealers. Every action cites a rule and evidence.
+
+E-01 is a compound digest: a San Antonio outage and a chip delay to Princeton, in one message. Next Friday resolves to March nineteenth. One shared slot ledger, one notify per dealer, loaners ranked together. The before-and-after heatmap shows blocked days.
+
+E-03 is a quality hold. The lot is identified. Unsold vehicles are stopped at dealers. Sold owners are contacted. Noise like E-05 makes zero tool calls. An unconfirmed rumor escalates once — nothing else.
+
+The verifier tab shows plan checks and twin world checks, all green. The Audit trail filters by rule or dealer. Human review can approve or reject escalations.
+
+Managers edit policy without hard-coding. Policy Studio versions event types, playbooks, rules, switches, and verifier checks. Handbook V1 stays the scored baseline. Preview impact runs twin-only. Publish creates a new version. The official run still refuses edited profiles unless you pass the policy flag.
+
+What-if is a sandbox. Pick plant outage, supplier delay, or quality hold. Fill plant, part, supplier, and dates from the tables. The normal planner and verifier run on the twin only — nothing is sent to any server. You see affected orders, units delayed, Platinum and Gold customers, dealers to notify, loaners needed versus available, transfers, promise misses, and the graph path. Compare two scenarios side by side. Everything is labeled simulation, not executed.
+
+Operations health reads only from traces. Per-stage timing: extract, resolve, gate, plan, verify, twin, execute, and read-back. Totals, slowest events, cache hit rate, failure count — which should be zero — and the model used.
+
+The Daily briefing is plain business language generated from the same traces. Events by type, incidents handled, actions by tool, customers affected, Platinum and Gold protected, loaners assigned versus requested, quality lots held, vehicles stopped, open escalations, zero failed calls, and three highlights. Download Markdown or a one-page PDF.
+
+Self-check on the recorded run: fifteen of fifteen green, seven hundred sixty-six writes, zero failed calls. LLM reads. Code decides. Every action cites a rule and a graph path. That is the Wacky Wheels Control Tower — ready for Hack the Highway.
