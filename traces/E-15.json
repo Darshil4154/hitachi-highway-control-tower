@@ -7512,7 +7512,18 @@
     "writes": 102,
     "escalations": 0,
     "failed": 0,
-    "runtime_s": 0.13
+    "runtime_s": 0.13,
+    "stages_s": {
+      "extract": 0.0001,
+      "resolve": 0.0015,
+      "gate": 0.0001,
+      "plan": 0.0145,
+      "verify": 0.0006,
+      "twin": 0.0004,
+      "execute": 0.0103,
+      "readback": 0.0
+    },
+    "cache": "hit"
   },
   "ui_category": "quality",
   "schema_errors": []

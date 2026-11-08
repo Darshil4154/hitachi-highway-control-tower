@@ -5484,7 +5484,18 @@
     "writes": 46,
     "escalations": 0,
     "failed": 0,
-    "runtime_s": 0.1
+    "runtime_s": 0.1,
+    "stages_s": {
+      "extract": 0.0001,
+      "resolve": 0.0017,
+      "gate": 0.0001,
+      "plan": 0.0028,
+      "verify": 0.0004,
+      "twin": 0.0004,
+      "execute": 0.0043,
+      "readback": 0.0012
+    },
+    "cache": "hit"
   },
   "ui_category": "outage",
   "schema_errors": []

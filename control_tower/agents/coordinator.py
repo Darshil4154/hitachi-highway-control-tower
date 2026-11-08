@@ -31,18 +31,23 @@ class Coordinator:
     # ================================================================== entry point
     def handle(self, event: dict) -> dict:
         t0 = time.time()
+        clock = time.perf_counter()
         eid, text = event["event_id"], event["text"]
         res = llm.extract(text)
         ex = llm.merge_extra_types(res["extraction"], text)
+        stages = {"extract": time.perf_counter() - clock}
+        clock = time.perf_counter()
         resolved = [resolve_incident(i.model_dump(), text, self.ds) for i in ex.incidents]
+        stages["resolve"] = time.perf_counter() - clock
+        clock = time.perf_counter()
         g = llm.gate(ex, resolved, text)
+        rationale_issues = llm.rationale_check(ex.rationale, text, [i.model_dump() for i in ex.incidents])
+        stages["gate"] = time.perf_counter() - clock
         self.client.mark(eid, g["result"])
         trace = {
             "event": {k: event.get(k) for k in ("event_id", "source", "received_at", "text")},
             "classification": {"category": ex.category, "gate": g["result"], "confidence": ex.confidence,
-                               "rationale": ex.rationale,
-                               "rationale_issues": llm.rationale_check(ex.rationale, text,
-                                                                       [i.model_dump() for i in ex.incidents]),
+                               "rationale": ex.rationale, "rationale_issues": rationale_issues,
                                "gate_reason": g["reason"], "hedges": g["hedges"],
                                "llm_model": res["llm_model"], "llm_fallback": res["llm_fallback"],
                                "llm_cached": res["cached"], "llm_error": res["error"]},
@@ -50,22 +55,30 @@ class Coordinator:
             "escalation": {"escalated": False, "reason": "", "missing_fields": []}, "schedule": None,
             "config_snapshot": config.snapshot(),
         }
+        trace["_stages"] = stages
+        trace["_clock"] = time.perf_counter()
         if g["result"] == "noise":
             trace["incidents"] = [self._incident_stub(eid, k, r) for k, r in enumerate(resolved)]
             noise_steps = set(policy_model.steps_for("noise"))
             if "escalate" in noise_steps and "no_action" not in noise_steps:
+                self._mark(trace, "plan")
                 self._escalate_only(eid, trace, g["reason"], g["missing_fields"])
+                self._mark(trace, "execute")
             else:
                 trace["decision_rule"] = R7
                 trace["summary"] = (f"Judged not operational: {g['reason']} No tool calls were made (handbook rule 7).")
+                self._mark(trace, "plan")
         elif g["result"] in ("unconfirmed", "needs_review"):
             trace["incidents"] = [self._incident_stub(eid, k, r) for k, r in enumerate(resolved)]
             quiet = set(policy_model.steps_for("unconfirmed"))
             if g["result"] == "unconfirmed" and "no_action" in quiet and "escalate" not in quiet:
                 trace["decision_rule"] = R8
                 trace["summary"] = f"Unconfirmed report left untouched (playbook no_action). {g['reason']}"
+                self._mark(trace, "plan")
             else:
+                self._mark(trace, "plan")
                 self._escalate_only(eid, trace, g["reason"], g["missing_fields"])
+                self._mark(trace, "execute")
         else:
             self._handle_incidents(eid, text, resolved, trace)
         self._finish(eid, trace, res, t0)
@@ -87,8 +100,17 @@ class Coordinator:
                 "graph_path": {"nodes": [], "edges": [], "text": ""}, "affected": {}, "excluded": [],
                 "decisions": {"reschedule": [], "loaners": []}}
 
+    def _mark(self, trace: dict, name: str) -> None:
+        clock = trace.get("_clock")
+        if clock is None:
+            return
+        now = time.perf_counter()
+        trace.setdefault("_stages", {})[name] = now - clock
+        trace["_clock"] = now
+
     # ================================================================== incident path
-    def _handle_incidents(self, eid: str, text: str, resolved: list[dict], trace: dict) -> None:
+    def _handle_incidents(self, eid: str, text: str, resolved: list[dict], trace: dict,
+                          simulate: bool = False) -> None:
         if config.COMPOUND_ORDER == "earliest_disruption_first":
             key = lambda r: r.get("original_eta") or r.get("start") or r.get("window_from") or date.max
             resolved = sorted(resolved, key=key)
@@ -130,8 +152,15 @@ class Coordinator:
             for it in items:
                 it.pop("_inc", None)
                 it.pop("_q", None)
-            self._escalate_only(eid, trace, "Validation failed, no operational action: " + " | ".join(failures),
-                                ["validated shipment/lot"])
+            self._mark(trace, "plan")
+            reason = "Validation failed, no operational action: " + " | ".join(failures)
+            if simulate:
+                trace["simulation"] = True
+                trace["summary"] = "Simulation, not executed. " + reason
+                trace["escalation"] = {"escalated": True, "reason": reason, "missing_fields": ["validated shipment/lot"]}
+                return
+            self._escalate_only(eid, trace, reason, ["validated shipment/lot"])
+            self._mark(trace, "execute")
             return
 
         # ---------------- Supply chain: shared slot ledger across every incident of this event
@@ -230,9 +259,11 @@ class Coordinator:
             }
 
         # ---------------- guardrails: verifier -> twin -> verifier
+        self._mark(trace, "plan")
         verif_incidents = [{**i["disruption"], "type": i["type"]} for i in sched] + [{"type": "quality_hold", "lot_id": qp["lot"].lot_id}
                                                               for _, qp in quality]
         plan_checks = verifier.check_plan(self.ds, plan, verif_incidents, pools, {d["po"] for d in no_slot})
+        self._mark(trace, "verify")
         twin = Twin(eid)
         dry = twin.apply([a for a in plan])
         world_checks = verifier.check_world(twin, plan, dry)
@@ -243,12 +274,25 @@ class Coordinator:
                                                          if a["tool"] == "mes.transfer"}),
                              "capacity": {p: self.ds.plants[p].slots_per_day for p in self.ds.plants},
                              "before": before, "after": after}
+        self._mark(trace, "twin")
         if not (verifier.passed(plan_checks) and verifier.passed(world_checks)):
             bad = [c["name"] + (f" ({c['detail']})" if c["detail"] else "") for c in plan_checks + world_checks
                    if not c["ok"] and c.get("blocking", True)]
             trace["plan_rejected"] = plan
             trace["plan"] = []
-            self._escalate_only(eid, trace, "Verifier blocked the plan: " + "; ".join(bad), ["verifier"])
+            reason = "Verifier blocked the plan: " + "; ".join(bad)
+            if simulate:
+                trace["simulation"] = True
+                trace["summary"] = "Simulation, not executed. " + reason
+                trace["escalation"] = {"escalated": True, "reason": reason, "missing_fields": ["verifier"]}
+                return
+            self._escalate_only(eid, trace, reason, ["verifier"])
+            self._mark(trace, "execute")
+            return
+
+        if simulate:
+            trace["simulation"] = True
+            trace["summary"] = "Simulation, not executed. " + self._summary(items, plan, no_slot)
             return
 
         # ---------------- execute on the real server
@@ -267,7 +311,9 @@ class Coordinator:
         if no_slot and not failed:
             trace["escalation"] = {"escalated": True, "reason": escalations[0]["args"]["reason"] if escalations
                                    else "no slot", "missing_fields": []}
+        self._mark(trace, "execute")
         self._read_back(eid, plan, pools, trace)
+        self._mark(trace, "readback")
         trace["summary"] = self._summary(items, plan, no_slot)
 
     # ================================================================== trace detail helpers
@@ -482,13 +528,19 @@ class Coordinator:
         for a in trace["actions"]:
             if a["kind"] == "read":
                 a["plan_refs"] = self._plan_refs(a, trace.get("plan", []))
+        stages = trace.pop("_stages", {})
+        trace.pop("_clock", None)
+        stage_names = ("extract", "resolve", "gate", "plan", "verify", "twin", "execute", "readback")
         trace["metrics"] = {"llm_calls": res["llm_calls"], "llm_model": res["llm_model"],
-                            "llm_cached": res["cached"], "prompt_tokens": res["prompt_tokens"],
+                            "llm_cached": res["cached"], "cache": "hit" if res.get("cached") else "miss",
+                            "prompt_tokens": res["prompt_tokens"],
                             "completion_tokens": res["completion_tokens"], "tool_calls": len(calls),
                             "reads": sum(1 for c in calls if c["kind"] == "read"),
                             "writes": sum(1 for c in calls if c["kind"] == "write"),
                             "escalations": sum(1 for c in calls if c["kind"] == "escalate"),
-                            "failed": sum(1 for c in calls if not c["ok"]), "runtime_s": round(time.time() - t0, 2)}
+                            "failed": sum(1 for c in calls if not c["ok"]),
+                            "stages_s": {name: round(float(stages.get(name, 0.0)), 4) for name in stage_names},
+                            "runtime_s": round(time.time() - t0, 2)}
         mentions = sorted({x["resolved"] for it in trace["incidents"] for x in it.get("extracted", [])
                            if x.get("resolved") and x["field"].endswith(("mention", "_id"))})
         trace["event"]["mentions"] = mentions

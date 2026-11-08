@@ -5410,7 +5410,18 @@
     "writes": 42,
     "escalations": 0,
     "failed": 0,
-    "runtime_s": 0.08
+    "runtime_s": 0.08,
+    "stages_s": {
+      "extract": 0.0001,
+      "resolve": 0.001,
+      "gate": 0.0001,
+      "plan": 0.0034,
+      "verify": 0.0005,
+      "twin": 0.0003,
+      "execute": 0.004,
+      "readback": 0.0012
+    },
+    "cache": "hit"
   },
   "ui_category": "delay",
   "schema_errors": []

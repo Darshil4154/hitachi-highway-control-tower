@@ -111,6 +111,16 @@ Event types, playbooks, rule parameters, interpretation switches and verifier ch
 An edited profile is saved as a new file, `config/policies/<name>_vN.yaml`, and is used only by the
 Live Incident Desk and the Scenario Lab in the Streamlit app (Policy Studio, manager).
 
+## What-if, health, and the daily briefing
+
+What-if runs the scored planner and verifier on the digital twin only. The page is labeled
+"simulation, not executed" and can compare two scenarios. It does not call the enterprise server.
+
+Each recorded event stores stage timings on `metrics.stages_s` (extract, resolve, gate, plan,
+verify, twin, execute, read-back) plus cache hit or miss, tokens, and tool counts. Operations
+health and the daily briefing read those traces and do not start a run. The briefing downloads
+as Markdown or a one-page PDF.
+
 ## Interpretation switches
 
 The switch values the agents read are copied from the active policy onto `control_tower/config.py`
@@ -136,7 +146,7 @@ and a quality hold has none (each dealer is told through `dealer.stop_sale`).
 ```
 enterprise/            organizer package, untouched (server, simulator, data, handbook)
 control_tower/         config, data_loader, ontology, resolvers, llm, policy, policy_model, sandbox,
-                       twin, tools_client, verifier, trace, run, ask, agents/
+                       whatif, insights, twin, tools_client, verifier, trace, run, ask, agents/
 config/policies/       handbook_v1.yaml (scored baseline) and published profiles
 eval/                  self_check.py (independent grading), what_if.py, llm_audit.py
 ui/app.py              Streamlit control tower (ui/static/ serves vis-network once)

@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "ui"))
 from control_tower.trace import READ_REASONS, plan_seq_label  # noqa: E402
+from insight_pages import page_briefing, page_health, page_whatif  # noqa: E402
 from policy_pages import audit_section, page_desk, page_lab, page_studio  # noqa: E402
 
 STATIC = Path(__file__).resolve().parent / "static"
@@ -149,7 +150,8 @@ with st.sidebar:
     st.markdown("<span class='small'>Wacky Wheels Co. · operations</span>", unsafe_allow_html=True)
     page = st.radio("View", ["Event operations", "Human review inbox", "Audit trail", "Knowledge graph",
                              "Ask the control tower", "Policy Studio (manager)", "Live Incident Desk",
-                             "Scenario Lab"], label_visibility="collapsed")
+                             "Scenario Lab", "What-if", "Operations health", "Daily briefing"],
+                   label_visibility="collapsed")
     st.divider()
     if summary:
         st.markdown(f"**Run mode:** {summary.get('mode', '?')}")
@@ -815,6 +817,15 @@ elif page == "Live Incident Desk":
 
 elif page == "Scenario Lab":
     page_lab()
+
+elif page == "What-if":
+    page_whatif()
+
+elif page == "Operations health":
+    page_health(traces)
+
+elif page == "Daily briefing":
+    page_briefing(traces)
 
 else:
     st.markdown("## Knowledge graph & ontology")

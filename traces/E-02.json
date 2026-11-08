@@ -95,7 +95,18 @@
     "writes": 0,
     "escalations": 1,
     "failed": 0,
-    "runtime_s": 0.0
+    "runtime_s": 0.0,
+    "stages_s": {
+      "extract": 0.0002,
+      "resolve": 0.0,
+      "gate": 0.0001,
+      "plan": 0.0,
+      "verify": 0.0,
+      "twin": 0.0,
+      "execute": 0.0002,
+      "readback": 0.0
+    },
+    "cache": "hit"
   },
   "ui_category": "escalated",
   "schema_errors": []
