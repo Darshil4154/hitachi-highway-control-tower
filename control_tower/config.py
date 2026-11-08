@@ -23,7 +23,7 @@ LLM_DISABLED = os.environ.get("LLM_DISABLED", "0") == "1"
 
 # --- Interpretation switches (default first; alternatives in comments) ---
 NEXT_WEEKDAY = "following_week"  # | "nearest_upcoming"
-TRANSFER_LOWER_BOUND = "today"  # | "restart"
+TRANSFER_LOWER_BOUND = "restart"  # | "today"
 # day_first: earliest day across every eligible plant (plants.csv order breaks ties on a day).
 # plant_first: go plant by plant in plants.csv order and take the first plant that has any free slot.
 TRANSFER_SEARCH = "day_first"  # | "plant_first"

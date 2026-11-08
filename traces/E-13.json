@@ -55,7 +55,7 @@
       "ok": true,
       "error": null,
       "kind": "escalate",
-      "ts": "2026-11-07T22:40:44.465+00:00"
+      "ts": "2026-11-08T01:47:08.610+00:00"
     }
   ],
   "escalation": {
@@ -71,7 +71,7 @@
   "schedule": null,
   "config_snapshot": {
     "NEXT_WEEKDAY": "following_week",
-    "TRANSFER_LOWER_BOUND": "today",
+    "TRANSFER_LOWER_BOUND": "restart",
     "TRANSFER_SEARCH": "day_first",
     "PLANT_TIEBREAK": "plants_csv_order",
     "SLOT_PRIORITY": "build_date",

@@ -66,7 +66,12 @@ def _outage(sc, start, end):
     return sc.outage_incident("I1", {"plant_id": "P_AA", "start": start, "end": end})
 
 
-def test_capacity_overflow_forces_transfer_to_eligible_plant(world):
+def test_capacity_overflow_forces_transfer_to_eligible_plant(world, monkeypatch):
+    from control_tower import config
+
+    # This case checks the "today" search: P_CC is full Mar 8-12, so the first free slot is Mar 15.
+    # The submission default is "restart" (no slot before the disruption ends).
+    monkeypatch.setattr(config, "TRANSFER_LOWER_BOUND", "today")
     ds, _, sc, _, _ = world
     inc = _outage(sc, date(2027, 3, 29), date(2027, 4, 1))
     assert inc["affected_pos"] == ["PO-0001", "PO-0002"]

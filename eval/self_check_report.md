@@ -1,6 +1,6 @@
 # Self-check report
 
-Log: `runs/final/action_log.jsonl` replayed on a fresh `enterprise.Enterprise`. Expected sets are recomputed by an independent minimal implementation of the handbook rules (no control_tower code).
+Log: `runs/final_v2/action_log.jsonl` replayed on a fresh `enterprise.Enterprise`. Expected sets are recomputed by an independent minimal implementation of the handbook rules (no control_tower code).
 
 | event | gate | calls | writes | failed | checks | result |
 |---|---|---|---|---|---|---|

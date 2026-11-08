@@ -34,7 +34,7 @@
   "schedule": null,
   "config_snapshot": {
     "NEXT_WEEKDAY": "following_week",
-    "TRANSFER_LOWER_BOUND": "today",
+    "TRANSFER_LOWER_BOUND": "restart",
     "TRANSFER_SEARCH": "day_first",
     "PLANT_TIEBREAK": "plants_csv_order",
     "SLOT_PRIORITY": "build_date",
