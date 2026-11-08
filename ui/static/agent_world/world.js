@@ -60,6 +60,9 @@ let livePoll = null;
 let lastLiveTs = 0;
 let sourceMode = "boot"; // replay | live
 const clickables = [];
+let focusedId = null;
+let agentOrder = [];
+let workingIds = new Set();
 
 function hexTile(x, z, color = 0x1e293b, y = 0) {
   const geo = new THREE.CylinderGeometry(0.95, 0.95, 0.18, 6);
@@ -219,9 +222,10 @@ function project(pos) {
 
 function buildCards(agents) {
   cardsEl.innerHTML = "";
+  agentOrder = agents.map((a) => a.id);
   agents.forEach((a) => {
     const el = document.createElement("div");
-    el.className = "card idle";
+    el.className = "card";
     el.dataset.id = a.id;
     el.innerHTML = `
       <div class="card-head">
@@ -233,18 +237,56 @@ function buildCards(agents) {
       </div>
       <div class="status"><span class="dot"></span><span class="label">Idle</span></div>
       <div class="bar"><i></i></div>`;
-    el.addEventListener("click", () => showDetail(a));
+    el.addEventListener("click", (e) => { e.stopPropagation(); focusAgent(a.id); });
     cardsEl.appendChild(el);
   });
+}
+
+function focusAgent(id) {
+  const agent = (bootstrap?.agents || []).find((a) => a.id === id);
+  if (!agent) return;
+  focusedId = id;
+  for (const card of cardsEl.querySelectorAll(".card")) {
+    card.classList.toggle("focused", card.dataset.id === id);
+  }
+  syncFocusedCardStatus();
+  showDetail(agent);
+  toast.textContent = `${agent.name} - click Next agent to continue the walkthrough`;
+  layoutCards();
+}
+
+function clearFocus() {
+  focusedId = null;
+  cardsEl.querySelectorAll(".card").forEach((c) => c.classList.remove("focused"));
+  detailEl.style.display = "none";
+  toast.textContent = "Map running in the background. Click a worker or use Next agent.";
+}
+
+function stepFocus(delta) {
+  if (!agentOrder.length) return;
+  let idx = focusedId ? agentOrder.indexOf(focusedId) : -1;
+  idx = (idx + delta + agentOrder.length) % agentOrder.length;
+  focusAgent(agentOrder[idx]);
+}
+
+function syncFocusedCardStatus() {
+  if (!focusedId) return;
+  const card = cardsEl.querySelector(`.card[data-id="${focusedId}"]`);
+  if (!card) return;
+  const on = workingIds.has(focusedId);
+  card.querySelector(".label").textContent = on ? "Working" : "Idle";
+  card.querySelector(".dot").style.background = on ? "#22c55e" : "#64748b";
+  card.querySelector(".bar > i").style.width = on ? "70%" : "0%";
 }
 
 function showDetail(agent, extra = {}) {
   detailEl.style.display = "block";
   const event = current || {};
+  const working = workingIds.has(agent.id) || (event.active_agents || []).includes(agent.id);
   detailEl.innerHTML = `
     <h2>${agent.name}</h2>
     <p>${agent.role}</p>
-    <div class="chip">${extra.status || (event.active_agents || []).includes(agent.id) ? "Working" : "Idle"}</div>
+    <div class="chip">${extra.status || (working ? "Working" : "Idle")}</div>
     <div class="chip">${event.event_id || extra.label || "—"}</div>
     <p style="margin-top:10px">${event.summary || extra.summary || "Waiting for the next stage."}</p>
     <div>${Object.entries(event.tools || extra.tools || {}).map(([k, v]) => `<span class="chip">${k} × ${v}</span>`).join("")}</div>
@@ -252,35 +294,34 @@ function showDetail(agent, extra = {}) {
 }
 
 function setAgentActive(ids, progress = 0.4) {
-  const set = new Set(ids || []);
+  workingIds = new Set(ids || []);
   for (const [id, mesh] of agentMeshes) {
-    const card = cardsEl.querySelector(`.card[data-id="${id}"]`);
-    const on = set.has(id);
+    const on = workingIds.has(id);
     const matBand = mesh.userData.pulse;
-    if (matBand) matBand.emissiveIntensity = on ? 0.8 : 0.15;
-    if (card) {
-      card.classList.toggle("active", on);
-      card.classList.toggle("idle", !on);
-      card.querySelector(".label").textContent = on ? "Working" : "Idle";
-      card.querySelector(".bar > i").style.width = on ? `${Math.round(progress * 100)}%` : "0%";
-    }
+    if (matBand) matBand.emissiveIntensity = on ? 0.85 : 0.12;
     if (mesh.userData.figure) {
       mesh.userData.figure.visible = true;
-      mesh.userData.figure.position.y = on ? Math.sin(performance.now() / 200) * 0.05 : 0;
+      mesh.userData.figure.scale.setScalar(on ? 1.15 : 1);
     }
   }
+  syncFocusedCardStatus();
 }
 
 function layoutCards() {
-  for (const [id, mesh] of agentMeshes) {
-    const card = cardsEl.querySelector(`.card[data-id="${id}"]`);
-    if (!card) continue;
-    const p = project(mesh.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 2.2, 0)));
-    if (p.behind) { card.style.display = "none"; continue; }
+  // Only position the one focused card - no overlap stack
+  cardsEl.querySelectorAll(".card").forEach((card) => {
+    if (!card.classList.contains("focused")) {
+      card.style.display = "none";
+      return;
+    }
+    const mesh = agentMeshes.get(card.dataset.id);
+    if (!mesh) return;
+    const p = project(mesh.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 2.4, 0)));
+    if (p.behind) { card.style.display = "none"; return; }
     card.style.display = "block";
-    card.style.left = `${p.x}px`;
-    card.style.top = `${p.y}px`;
-  }
+    card.style.left = `${Math.min(view.clientWidth - 130, Math.max(130, p.x))}px`;
+    card.style.top = `${Math.min(view.clientHeight - 80, Math.max(90, p.y))}px`;
+  });
 }
 
 function placeAgents(agents) {
@@ -474,17 +515,26 @@ renderer.domElement.addEventListener("pointerdown", (ev) => {
   let obj = hits[0].object;
   while (obj && !obj.userData.agent && !obj.userData.plant) obj = obj.parent;
   if (obj?.userData?.agent) {
-    showDetail(obj.userData.agent);
-    toast.textContent = `Selected ${obj.userData.agent.name}`;
+    focusAgent(obj.userData.agent.id);
     return;
   }
   if (obj?.userData?.plant) {
+    clearFocus();
     const p = obj.userData.plant;
     detailEl.style.display = "block";
     detailEl.innerHTML = `<h2>${p.name}</h2><p>Plant node ${p.id}</p>
       <p>Lights up when an event summary mentions this plant.</p>`;
     toast.textContent = `Selected plant ${p.id}`;
   }
+});
+
+document.getElementById("btnNext")?.addEventListener("click", () => stepFocus(1));
+document.getElementById("btnPrev")?.addEventListener("click", () => stepFocus(-1));
+document.getElementById("btnClear")?.addEventListener("click", () => clearFocus());
+window.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === "n") stepFocus(1);
+  if (e.key === "ArrowLeft" || e.key === "p") stepFocus(-1);
+  if (e.key === "Escape") clearFocus();
 });
 
 function animate(now) {

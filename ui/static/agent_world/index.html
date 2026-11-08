@@ -29,15 +29,27 @@
       padding: 8px 14px; font-size: 13px; color: var(--muted);
     }
     .pill b { color: var(--text); }
-    #cards { position: absolute; inset: 0; }
+    #cards { position: absolute; inset: 0; pointer-events: none; }
     .card {
-      position: absolute; width: 220px; pointer-events: auto; transform: translate(-50%, -120%);
-      background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
-      padding: 10px 12px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      transition: opacity .2s, border-color .2s;
+      position: absolute; width: 240px; pointer-events: auto; transform: translate(-50%, -120%);
+      background: var(--panel); border: 1px solid var(--accent); border-radius: 14px;
+      padding: 10px 12px; box-shadow: 0 0 0 1px rgba(56,189,248,.35), 0 14px 36px rgba(0,0,0,.5);
+      display: none; z-index: 5;
     }
-    .card.active { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(56,189,248,.35), 0 10px 30px rgba(0,0,0,.45); }
-    .card.idle { opacity: .72; }
+    .card.focused { display: block; }
+    .card.active .dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+    #explain {
+      position: absolute; left: 16px; bottom: 64px; display: flex; gap: 8px; pointer-events: auto;
+    }
+    #explain button {
+      background: var(--panel); color: var(--text); border: 1px solid var(--line);
+      border-radius: 10px; padding: 8px 12px; font-size: 13px; cursor: pointer;
+    }
+    #explain button:hover { border-color: var(--accent); }
+    #hint {
+      position: absolute; left: 16px; top: 56px; font-size: 12px; color: var(--muted);
+      background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px;
+    }
     .card-head { display: flex; gap: 8px; align-items: center; }
     .avatar {
       width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
@@ -50,7 +62,6 @@
       font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #1e293b;
     }
     .dot { width: 7px; height: 7px; border-radius: 50%; background: #64748b; }
-    .card.active .dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
     .bar { margin-top: 8px; height: 5px; background: #1e293b; border-radius: 99px; overflow: hidden; }
     .bar > i { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, #0ea5e9, #22c55e); }
     #detail {
@@ -78,8 +89,14 @@
       <div class="pill" id="eventPill">Event <b>—</b></div>
       <div class="pill" id="stagePill">Stage <b>—</b></div>
     </div>
+    <div id="hint">Click a worker or node · or use Next agent to explain one by one</div>
     <div id="cards"></div>
     <div id="detail"></div>
+    <div id="explain">
+      <button type="button" id="btnPrev">Previous agent</button>
+      <button type="button" id="btnNext">Next agent</button>
+      <button type="button" id="btnClear">Hide card</button>
+    </div>
     <div id="toast">Loading Agent World…</div>
   </div>
   <script type="importmap">
