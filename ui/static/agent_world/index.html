@@ -30,14 +30,16 @@
     }
     .pill b { color: var(--text); }
     #cards { position: absolute; inset: 0; pointer-events: none; }
+    #leaders { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
     .card {
-      position: absolute; width: 240px; pointer-events: auto; transform: translate(-50%, -120%);
-      background: var(--panel); border: 1px solid var(--accent); border-radius: 14px;
-      padding: 10px 12px; box-shadow: 0 0 0 1px rgba(56,189,248,.35), 0 14px 36px rgba(0,0,0,.5);
-      display: none; z-index: 5;
+      position: absolute; width: 200px; pointer-events: auto; transform: translate(-50%, -100%);
+      background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+      padding: 8px 10px; box-shadow: 0 10px 28px rgba(0,0,0,.4); z-index: 5;
+      display: block;
     }
-    .card.focused { display: block; }
-    .card.active .dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+    .card.working { border-color: var(--ok); }
+    .card.focused { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(56,189,248,.4), 0 12px 30px rgba(0,0,0,.5); z-index: 6; }
+    .card .dot.working { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
     #explain {
       position: absolute; left: 16px; bottom: 64px; display: flex; gap: 8px; pointer-events: auto;
     }
@@ -89,13 +91,14 @@
       <div class="pill" id="eventPill">Event <b>—</b></div>
       <div class="pill" id="stagePill">Stage <b>—</b></div>
     </div>
-    <div id="hint">Click a worker or node · or use Next agent to explain one by one</div>
+    <div id="hint">All tags visible · click a worker/tag to highlight · Next focuses one for explaining</div>
+    <svg id="leaders" xmlns="http://www.w3.org/2000/svg"></svg>
     <div id="cards"></div>
     <div id="detail"></div>
     <div id="explain">
       <button type="button" id="btnPrev">Previous agent</button>
       <button type="button" id="btnNext">Next agent</button>
-      <button type="button" id="btnClear">Hide card</button>
+      <button type="button" id="btnClear">Clear highlight</button>
     </div>
     <div id="toast">Loading Agent World…</div>
   </div>

@@ -66,5 +66,5 @@ def page_agent_world() -> None:
     src = f"/app/static/agent_world/index.html?mode={mode}&event={event}&speed={speed}"
     components.iframe(src, height=720, scrolling=False)
 
-    st.caption("Cards stay hidden until you click a worker/node or press **Next agent** - one card at a time for explaining. "
-               "The pipeline keeps running in the background. Live Desk / What-if pulses still interrupt the map.")
+    st.caption("Wider map with all agent tags visible at once (auto-spaced, leader lines). "
+               "Click a worker/tag or Next to highlight while explaining. Pipeline and live pulses keep running.")

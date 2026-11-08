@@ -14,19 +14,19 @@ AGENTS = [
     {"id": "coordinator", "name": "Coordinator", "role": "Routes every event", "color": "#38bdf8",
      "x": 0, "z": 0, "kind": "hub"},
     {"id": "llm", "name": "LLM Reader", "role": "Classifies and copies phrases", "color": "#a78bfa",
-     "x": -4, "z": -3, "kind": "station"},
+     "x": -7.5, "z": -5.5, "kind": "station"},
     {"id": "supply_chain", "name": "Supply Chain Planner", "role": "Reschedule and transfer", "color": "#f59e0b",
-     "x": 4, "z": -3, "kind": "worker"},
+     "x": 7.5, "z": -5.5, "kind": "worker"},
     {"id": "dealer", "name": "Dealer Network", "role": "Notify dealers and stop sale", "color": "#34d399",
-     "x": 5, "z": 2, "kind": "worker"},
+     "x": 8.5, "z": 3.5, "kind": "worker"},
     {"id": "care", "name": "Customer Care & Quality", "role": "Loaners, holds, owners", "color": "#f472b6",
-     "x": -5, "z": 2, "kind": "worker"},
+     "x": -8.5, "z": 3.5, "kind": "worker"},
     {"id": "verifier", "name": "Verifier", "role": "Plan and twin checks", "color": "#22c55e",
-     "x": 0, "z": 5, "kind": "tower"},
+     "x": 0, "z": 8.5, "kind": "tower"},
     {"id": "twin", "name": "Digital Twin", "role": "Dry-run before the server", "color": "#06b6d4",
-     "x": -2, "z": 4, "kind": "dome"},
+     "x": -4.5, "z": 7.0, "kind": "dome"},
     {"id": "server", "name": "Enterprise Gate", "role": "Real writes leave here", "color": "#ef4444",
-     "x": 2, "z": 4, "kind": "gate"},
+     "x": 4.5, "z": 7.0, "kind": "gate"},
 ]
 
 STAGE_AGENTS = {
@@ -55,8 +55,8 @@ def _plants_from_store() -> list[dict]:
         out = []
         for i, (pid, plant) in enumerate(ds.plants.items()):
             angle = (i / max(1, len(ds.plants))) * 6.283
-            out.append({"id": pid, "name": plant.name, "x": 9 * __import__("math").cos(angle),
-                        "z": 9 * __import__("math").sin(angle), "kind": "plant"})
+            out.append({"id": pid, "name": plant.name, "x": 14 * __import__("math").cos(angle),
+                        "z": 14 * __import__("math").sin(angle), "kind": "plant"})
         return out
     except Exception:
         return []

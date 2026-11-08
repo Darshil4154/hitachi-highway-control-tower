@@ -18,14 +18,14 @@ const stagePill = document.getElementById("stagePill");
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x0b1220);
-scene.fog = new THREE.Fog(0x0b1220, 28, 55);
+scene.fog = new THREE.Fog(0x0b1220, 40, 75);
 
 const aspect = () => view.clientWidth / Math.max(1, view.clientHeight);
-const frustum = 12;
+const frustum = 18;
 const camera = new THREE.OrthographicCamera(
-  -frustum * aspect(), frustum * aspect(), frustum, -frustum, 0.1, 100,
+  -frustum * aspect(), frustum * aspect(), frustum, -frustum, 0.1, 120,
 );
-camera.position.set(18, 20, 18);
+camera.position.set(26, 28, 26);
 camera.lookAt(0, 0, 0);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -191,17 +191,17 @@ function makeBeam(from, to, color) {
 }
 
 function buildGround() {
-  for (let q = -8; q <= 8; q++) {
-    for (let r = -8; r <= 8; r++) {
-      if (Math.hypot(q, r) > 9.5) continue;
+  for (let q = -12; q <= 12; q++) {
+    for (let r = -12; r <= 12; r++) {
+      if (Math.hypot(q, r) > 13.5) continue;
       const x = q * 1.7 + r * 0.85;
       const z = r * 1.5;
       const shade = ((q + r) & 1) ? 0x172033 : 0x1e293b;
-      hexTile(x * 0.55, z * 0.55, shade, 0);
+      hexTile(x * 0.6, z * 0.6, shade, 0);
     }
   }
   const sand = new THREE.Mesh(
-    new THREE.CircleGeometry(28, 48),
+    new THREE.CircleGeometry(40, 48),
     new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 1 }),
   );
   sand.rotation.x = -Math.PI / 2;
@@ -251,7 +251,7 @@ function focusAgent(id) {
   }
   syncFocusedCardStatus();
   showDetail(agent);
-  toast.textContent = `${agent.name} - click Next agent to continue the walkthrough`;
+  toast.textContent = `${agent.name} highlighted - Next walks the roster`;
   layoutCards();
 }
 
@@ -259,7 +259,8 @@ function clearFocus() {
   focusedId = null;
   cardsEl.querySelectorAll(".card").forEach((c) => c.classList.remove("focused"));
   detailEl.style.display = "none";
-  toast.textContent = "Map running in the background. Click a worker or use Next agent.";
+  toast.textContent = "All tags visible. Pipeline keeps running.";
+  layoutCards();
 }
 
 function stepFocus(delta) {
@@ -270,13 +271,14 @@ function stepFocus(delta) {
 }
 
 function syncFocusedCardStatus() {
-  if (!focusedId) return;
-  const card = cardsEl.querySelector(`.card[data-id="${focusedId}"]`);
-  if (!card) return;
-  const on = workingIds.has(focusedId);
-  card.querySelector(".label").textContent = on ? "Working" : "Idle";
-  card.querySelector(".dot").style.background = on ? "#22c55e" : "#64748b";
-  card.querySelector(".bar > i").style.width = on ? "70%" : "0%";
+  for (const card of cardsEl.querySelectorAll(".card")) {
+    const on = workingIds.has(card.dataset.id);
+    card.classList.toggle("working", on);
+    card.querySelector(".label").textContent = on ? "Working" : "Idle";
+    const dot = card.querySelector(".dot");
+    dot.classList.toggle("working", on);
+    card.querySelector(".bar > i").style.width = on ? "70%" : "0%";
+  }
 }
 
 function showDetail(agent, extra = {}) {
@@ -308,20 +310,52 @@ function setAgentActive(ids, progress = 0.4) {
 }
 
 function layoutCards() {
-  // Only position the one focused card - no overlap stack
-  cardsEl.querySelectorAll(".card").forEach((card) => {
-    if (!card.classList.contains("focused")) {
-      card.style.display = "none";
-      return;
+  const W = 200, H = 92, pad = 10;
+  const items = [];
+  for (const [id, mesh] of agentMeshes) {
+    const card = cardsEl.querySelector(`.card[data-id="${id}"]`);
+    if (!card) continue;
+    const anchor = project(mesh.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 1.8, 0)));
+    let x = Math.min(view.clientWidth - W / 2 - 12, Math.max(W / 2 + 12, anchor.x));
+    let y = Math.min(view.clientHeight - 70, Math.max(70, anchor.y - 70));
+    items.push({ id, card, anchor, x, y });
+  }
+  // Separate overlapping tags
+  for (let iter = 0; iter < 18; iter++) {
+    for (let i = 0; i < items.length; i++) {
+      for (let j = i + 1; j < items.length; j++) {
+        const a = items[i], b = items[j];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const minX = W + pad, minY = H + pad;
+        if (Math.abs(dx) < minX && Math.abs(dy) < minY) {
+          const pushX = (minX - Math.abs(dx)) / 2 + 1;
+          const pushY = (minY - Math.abs(dy)) / 2 + 1;
+          const sx = dx === 0 ? (i % 2 ? 1 : -1) : Math.sign(dx);
+          const sy = dy === 0 ? (j % 2 ? 1 : -1) : Math.sign(dy);
+          a.x -= sx * pushX * 0.55;
+          b.x += sx * pushX * 0.55;
+          a.y -= sy * pushY * 0.55;
+          b.y += sy * pushY * 0.55;
+        }
+      }
+      items[i].x = Math.min(view.clientWidth - W / 2 - 8, Math.max(W / 2 + 8, items[i].x));
+      items[i].y = Math.min(view.clientHeight - 56, Math.max(64, items[i].y));
     }
-    const mesh = agentMeshes.get(card.dataset.id);
-    if (!mesh) return;
-    const p = project(mesh.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 2.4, 0)));
-    if (p.behind) { card.style.display = "none"; return; }
-    card.style.display = "block";
-    card.style.left = `${Math.min(view.clientWidth - 130, Math.max(130, p.x))}px`;
-    card.style.top = `${Math.min(view.clientHeight - 80, Math.max(90, p.y))}px`;
-  });
+  }
+  const leaders = document.getElementById("leaders");
+  if (leaders) {
+    let svg = "";
+    for (const it of items) {
+      it.card.style.display = "block";
+      it.card.style.left = `${it.x}px`;
+      it.card.style.top = `${it.y}px`;
+      const x2 = it.x, y2 = it.y;
+      svg += `<line x1="${it.anchor.x}" y1="${it.anchor.y}" x2="${x2}" y2="${y2}"
+        stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.75"/>`;
+      svg += `<circle cx="${it.anchor.x}" cy="${it.anchor.y}" r="2.5" fill="#94a3b8"/>`;
+    }
+    leaders.innerHTML = svg;
+  }
 }
 
 function placeAgents(agents) {
