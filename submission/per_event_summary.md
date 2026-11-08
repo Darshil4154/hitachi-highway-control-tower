@@ -1,6 +1,6 @@
 # Per-event summary and reason
 
-Pulled from `traces/E-01.json` ... `traces/E-15.json` (category, gate, summary, reason).
+Pulled from traces/E-01.json ... traces/E-15.json.
 
 | Event | Category | Gate | Summary | Reason |
 |---|---|---|---|---|
