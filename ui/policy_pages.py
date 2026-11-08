@@ -71,22 +71,24 @@ def page_studio() -> None:
     if data.get("read_only") or data.get("id") == "handbook_v1":
         st.info("You are looking at the scored baseline. Edits stay in this draft until you publish a new version.")
 
-    tab_types, tab_books, tab_rules, tab_switches, tab_checks, tab_preview, tab_publish = st.tabs(
-        ["Event types", "Playbooks", "Rules", "Switches", "Verifier", "Preview impact", "Publish"])
-
-    with tab_types:
+    section = st.radio(
+        "Section",
+        ["Event types", "Playbooks", "Rules", "Switches", "Verifier", "Preview impact", "Publish"],
+        horizontal=True, label_visibility="collapsed", key="policy_section",
+    )
+    if section == "Event types":
         _event_types(data)
-    with tab_books:
+    elif section == "Playbooks":
         _playbooks(data)
-    with tab_rules:
+    elif section == "Rules":
         _rules(data)
-    with tab_switches:
+    elif section == "Switches":
         _switches(data)
-    with tab_checks:
+    elif section == "Verifier":
         _checks(data)
-    with tab_preview:
+    elif section == "Preview impact":
         _preview(data)
-    with tab_publish:
+    else:
         _publish(data)
 
 
@@ -302,7 +304,9 @@ def _publish(data: dict) -> None:
     a = left.selectbox("Compare", versions, index=0)
     b = right.selectbox("With", versions, index=min(1, len(versions) - 1))
     if st.button("Show side-by-side diff"):
-        st.code(yaml_diff(load(a), load(b)) or "(no differences)", language="diff")
+        st.session_state.policy_diff = yaml_diff(load(a), load(b)) or "(no differences)"
+    if st.session_state.get("policy_diff"):
+        st.code(st.session_state.policy_diff, language="diff")
     st.divider()
     target = st.selectbox("Roll the sandbox back to", versions)
     with st.form("rollback"):
