@@ -1,9 +1,12 @@
 import * as THREE from "three";
 
 const params = new URLSearchParams(location.search);
-const MODE = params.get("mode") || "replay"; // replay | live
+// always = replay ambient + interrupt on Desk/What-if pulses
+const MODE = params.get("mode") || "always"; // always | replay | live
 const START_EVENT = params.get("event") || "";
 const SPEED = Number(params.get("speed") || "1");
+const REPLAY = MODE === "always" || MODE === "replay";
+const LISTEN_LIVE = MODE === "always" || MODE === "live";
 
 const view = document.getElementById("view");
 const cardsEl = document.getElementById("cards");
@@ -54,6 +57,9 @@ let stageIndex = 0;
 let stageT0 = 0;
 let current = null;
 let livePoll = null;
+let lastLiveTs = 0;
+let sourceMode = "boot"; // replay | live
+const clickables = [];
 
 function hexTile(x, z, color = 0x1e293b, y = 0) {
   const geo = new THREE.CylinderGeometry(0.95, 0.95, 0.18, 6);
@@ -288,9 +294,12 @@ function placeAgents(agents) {
     });
     const fig = workerFigure(a.color);
     fig.position.set(a.x + 0.9, 0, a.z + 0.9);
+    fig.userData.agent = a;
+    fig.userData.kind = "worker";
     b.userData.figure = fig;
     worldGroup.add(b, fig);
     agentMeshes.set(a.id, b);
+    clickables.push(b, fig);
     hexTile(a.x, a.z, 0x0ea5e9, 0.02);
   });
 }
@@ -299,8 +308,11 @@ function placePlants(plants) {
   plants.forEach((p) => {
     const b = building("plant", "#64748b");
     b.position.set(p.x, 0, p.z);
+    b.userData.plant = p;
+    b.userData.kind = "plant";
     worldGroup.add(b);
     plantMeshes.set(p.id, b);
+    clickables.push(b);
   });
 }
 
@@ -344,15 +356,21 @@ function beginEvent(event) {
   }
 }
 
+function advanceReplay() {
+  if (!REPLAY || !playlist.length) return;
+  // After a live pulse, wait ~8s before ambient replay resumes
+  if (sourceMode === "live" && performance.now() - (current?._liveAt || 0) < 8000) return;
+  sourceMode = "replay";
+  modePill.innerHTML = `Mode <b>always</b> · replay`;
+  playIndex = (playIndex + 1) % playlist.length;
+  beginEvent(playlist[playIndex]);
+}
+
 function tickStages(now) {
   if (!stageQueue.length) return;
   const stage = stageQueue[stageIndex];
   if (!stage) {
-    // advance playlist
-    if (MODE === "replay") {
-      playIndex = (playIndex + 1) % Math.max(1, playlist.length);
-      if (playlist[playIndex]) beginEvent(playlist[playIndex]);
-    }
+    advanceReplay();
     return;
   }
   const elapsed = ((now - stageT0) / 1000) * SPEED;
@@ -369,12 +387,7 @@ function tickStages(now) {
     if (stageIndex >= stageQueue.length) {
       stageQueue = [];
       setAgentActive(current?.active_agents || [], 1);
-      setTimeout(() => {
-        if (MODE === "replay" && playlist.length) {
-          playIndex = (playIndex + 1) % playlist.length;
-          beginEvent(playlist[playIndex]);
-        }
-      }, 700 / SPEED);
+      setTimeout(advanceReplay, 700 / SPEED);
     }
   }
 }
@@ -389,17 +402,23 @@ async function loadBootstrap() {
   wireBeams(bootstrap.agents);
   buildCards(bootstrap.agents);
   modePill.innerHTML = `Mode <b>${MODE}</b>`;
-  if (MODE === "replay") {
-    if (START_EVENT) {
-      const idx = playlist.findIndex((e) => e.event_id === START_EVENT);
-      playIndex = idx >= 0 ? idx : 0;
-    }
-    if (playlist[playIndex]) beginEvent(playlist[playIndex]);
-    toast.textContent = `Replaying ${playlist.length} scored events`;
+  if (START_EVENT) {
+    const idx = playlist.findIndex((e) => e.event_id === START_EVENT);
+    playIndex = idx >= 0 ? idx : 0;
+  }
+  if (LISTEN_LIVE && bootstrap.live) {
+    applyLive(bootstrap.live, true);
+  } else if (REPLAY && playlist[playIndex]) {
+    sourceMode = "replay";
+    beginEvent(playlist[playIndex]);
+    toast.textContent = MODE === "always"
+      ? `Always-on · replaying ${playlist.length} events · listening for Desk / What-if`
+      : `Replaying ${playlist.length} scored events`;
   } else {
     toast.textContent = "Listening for Live Desk / What-if activity";
-    applyLive(bootstrap.live);
-    livePoll = setInterval(pollLive, 1500);
+  }
+  if (LISTEN_LIVE) {
+    livePoll = setInterval(pollLive, 1200);
   }
 }
 
@@ -407,21 +426,28 @@ async function pollLive() {
   try {
     const res = await fetch("./live_state.json?ts=" + Date.now());
     if (!res.ok) return;
-    applyLive(await res.json());
+    applyLive(await res.json(), false);
   } catch (_) { /* no live file yet */ }
 }
 
-function applyLive(live) {
+function applyLive(live, force = false) {
   if (!live) return;
-  modePill.innerHTML = `Mode <b>live</b>`;
-  beginEvent({
+  const ts = Number(live.ts || 0);
+  if (!force && ts && ts <= lastLiveTs) return;
+  if (ts) lastLiveTs = ts;
+  sourceMode = "live";
+  modePill.innerHTML = `Mode <b>always</b> · live`;
+  const ev = {
     event_id: live.label || "LIVE",
     summary: live.summary || live.banner || "",
     tools: live.tools || {},
     active_agents: live.active_agents || [],
-    stages_s: { [live.stage || "plan"]: 1.2 },
+    stages_s: { extract: 0.4, plan: 1.0, verify: 0.5, twin: 0.5 },
     banner: live.banner,
-  });
+    _liveAt: performance.now(),
+  };
+  beginEvent(ev);
+  toast.textContent = live.banner || live.summary || "Live sandbox pulse";
 }
 
 function onResize() {
@@ -440,11 +466,25 @@ renderer.domElement.addEventListener("pointerdown", (ev) => {
   pointer.x = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
   pointer.y = -((ev.clientY - rect.top) / rect.height) * 2 + 1;
   raycaster.setFromCamera(pointer, camera);
-  const hits = raycaster.intersectObjects([...agentMeshes.values()], true);
-  if (!hits.length) return;
+  const hits = raycaster.intersectObjects(clickables, true);
+  if (!hits.length) {
+    detailEl.style.display = "none";
+    return;
+  }
   let obj = hits[0].object;
-  while (obj && !obj.userData.agent) obj = obj.parent;
-  if (obj?.userData?.agent) showDetail(obj.userData.agent);
+  while (obj && !obj.userData.agent && !obj.userData.plant) obj = obj.parent;
+  if (obj?.userData?.agent) {
+    showDetail(obj.userData.agent);
+    toast.textContent = `Selected ${obj.userData.agent.name}`;
+    return;
+  }
+  if (obj?.userData?.plant) {
+    const p = obj.userData.plant;
+    detailEl.style.display = "block";
+    detailEl.innerHTML = `<h2>${p.name}</h2><p>Plant node ${p.id}</p>
+      <p>Lights up when an event summary mentions this plant.</p>`;
+    toast.textContent = `Selected plant ${p.id}`;
+  }
 });
 
 function animate(now) {
