@@ -6,7 +6,8 @@ from collections import defaultdict
 from datetime import date
 
 from . import config
-from .data_loader import LAST_IDX, LOANER_TIERS, TIER_RANK, DataStore, date_to_idx, idx_to_date, next_working_day
+from .data_loader import LAST_IDX, DataStore, date_to_idx, idx_to_date, next_working_day
+from .policy_model import active, loaner_rank, loaner_tiers, query_bounds, shape_of
 
 MOVE_TOOLS = {"mes.reschedule", "mes.transfer"}
 WRITE_KINDS = {"mes.reschedule", "mes.transfer", "dealer.notify", "dealer.stop_sale", "crm.assign_loaner",
@@ -17,12 +18,24 @@ def _check(name: str, ok: bool, detail: str = "", blocking: bool = True) -> dict
     return {"name": name, "ok": bool(ok), "detail": detail, "blocking": blocking}
 
 
+def _emit(checks: list[dict], check_id: str, name: str, ok: bool, detail: str = "", blocking: bool = True) -> None:
+    spec = active().check_spec(check_id)
+    if spec is not None:
+        if not spec.enabled:
+            return
+        name = spec.name or name
+        blocking = spec.severity != "warn"
+    checks.append(_check(name, ok, detail, blocking))
+
+
 def expected_for_incident(ds: DataStore, inc: dict) -> dict:
     """Independent recomputation of an incident's affected orders, blocks and restart."""
     t = inc["type"]
-    if t == "supplier_delay":
+    shape = shape_of(t)
+    if shape == "part_window":
         plant, part = inc["plant_id"], inc["part_id"]
         orig, new = date.fromisoformat(inc["blocked_from"]), date.fromisoformat(inc["blocked_until_excl"])
+        orig, new = query_bounds(t, orig, new, "exclusive")
         pos = {p.production_order_id for p in ds.production_orders.values()
                if p.plant_id == plant and part in ds.bom[p.model] and orig <= p.build_date < new and p.idx >= 0}
         models = {m for m, parts in ds.bom.items() if part in parts}
@@ -30,9 +43,10 @@ def expected_for_incident(ds: DataStore, inc: dict) -> dict:
         while restart.weekday() > 4:
             restart = next_working_day(restart)
         return {"pos": pos, "plant": plant, "from": orig, "to_excl": new, "models": models, "restart": restart}
-    if t == "plant_outage":
+    if shape == "plant_window":
         plant = inc["plant_id"]
         start, end = date.fromisoformat(inc["blocked_from"]), date.fromisoformat(inc["blocked_to_incl"])
+        start, end = query_bounds(t, start, end, "inclusive")
         pos = {p.production_order_id for p in ds.production_orders.values()
                if p.plant_id == plant and start <= p.build_date <= end and p.idx >= 0}
         return {"pos": pos, "plant": plant, "from": start, "to_incl": end, "models": None,
@@ -67,13 +81,13 @@ def check_plan(ds: DataStore, plan: list[dict], incidents: list[dict], pools: di
     moves = [a for a in plan if a["tool"] in MOVE_TOOLS]
     moved = [a["args"]["production_order_id"] for a in moves]
 
-    checks.append(_check("R10 only affected orders are moved", set(moved) <= affected,
-                         f"unaffected moved: {sorted(set(moved) - affected)}" if set(moved) - affected else
-                         f"{len(moved)} moves, all affected"))
-    checks.append(_check("R3 each order moved at most once", len(moved) == len(set(moved))))
+    _emit(checks, "r10_only_affected", "R10 only affected orders are moved", set(moved) <= affected,
+          f"unaffected moved: {sorted(set(moved) - affected)}" if set(moved) - affected else
+          f"{len(moved)} moves, all affected")
+    _emit(checks, "r3_once", "R3 each order moved at most once", len(moved) == len(set(moved)))
     missing = affected - set(moved) - escalated_pos
-    checks.append(_check("R3 every affected order is moved or escalated", not missing,
-                         f"not handled: {sorted(missing)}" if missing else f"{len(affected)} affected handled"))
+    _emit(checks, "r3_all_handled", "R3 every affected order is moved or escalated", not missing,
+          f"not handled: {sorted(missing)}" if missing else f"{len(affected)} affected handled")
 
     cap = {p.plant_id: p.slots_per_day for p in ds.plants.values()}
     used: dict[tuple[str, int], int] = defaultdict(int)
@@ -121,13 +135,14 @@ def check_plan(ds: DataStore, plan: list[dict], incidents: list[dict], pools: di
         used[loc[po]] -= 1
         used[(plant, i)] += 1
         loc[po] = (plant, i)
-    checks.append(_check("R3 no slot over capacity", not over, f"over: {over}" if over else ""))
-    checks.append(_check("R1/R2 no move into a blocked day", not blocked_hits, f"{blocked_hits}" if blocked_hits else ""))
-    checks.append(_check("R3 same-plant moves on/after restart", not early, f"{early}" if early else ""))
-    checks.append(_check("R3 transfers go to another plant that builds the model", not bad_plant,
-                         f"{bad_plant}" if bad_plant else ""))
-    checks.append(_check("R3 earliest feasible slot chosen", not not_earliest,
-                         f"{not_earliest}" if not_earliest else ""))
+    _emit(checks, "r3_capacity", "R3 no slot over capacity", not over, f"over: {over}" if over else "")
+    _emit(checks, "r1r2_blocked", "R1/R2 no move into a blocked day", not blocked_hits,
+          f"{blocked_hits}" if blocked_hits else "")
+    _emit(checks, "r3_restart", "R3 same-plant moves on/after restart", not early, f"{early}" if early else "")
+    _emit(checks, "r3_transfer_plant", "R3 transfers go to another plant that builds the model", not bad_plant,
+          f"{bad_plant}" if bad_plant else "")
+    _emit(checks, "r3_earliest", "R3 earliest feasible slot chosen", not not_earliest,
+          f"{not_earliest}" if not_earliest else "")
 
     aff_cos = {c.customer_order_id for p in affected for c in ds.customer_orders_by_po.get(p, [])}
     # per_event: one set per dealer. per_incident: one set per dealer per incident, each order counted once
@@ -151,23 +166,25 @@ def check_plan(ds: DataStore, plan: list[dict], incidents: list[dict], pools: di
     canon = lambda sets: sorted(sorted(s) for s in sets)
     r4_ok = set(got) == set(want_sets) and all(canon(got[d]) == canon(want_sets[d]) for d in want_sets)
     scope = "per incident" if config.NOTIFY_SCOPE == "per_incident" else "per event"
-    checks.append(_check("R4 exactly one notify per affected dealer with exactly its orders", r4_ok,
-                         f"{len(want_sets)} dealers, {len(aff_cos)} customer orders ({scope})"))
+    _emit(checks, "r4_notify", "R4 exactly one notify per affected dealer with exactly its orders", r4_ok,
+          f"{len(want_sets)} dealers, {len(aff_cos)} customer orders ({scope})")
 
     assigned = {a["args"]["customer_order_id"] for a in plan if a["tool"] == "crm.assign_loaner"}
     exp_assigned: set[str] = set()
     elig: dict[str, list[str]] = defaultdict(list)
     for c in aff_cos:
         co = ds.customer_orders[c]
-        if ds.customers[co.customer_id].tier in LOANER_TIERS:
+        if ds.customers[co.customer_id].tier in loaner_tiers():
             elig[co.dealer_id].append(c)
     for d, cs in elig.items():
-        cs.sort(key=lambda c: (TIER_RANK[ds.customers[ds.customer_orders[c].customer_id].tier],
+        cs.sort(key=lambda c: (loaner_rank(ds.customers[ds.customer_orders[c].customer_id].tier),
                                ds.customer_orders[c].promised_date, c))
         exp_assigned |= set(cs[: max(pools.get(d, 0), 0)])
-    checks.append(_check("R5 loaners: only Platinum/Gold, within pool, priority respected", assigned == exp_assigned,
-                         f"assigned {len(assigned)} of {sum(len(v) for v in elig.values())} eligible"
-                         + (f"; diff {sorted(assigned ^ exp_assigned)}" if assigned != exp_assigned else "")))
+    tier_label = "/".join(loaner_tiers())
+    _emit(checks, "r5_loaners", f"R5 loaners: only {tier_label}, within pool, priority respected",
+          assigned == exp_assigned,
+          f"assigned {len(assigned)} of {sum(len(v) for v in elig.values())} eligible"
+          + (f"; diff {sorted(assigned ^ exp_assigned)}" if assigned != exp_assigned else ""))
 
     q = [e for e in exp if "lot" in e]
     holds = {a["args"]["lot_id"] for a in plan if a["tool"] == "quality.hold_lot"}
@@ -181,25 +198,28 @@ def check_plan(ds: DataStore, plan: list[dict], incidents: list[dict], pools: di
     want_unsold = set().union(*(e["unsold"] for e in q)) if q else set()
     want_owners = set().union(*(e["owners"] for e in q)) if q else set()
     stop_ok = all(ds.vehicles[v].dealer_id == d for d, vs in stops.items() for v in vs)
-    checks.append(_check("R6 hold exactly the suspect lot(s)", holds == {e["lot"] for e in q}, f"{sorted(holds)}"))
-    checks.append(_check("R6 every unsold affected vehicle stopped at its dealer (one call per dealer)",
-                         set().union(*stops.values()) == want_unsold and stop_ok
-                         and all(n == 1 for n in stop_calls.values()) if stops or want_unsold else True,
-                         f"{len(want_unsold)} unsold vehicles at {len(stops)} dealers"))
-    checks.append(_check("R6 every owner of a sold affected vehicle contacted once",
-                         set(owners) == want_owners and len(owners) == len(set(owners)),
-                         f"{len(want_owners)} owners"))
+    _emit(checks, "r6_hold", "R6 hold exactly the suspect lot(s)", holds == {e["lot"] for e in q}, f"{sorted(holds)}")
+    _emit(checks, "r6_stop", "R6 every unsold affected vehicle stopped at its dealer (one call per dealer)",
+          set().union(*stops.values()) == want_unsold and stop_ok
+          and all(n == 1 for n in stop_calls.values()) if stops or want_unsold else True,
+          f"{len(want_unsold)} unsold vehicles at {len(stops)} dealers")
+    _emit(checks, "r6_owners", "R6 every owner of a sold affected vehicle contacted once",
+          set(owners) == want_owners and len(owners) == len(set(owners)),
+          f"{len(want_owners)} owners")
 
     kinds = {a["tool"] for a in plan if a["tool"] in WRITE_KINDS}
-    checks.append(_check("R9 at least three different kinds of action", len(kinds) >= 3 or not incidents,
-                         f"{len(kinds)} kinds: {', '.join(sorted(kinds))}", blocking=False))
+    n_kinds = active().rules.min_action_kinds
+    word = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five"}.get(n_kinds, str(n_kinds))
+    _emit(checks, "r9_kinds", f"R9 at least {word} different kinds of action",
+          len(kinds) >= n_kinds or not incidents, f"{len(kinds)} kinds: {', '.join(sorted(kinds))}", blocking=False)
     return checks
 
 
 def check_world(twin, plan: list[dict], dry_results: list[dict]) -> list[dict]:
     s = twin.state
-    checks = [_check("twin dry run: zero failed calls", all(r["ok"] for r in dry_results),
-                     "; ".join(f"{r['tool']}: {r['error']}" for r in dry_results if not r["ok"]))]
+    checks: list[dict] = []
+    _emit(checks, "twin_dry", "twin dry run: zero failed calls", all(r["ok"] for r in dry_results),
+          "; ".join(f"{r['tool']}: {r['error']}" for r in dry_results if not r["ok"]))
     wrong_loc = []
     for a in plan:
         if a["tool"] in MOVE_TOOLS:
@@ -207,18 +227,18 @@ def check_world(twin, plan: list[dict], dry_results: list[dict]) -> list[dict]:
             want_plant = a["args"].get("to_plant_id", s["loc"][po][0])
             if s["loc"][po] != (want_plant, date_to_idx(date.fromisoformat(a["args"]["new_date"]))):
                 wrong_loc.append(po)
-    checks.append(_check("world: every moved order is at its planned slot", not wrong_loc, f"{wrong_loc}"))
+    _emit(checks, "world_slot", "world: every moved order is at its planned slot", not wrong_loc, f"{wrong_loc}")
     over = [k for k, v in s["slots"].items() if len(v) > twin.ent.plants[k[0]]["slots"]]
-    checks.append(_check("world: no plant-day over capacity", not over, f"{over[:5]}"))
-    checks.append(_check("world: no loaner pool below zero", all(v >= 0 for v in s["loaners"].values())))
+    _emit(checks, "world_capacity", "world: no plant-day over capacity", not over, f"{over[:5]}")
+    _emit(checks, "world_loaner", "world: no loaner pool below zero", all(v >= 0 for v in s["loaners"].values()))
     planned_loans = {a["args"]["customer_order_id"] for a in plan if a["tool"] == "crm.assign_loaner"}
-    checks.append(_check("world: loaners match plan", s["loaned"] == planned_loans))
+    _emit(checks, "world_loaners_match", "world: loaners match plan", s["loaned"] == planned_loans)
     planned_lots = {a["args"]["lot_id"] for a in plan if a["tool"] == "quality.hold_lot"}
-    checks.append(_check("world: held lots match plan", s["held"] == planned_lots))
+    _emit(checks, "world_lots", "world: held lots match plan", s["held"] == planned_lots)
     planned_vins = {v for a in plan if a["tool"] == "dealer.stop_sale" for v in a["args"]["vins"]}
-    checks.append(_check("world: stopped VINs match plan", s["stopped"] == planned_vins))
+    _emit(checks, "world_vins", "world: stopped VINs match plan", s["stopped"] == planned_vins)
     planned_cust = {a["args"]["customer_id"] for a in plan if a["tool"] == "crm.notify_customer"}
-    checks.append(_check("world: contacted customers match plan", s["customers"] == planned_cust))
+    _emit(checks, "world_customers", "world: contacted customers match plan", s["customers"] == planned_cust)
     return checks
 
 

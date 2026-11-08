@@ -1,0 +1,179 @@
+id: handbook_v1
+name: Handbook v1
+label: Scored baseline
+status: scored_baseline
+read_only: true
+author: handbook
+reason: Scored baseline. The official run uses this profile unless --policy is passed.
+
+noise_prompt: "not about our supply, plants, part quality or customers (marketing, brochures, menus, IT tickets,\n   weather or news far away, price lists, greetings). Noise has incidents = []."
+unconfirmed_prompt: "possibly about us but a rumor, hearsay, vague, unspecific (no part/plant/date) or explicitly\n   not confirmed. Unconfirmed has incidents = [] unless details are given; never guess missing details."
+
+event_types:
+  - id: quality_hold
+    name: Quality hold
+    description: a part (or lot) installed in our vehicles is defective / suspect for a build window
+    category: incident
+    keywords: 'quality|defect|faulty|suspect|contaminat|recall|lot-\d{4}'
+    examples:
+      - A lot of chips welded wrong over a build window.
+    phrase_hint: window_from_phrase and window_to_phrase of the suspect build window; lot_id if a lot is named.
+    prompt_clause: "    quality_hold  = a part (or lot) installed in our vehicles is defective / suspect for a build window."
+    required_summary: lot id, or part + plant + build window
+    required_if_absent: lot_id
+    required:
+      - {field: lot_id_or_part, key: part_id}
+      - {field: plant, key: plant_id}
+      - {field: window_from, key: window_from}
+      - {field: window_to, key: window_to}
+    playbook: quality_hold
+    prompt_rank: 2
+    shape: lot
+    window_start: inclusive
+    window_end: inclusive
+    date_fields:
+      - [window_from_phrase, window_from]
+      - [window_to_phrase, window_to]
+    sanity_left: window_from
+    sanity_right: window_to
+    sanity_allow_equal: true
+
+  - id: plant_outage
+    name: Plant outage
+    description: one of our plants cannot build for a range of days
+    category: incident
+    keywords: 'outage|\bdark\b|power failure|production is stopped|shut ?down|\bfire\b|\bstrike\b|flood|line down'
+    examples:
+      - The Texas plant is dark from Friday through Monday.
+    phrase_hint: start_phrase and end_phrase of the stoppage (first and last day the plant is down).
+    prompt_clause: "    plant_outage  = one of our plants cannot build for a range of days;"
+    required_summary: plant + start + end
+    required:
+      - {field: plant, key: plant_id}
+      - {field: start, key: start}
+      - {field: end, key: end}
+    playbook: plant_outage
+    prompt_rank: 1
+    shape: plant_window
+    window_start: inclusive
+    window_end: inclusive
+    date_fields:
+      - [start_phrase, start]
+      - [end_phrase, end]
+    sanity_left: start
+    sanity_right: end
+    sanity_allow_equal: true
+
+  - id: supplier_delay
+    name: Supplier delay
+    description: an inbound shipment of a part to one of our plants arrives later than planned
+    category: incident
+    keywords: 'delay|can''?t make it|cannot make it|new eta|will now arrive|waiting on|carrier says|running late|late'
+    examples:
+      - A camera shipment to Huntsville slips from Monday to Thursday.
+    phrase_hint: "original_eta_phrase = when it was due / the date it can't make; new_eta_phrase = the new arrival."
+    prompt_clause: "    supplier_delay = an inbound shipment of a part to one of our plants arrives later than planned;"
+    required_summary: part + plant + new ETA + (original ETA or shipment id)
+    required:
+      - {field: part, key: part_id}
+      - {field: plant, key: plant_id}
+      - {field: new_eta, key: new_eta}
+      - {field: original_eta_or_shipment_id, any_of: [original_eta, shipment_id]}
+    playbook: supplier_delay
+    prompt_rank: 0
+    shape: part_window
+    window_start: inclusive
+    window_end: exclusive
+    date_fields:
+      - [original_eta_phrase, original_eta]
+      - [new_eta_phrase, new_eta]
+    sanity_left: original_eta
+    sanity_right: new_eta
+    sanity_allow_equal: false
+
+  - id: noise
+    name: Noise
+    description: Not an operational problem for the company.
+    category: noise
+    keywords: ""
+    examples:
+      - A dealer asks where to find a brochure.
+    playbook: noise
+    shape: none
+
+  - id: unconfirmed
+    name: Unconfirmed
+    description: A rumor or an unspecific report. Escalate, do not act.
+    category: unconfirmed
+    keywords: ""
+    examples:
+      - Someone heard a seat material might be off, with no dates.
+    playbook: unconfirmed
+    shape: none
+
+playbooks:
+  supplier_delay:
+    steps: [find_affected_by_part_window, reschedule_or_transfer, notify_dealers, assign_loaners]
+  plant_outage:
+    steps: [find_affected_by_plant_window, reschedule_or_transfer, notify_dealers, assign_loaners]
+  quality_hold:
+    steps: [hold_lot, stop_sale_unsold, notify_owners]
+  noise:
+    steps: [no_action]
+  unconfirmed:
+    steps: [escalate]
+
+rules:
+  loaner_tiers: [Platinum, Gold]
+  tier_priority: [Platinum, Gold, Standard]
+  min_action_kinds: 3
+  hedge_patterns:
+    - '\brumou?r'
+    - '\bmay\b(?!\s+\d)'
+    - '\bmight\b'
+    - '\bpossibl[ey]\b'
+    - '\bunconfirmed\b'
+    - '\bsomeone (?:mentioned|said)\b'
+    - '\bnot confirmed\b'
+    - '\bnothing confirmed\b'
+    - '\bmaybe\b'
+    - '\bheard\b'
+    - '\bhearsay\b'
+    - '\bsometime\b'
+  noise_topics: [marketing, brochures, menus, IT tickets, weather or news far away, price lists, greetings]
+
+switches:
+  NEXT_WEEKDAY: following_week
+  TRANSFER_LOWER_BOUND: restart
+  TRANSFER_SEARCH: day_first
+  PLANT_TIEBREAK: plants_csv_order
+  SLOT_PRIORITY: build_date
+  COMPOUND_ORDER: message_order
+  NOTIFY_SCOPE: per_event
+  NO_SLOT_ACTION: escalate
+  ESCALATE_NOISE: false
+  FUZZY_THRESHOLD: 90
+
+verifier:
+  - {id: r10_only_affected, name: "R10 only affected orders are moved", enabled: true, severity: block}
+  - {id: r3_once, name: "R3 each order moved at most once", enabled: true, severity: block}
+  - {id: r3_all_handled, name: "R3 every affected order is moved or escalated", enabled: true, severity: block}
+  - {id: r3_capacity, name: "R3 no slot over capacity", enabled: true, severity: block}
+  - {id: r1r2_blocked, name: "R1/R2 no move into a blocked day", enabled: true, severity: block}
+  - {id: r3_restart, name: "R3 same-plant moves on/after restart", enabled: true, severity: block}
+  - {id: r3_transfer_plant, name: "R3 transfers go to another plant that builds the model", enabled: true, severity: block}
+  - {id: r3_earliest, name: "R3 earliest feasible slot chosen", enabled: true, severity: block}
+  - {id: r4_notify, name: "R4 exactly one notify per affected dealer with exactly its orders", enabled: true, severity: block}
+  - {id: r5_loaners, name: "R5 loaners: only Platinum/Gold, within pool, priority respected", enabled: true, severity: block}
+  - {id: r6_hold, name: "R6 hold exactly the suspect lot(s)", enabled: true, severity: block}
+  - {id: r6_stop, name: "R6 every unsold affected vehicle stopped at its dealer (one call per dealer)", enabled: true, severity: block}
+  - {id: r6_owners, name: "R6 every owner of a sold affected vehicle contacted once", enabled: true, severity: block}
+  - {id: r9_kinds, name: "R9 at least three different kinds of action", enabled: true, severity: warn}
+  - {id: twin_dry, name: "twin dry run: zero failed calls", enabled: true, severity: block}
+  - {id: world_slot, name: "world: every moved order is at its planned slot", enabled: true, severity: block}
+  - {id: world_capacity, name: "world: no plant-day over capacity", enabled: true, severity: block}
+  - {id: world_loaner, name: "world: no loaner pool below zero", enabled: true, severity: block}
+  - {id: world_loaners_match, name: "world: loaners match plan", enabled: true, severity: block}
+  - {id: world_lots, name: "world: held lots match plan", enabled: true, severity: block}
+  - {id: world_vins, name: "world: stopped VINs match plan", enabled: true, severity: block}
+  - {id: world_customers, name: "world: contacted customers match plan", enabled: true, severity: block}

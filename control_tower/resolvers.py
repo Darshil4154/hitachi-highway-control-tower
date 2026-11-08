@@ -308,7 +308,8 @@ def resolve_incident(inc: dict, event_text: str, ds: DataStore | None = None) ->
         if val:
             r["extracted"].append({"field": field, "phrase": val, "resolved": val, "method": method, "confidence": 1.0})
 
-    for phrase_key, out_key in DATE_FIELDS.get(r["type"], []):
+    from .policy_model import date_fields_for
+    for phrase_key, out_key in date_fields_for(r["type"]):
         phrase = literal(inc.get(phrase_key), phrase_key)
         d, rule = resolve_date(phrase)
         r[out_key] = d
@@ -323,11 +324,11 @@ def resolve_incident(inc: dict, event_text: str, ds: DataStore | None = None) ->
 
 def _sanity(r: dict) -> None:
     """SPEC 3.2 self-consistency: new ETA after original ETA, outage end >= start, window ordered."""
-    pairs = {"supplier_delay": ("original_eta", "new_eta", False), "plant_outage": ("start", "end", True),
-             "quality_hold": ("window_from", "window_to", True)}
-    if r["type"] not in pairs:
+    from .policy_model import sanity_for
+    spec = sanity_for(r["type"])
+    if spec is None:
         return
-    a, b, allow_equal = pairs[r["type"]]
+    a, b, allow_equal = spec
     if r.get(a) and r.get(b):
         ok = r[b] >= r[a] if allow_equal else r[b] > r[a]
         r["validation"].append({"check": f"{b} {'>=' if allow_equal else '>'} {a}", "ok": ok})

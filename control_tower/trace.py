@@ -62,7 +62,11 @@ def category_label(trace: dict) -> str:
     types = {i["type"] for i in trace["incidents"]}
     if len(trace["incidents"]) > 1:
         return "compound"
-    return {"supplier_delay": "delay", "plant_outage": "outage", "quality_hold": "quality"}.get(next(iter(types)), "?")
+    label = {"supplier_delay": "delay", "plant_outage": "outage", "quality_hold": "quality"}.get(next(iter(types)))
+    if label:
+        return label
+    from .policy_model import shape_of
+    return {"part_window": "delay", "plant_window": "outage", "lot": "quality"}.get(shape_of(next(iter(types))), "?")
 
 
 def write(trace: dict, out_dir: Path | None = None) -> Path:

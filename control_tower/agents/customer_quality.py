@@ -3,7 +3,8 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from ..data_loader import LOANER_TIERS, TIER_RANK, DataStore
+from ..data_loader import DataStore
+from ..policy_model import loaner_rank, loaner_tiers
 from ..ontology import KnowledgeGraph, nid
 from ..policy import R5, R6
 
@@ -17,7 +18,7 @@ class CustomerCareQuality:
     # ------------------------------------------------------------------ R5
     def eligible_dealers(self, affected_cos: dict[str, str]) -> list[str]:
         return sorted({self.ds.customer_orders[c].dealer_id for c in affected_cos
-                       if self.ds.customers[self.ds.customer_orders[c].customer_id].tier in LOANER_TIERS})
+                       if self.ds.customers[self.ds.customer_orders[c].customer_id].tier in loaner_tiers()})
 
     def plan_loaners(self, affected_cos: dict[str, str], pools: dict[str, int]) -> tuple[list[dict], list[dict]]:
         """Rank all eligible affected orders per dealer (across incidents); assign the top `pool`."""
@@ -26,7 +27,7 @@ class CustomerCareQuality:
         for c in sorted(affected_cos):
             co = self.ds.customer_orders[c]
             tier = self.ds.customers[co.customer_id].tier
-            if tier in LOANER_TIERS:
+            if tier in loaner_tiers():
                 by_dealer[co.dealer_id].append(c)
             else:
                 decisions.append({"co": c, "dealer": co.dealer_id, "customer": co.customer_id, "tier": tier,
@@ -35,7 +36,7 @@ class CustomerCareQuality:
         actions = []
         for dealer in sorted(by_dealer):
             ranked = sorted(by_dealer[dealer], key=lambda c: (
-                TIER_RANK[self.ds.customers[self.ds.customer_orders[c].customer_id].tier],
+                loaner_rank(self.ds.customers[self.ds.customer_orders[c].customer_id].tier),
                 self.ds.customer_orders[c].promised_date, c))
             pool = pools.get(dealer, 0)
             for rank, c in enumerate(ranked, 1):

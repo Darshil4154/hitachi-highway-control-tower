@@ -4,7 +4,7 @@ from __future__ import annotations
 import time
 from datetime import date
 
-from .. import config, llm, verifier
+from .. import config, llm, policy_model, verifier
 from ..data_loader import DataStore, get_store
 from ..ontology import KnowledgeGraph, get_graph, nid
 from ..policy import EXECUTION_ORDER, R3, R7, R8
@@ -33,7 +33,7 @@ class Coordinator:
         t0 = time.time()
         eid, text = event["event_id"], event["text"]
         res = llm.extract(text)
-        ex = res["extraction"]
+        ex = llm.merge_extra_types(res["extraction"], text)
         resolved = [resolve_incident(i.model_dump(), text, self.ds) for i in ex.incidents]
         g = llm.gate(ex, resolved, text)
         self.client.mark(eid, g["result"])
@@ -52,11 +52,20 @@ class Coordinator:
         }
         if g["result"] == "noise":
             trace["incidents"] = [self._incident_stub(eid, k, r) for k, r in enumerate(resolved)]
-            trace["decision_rule"] = R7
-            trace["summary"] = (f"Judged not operational: {g['reason']} No tool calls were made (handbook rule 7).")
+            noise_steps = set(policy_model.steps_for("noise"))
+            if "escalate" in noise_steps and "no_action" not in noise_steps:
+                self._escalate_only(eid, trace, g["reason"], g["missing_fields"])
+            else:
+                trace["decision_rule"] = R7
+                trace["summary"] = (f"Judged not operational: {g['reason']} No tool calls were made (handbook rule 7).")
         elif g["result"] in ("unconfirmed", "needs_review"):
             trace["incidents"] = [self._incident_stub(eid, k, r) for k, r in enumerate(resolved)]
-            self._escalate_only(eid, trace, g["reason"], g["missing_fields"])
+            quiet = set(policy_model.steps_for("unconfirmed"))
+            if g["result"] == "unconfirmed" and "no_action" in quiet and "escalate" not in quiet:
+                trace["decision_rule"] = R8
+                trace["summary"] = f"Unconfirmed report left untouched (playbook no_action). {g['reason']}"
+            else:
+                self._escalate_only(eid, trace, g["reason"], g["missing_fields"])
         else:
             self._handle_incidents(eid, text, resolved, trace)
         self._finish(eid, trace, res, t0)
@@ -88,20 +97,25 @@ class Coordinator:
             iid = f"{eid}-I{k + 1}"
             item = self._incident_stub(eid, k, r)
             items.append(item)
-            if r["type"] == "supplier_delay":
+            steps = set(policy_model.steps_for(r["type"]))
+            if "find_affected_by_part_window" in steps:
                 d = self.sc.resolve_delay(r)
                 item["validation"] += d["validation"]
                 if not d["ok"]:
                     failures.append(f"{iid}: {d['reason']}")
                     continue
-                inc = self.sc.delay_incident(iid, d)
+                inc = self.sc.delay_incident(iid, d, r["type"])
+                if inc["type"] != r["type"]:
+                    inc["type"] = r["type"]
                 sched.append(inc)
                 item["_inc"] = inc
-            elif r["type"] == "plant_outage":
+            elif "find_affected_by_plant_window" in steps:
                 inc = self.sc.outage_incident(iid, r)
+                if inc["type"] != r["type"]:
+                    inc["type"] = r["type"]
                 sched.append(inc)
                 item["_inc"] = inc
-            elif r["type"] == "quality_hold":
+            elif steps & {"hold_lot", "stop_sale_unsold", "notify_owners"}:
                 lot = self.cq.resolve_lot(r)
                 item["validation"] += lot["validation"]
                 if not lot["ok"]:
@@ -124,7 +138,11 @@ class Coordinator:
         ledger = SlotLedger.from_store(self.ds)
         touched_plants = sorted({i["disruption"]["plant_id"] for i in sched})
         before = ledger.utilization(self.ds.plant_order())
-        moves, decisions = self.sc.plan_moves(sched, ledger)
+        want_moves = any("reschedule_or_transfer" in policy_model.steps_for(i["type"]) for i in sched)
+        if want_moves or not sched:
+            moves, decisions = self.sc.plan_moves(sched, ledger)
+        else:
+            moves, decisions = [], []
         no_slot = [d for d in decisions if d["kind"] == "no_slot"]
         outcome = {}
         for d in decisions:
@@ -138,32 +156,47 @@ class Coordinator:
         affected_cos: dict[str, str] = {}
         reasons_of_co: dict[str, str] = {}
         for inc in sched:
-            label = ("a supplier delay" if inc["type"] == "supplier_delay" else "a plant outage") + \
-                    f" at {inc['disruption']['plant_id']}"
+            if inc["type"] == "supplier_delay":
+                kind_label = "a supplier delay"
+            elif inc["type"] == "plant_outage":
+                kind_label = "a plant outage"
+            else:
+                named = policy_model.event_type(inc["type"])
+                kind_label = (named.name if named else inc["type"]).lower()
+            label = kind_label + f" at {inc['disruption']['plant_id']}"
             for po in inc["affected_pos"]:
                 for co in self.ds.customer_orders_by_po.get(po, []):
                     affected_cos.setdefault(co.customer_order_id, inc["incident_id"])
                     reasons_of_co.setdefault(co.customer_order_id, label)
 
-        notifies = self.dn.plan_notifications(affected_cos, outcome, reasons_of_co) if affected_cos else []
-        if config.NOTIFY_SCOPE == "per_incident":
+        want_notify = any("notify_dealers" in policy_model.steps_for(i["type"]) for i in sched)
+        notifies = self.dn.plan_notifications(affected_cos, outcome, reasons_of_co) if affected_cos and want_notify else []
+        if config.NOTIFY_SCOPE == "per_incident" and affected_cos and want_notify:
             notifies = []
             for inc in sched:
                 sub = {c: i for c, i in affected_cos.items() if i == inc["incident_id"]}
                 notifies += self.dn.plan_notifications(sub, outcome, reasons_of_co)
 
         pools: dict[str, int] = {}
-        for dealer in self.cq.eligible_dealers(affected_cos):
-            ok, res = self.client.act(eid, "crm.loaner_availability", {"dealer_id": dealer}, agent="CustomerCareQuality",
-                                       rule_id="R5 pool check")
-            pools[dealer] = int(res.get("available", 0)) if ok else 0
-        loaners, loaner_decisions = self.cq.plan_loaners(affected_cos, pools)
+        loaners, loaner_decisions = [], []
+        want_loaners = any("assign_loaners" in policy_model.steps_for(i["type"]) for i in sched)
+        if want_loaners or not sched:
+            for dealer in self.cq.eligible_dealers(affected_cos):
+                ok, res = self.client.act(eid, "crm.loaner_availability", {"dealer_id": dealer},
+                                           agent="CustomerCareQuality", rule_id="R5 pool check")
+                pools[dealer] = int(res.get("available", 0)) if ok else 0
+            loaners, loaner_decisions = self.cq.plan_loaners(affected_cos, pools)
 
         holds, stops, owners = [], [], []
+        q_steps = {it["incident_id"]: set(policy_model.steps_for(it["type"])) for it in items}
         for iid, qp in quality:
-            holds.append(qp["hold"])
-            stops += self.dn.plan_stop_sales(qp["unsold"], iid, qp["lot"].lot_id)
-            owners += qp["notify_customers"]
+            steps = q_steps.get(iid, set())
+            if "hold_lot" in steps:
+                holds.append(qp["hold"])
+            if "stop_sale_unsold" in steps:
+                stops += self.dn.plan_stop_sales(qp["unsold"], iid, qp["lot"].lot_id)
+            if "notify_owners" in steps:
+                owners += qp["notify_customers"]
 
         escalations = []
         if no_slot and config.NO_SLOT_ACTION == "escalate":
@@ -403,8 +436,10 @@ class Coordinator:
         parts = []
         for it in items:
             d, aff = it["disruption"] or {}, it["affected"]
-            if it["type"] == "quality_hold":
-                parts.append(f"{TYPE_LABEL[it['type']]} on {d.get('lot_id')} ({d.get('part_id')} at {d.get('plant_id')}, "
+            label = TYPE_LABEL.get(it["type"]) or (
+                policy_model.event_type(it["type"]).name if policy_model.event_type(it["type"]) else it["type"])
+            if it["type"] == "quality_hold" or policy_model.shape_of(it["type"]) == "lot":
+                parts.append(f"{label} on {d.get('lot_id')} ({d.get('part_id')} at {d.get('plant_id')}, "
                              f"built {d.get('window_from')} to {d.get('window_to')}): {len(aff['vehicles_unsold'])} unsold "
                              f"vehicles stopped at {len(aff['dealers'])} dealers and {len(aff['customers'])} owners "
                              f"contacted.")
@@ -414,10 +449,11 @@ class Coordinator:
                 tr = sum(1 for x in rs if x["kind"] == "transfer")
                 loans = sum(1 for x in it["decisions"]["loaners"] if x["decision"] == "assigned")
                 where = d.get("plant_id")
-                what = (f"{d.get('part_id')} delay to {where} ({d.get('blocked_from')} -> {d.get('blocked_until_excl')})"
-                        if it["type"] == "supplier_delay" else
-                        f"outage at {where} ({d.get('blocked_from')} to {d.get('blocked_to_incl')})")
-                parts.append(f"{TYPE_LABEL[it['type']]}: {what} affects {len(aff['production_orders'])} production "
+                if it["type"] == "supplier_delay" or policy_model.shape_of(it["type"]) == "part_window":
+                    what = f"{d.get('part_id')} delay to {where} ({d.get('blocked_from')} -> {d.get('blocked_until_excl')})"
+                else:
+                    what = f"outage at {where} ({d.get('blocked_from')} to {d.get('blocked_to_incl')})"
+                parts.append(f"{label}: {what} affects {len(aff['production_orders'])} production "
                              f"orders; {same} rescheduled at the same plant, {tr} transferred; "
                              f"{len(aff['dealers'])} dealers notified about {len(aff['customer_orders'])} customer "
                              f"orders; {loans} loaners assigned.")

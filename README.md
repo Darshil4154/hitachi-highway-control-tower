@@ -103,15 +103,24 @@ python docs/make_deck.py         # architecture diagram + slide deck in docs/
 
 The server refuses to overwrite an existing log: delete the old folder or use a new `--out` (e.g. `..\runs\run2`).
 
+## Policy Studio
+
+Event types, playbooks, rule parameters, interpretation switches and verifier checks live in
+`config/policies/handbook_v1.yaml`. That file is the scored baseline: it is read-only and marked
+"Scored baseline". `python -m control_tower.run` always loads it unless you pass `--policy <name>`.
+An edited profile is saved as a new file, `config/policies/<name>_vN.yaml`, and is used only by the
+Live Incident Desk and the Scenario Lab in the Streamlit app (Policy Studio, manager).
+
 ## Interpretation switches
 
-Ambiguous handbook points live in `control_tower/config.py` and are printed into every trace. The verifier and the
+The switch values the agents read are copied from the active policy onto `control_tower/config.py`
+at startup (handbook_v1 unless a sandbox profile is active). They are printed into every trace. The verifier and the
 self-check follow the same switches, and `tests/test_switches_and_guards.py` proves every value stays 15/15 green.
 
 | Switch | Value | Alternative | Writes changed by the alternative |
 |---|---|---|---|
 | `NEXT_WEEKDAY` | `following_week` ("next Friday" on Mon 03-08 = Fri 03-19) | `nearest_upcoming` | 140 (E-01 becomes invalid: new ETA before old) |
-| `TRANSFER_LOWER_BOUND` | `today` (any day with a free slot) | `restart` | 5 transfers + 33 notification texts |
+| `TRANSFER_LOWER_BOUND` | `restart` (on or after the disruption ends) | `today` | 5 transfers move when set back to `today` |
 | `TRANSFER_SEARCH` | `day_first` (earliest day across plants) | `plant_first` ("plant by plant") | 0 |
 | `PLANT_TIEBREAK` | `plants_csv_order` | `plant_id_alpha` | - |
 | `SLOT_PRIORITY` | `build_date` | `promised_date` ("delivery first") | 2 reschedules + 14 texts (E-11) |
@@ -126,8 +135,9 @@ and a quality hold has none (each dealer is told through `dealer.stop_sale`).
 
 ```
 enterprise/            organizer package, untouched (server, simulator, data, handbook)
-control_tower/         config, data_loader, ontology, resolvers, llm, policy, twin, tools_client,
-                       verifier, trace, run, ask, agents/
+control_tower/         config, data_loader, ontology, resolvers, llm, policy, policy_model, sandbox,
+                       twin, tools_client, verifier, trace, run, ask, agents/
+config/policies/       handbook_v1.yaml (scored baseline) and published profiles
 eval/                  self_check.py (independent grading), what_if.py, llm_audit.py
 ui/app.py              Streamlit control tower (ui/static/ serves vis-network once)
 tests/                 pytest suite (synthetic fixtures for the specialists)

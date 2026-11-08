@@ -13,18 +13,27 @@ import re
 import time
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, Field, ValidationError, field_validator
 
 from . import config
-from .resolvers import DATE_FIELDS, resolve_incident, scan_mentions
+from .resolvers import resolve_incident, scan_mentions
 
 PROMPT_VERSION = "v3"
 
-IncidentType = Literal["supplier_delay", "plant_outage", "quality_hold"]
+BASELINE_TYPES = {"supplier_delay", "plant_outage", "quality_hold"}
 
 
 class IncidentExtraction(BaseModel):
-    type: IncidentType
+    type: str
+
+    @field_validator("type")
+    @classmethod
+    def _known_type(cls, v: str) -> str:
+        from .policy_model import extra_type_ids
+        allowed = BASELINE_TYPES | extra_type_ids()
+        if v not in allowed:
+            raise ValueError(f"unknown incident type {v}")
+        return v
     evidence_quote: str = ""
     supplier_mention: Optional[str] = None
     part_mention: Optional[str] = None
@@ -118,8 +127,9 @@ HEDGE_WORDS = [r"\brumou?r", r"\bmay\b(?!\s+\d)", r"\bmight\b", r"\bpossibl[ey]\
 
 
 def find_hedges(text: str) -> list[str]:
+    from .policy_model import hedge_patterns
     low = text.lower()
-    return [m.group(0) for pat in HEDGE_WORDS for m in [re.search(pat, low)] if m]
+    return [m.group(0) for pat in hedge_patterns() for m in [re.search(pat, low)] if m]
 
 
 # ----------------------------------------------------------------------------- rule-based fallback
@@ -129,20 +139,20 @@ _DATE_RX = re.compile(
     r"|\b(?:next|last|this)\s+(?:mon|tue|wed|thu|fri)[a-z]*\b",
     re.IGNORECASE,
 )
-_TYPE_KEYWORDS = {
-    "quality_hold": r"quality|defect|faulty|suspect|contaminat|recall|lot-\d{4}",
-    "plant_outage": r"outage|\bdark\b|power failure|production is stopped|shut ?down|\bfire\b|\bstrike\b|flood|line down",
-    "supplier_delay": r"delay|can'?t make it|cannot make it|new eta|will now arrive|waiting on|carrier says|running late|late",
-}
+def _keyword_pairs() -> list[tuple[str, str]]:
+    from .policy_model import type_keywords
+    return type_keywords()
 
 
 def rule_extract(text: str) -> Extraction:
     """Deterministic keyword/regex extractor used when the LLM is unavailable or returns invalid JSON."""
+    from .policy_model import date_fields_for, shape_of
+    keywords = _keyword_pairs()
     segments = [s.strip() for s in re.split(r"\(\d\)", text)[1:]] if re.search(r"\(\d\)", text) else [text]
     incidents = []
     for seg in segments:
         low = seg.lower()
-        kind = next((k for k, pat in _TYPE_KEYWORDS.items() if re.search(pat, low)), None)
+        kind = next((k for k, pat in keywords if re.search(pat, low)), None)
         if not kind:
             continue
         m = scan_mentions(seg)
@@ -152,26 +162,60 @@ def rule_extract(text: str) -> Extraction:
         ids = re.findall(r"\b(SH-\d{4}|LOT-\d{4})\b", seg)
         inc.shipment_id = next((i for i in ids if i.startswith("SH-")), None)
         inc.lot_id = next((i for i in ids if i.startswith("LOT-")), None)
-        (a, _), (b, _) = DATE_FIELDS[kind]
-        if dates:
+        fields = date_fields_for(kind)
+        if len(fields) >= 2 and dates:
+            a, b = fields[0][0], fields[1][0]
             setattr(inc, a, dates[0])
-            setattr(inc, b, dates[1] if len(dates) > 1 else (dates[0] if kind == "plant_outage" else None))
+            setattr(inc, b, dates[1] if len(dates) > 1 else (dates[0] if shape_of(kind) == "plant_window" else None))
         if any(v for v in (m["plant"], m["part"], inc.lot_id, inc.shipment_id)):
             incidents.append(inc)
     hedges = find_hedges(text)
     if incidents and not hedges:
         return Extraction(category="incident", confidence=0.6, rationale="Rule-based: incident keywords with entities.",
                           incidents=incidents)
-    if hedges or any(re.search(p, text.lower()) for p in _TYPE_KEYWORDS.values()):
+    if hedges or any(re.search(p, text.lower()) for p in (pat for _, pat in keywords)):
         return Extraction(category="unconfirmed", confidence=0.6,
                           rationale=f"Rule-based: hedged or unspecific report ({', '.join(hedges) or 'no entities'}).",
                           incidents=incidents)
     return Extraction(category="noise", confidence=0.6, rationale="Rule-based: no operational keywords or entities.")
 
 
+def merge_extra_types(extraction: Extraction, text: str) -> Extraction:
+    """Add incidents whose type exists only in the active policy.
+
+    handbook_v1 defines no extra types, so this returns the same extraction and the cached LLM result is unchanged.
+    """
+    from .policy_model import extra_type_ids
+    extras = extra_type_ids()
+    if not extras:
+        return extraction
+    extra_incs = [i for i in rule_extract(text).incidents if i.type in extras]
+    if not extra_incs:
+        return extraction
+
+    def covers(a: IncidentExtraction, b: IncidentExtraction) -> bool:
+        qa, qb = (a.evidence_quote or "").lower(), (b.evidence_quote or "").lower()
+        return bool(qa and qb and (qa in qb or qb in qa))
+
+    kept = [i for i in extraction.incidents if i.type in extras or not any(covers(i, e) for e in extra_incs)]
+    seen = {(i.type, (i.evidence_quote or "")[:120]) for i in kept}
+    for inc in extra_incs:
+        key = (inc.type, (inc.evidence_quote or "")[:120])
+        if key not in seen:
+            kept.append(inc)
+            seen.add(key)
+    return extraction.model_copy(update={"category": "incident", "incidents": kept})
+
+
 # ----------------------------------------------------------------------------- client
+def system_prompt() -> str:
+    """Category list and definitions from the active policy. handbook_v1 reproduces SYSTEM_PROMPT byte for byte."""
+    from .policy_model import active, build_system_prompt
+    return build_system_prompt(active())
+
+
 def _messages(text: str) -> list[dict]:
-    msgs = [{"role": "system", "content": SYSTEM_PROMPT}]
+    msgs = [{"role": "system", "content": system_prompt()}]
     for user, answer in FEW_SHOTS:
         msgs.append({"role": "user", "content": f"MESSAGE:\n{user}"})
         msgs.append({"role": "assistant", "content": json.dumps(answer)})
@@ -180,7 +224,7 @@ def _messages(text: str) -> list[dict]:
 
 
 def _cache_key(text: str) -> str:
-    return hashlib.sha256(f"{config.LLM_MODEL}|{PROMPT_VERSION}|{SYSTEM_PROMPT}|{text}".encode("utf-8")).hexdigest()
+    return hashlib.sha256(f"{config.LLM_MODEL}|{PROMPT_VERSION}|{system_prompt()}|{text}".encode("utf-8")).hexdigest()
 
 
 def extract(text: str) -> dict:
@@ -274,7 +318,12 @@ def _incident_label(r: dict) -> str:
         return f"supplier delay of {r.get('part_id')} to {r.get('plant_id')} ({r.get('original_eta') or r.get('shipment_id')} -> {r.get('new_eta')})"
     if t == "plant_outage":
         return f"plant outage at {r.get('plant_id')} ({r.get('start')} to {r.get('end')})"
-    return f"quality hold on {r.get('lot_id') or r.get('part_id')} ({r.get('window_from')} to {r.get('window_to')})"
+    if t == "quality_hold":
+        return f"quality hold on {r.get('lot_id') or r.get('part_id')} ({r.get('window_from')} to {r.get('window_to')})"
+    from .policy_model import event_type
+    et = event_type(t)
+    name = (et.name if et else t or "incident").lower()
+    return f"{name} at {r.get('plant_id')} ({r.get('start') or r.get('blocked_from')} to {r.get('end') or r.get('window_to')})"
 
 
 # ----------------------------------------------------------------------------- gate
@@ -286,21 +335,8 @@ REQUIRED = {
 
 
 def missing_fields(r: dict) -> list[str]:
-    t = r.get("type")
-    miss: list[str] = []
-    if t == "supplier_delay":
-        miss += [f for f, k in (("part", "part_id"), ("plant", "plant_id"), ("new_eta", "new_eta")) if not r.get(k)]
-        if not r.get("original_eta") and not r.get("shipment_id"):
-            miss.append("original_eta_or_shipment_id")
-    elif t == "plant_outage":
-        miss += [f for f, k in (("plant", "plant_id"), ("start", "start"), ("end", "end")) if not r.get(k)]
-    elif t == "quality_hold":
-        if not r.get("lot_id"):
-            miss += [f for f, k in (("lot_id_or_part", "part_id"), ("plant", "plant_id"),
-                                    ("window_from", "window_from"), ("window_to", "window_to")) if not r.get(k)]
-    else:
-        miss.append("incident_type")
-    return miss
+    from .policy_model import missing_field_names
+    return missing_field_names(r)
 
 
 def gate(extraction: Extraction, resolved: list[dict], text: str) -> dict:
@@ -330,8 +366,9 @@ def gate(extraction: Extraction, resolved: list[dict], text: str) -> dict:
                 f"{', '.join(all_missing) or 'confirmation'}.", "missing_fields": all_missing or ["confirmation"],
                 "hedges": hedges}
     if all_missing or review:
+        from .policy_model import required_summary
         notes = [f"incident {i + 1} ({resolved[i]['type']}) missing {', '.join(v)} [required: "
-                 f"{REQUIRED.get(resolved[i]['type'], '?')}]" for i, v in missing.items() if v]
+                 f"{required_summary(resolved[i]['type'])}]" for i, v in missing.items() if v]
         notes += [f"incident {i + 1}: {'; '.join(v)}" for i, v in review.items()]
         return {"result": "needs_review", "reason": "Cannot act safely: " + " | ".join(notes) + ".",
                 "missing_fields": all_missing + [n for v in review.values() for n in v], "hedges": hedges}

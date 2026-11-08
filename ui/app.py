@@ -19,7 +19,9 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "ui"))
 from control_tower.trace import READ_REASONS, plan_seq_label  # noqa: E402
+from policy_pages import audit_section, page_desk, page_lab, page_studio  # noqa: E402
 
 STATIC = Path(__file__).resolve().parent / "static"
 FEED_HEIGHT = 720
@@ -146,7 +148,8 @@ with st.sidebar:
     st.markdown("## 🗼 Control Tower")
     st.markdown("<span class='small'>Wacky Wheels Co. · operations</span>", unsafe_allow_html=True)
     page = st.radio("View", ["Event operations", "Human review inbox", "Audit trail", "Knowledge graph",
-                             "Ask the control tower"], label_visibility="collapsed")
+                             "Ask the control tower", "Policy Studio (manager)", "Live Incident Desk",
+                             "Scenario Lab"], label_visibility="collapsed")
     st.divider()
     if summary:
         st.markdown(f"**Run mode:** {summary.get('mode', '?')}")
@@ -736,32 +739,33 @@ elif page == "Audit trail":
     p = TRACES / "audit_log.csv"
     if not p.exists():
         st.warning("traces/audit_log.csv not found - run the agents first.")
-        st.stop()
-    df = pd.read_csv(p, dtype=str).fillna("")
-    c = st.columns(4)
-    ev = c[0].multiselect("Event", sorted(df["event_id"].unique()))
-    tool = c[1].multiselect("Tool", sorted(df["tool"].unique()))
-    agent = c[2].multiselect("Agent", sorted(df["agent"].unique()))
-    rule = c[3].multiselect("Rule", sorted(x for x in df["rule_id"].unique() if x))
-    q = st.text_input("Search target / reason", placeholder="e.g. D12, PO-0436, LOT-0191")
-    f = df
-    for col, sel in (("event_id", ev), ("tool", tool), ("agent", agent), ("rule_id", rule)):
-        if sel:
-            f = f[f[col].isin(sel)]
-    if q:
-        f = f[f["target"].str.contains(q, case=False, regex=False) | f["reason"].str.contains(q, case=False,
-                                                                                               regex=False)]
-    m = st.columns(4)
-    m[0].metric("Rows", len(f))
-    m[1].metric("Writes", int((f["kind"] == "write").sum()))
-    m[2].metric("Reads (free)", int((f["kind"] == "read").sum()))
-    m[3].metric("Failed", int((f["ok"] != "True").sum()))
-    st.dataframe(f, hide_index=True, width="stretch", height=560)
-    st.download_button("⬇ Download CSV", f.to_csv(index=False).encode("utf-8"), "audit_log_filtered.csv", "text/csv")
-    sc = ROOT / "eval" / "self_check_report.md"
-    if sc.exists():
-        with st.expander("Self-check report (independent replay of the action log)"):
-            st.markdown(sc.read_text(encoding="utf-8"))
+    else:
+        df = pd.read_csv(p, dtype=str).fillna("")
+        c = st.columns(4)
+        ev = c[0].multiselect("Event", sorted(df["event_id"].unique()))
+        tool = c[1].multiselect("Tool", sorted(df["tool"].unique()))
+        agent = c[2].multiselect("Agent", sorted(df["agent"].unique()))
+        rule = c[3].multiselect("Rule", sorted(x for x in df["rule_id"].unique() if x))
+        q = st.text_input("Search target / reason", placeholder="e.g. D12, PO-0436, LOT-0191")
+        f = df
+        for col, sel in (("event_id", ev), ("tool", tool), ("agent", agent), ("rule_id", rule)):
+            if sel:
+                f = f[f[col].isin(sel)]
+        if q:
+            f = f[f["target"].str.contains(q, case=False, regex=False) | f["reason"].str.contains(q, case=False,
+                                                                                                   regex=False)]
+        m = st.columns(4)
+        m[0].metric("Rows", len(f))
+        m[1].metric("Writes", int((f["kind"] == "write").sum()))
+        m[2].metric("Reads (free)", int((f["kind"] == "read").sum()))
+        m[3].metric("Failed", int((f["ok"] != "True").sum()))
+        st.dataframe(f, hide_index=True, width="stretch", height=560)
+        st.download_button("⬇ Download CSV", f.to_csv(index=False).encode("utf-8"), "audit_log_filtered.csv", "text/csv")
+        sc = ROOT / "eval" / "self_check_report.md"
+        if sc.exists():
+            with st.expander("Self-check report (independent replay of the action log)"):
+                st.markdown(sc.read_text(encoding="utf-8"))
+    audit_section()
 
 elif page == "Ask the control tower":
     import sys
@@ -802,6 +806,15 @@ elif page == "Ask the control tower":
             if r["function"]:
                 with st.expander("Raw function result"):
                     st.json(r["result"], expanded=False)
+
+elif page == "Policy Studio (manager)":
+    page_studio()
+
+elif page == "Live Incident Desk":
+    page_desk()
+
+elif page == "Scenario Lab":
+    page_lab()
 
 else:
     st.markdown("## Knowledge graph & ontology")

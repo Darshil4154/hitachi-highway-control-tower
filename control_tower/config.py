@@ -52,3 +52,27 @@ def snapshot() -> dict:
         "FUZZY_THRESHOLD": FUZZY_THRESHOLD,
         "LLM_MODEL": LLM_MODEL,
     }
+
+
+def apply_switches(values: dict) -> None:
+    """Copy a policy's interpretation switches onto this module. Unknown keys are ignored."""
+    g = globals()
+    for key in (
+        "NEXT_WEEKDAY", "TRANSFER_LOWER_BOUND", "TRANSFER_SEARCH", "PLANT_TIEBREAK", "SLOT_PRIORITY",
+        "COMPOUND_ORDER", "NOTIFY_SCOPE", "NO_SLOT_ACTION", "ESCALATE_NOISE", "FUZZY_THRESHOLD",
+    ):
+        if key in values:
+            g[key] = values[key]
+
+
+def _bootstrap_handbook_switches() -> None:
+    """The scored baseline yaml is the source of the switch values. Missing file keeps the literals above."""
+    path = ROOT / "config" / "policies" / "handbook_v1.yaml"
+    if not path.exists():
+        return
+    import yaml
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    apply_switches(data.get("switches") or {})
+
+
+_bootstrap_handbook_switches()

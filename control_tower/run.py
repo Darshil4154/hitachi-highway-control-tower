@@ -10,6 +10,7 @@ import json
 
 from . import config, trace
 from .agents.coordinator import Coordinator
+from .policy_model import PolicyError, PolicyRefused, activate, load_for_official_run
 from .tools_client import ToolsClient
 
 
@@ -19,7 +20,18 @@ def main() -> int:
     ap.add_argument("--events", default=None, help="comma-separated event ids (default: all)")
     ap.add_argument("--server", default=config.SERVER_URL)
     ap.add_argument("--traces", default=str(config.TRACES_DIR))
+    ap.add_argument("--policy", default=None,
+                    help="policy profile to run. Omit this flag to use the scored baseline handbook_v1. "
+                         "An edited profile is used only when this flag names it.")
     args = ap.parse_args()
+
+    try:
+        policy = load_for_official_run(args.policy, explicit=args.policy is not None)
+    except (PolicyRefused, PolicyError) as e:
+        print(str(e), flush=True)
+        return 2
+    activate(policy)
+    print(f"policy={policy.id}" + ("  [Scored baseline]" if policy.read_only else ""), flush=True)
 
     client = ToolsClient(args.server, dry_run=args.dry_run)
     if args.dry_run:

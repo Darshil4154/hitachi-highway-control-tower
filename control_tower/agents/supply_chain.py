@@ -121,15 +121,17 @@ class SupplyChainPlanner:
         return out
 
     # ------------------------------------------------------------------ disruption + affected orders
-    def delay_incident(self, incident_id: str, d: dict) -> dict:
+    def delay_incident(self, incident_id: str, d: dict, type_id: str = "supplier_delay") -> dict:
         part, plant, orig, new = d["part_id"], d["plant_id"], d["original_eta"], d["new_eta"]
         models, model_path = self.kg.models_using_part(part)
         models = sorted(set(models) & self.ds.plant_models[plant])
-        pos, path = self.kg.orders_needing_part(part, plant, orig, new)
+        from ..policy_model import query_bounds
+        qs, qe = query_bounds(type_id, orig, new, "exclusive")
+        pos, path = self.kg.orders_needing_part(part, plant, qs, qe)
         restart = first_working_on_or_after(new)
-        block = Block(incident_id, plant, {date_to_idx(x) for x in working_days(orig, new) if x < new
+        block = Block(incident_id, plant, {date_to_idx(x) for x in working_days(qs, qe) if x < qe
                                            and 0 <= date_to_idx(x) <= LAST_IDX}, set(models))
-        excluded = self._excluded_delay(part, plant, orig, new)
+        excluded = self._excluded_delay(part, plant, qs, qe)
         affected, past = self._clamp(pos, excluded)
         sh_node = nid("Shipment", d["shipment_id"])
         edges = d["path"] + [e for e in model_path if e[2] in {nid("Model", m) for m in models}] + path
@@ -146,9 +148,11 @@ class SupplyChainPlanner:
 
     def outage_incident(self, incident_id: str, r: dict) -> dict:
         plant, start, end = r["plant_id"], r["start"], r["end"]
-        pos, path = self.kg.orders_at_plant(plant, start, end)
+        from ..policy_model import query_bounds
+        qs, qe = query_bounds(r.get("type") or "plant_outage", start, end, "inclusive")
+        pos, path = self.kg.orders_at_plant(plant, qs, qe)
         restart = next_working_day(end)
-        block = Block(incident_id, plant, {date_to_idx(x) for x in working_days(start, end)
+        block = Block(incident_id, plant, {date_to_idx(x) for x in working_days(qs, qe)
                                            if 0 <= date_to_idx(x) <= LAST_IDX}, None)
         affected, past = self._clamp(pos, [])
         return {
