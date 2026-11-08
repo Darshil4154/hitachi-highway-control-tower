@@ -167,8 +167,8 @@ def _playbooks(data: dict) -> None:
             steps.pop(i)
             st.rerun()
     choices = [s for s in STEP_LIBRARY if s not in steps]
-    add = st.selectbox("Add a step", ["—"] + choices, key=f"pb_add_{name}")
-    if st.button("Add step", disabled=add == "—"):
+    add = st.selectbox("Add a step", ["-"] + choices, key=f"pb_add_{name}")
+    if st.button("Add step", disabled=add == "-"):
         steps.append(add)
         st.rerun()
     if st.button("Save playbook into the draft"):
@@ -270,8 +270,17 @@ def _preview(data: dict) -> None:
                     st.markdown("**Added**")
                     st.write(row["added"])
     st.markdown("### Scenario Lab")
-    lab = pd.DataFrame(report["scenarios"])
-    st.dataframe(lab, hide_index=True, width="stretch")
+    draft_name = data.get("name") or data.get("id") or "Working draft"
+    lab_rows = []
+    for row in report["scenarios"]:
+        lab_rows.append({
+            "id": row["id"], "name": row["name"],
+            "handbook_v1 gate": row["baseline_gate"],
+            f"{draft_name} gate": row["draft_gate"],
+            f"{draft_name} type": row.get("draft_type") or "-",
+            "added": row.get("added") or [], "removed": row.get("removed") or [],
+        })
+    st.dataframe(pd.DataFrame(lab_rows), hide_index=True, width="stretch")
 
 
 def _publish(data: dict) -> None:
@@ -339,6 +348,45 @@ def _selected_policy() -> Policy:
         return load("handbook_v1")
 
 
+_FOLLOWUP_Q = {
+    "plant": "Which plant?",
+    "part": "Which part?",
+    "new_eta": "What is the new ETA?",
+    "original_eta": "What was the original ETA?",
+    "supplier": "Which supplier?",
+    "start": "When does the outage start?",
+    "end": "When does the outage end?",
+    "lot_id": "Which lot id?",
+    "shipment_id": "Which shipment id?",
+    "confirmation": "Can you confirm this is firm?",
+}
+
+
+def _followup_question(field: str) -> str:
+    key = field.split()[0].lower().replace("-", "_")
+    for name, q in _FOLLOWUP_Q.items():
+        if name in key or key in name:
+            return q
+    return f"Please provide {field}:"
+
+
+def _run_desk(text: str, pol: Policy, eid: str, *, force_rules: bool) -> None:
+    st.session_state.desk_trace = handle_text(text, pol, event_id=eid, force_rules=force_rules)
+    st.session_state.desk_base_text = text
+    try:
+        from control_tower.agent_world import publish_from_trace_like
+        tr = st.session_state.desk_trace
+        publish_from_trace_like(
+            label=f"Desk {eid}",
+            summary=tr.get("summary") or "",
+            plan=tr.get("plan") or [],
+            stages=(tr.get("metrics") or {}).get("stages_s"),
+            banner="Live Incident Desk - simulation, nothing sent",
+        )
+    except Exception:
+        pass
+
+
 def page_desk() -> None:
     st.markdown("## Live Incident Desk")
     pol = _selected_policy()
@@ -355,29 +403,63 @@ def page_desk() -> None:
     if st.button("Run in the twin", disabled=not text.strip()):
         with st.spinner("Planning in the twin..."):
             eid = pick if pick != "(paste a message)" else "DESK"
-            st.session_state.desk_trace = handle_text(text, pol, event_id=eid, force_rules=pick == "(paste a message)")
-            try:
-                from control_tower.agent_world import publish_from_trace_like
-                tr = st.session_state.desk_trace
-                publish_from_trace_like(
-                    label=f"Desk {eid}",
-                    summary=tr.get("summary") or "",
-                    plan=tr.get("plan") or [],
-                    stages=(tr.get("metrics") or {}).get("stages_s"),
-                    banner="Live Incident Desk - simulation, nothing sent",
-                )
-            except Exception:
-                pass
+            _run_desk(text, pol, eid, force_rules=pick == "(paste a message)")
     trace = st.session_state.get("desk_trace")
-    if trace:
-        _show_trace(trace)
+    if not trace:
+        return
+    _show_trace(trace)
+    gate = (trace.get("classification") or {}).get("gate")
+    missing = list((trace.get("escalation") or {}).get("missing_fields") or [])
+    # Prefer gate missing_fields when escalation is empty
+    if not missing:
+        missing = list((trace.get("classification") or {}).get("missing_fields") or [])
+    if gate == "needs_review" and missing:
+        st.markdown("### Follow-up (twin only)")
+        st.caption("Answer each missing field. The desk re-runs in the twin with your answers appended. "
+                   "Nothing is sent to the enterprise server.")
+        answers = {}
+        for field in missing:
+            # Skip verbose review notes; keep short field names
+            if len(field) > 40 or " " in field and field.split()[0] not in _FOLLOWUP_Q:
+                if not any(k in field.lower() for k in _FOLLOWUP_Q):
+                    continue
+            q = _followup_question(field)
+            answers[field] = st.text_input(q, key=f"desk_fu_{field}")
+        if st.button("Re-run with answers", disabled=not any(v.strip() for v in answers.values())):
+            base = st.session_state.get("desk_base_text") or text
+            extra = " ".join(f"{_followup_question(f).rstrip('?')}: {v.strip()}."
+                             for f, v in answers.items() if v.strip())
+            combined = f"{base.strip()} {extra}".strip()
+            with st.spinner("Re-running in the twin..."):
+                eid = pick if pick != "(paste a message)" else "DESK"
+                _run_desk(combined, pol, eid, force_rules=True)
+            st.rerun()
+
+
+def _draft_policy() -> Policy:
+    """Policy Studio working draft for Scenario Lab (sandbox). Falls back to the desk profile."""
+    data = dict(_draft())
+    data["read_only"] = False
+    if data.get("id") == "handbook_v1":
+        data["id"] = "working_draft"
+        data["status"] = "draft"
+        data["name"] = data.get("name") or "Working draft"
+    try:
+        return Policy.model_validate(data)
+    except (ValidationError, ValueError):
+        return _selected_policy()
 
 
 def page_lab() -> None:
     st.markdown("## Scenario Lab")
-    pol = _selected_policy()
-    st.markdown(f"Same sandbox profile as the desk (**{pol.id}**). Sentences are classified from the policy "
-                f"keywords, then planned in the twin. handbook_v1 is not modified.")
+    draft = _draft()
+    draft_label = draft.get("name") or draft.get("id") or "Working draft"
+    if draft.get("id") == "handbook_v1" and draft.get("status") in (None, "baseline", "scored"):
+        draft_label = "Working draft"
+    pol = _draft_policy()
+    st.markdown(f"Compares **handbook_v1** (scored) with the Policy Studio draft (**{draft_label}**). "
+                f"Sentences are classified from policy keywords, then planned in the twin. "
+                f"handbook_v1 is not modified.")
     labels = [s["name"] for s in SCENARIOS] + ["Custom"]
     pick = st.selectbox("Scenario", labels)
     if pick == "Custom":
@@ -389,17 +471,18 @@ def page_lab() -> None:
         with st.spinner("Planning in the twin..."):
             base = handle_text(text, load("handbook_v1"), event_id="LAB", force_rules=True)
             alt = handle_text(text, pol, event_id="LAB", force_rules=True)
-            st.session_state.lab_result = (base, alt)
+            st.session_state.lab_result = (base, alt, draft_label)
     result = st.session_state.get("lab_result")
     if not result:
         return
-    base, alt = result
+    base, alt = result[0], result[1]
+    label = result[2] if len(result) > 2 else draft_label
     c1, c2 = st.columns(2)
     with c1:
         st.markdown("**handbook_v1**")
         _show_trace(base)
     with c2:
-        st.markdown(f"**{pol.id}**")
+        st.markdown(f"**{label}**")
         _show_trace(alt)
 
 

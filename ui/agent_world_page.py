@@ -44,7 +44,7 @@ def page_agent_world() -> None:
     m1, m2, m3, m4 = st.columns(4)
     m1.metric("Events in playlist", len(data.get("playlist") or []))
     m2.metric("Agents", len(data.get("agents") or []))
-    m3.metric("Graph nodes", f"{(data.get('graph') or {}).get('nodes') or '—'}")
+    m3.metric("Graph nodes", f"{(data.get('graph') or {}).get('nodes') or '-'}")
     m4.metric("Plants on map", len(data.get("plants") or []))
 
     if live:

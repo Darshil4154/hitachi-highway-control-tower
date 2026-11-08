@@ -372,7 +372,10 @@ def heatmap(t: dict) -> None:
         z = [[sch[key][p][d] for d in days] for p in show]
         cap = [[sch["capacity"][p]] * len(days) for p in show]
         text = [[f"{z[i][j]}/{cap[i][j]}" for j in range(len(days))] for i in range(len(show))]
-        fig = go.Figure(go.Heatmap(z=z, x=[d[5:] for d in days], y=show, text=text, texttemplate="%{text}",
+        # Use full ISO dates as categorical labels. Slicing to MM-DD makes Plotly
+        # treat them as calendar dates near 1970 and empties the heatmap.
+        x_labels = [str(d) for d in days]
+        fig = go.Figure(go.Heatmap(z=z, x=x_labels, y=show, text=text, texttemplate="%{text}",
                                    zmin=0, zmax=max(sch["capacity"].values()),
                                    colorscale=[[0, "#f1f5f9"], [0.6, "#93c5fd"], [1, "#1e3a8a"]], showscale=False,
                                    hovertemplate="%{y} %{x}: %{text} slots<extra></extra>"))
@@ -389,7 +392,8 @@ def heatmap(t: dict) -> None:
             fig.add_shape(type="rect", x0=j - .5, x1=j + .5, y0=i - .5, y1=i + .5,
                           line=dict(color="#ef4444", width=2.5))
         fig.update_layout(title=f"{title} (slots used / capacity)", height=110 + 46 * len(show),
-                          margin=dict(l=10, r=10, t=40, b=10), xaxis=dict(tickangle=-60, tickfont=dict(size=9)))
+                          margin=dict(l=10, r=10, t=40, b=10),
+                          xaxis=dict(tickangle=-60, tickfont=dict(size=9), type="category"))
         col.plotly_chart(fig, width="stretch", key=f"hm-{t['event']['event_id']}-{key}")
     st.caption("Red outline = blocked by the disruption. Only the disrupted plant and transfer targets are shown.")
 
@@ -432,7 +436,7 @@ def incident_view(t: dict, it: dict) -> None:
     d = it.get("disruption") or {}
     a = it.get("affected") or {}
     rows = [{"field": x["field"].replace("_phrase", "").replace("_mention", ""), "phrase": x["phrase"],
-             "resolved": str(x["resolved"] or "—"), "method": x["method"]} for x in it.get("extracted", [])]
+             "resolved": str(x["resolved"] or "-"), "method": x["method"]} for x in it.get("extracted", [])]
     c1, c2 = st.columns([1.1, 1])
     with c1:
         st.markdown("**Extraction → resolution** <span class='small'>(LLM copies phrases; code resolves)</span>",
@@ -499,13 +503,13 @@ def incident_view(t: dict, it: dict) -> None:
         st.markdown(f"**Loaner ranking** (rule 5) - {len(assigned)} assigned, {len(skipped)} skipped (pool "
                     f"exhausted), {len(ln) - len(assigned) - len(skipped)} Standard tier")
         df = pd.DataFrame([{"decision": {"assigned": "✅ assigned", "skipped": "⏭ skipped",
-                                         "not_eligible": "— standard"}[x["decision"]], "dealer": x["dealer"],
+                                         "not_eligible": "- standard"}[x["decision"]], "dealer": x["dealer"],
                             "customer order": x["co"], "tier": x["tier"], "promised": x["promised"],
                             "rank": str(x["rank"] or ""), "reason": x["reason"]} for x in ln])
         flt = st.segmented_control("Show", ["Platinum/Gold", "All"], default="Platinum/Gold",
                                    key=f"ln-{it['incident_id']}")
         if flt != "All":
-            df = df[df["decision"] != "— standard"]
+            df = df[df["decision"] != "- standard"]
         st.dataframe(df, hide_index=True, width="stretch", height=260)
 
 

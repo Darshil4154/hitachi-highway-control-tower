@@ -289,7 +289,7 @@ function showDetail(agent, extra = {}) {
     <h2>${agent.name}</h2>
     <p>${agent.role}</p>
     <div class="chip">${extra.status || (working ? "Working" : "Idle")}</div>
-    <div class="chip">${event.event_id || extra.label || "—"}</div>
+    <div class="chip">${event.event_id || extra.label || "-"}</div>
     <p style="margin-top:10px">${event.summary || extra.summary || "Waiting for the next stage."}</p>
     <div>${Object.entries(event.tools || extra.tools || {}).map(([k, v]) => `<span class="chip">${k} × ${v}</span>`).join("")}</div>
   `;
@@ -417,12 +417,23 @@ function wireBeams(agents) {
 }
 
 function stagesFor(event) {
-  const order = ["extract", "resolve", "gate", "plan", "verify", "twin", "execute", "readback"];
   const s = event.stages_s || {};
+  const cat = event.category || "";
+  const escalated = Boolean(event.escalated) || cat === "escalated";
+  const noise = cat === "noise";
+  // Noise and escalations: only Coordinator + LLM Reader (and escalate path) animate.
+  // Specialists, Digital Twin and Verifier stay Idle.
+  let order;
+  if (noise) {
+    order = ["extract", "resolve", "gate"];
+  } else if (escalated) {
+    order = ["extract", "resolve", "gate", "escalate"];
+  } else {
+    order = ["extract", "resolve", "gate", "plan", "verify", "twin", "execute", "readback"];
+  }
   const out = [];
   for (const name of order) {
     const dur = Number(s[name] || 0);
-    // Always show a beat even when timing is 0, so replay stays readable
     out.push({ name, dur: Math.max(0.35, dur > 0 ? Math.min(2.8, dur * 40) : 0.55) });
   }
   return out;
@@ -434,7 +445,12 @@ function beginEvent(event) {
   stageIndex = 0;
   stageT0 = performance.now();
   eventPill.innerHTML = `Event <b>${event.event_id || event.label || "live"}</b>`;
-  toast.textContent = event.summary || event.banner || "Working…";
+  toast.textContent = event.summary || event.banner || "Working...";
+  // Keep the detail panel on the same event as the Event pill
+  if (focusedId) {
+    const agent = (bootstrap?.agents || []).find((a) => a.id === focusedId);
+    if (agent) showDetail(agent);
+  }
   // light plants mentioned in summary
   for (const [pid, mesh] of plantMeshes) {
     const on = (event.summary || "").includes(pid);
@@ -466,9 +482,19 @@ function tickStages(now) {
   const elapsed = ((now - stageT0) / 1000) * SPEED;
   const progress = Math.min(1, elapsed / stage.dur);
   stagePill.innerHTML = `Stage <b>${stage.name}</b>`;
-  const ids = (bootstrap.stage_agents[stage.name] || ["coordinator"]).slice();
-  if (stage.name === "plan" && current?.active_agents?.length) {
-    current.active_agents.forEach((id) => { if (!ids.includes(id)) ids.push(id); });
+  const cat = current?.category || "";
+  const quiet = cat === "noise" || cat === "escalated" || current?.escalated;
+  let ids;
+  if (stage.name === "escalate") {
+    ids = ["coordinator"];
+  } else if (quiet) {
+    ids = (bootstrap.stage_agents[stage.name] || ["coordinator"])
+      .filter((id) => id === "coordinator" || id === "llm");
+  } else {
+    ids = (bootstrap.stage_agents[stage.name] || ["coordinator"]).slice();
+    if (stage.name === "plan" && current?.active_agents?.length) {
+      current.active_agents.forEach((id) => { if (!ids.includes(id)) ids.push(id); });
+    }
   }
   setAgentActive(ids, progress);
   if (elapsed >= stage.dur) {

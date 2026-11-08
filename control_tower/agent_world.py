@@ -38,6 +38,7 @@ STAGE_AGENTS = {
     "twin": ["twin", "verifier"],
     "execute": ["server", "coordinator"],
     "readback": ["verifier", "coordinator"],
+    "escalate": ["coordinator"],
 }
 
 TOOL_AGENT = {

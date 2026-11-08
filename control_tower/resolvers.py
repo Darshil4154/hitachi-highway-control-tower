@@ -73,10 +73,51 @@ def find_ids_in_text(text: str, ds: DataStore | None = None) -> dict[str, list[s
     return out
 
 
+# State / province codes from plants.csv city fields ("Princeton, IN") -> spoken nickname.
+_STATE_NAMES = {
+    "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California",
+    "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware", "FL": "Florida", "GA": "Georgia",
+    "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa",
+    "KS": "Kansas", "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland",
+    "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi",
+    "MO": "Missouri", "MT": "Montana", "NE": "Nebraska", "NV": "Nevada", "NH": "New Hampshire",
+    "NJ": "New Jersey", "NM": "New Mexico", "NY": "New York", "NC": "North Carolina",
+    "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma", "OR": "Oregon", "PA": "Pennsylvania",
+    "RI": "Rhode Island", "SC": "South Carolina", "SD": "South Dakota", "TN": "Tennessee",
+    "TX": "Texas", "UT": "Utah", "VT": "Vermont", "VA": "Virginia", "WA": "Washington",
+    "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming",
+}
+
+
+def plant_nicknames(ds: DataStore | None = None) -> dict[str, str]:
+    """Map nickname phrases (e.g. 'the Indiana plant') to plant_id from plants.csv city/state.
+
+    Keys are lowercase phrases suitable for scan_mentions and for _name_candidates after _norm.
+    """
+    ds = ds or get_store()
+    out: dict[str, str] = {}
+    for p in ds.plants.values():
+        city = (p.city or "").strip()
+        parts = [x.strip() for x in city.split(",")]
+        if len(parts) >= 2:
+            code = parts[-1].upper()
+            state = _STATE_NAMES.get(code)
+            if state:
+                out[f"the {state} plant".lower()] = p.plant_id
+                out[f"{state} plant".lower()] = p.plant_id
+                out[state.lower()] = p.plant_id
+            out[parts[0].lower()] = p.plant_id
+        out[city.lower()] = p.plant_id
+        out[p.name.lower()] = p.plant_id
+    return out
+
+
 def _name_candidates(ds: DataStore, kind: str) -> dict[str, str]:
     """normalized name -> id, for the name-field resolution step."""
     out: dict[str, str] = {}
     if kind == "plant":
+        for nick, pid in plant_nicknames(ds).items():
+            out[_norm(nick)] = pid
         for p in ds.plants.values():
             out[_norm(p.name)] = p.plant_id
             out[_norm(p.city.split(",")[0])] = p.plant_id
@@ -146,6 +187,8 @@ def scan_mentions(text: str, ds: DataStore | None = None) -> dict[str, str | Non
         candidates = [a.alias for a in ds.aliases if a.entity_type == kind]
         if kind == "plant":
             candidates += [p.name for p in ds.plants.values()]
+            # Spoken nicknames derived from plants.csv city/state (e.g. "the Indiana plant").
+            candidates += list(plant_nicknames(ds).keys())
         if kind == "supplier":
             candidates += [s.name for s in ds.suppliers.values()]
         if kind == "part":

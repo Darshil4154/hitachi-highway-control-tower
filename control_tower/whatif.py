@@ -201,14 +201,17 @@ def _present(trace: dict, ds: DataStore, label: str) -> dict:
         po = ds.production_orders.get(co.production_order_id)
         if po is None:
             continue
-        build = moved.get(po.production_order_id, po.build_date)
+        if po.production_order_id not in moved:
+            continue
+        build = moved[po.production_order_id]
         dealer = ds.dealers[co.dealer_id]
-        arrive = build + timedelta(days=dealer.transit_days)
-        if arrive > co.promised_date:
+        # Promise miss = moved order whose new build date is after the customer's promised date.
+        if build > co.promised_date:
             misses.append({
                 "order": co.customer_order_id, "customer": _customer(ds, co.customer_id),
                 "dealer": dealer.name, "promised": co.promised_date.isoformat(),
-                "arrival": arrive.isoformat(), "build": build.isoformat(),
+                "arrival": (build + timedelta(days=dealer.transit_days)).isoformat(),
+                "build": build.isoformat(),
             })
     checks = (trace.get("verifier") or {}).get("plan_checks", []) + (trace.get("verifier") or {}).get("world_checks", [])
     failed_checks = [c["name"] for c in checks if not c.get("ok") and c.get("blocking", True)]
@@ -270,7 +273,7 @@ def simulate(spec: dict, ds: DataStore | None = None, label: str = "What-if") ->
 
 
 def comparison_rows(left: dict | None, right: dict | None) -> list[dict]:
-    def val(report: dict | None, key: str, default: str = "—"):
+    def val(report: dict | None, key: str, default: str = "-"):
         if not report or not report.get("ok"):
             if report and report.get("error") and key == "kind_label":
                 return "Could not run"

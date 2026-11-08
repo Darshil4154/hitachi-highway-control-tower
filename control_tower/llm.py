@@ -144,15 +144,64 @@ def _keyword_pairs() -> list[tuple[str, str]]:
     return type_keywords()
 
 
+# Phrases the handbook keyword list does not cover, still mapped to handbook types.
+_SOFT_KIND_PATTERNS: list[tuple[str, str]] = [
+    ("plant_outage", r"weather\s+closure|plant\s+is\s+down|is\s+down\s+from|closed\s+from"),
+    ("supplier_delay", r"truck\s+broke|broke\s+down|new\s+arrival|were\s+due|due\s+(?:mon|tue|wed|thu|fri)"),
+]
+
+
+def _assign_date_phrases(inc: IncidentExtraction, seg: str, kind: str, dates: list[str]) -> None:
+    """Put each date phrase on original/new or start/end using nearby wording, not only order."""
+    from .policy_model import date_fields_for, shape_of
+    fields = date_fields_for(kind)
+    if not fields or not dates:
+        return
+    if shape_of(kind) == "plant_window":
+        a, b = fields[0][0], fields[1][0]
+        setattr(inc, a, dates[0])
+        setattr(inc, b, dates[1] if len(dates) > 1 else dates[0])
+        return
+    # supplier_delay / quality window: prefer wording around each match
+    found: dict[str, str] = {}
+    for m in _DATE_RX.finditer(seg):
+        phrase = m.group(0)
+        before = seg[max(0, m.start() - 48):m.start()].lower()
+        if re.search(r"new\s+arrival|new\s+eta|will\s+now\s+arrive|now\s+arrive|arriving", before):
+            found.setdefault("new_eta_phrase", phrase)
+        elif re.search(r"\bdue\b|original|was\s+supposed|can'?t\s+make|cannot\s+make|expected", before):
+            found.setdefault("original_eta_phrase", phrase)
+        elif re.search(r"\bfrom\b|start|beginning", before):
+            found.setdefault("start_phrase", phrase)
+        elif re.search(r"\bthrough\b|\buntil\b|\bto\b|end", before):
+            found.setdefault("end_phrase", phrase)
+    if "new_eta_phrase" in found or "original_eta_phrase" in found:
+        if "new_eta_phrase" in found:
+            inc.new_eta_phrase = found["new_eta_phrase"]
+        if "original_eta_phrase" in found:
+            inc.original_eta_phrase = found["original_eta_phrase"]
+        # leftover dates: if only new was tagged and a second date exists, keep positional backup off
+        return
+    if "start_phrase" in found or "end_phrase" in found:
+        if "start_phrase" in found:
+            inc.start_phrase = found["start_phrase"]
+        if "end_phrase" in found:
+            inc.end_phrase = found["end_phrase"]
+        return
+    a, b = fields[0][0], fields[1][0]
+    setattr(inc, a, dates[0])
+    setattr(inc, b, dates[1] if len(dates) > 1 else (dates[0] if shape_of(kind) == "plant_window" else None))
+
+
 def rule_extract(text: str) -> Extraction:
     """Deterministic keyword/regex extractor used when the LLM is unavailable or returns invalid JSON."""
-    from .policy_model import date_fields_for, shape_of
     keywords = _keyword_pairs()
+    soft = list(keywords) + _SOFT_KIND_PATTERNS
     segments = [s.strip() for s in re.split(r"\(\d\)", text)[1:]] if re.search(r"\(\d\)", text) else [text]
     incidents = []
     for seg in segments:
         low = seg.lower()
-        kind = next((k for k, pat in keywords if re.search(pat, low)), None)
+        kind = next((k for k, pat in soft if re.search(pat, low)), None)
         if not kind:
             continue
         m = scan_mentions(seg)
@@ -162,18 +211,14 @@ def rule_extract(text: str) -> Extraction:
         ids = re.findall(r"\b(SH-\d{4}|LOT-\d{4})\b", seg)
         inc.shipment_id = next((i for i in ids if i.startswith("SH-")), None)
         inc.lot_id = next((i for i in ids if i.startswith("LOT-")), None)
-        fields = date_fields_for(kind)
-        if len(fields) >= 2 and dates:
-            a, b = fields[0][0], fields[1][0]
-            setattr(inc, a, dates[0])
-            setattr(inc, b, dates[1] if len(dates) > 1 else (dates[0] if shape_of(kind) == "plant_window" else None))
+        _assign_date_phrases(inc, seg, kind, dates)
         if any(v for v in (m["plant"], m["part"], inc.lot_id, inc.shipment_id)):
             incidents.append(inc)
     hedges = find_hedges(text)
     if incidents and not hedges:
         return Extraction(category="incident", confidence=0.6, rationale="Rule-based: incident keywords with entities.",
                           incidents=incidents)
-    if hedges or any(re.search(p, text.lower()) for p in (pat for _, pat in keywords)):
+    if hedges or any(re.search(p, text.lower()) for p in (pat for _, pat in soft)):
         return Extraction(category="unconfirmed", confidence=0.6,
                           rationale=f"Rule-based: hedged or unspecific report ({', '.join(hedges) or 'no entities'}).",
                           incidents=incidents)

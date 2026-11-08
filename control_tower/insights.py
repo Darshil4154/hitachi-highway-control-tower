@@ -20,7 +20,7 @@ TOOL_LABEL = {
     "dealer.notify": "Dealers told about a delay",
     "crm.assign_loaner": "Loaners assigned",
     "quality.hold_lot": "Lots placed on hold",
-    "dealer.stop_sale": "Vehicles stopped from sale",
+    "dealer.stop_sale": "Stop-sale notices to dealers",
     "crm.notify_customer": "Owners contacted",
     "escalate": "Handed to a person",
 }
@@ -61,7 +61,7 @@ def health_from_traces(traces: dict) -> dict:
             "stages_s": {name: float(stages.get(name) or 0.0) for name in STAGES},
             "tokens": int(metrics.get("prompt_tokens") or 0) + int(metrics.get("completion_tokens") or 0),
             "cache": "hit" if (metrics.get("cache") == "hit" or cached is True) else (
-                "miss" if (metrics.get("cache") == "miss" or cached is False) else "—"),
+                "miss" if (metrics.get("cache") == "miss" or cached is False) else "-"),
             "reads": int(metrics.get("reads") or 0), "writes": int(metrics.get("writes") or 0),
             "failed": int(metrics.get("failed") or 0), "model": model,
         })
@@ -236,7 +236,7 @@ def to_markdown(briefing: dict) -> str:
     if briefing["actions"]:
         lines.append("Actions:")
         for row in briefing["actions"]:
-            lines.append(f"- {row['count']} — {row['label']}")
+            lines.append(f"- {row['count']}: {row['label']}")
     else:
         lines.append("No operational action was recorded.")
     lines += [

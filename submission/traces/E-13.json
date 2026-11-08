@@ -1,0 +1,113 @@
+{
+  "event": {
+    "event_id": "E-13",
+    "source": "ops chat",
+    "received_at": "2027-03-08T10:41:00",
+    "text": "Someone on the floor mentioned a possible shortage of something electronic sometime soon. Not confirmed by anyone.",
+    "mentions": []
+  },
+  "classification": {
+    "category": "unconfirmed",
+    "gate": "unconfirmed",
+    "confidence": 0.85,
+    "rationale": "Hearsay with no specific part, plant, shipment or dates.",
+    "rationale_issues": [],
+    "gate_reason": "Unconfirmed or unspecific report (hedges: possible, not confirmed, sometime); missing: part, plant, dates, confirmation.",
+    "hedges": [
+      "possible",
+      "not confirmed",
+      "sometime"
+    ],
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_fallback": false,
+    "llm_cached": true,
+    "llm_error": null
+  },
+  "incidents": [],
+  "plan": [
+    {
+      "seq": 1,
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed or unspecific report (hedges: possible, not confirmed, sometime); missing: part, plant, dates, confirmation."
+      },
+      "rule_id": "R8",
+      "reason": "not actionable without a human",
+      "evidence_path": [],
+      "incident_id": null
+    }
+  ],
+  "verifier": {
+    "plan_checks": [],
+    "world_checks": []
+  },
+  "actions": [
+    {
+      "call_no": 1,
+      "seq": 1,
+      "rule_id": "R8",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed or unspecific report (hedges: possible, not confirmed, sometime); missing: part, plant, dates, confirmation."
+      },
+      "ok": true,
+      "error": null,
+      "kind": "escalate",
+      "ts": "2026-11-08T01:47:08.610+00:00"
+    }
+  ],
+  "escalation": {
+    "escalated": true,
+    "reason": "Unconfirmed or unspecific report (hedges: possible, not confirmed, sometime); missing: part, plant, dates, confirmation.",
+    "missing_fields": [
+      "part",
+      "plant",
+      "dates",
+      "confirmation"
+    ]
+  },
+  "schedule": null,
+  "config_snapshot": {
+    "NEXT_WEEKDAY": "following_week",
+    "TRANSFER_LOWER_BOUND": "restart",
+    "TRANSFER_SEARCH": "day_first",
+    "PLANT_TIEBREAK": "plants_csv_order",
+    "SLOT_PRIORITY": "build_date",
+    "COMPOUND_ORDER": "message_order",
+    "NOTIFY_SCOPE": "per_event",
+    "NO_SLOT_ACTION": "escalate",
+    "ESCALATE_NOISE": false,
+    "FUZZY_THRESHOLD": 90,
+    "LLM_MODEL": "qwen2.5:3b-instruct"
+  },
+  "decision_rule": "R8",
+  "summary": "Escalated to a human, no operational change (handbook rule 8). Unconfirmed or unspecific report (hedges: possible, not confirmed, sometime); missing: part, plant, dates, confirmation.",
+  "metrics": {
+    "llm_calls": 1,
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_cached": true,
+    "prompt_tokens": 1123,
+    "completion_tokens": 42,
+    "tool_calls": 1,
+    "reads": 0,
+    "writes": 0,
+    "escalations": 1,
+    "failed": 0,
+    "runtime_s": 0.0,
+    "stages_s": {
+      "extract": 0.0001,
+      "resolve": 0.0,
+      "gate": 0.0,
+      "plan": 0.0,
+      "verify": 0.0,
+      "twin": 0.0,
+      "execute": 0.0001,
+      "readback": 0.0
+    },
+    "cache": "hit"
+  },
+  "ui_category": "escalated",
+  "schema_errors": []
+}

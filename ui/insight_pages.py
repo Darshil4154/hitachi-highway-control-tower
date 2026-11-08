@@ -86,7 +86,7 @@ def _scenario_form(prefix: str, cat: dict) -> dict | None:
             return None
         return {"kind": kind, "plant_id": plant["id"], "start": start["id"], "end": end["id"]}
     if kind == "supplier_delay":
-        ship_rows = _options(cat["shipments"], "No shipment — use the fields below")
+        ship_rows = _options(cat["shipments"], "No shipment - use the fields below")
         if f"{prefix}_ship" not in st.session_state and cat["shipments"]:
             st.session_state[f"{prefix}_ship"] = cat["shipments"][0]["label"]
         ship = _select("Shipment", ship_rows, f"{prefix}_ship")
@@ -217,7 +217,7 @@ def page_whatif() -> None:
         if st.session_state.get("whatif_b"):
             _show_report(st.session_state.whatif_b)
     st.divider()
-    st.markdown(f"### Side by side — {BANNER}")
+    st.markdown(f"### Side by side - {BANNER}")
     a, b = st.session_state.get("whatif_a"), st.session_state.get("whatif_b")
     if not a and not b:
         st.caption("Run at least one scenario. The comparison fills in as each side finishes.")
@@ -233,8 +233,8 @@ def page_health(traces: dict) -> None:
     top = st.columns(4)
     top[0].metric("Events", report["events"])
     top[1].metric("Failed calls", report["failed"])
-    top[2].metric("Cache hit rate", "—" if rate is None else f"{rate * 100:.0f}%")
-    top[3].metric("Model", ", ".join(report["models"]) or "—")
+    top[2].metric("Cache hit rate", "-" if rate is None else f"{rate * 100:.0f}%")
+    top[3].metric("Model", ", ".join(report["models"]) or "-")
     more = st.columns(3)
     more[0].metric("Tokens", f"{report['tokens']:,}")
     more[1].metric("Reads", f"{report['reads']:,}")
@@ -262,7 +262,7 @@ def page_health(traces: dict) -> None:
     st.markdown("**Slowest events**")
     slow = pd.DataFrame([{
         "Event": row["event"], "Type": row["type"], "Runtime (s)": row["runtime_s"],
-        "Stages (s)": row["stage_sum_s"] if report["has_stages"] else "—",
+        "Stages (s)": row["stage_sum_s"] if report["has_stages"] else "-",
         "Cache": row["cache"], "Failed": row["failed"], "Model": row["model"],
     } for row in report["slowest"]])
     st.dataframe(slow, hide_index=True, width="stretch")

@@ -1,0 +1,76 @@
+{
+  "event": {
+    "event_id": "E-07",
+    "source": "news wire",
+    "received_at": "2027-03-08T08:59:00",
+    "text": "Dealer Pensacola, FL asks where to find the new brochure PDF.",
+    "mentions": []
+  },
+  "classification": {
+    "category": "noise",
+    "gate": "noise",
+    "confidence": 0.99,
+    "rationale": "The message is about a brochure for a dealer, not an operational problem.",
+    "rationale_issues": [],
+    "gate_reason": "Not about our operations: the LLM classified it as noise and the rule-based cross-check found no complete incident (no plant, part or lot with dates).",
+    "hedges": [],
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_fallback": false,
+    "llm_cached": true,
+    "llm_error": null
+  },
+  "incidents": [],
+  "plan": [],
+  "verifier": {
+    "plan_checks": [],
+    "world_checks": []
+  },
+  "actions": [],
+  "escalation": {
+    "escalated": false,
+    "reason": "",
+    "missing_fields": []
+  },
+  "schedule": null,
+  "config_snapshot": {
+    "NEXT_WEEKDAY": "following_week",
+    "TRANSFER_LOWER_BOUND": "restart",
+    "TRANSFER_SEARCH": "day_first",
+    "PLANT_TIEBREAK": "plants_csv_order",
+    "SLOT_PRIORITY": "build_date",
+    "COMPOUND_ORDER": "message_order",
+    "NOTIFY_SCOPE": "per_event",
+    "NO_SLOT_ACTION": "escalate",
+    "ESCALATE_NOISE": false,
+    "FUZZY_THRESHOLD": 90,
+    "LLM_MODEL": "qwen2.5:3b-instruct"
+  },
+  "decision_rule": "R7",
+  "summary": "Judged not operational: Not about our operations: the LLM classified it as noise and the rule-based cross-check found no complete incident (no plant, part or lot with dates). No tool calls were made (handbook rule 7).",
+  "metrics": {
+    "llm_calls": 1,
+    "llm_model": "qwen2.5:3b-instruct",
+    "llm_cached": true,
+    "prompt_tokens": 1119,
+    "completion_tokens": 42,
+    "tool_calls": 0,
+    "reads": 0,
+    "writes": 0,
+    "escalations": 0,
+    "failed": 0,
+    "runtime_s": 0.0,
+    "stages_s": {
+      "extract": 0.0001,
+      "resolve": 0.0,
+      "gate": 0.0001,
+      "plan": 0.0,
+      "verify": 0.0,
+      "twin": 0.0,
+      "execute": 0.0,
+      "readback": 0.0
+    },
+    "cache": "hit"
+  },
+  "ui_category": "noise",
+  "schema_errors": []
+}

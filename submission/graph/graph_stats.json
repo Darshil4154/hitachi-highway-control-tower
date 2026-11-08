@@ -1,0 +1,41 @@
+{
+  "nodes_total": 17090,
+  "edges_total": 28301,
+  "nodes_by_type": {
+    "Alias": 61,
+    "Customer": 7000,
+    "CustomerOrder": 3263,
+    "Dealer": 50,
+    "LoanerPool": 50,
+    "Model": 6,
+    "Part": 20,
+    "PartLot": 364,
+    "Plant": 6,
+    "ProductionOrder": 540,
+    "Shipment": 364,
+    "Supplier": 18,
+    "Vehicle": 5348
+  },
+  "edges_by_type": {
+    "AT_DEALER": 5348,
+    "BUILDS": 540,
+    "BUILT_FROM": 5348,
+    "CAN_BUILD": 18,
+    "DELIVERS": 364,
+    "FULFILLS": 3263,
+    "HAS_POOL": 50,
+    "INSTALLED_AT": 364,
+    "LOT_FROM": 364,
+    "LOT_OF": 364,
+    "ORDERED_BY": 3263,
+    "OWNED_BY": 2927,
+    "RECEIVED_AT": 364,
+    "REFERS_TO": 61,
+    "SCHEDULED_AT": 540,
+    "SENT_BY": 364,
+    "SOLD_THROUGH": 3263,
+    "SUPPLIES": 39,
+    "USED_IN": 47,
+    "USED_IN_ORDER": 1410
+  }
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Wacky Wheels Control Tower - Design Card</title>
+<style>
+  @page { size: Letter landscape; margin: 0.4in; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+    font-size: 9pt; line-height: 1.2; color: #0f172a; background: #fff;
+  }
+  h1 { margin: 0; font-size: 13pt; letter-spacing: -0.02em; color: #0b3b6e; }
+  .sub { margin: 0; font-size: 8.5pt; color: #334155; }
+  .tag {
+    margin: 1pt 0 3pt; font-size: 9pt; font-weight: 700; color: #0b3b6e;
+    border-left: 3px solid #f59e0b; padding-left: 5pt;
+  }
+  h2 {
+    margin: 3pt 0 1pt; font-size: 9pt; color: #0b3b6e;
+    border-bottom: 1px solid #cbd5e1; padding-bottom: 0;
+  }
+  .grid { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 6pt; }
+  table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+  th, td { border: 1px solid #cbd5e1; padding: 1.5pt 3pt; vertical-align: top; }
+  th { background: #e8eef6; text-align: left; }
+  ul { margin: 1pt 0 0 12pt; padding: 0; }
+  li { margin: 0; }
+  .arch { width: 100%; height: 96pt; background: #f8fafc; border: 1px solid #cbd5e1; }
+  .tiny { font-size: 7.5pt; color: #475569; margin: 1pt 0 0; }
+  .foot {
+    margin-top: 2pt; padding-top: 2pt; border-top: 1px solid #94a3b8;
+    font-size: 7.5pt; color: #334155; display: flex; justify-content: space-between; gap: 6pt;
+  }
+  .pill { display: inline-block; background: #e2e8f0; border-radius: 2pt; padding: 0 2pt; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <h1>Wacky Wheels Control Tower - Design Card</h1>
+  <div class="sub">Hitachi Hack the Highway - TAMU Datathon 2026 - Darshil Rayjada</div>
+  <div class="tag">LLM reads. Code decides. Every action verified.</div>
+
+  <h2>1. Architecture</h2>
+  <svg class="arch" viewBox="0 0 1040 175" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="#334155"/>
+      </marker>
+      <style>
+        .b { fill:#fff; stroke:#0b3b6e; stroke-width:1.2; }
+        .t { font: 600 11px "Segoe UI", sans-serif; fill:#0f172a; }
+        .s { font: 9px "Segoe UI", sans-serif; fill:#475569; }
+        .l { stroke:#334155; stroke-width:1.2; fill:none; marker-end:url(#arr); }
+        .k { fill:#eef2ff; stroke:#4338ca; stroke-width:1.2; }
+      </style>
+    </defs>
+    <rect class="b" x="6" y="58" width="68" height="36" rx="3"/>
+    <text class="t" x="40" y="74" text-anchor="middle">Message</text>
+    <text class="s" x="40" y="88" text-anchor="middle">events.json</text>
+    <line class="l" x1="74" y1="76" x2="96" y2="76"/>
+
+    <rect class="b" x="96" y="44" width="108" height="64" rx="3"/>
+    <text class="t" x="150" y="62" text-anchor="middle">Coordinator</text>
+    <text class="s" x="150" y="76" text-anchor="middle">LLM: classify, copy</text>
+    <text class="s" x="150" y="90" text-anchor="middle">agents/coordinator</text>
+    <line class="l" x1="204" y1="76" x2="226" y2="76"/>
+
+    <rect class="b" x="226" y="38" width="118" height="76" rx="3"/>
+    <text class="t" x="285" y="56" text-anchor="middle">Resolver + Gate</text>
+    <text class="s" x="285" y="70" text-anchor="middle">code: phrases to ids</text>
+    <text class="s" x="285" y="84" text-anchor="middle">incident / noise /</text>
+    <text class="s" x="285" y="98" text-anchor="middle">unconfirmed</text>
+    <text class="s" x="285" y="108" text-anchor="middle">resolvers + llm.gate</text>
+
+    <line class="l" x1="285" y1="38" x2="285" y2="16"/>
+    <line class="l" x1="285" y1="16" x2="970" y2="16"/>
+    <line class="l" x1="970" y1="16" x2="970" y2="40"/>
+    <rect class="b" x="900" y="40" width="120" height="34" rx="3"/>
+    <text class="t" x="960" y="55" text-anchor="middle">Human review inbox</text>
+    <text class="s" x="960" y="68" text-anchor="middle">local only</text>
+
+    <line class="l" x1="344" y1="62" x2="380" y2="40"/>
+    <line class="l" x1="344" y1="76" x2="380" y2="76"/>
+    <line class="l" x1="344" y1="90" x2="380" y2="112"/>
+
+    <rect class="b" x="380" y="22" width="148" height="36" rx="3"/>
+    <text class="t" x="454" y="38" text-anchor="middle">Supply Chain Planner</text>
+    <text class="s" x="454" y="50" text-anchor="middle">reschedule, transfer · supply_chain</text>
+
+    <rect class="b" x="380" y="62" width="148" height="36" rx="3"/>
+    <text class="t" x="454" y="78" text-anchor="middle">Dealer Network</text>
+    <text class="s" x="454" y="90" text-anchor="middle">one notify / stop-sale · dealer</text>
+
+    <rect class="b" x="380" y="102" width="148" height="36" rx="3"/>
+    <text class="t" x="454" y="118" text-anchor="middle">Customer Care + Quality</text>
+    <text class="s" x="454" y="130" text-anchor="middle">loaners, hold, owners · care</text>
+
+    <line class="l" x1="528" y1="76" x2="560" y2="76"/>
+    <rect class="b" x="560" y="50" width="84" height="52" rx="3"/>
+    <text class="t" x="602" y="70" text-anchor="middle">Verifier</text>
+    <text class="s" x="602" y="84" text-anchor="middle">R1 to R10</text>
+    <text class="s" x="602" y="96" text-anchor="middle">verifier.py</text>
+    <line class="l" x1="644" y1="76" x2="676" y2="76"/>
+
+    <rect class="b" x="676" y="50" width="84" height="52" rx="3"/>
+    <text class="t" x="718" y="70" text-anchor="middle">Digital Twin</text>
+    <text class="s" x="718" y="84" text-anchor="middle">dry run</text>
+    <text class="s" x="718" y="96" text-anchor="middle">dry_run client</text>
+    <line class="l" x1="760" y1="76" x2="792" y2="76"/>
+
+    <rect class="b" x="792" y="50" width="96" height="52" rx="3"/>
+    <text class="t" x="840" y="70" text-anchor="middle">Enterprise Gate</text>
+    <text class="s" x="840" y="84" text-anchor="middle">execute · POST /act</text>
+    <text class="s" x="840" y="96" text-anchor="middle">then Read-back</text>
+
+    <rect class="k" x="96" y="144" width="420" height="28" rx="3"/>
+    <text class="t" x="306" y="156" text-anchor="middle">Knowledge graph (networkx / ontology.py)</text>
+    <text class="s" x="306" y="168" text-anchor="middle">feeds Resolver + specialists · 17,090 nodes, 28,301 edges, 13 types</text>
+    <line class="l" x1="285" y1="144" x2="285" y2="114"/>
+    <line class="l" x1="454" y1="144" x2="454" y2="138"/>
+  </svg>
+
+  <div class="grid">
+    <div>
+      <h2>2. LLM versus code</h2>
+      <table>
+        <tr><th style="width:30%">LLM</th><th>Code</th></tr>
+        <tr>
+          <td>Classify; copy exact phrases; pick a query function in Ask.</td>
+          <td>Id resolution; relative dates via switches
+            (<span class="pill">NEXT_WEEKDAY=following_week</span>
+            <span class="pill">TRANSFER_LOWER_BOUND=restart</span>
+            <span class="pill">TRANSFER_SEARCH=day_first</span>
+            <span class="pill">PLANT_TIEBREAK=plants_csv_order</span>
+            <span class="pill">SLOT_PRIORITY=build_date</span>
+            <span class="pill">COMPOUND_ORDER=message_order</span>
+            <span class="pill">NOTIFY_SCOPE=per_event</span>
+            <span class="pill">NO_SLOT_ACTION=escalate</span>
+            <span class="pill">ESCALATE_NOISE=False</span>
+            <span class="pill">FUZZY_THRESHOLD=90</span>);
+            affected-order search; slot ledger; transfers; loaner ranking; every write.</td>
+        </tr>
+      </table>
+
+      <h2>3. Guardrails</h2>
+      <ul>
+        <li>Grounding check on LLM explanations; rule-based noise cross-check + hard write block on noise.</li>
+        <li>Exactly one escalate for unconfirmed; rule 10 affected-only; one dealer.notify per dealer per event.</li>
+        <li>Verifier blocks on any failed check; twin dry run; read-back after writes.</li>
+        <li>Failed calls: stop remaining plan, escalate with tool + error, no blind retries.</li>
+        <li>Locked scored baseline handbook_v1 in Policy Studio (publish makes a new profile only).</li>
+      </ul>
+
+      <h2>5. Explainability and human in the loop</h2>
+      <ul>
+        <li>Per-event summary + reason, with graph path evidence in each trace.</li>
+        <li>Human review inbox stores decisions locally; never sent to the enterprise server.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>4. Evaluation</h2>
+      <table>
+        <tr><th>Metric</th><th>Value</th><th>Source file</th></tr>
+        <tr><td>Events</td><td>15 = 11 incidents + 2 escalated + 3 noise</td><td>traces/run_summary.json</td></tr>
+        <tr><td>Writes / reads / audited</td><td>766 / 193 / 961</td><td>run_summary + self-check</td></tr>
+        <tr><td>Failed</td><td>0</td><td>run_summary + self-check</td></tr>
+        <tr><td>Self-check</td><td>15/15 PASS</td><td>eval/self_check_report.md</td></tr>
+        <tr><td>LLM</td><td>15 calls; 19,416 tok (17,149 / 2,267)</td><td>run_summary.json</td></tr>
+        <tr><td>Graph</td><td>17,090 nodes, 28,301 edges, 13 types</td><td>exports/graph_stats.json</td></tr>
+        <tr><td>Model</td><td>qwen2.5:3b-instruct (Ollama, local)</td><td>run_summary.json</td></tr>
+      </table>
+      <p class="tiny">Checked by independent eval/self_check.py (no control_tower imports) replaying the action log on a fresh enterprise; per-event traces with graph paths; audit trail by rule.</p>
+      <p class="tiny"><b>TC map:</b> TC1 delay E-09/E-10/E-12; TC2 outage E-04/E-08/E-11; TC3 quality E-03/E-14/E-15; TC4 noise E-05/E-06/E-07; TC5 compound E-01; TC6 unconfirmed E-02/E-13.</p>
+
+      <h2>6. What I would improve</h2>
+      <ul>
+        <li>Desk follow-ups that also disambiguate shipments when several open ETAs match.</li>
+        <li>Stronger grounding so ungrounded LLM rationales are never shown.</li>
+        <li>Constraint solver for contested plant-day slots.</li>
+        <li>Per-dealer notify templates.</li>
+        <li>Streamed event bus instead of a batch of 15.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>Model: qwen2.5:3b-instruct (Ollama, local). Stack: Python, networkx, Streamlit.</div>
+    <div>https://github.com/Darshil4154/hitachi-highway-control-tower</div>
+  </div>
+</body>
+</html>

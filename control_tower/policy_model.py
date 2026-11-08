@@ -404,6 +404,10 @@ def missing_field_names(resolved: dict) -> list[str]:
         return []
     miss: list[str] = []
     for req in et.required:
+        # A concrete new ETA is enough to look up the open shipment in the twin;
+        # do not also demand original ETA / shipment id for the gate missing list.
+        if req.field == "original_eta_or_shipment_id" and resolved.get("new_eta"):
+            continue
         if req.any_of:
             if not any(resolved.get(k) for k in req.any_of):
                 miss.append(req.field)
