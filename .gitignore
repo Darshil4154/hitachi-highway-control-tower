@@ -7,3 +7,4 @@ __pycache__/
 uploads/
 node_modules/
 ui/hitl_decisions.json
+ui/static/agent_world/live_state.json

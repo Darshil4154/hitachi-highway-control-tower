@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent World</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: rgba(15, 23, 42, 0.92);
+      --line: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+      font-family: "Segoe UI", "Trebuchet MS", sans-serif; overflow: hidden; }
+    #view { position: absolute; inset: 0; }
+    #hud { position: absolute; inset: 0; pointer-events: none; }
+    #topbar {
+      position: absolute; left: 16px; top: 12px; right: 16px; display: flex; gap: 12px;
+      align-items: center; justify-content: space-between; pointer-events: none;
+    }
+    .pill {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 999px;
+      padding: 8px 14px; font-size: 13px; color: var(--muted);
+    }
+    .pill b { color: var(--text); }
+    #cards { position: absolute; inset: 0; }
+    .card {
+      position: absolute; width: 220px; pointer-events: auto; transform: translate(-50%, -120%);
+      background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+      padding: 10px 12px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      transition: opacity .2s, border-color .2s;
+    }
+    .card.active { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(56,189,248,.35), 0 10px 30px rgba(0,0,0,.45); }
+    .card.idle { opacity: .72; }
+    .card-head { display: flex; gap: 8px; align-items: center; }
+    .avatar {
+      width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+      font-weight: 700; font-size: 12px; color: #0b1220;
+    }
+    .card h3 { margin: 0; font-size: 13px; }
+    .card .role { margin: 2px 0 0; font-size: 11px; color: var(--muted); }
+    .status {
+      margin-top: 8px; display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #1e293b;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #64748b; }
+    .card.active .dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+    .bar { margin-top: 8px; height: 5px; background: #1e293b; border-radius: 99px; overflow: hidden; }
+    .bar > i { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, #0ea5e9, #22c55e); }
+    #detail {
+      position: absolute; right: 16px; top: 56px; width: 300px; max-height: calc(100% - 80px);
+      overflow: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+      padding: 14px; pointer-events: auto; display: none;
+    }
+    #detail h2 { margin: 0 0 6px; font-size: 16px; }
+    #detail p { margin: 0 0 8px; font-size: 12px; color: var(--muted); line-height: 1.45; }
+    #detail .chip { display: inline-block; margin: 2px 4px 2px 0; padding: 2px 8px; border-radius: 999px;
+      background: #1e293b; font-size: 11px; }
+    #toast {
+      position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+      background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+      padding: 10px 16px; font-size: 13px; max-width: 70%; text-align: center;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="view"></div>
+  <div id="hud">
+    <div id="topbar">
+      <div class="pill" id="modePill">Mode <b>boot</b></div>
+      <div class="pill" id="eventPill">Event <b>—</b></div>
+      <div class="pill" id="stagePill">Stage <b>—</b></div>
+    </div>
+    <div id="cards"></div>
+    <div id="detail"></div>
+    <div id="toast">Loading Agent World…</div>
+  </div>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="./world.js"></script>
+</body>
+</html>

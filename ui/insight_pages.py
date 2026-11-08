@@ -14,6 +14,40 @@ from control_tower.whatif import BANNER, catalogs, comparison_rows, simulate
 _KIND = [("Plant outage", "plant_outage"), ("Supplier delay", "supplier_delay"), ("Quality hold", "quality_hold")]
 
 
+def _pulse_world(report: dict, label: str) -> None:
+    try:
+        from control_tower.agent_world import publish_live
+        tools = {}
+        # what-if report does not keep full plan; synthesize from known counters
+        if report.get("transfers"):
+            tools["mes.transfer"] = len(report["transfers"])
+        if report.get("order_rows"):
+            tools["mes.reschedule"] = max(0, len(report["order_rows"]) - len(report.get("transfers") or []))
+        if report.get("dealers"):
+            tools["dealer.notify"] = len(report["dealers"])
+        if report.get("loaners_assigned"):
+            tools["crm.assign_loaner"] = report["loaners_assigned"]
+        active = []
+        if tools.get("mes.reschedule") or tools.get("mes.transfer"):
+            active.append("supply_chain")
+        if tools.get("dealer.notify"):
+            active.append("dealer")
+        if tools.get("crm.assign_loaner"):
+            active.append("care")
+        active.extend(["coordinator", "verifier", "twin"])
+        publish_live({
+            "label": label,
+            "summary": report.get("summary") or "",
+            "banner": "What-if - simulation, not executed",
+            "stage": "plan",
+            "tools": tools,
+            "active_agents": active,
+            "writes": 0,
+        })
+    except Exception:
+        pass
+
+
 def _options(rows: list[dict], extra: str | None = None) -> list[dict]:
     out = [{"id": "", "label": extra}] if extra else []
     return out + rows
@@ -170,6 +204,7 @@ def page_whatif() -> None:
         if st.button("Run A", type="primary"):
             with st.spinner("Planning on the twin"):
                 st.session_state.whatif_a = simulate(spec_a or {}, label="A")
+                _pulse_world(st.session_state.whatif_a, "What-if A")
         if st.session_state.get("whatif_a"):
             _show_report(st.session_state.whatif_a)
     with right:
@@ -178,6 +213,7 @@ def page_whatif() -> None:
         if st.button("Run B", type="primary"):
             with st.spinner("Planning on the twin"):
                 st.session_state.whatif_b = simulate(spec_b or {}, label="B")
+                _pulse_world(st.session_state.whatif_b, "What-if B")
         if st.session_state.get("whatif_b"):
             _show_report(st.session_state.whatif_b)
     st.divider()

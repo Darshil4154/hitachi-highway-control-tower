@@ -356,6 +356,18 @@ def page_desk() -> None:
         with st.spinner("Planning in the twin..."):
             eid = pick if pick != "(paste a message)" else "DESK"
             st.session_state.desk_trace = handle_text(text, pol, event_id=eid, force_rules=pick == "(paste a message)")
+            try:
+                from control_tower.agent_world import publish_from_trace_like
+                tr = st.session_state.desk_trace
+                publish_from_trace_like(
+                    label=f"Desk {eid}",
+                    summary=tr.get("summary") or "",
+                    plan=tr.get("plan") or [],
+                    stages=(tr.get("metrics") or {}).get("stages_s"),
+                    banner="Live Incident Desk - simulation, nothing sent",
+                )
+            except Exception:
+                pass
     trace = st.session_state.get("desk_trace")
     if trace:
         _show_trace(trace)

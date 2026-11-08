@@ -111,6 +111,15 @@ Event types, playbooks, rule parameters, interpretation switches and verifier ch
 An edited profile is saved as a new file, `config/policies/<name>_vN.yaml`, and is used only by the
 Live Incident Desk and the Scenario Lab in the Streamlit app (Policy Studio, manager).
 
+## Agent World
+
+Streamlit page **Agent World** embeds an isometric Three.js map of the control tower:
+Coordinator hub, LLM Reader, Supply Chain Planner, Dealer Network, Customer Care & Quality,
+Verifier, Digital Twin, and Enterprise Gate, plus plant nodes from the CSVs. Named avatar cards
+float over each agent. **Replay scored run** walks extract → read-back for all 15 events.
+**Live sandbox** listens for What-if and Live Incident Desk pulses written to
+`ui/static/agent_world/live_state.json`.
+
 ## What-if, health, and the daily briefing
 
 What-if runs the scored planner and verifier on the digital twin only. The page is labeled
