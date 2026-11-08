@@ -310,36 +310,49 @@ function setAgentActive(ids, progress = 0.4) {
 }
 
 function layoutCards() {
-  const W = 200, H = 92, pad = 10;
+  const W = 200, H = 88, pad = 14;
+  const cx = view.clientWidth / 2, cy = view.clientHeight / 2;
   const items = [];
   for (const [id, mesh] of agentMeshes) {
     const card = cardsEl.querySelector(`.card[data-id="${id}"]`);
     if (!card) continue;
-    const anchor = project(mesh.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 1.8, 0)));
-    let x = Math.min(view.clientWidth - W / 2 - 12, Math.max(W / 2 + 12, anchor.x));
-    let y = Math.min(view.clientHeight - 70, Math.max(70, anchor.y - 70));
+    const anchor = project(mesh.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 1.6, 0)));
+    // Prefer placing tags outward from screen center so the map stays readable
+    let dx = anchor.x - cx, dy = anchor.y - cy;
+    const len = Math.hypot(dx, dy) || 1;
+    dx /= len; dy /= len;
+    let x = anchor.x + dx * 120;
+    let y = anchor.y + dy * 90 - 20;
+    // Pin corner/side preferences by agent id for a stable explain layout
+    const pin = {
+      llm: [0.14, 0.18], supply_chain: [0.86, 0.18], care: [0.12, 0.55], dealer: [0.88, 0.55],
+      twin: [0.22, 0.78], server: [0.78, 0.78], verifier: [0.50, 0.86], coordinator: [0.50, 0.14],
+    }[id];
+    if (pin) {
+      x = pin[0] * view.clientWidth;
+      y = pin[1] * view.clientHeight;
+    }
     items.push({ id, card, anchor, x, y });
   }
-  // Separate overlapping tags
-  for (let iter = 0; iter < 18; iter++) {
+  for (let iter = 0; iter < 24; iter++) {
     for (let i = 0; i < items.length; i++) {
       for (let j = i + 1; j < items.length; j++) {
         const a = items[i], b = items[j];
         const dx = b.x - a.x, dy = b.y - a.y;
         const minX = W + pad, minY = H + pad;
         if (Math.abs(dx) < minX && Math.abs(dy) < minY) {
-          const pushX = (minX - Math.abs(dx)) / 2 + 1;
-          const pushY = (minY - Math.abs(dy)) / 2 + 1;
-          const sx = dx === 0 ? (i % 2 ? 1 : -1) : Math.sign(dx);
-          const sy = dy === 0 ? (j % 2 ? 1 : -1) : Math.sign(dy);
-          a.x -= sx * pushX * 0.55;
-          b.x += sx * pushX * 0.55;
-          a.y -= sy * pushY * 0.55;
-          b.y += sy * pushY * 0.55;
+          const pushX = (minX - Math.abs(dx || 0.01)) / 2 + 2;
+          const pushY = (minY - Math.abs(dy || 0.01)) / 2 + 2;
+          const sx = dx === 0 ? 1 : Math.sign(dx);
+          const sy = dy === 0 ? 1 : Math.sign(dy);
+          a.x -= sx * pushX * 0.6;
+          b.x += sx * pushX * 0.6;
+          a.y -= sy * pushY * 0.6;
+          b.y += sy * pushY * 0.6;
         }
       }
-      items[i].x = Math.min(view.clientWidth - W / 2 - 8, Math.max(W / 2 + 8, items[i].x));
-      items[i].y = Math.min(view.clientHeight - 56, Math.max(64, items[i].y));
+      items[i].x = Math.min(view.clientWidth - W / 2 - 10, Math.max(W / 2 + 10, items[i].x));
+      items[i].y = Math.min(view.clientHeight - 64, Math.max(72, items[i].y));
     }
   }
   const leaders = document.getElementById("leaders");
@@ -349,9 +362,8 @@ function layoutCards() {
       it.card.style.display = "block";
       it.card.style.left = `${it.x}px`;
       it.card.style.top = `${it.y}px`;
-      const x2 = it.x, y2 = it.y;
-      svg += `<line x1="${it.anchor.x}" y1="${it.anchor.y}" x2="${x2}" y2="${y2}"
-        stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.75"/>`;
+      svg += `<line x1="${it.anchor.x}" y1="${it.anchor.y}" x2="${it.x}" y2="${it.y}"
+        stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.8"/>`;
       svg += `<circle cx="${it.anchor.x}" cy="${it.anchor.y}" r="2.5" fill="#94a3b8"/>`;
     }
     leaders.innerHTML = svg;
